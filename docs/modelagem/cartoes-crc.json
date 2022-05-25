@@ -1,0 +1,168 @@
+[
+  {
+    "name": "Jogo",
+    "superclasses": "",
+    "subclasses": "",
+    "type": 1,
+    "responsibilities": [
+      "Configurações do Jogo",
+      "Game Loop",
+      "Setup",
+      "Pausar"
+    ],
+    "collaborators": [
+      ""
+    ]
+  },
+  {
+    "name": "Nivel",
+    "superclasses": "",
+    "subclasses": "",
+    "type": 1,
+    "responsibilities": [
+      "Nome",
+      "Arranjo de Objetos",
+      "Arranjo de NPCs",
+      "Background",
+      "Música",
+      "Tocar Música",
+      "Gerar Nivel",
+      "Inicializar Nivel",
+      "Finalizar Nivel"
+    ],
+    "collaborators": [
+      "Objeto",
+      "NPC"
+    ]
+  },
+  {
+    "name": "Personagem",
+    "superclasses": "",
+    "subclasses": "Jogador, Npc",
+    "type": 1,
+    "responsibilities": [
+      "Nome",
+      "Posição",
+      "Sprite",
+      "Inventário",
+      "Mover",
+      "Emitir Som",
+      "Checar Colisão"
+    ],
+    "collaborators": [
+      "Colisão",
+      "Inventário",
+      "",
+      ""
+    ]
+  },
+  {
+    "name": "Jogador",
+    "superclasses": "Personagem",
+    "subclasses": "",
+    "type": 1,
+    "responsibilities": [
+      "Interagir",
+      "Mover (override)",
+      "Voltar no tempo",
+      "Acessar Inventário",
+      "Utilizar Item",
+      ""
+    ],
+    "collaborators": [
+      "Fita",
+      "Inventário",
+      "Item"
+    ]
+  },
+  {
+    "name": "NPC",
+    "superclasses": "Personagem",
+    "subclasses": "",
+    "type": 1,
+    "responsibilities": [
+      "Falas",
+      "Falar",
+      ""
+    ],
+    "collaborators": [
+      "Jogador"
+    ]
+  },
+  {
+    "name": "Fita",
+    "superclasses": "",
+    "subclasses": "",
+    "type": 1,
+    "responsibilities": [
+      "Tempo",
+      "Estados dos Niveis",
+      "Estados do Jogador",
+      "Retroceder Tempo"
+    ],
+    "collaborators": [
+      "Jogador",
+      "Nivel",
+      "Jogo",
+      ""
+    ]
+  },
+  {
+    "name": "Objeto",
+    "superclasses": "",
+    "subclasses": "",
+    "type": 1,
+    "responsibilities": [
+      "id",
+      "Sprite",
+      "Posição",
+      "",
+      ""
+    ],
+    "collaborators": [
+      "Colisão"
+    ]
+  },
+  {
+    "name": "Item",
+    "superclasses": "",
+    "subclasses": "",
+    "type": 1,
+    "responsibilities": [
+      "id",
+      "Descrição",
+      "Sprite",
+      "Utilidades"
+    ],
+    "collaborators": [
+      ""
+    ]
+  },
+  {
+    "name": "Inventario",
+    "superclasses": "",
+    "subclasses": "",
+    "type": 1,
+    "responsibilities": [
+      "Coleção de Itens",
+      "Enviar Item",
+      "Receber Item",
+      "Exibir informações do Item"
+    ],
+    "collaborators": [
+      "Item"
+    ]
+  },
+  {
+    "name": "Colisão",
+    "superclasses": "",
+    "subclasses": "",
+    "type": 3,
+    "responsibilities": [
+      ""
+    ],
+    "collaborators": [
+      ""
+    ]
+  }
+]
