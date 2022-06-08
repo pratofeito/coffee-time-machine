@@ -1,8 +1,10 @@
-all: build link
+win: build-win link-win run-win
 
-build:
-	g++ -c src/main.cpp -o build/main.o
+build-win:
+	g++ -I libs/sfml-win/include -c src/main.cpp -o build/main.o
 
-link:
-	g++ build/main.o -o main -lsfml-audio -lsfml-graphics -lsfml-window -lsfml-system
+link-win:
+	g++ build/main.o -o libs/sfml-win/bin/main.exe -L libs/sfml-win/lib -lsfml-audio -lsfml-graphics -lsfml-window -lsfml-system
 
+run-win:
+	libs/sfml-win/bin/main.exe
