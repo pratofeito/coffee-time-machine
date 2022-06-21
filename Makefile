@@ -14,13 +14,17 @@ linux-run: build-linux link-linux run-linux
 
 
 build-linux:
-	${CC} ${CFLAGS} -I libs/sfml-linux/include -c src/main.cpp -o build/main.o
+	${CC} ${CFLAGS} -I libs/sfml-linux/include -I include -c src/main.cpp -o build/main.o
+	${CC} ${CFLAGS} -I libs/sfml-linux/include -I include -c src/Game/state.cpp -o build/state.o
+	${CC} ${CFLAGS} -I libs/sfml-linux/include -I include -c src/Game/game-state.cpp -o build/game-state.o
+	${CC} ${CFLAGS} -I libs/sfml-linux/include -I include -c src/Game/game.cpp -o build/game.o
 
 link-linux:
-	${CC} ${CFLAGS} build/main.o -o main -L libs/sfml-linux/lib -lsfml-audio -lsfml-graphics -lsfml-window -lsfml-system
+	export LD_LIBRARY_PATH=libs/sfml-linux/lib && ./main
+	${CC} ${CFLAGS} build/main.o build/state.o build/game-state.o build/game.o -o main -Llibs/sfml-linux/lib -lsfml-audio -lsfml-graphics -lsfml-window -lsfml-system
 
 run-linux:
-	./main
+	./main	
 
 
 # Windows targets
