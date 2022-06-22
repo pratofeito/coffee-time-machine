@@ -12,7 +12,9 @@ public:
     virtual ~Game_state();
 
     void update(const float &delta_time) override;
+    void update_kb(const float &delta_time) override;
     void draw(sf::RenderTarget *target = nullptr) override;
+
     void end_state() override;
 };
 

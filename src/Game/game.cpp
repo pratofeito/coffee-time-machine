@@ -59,9 +59,22 @@ void Game::update_sfml_events()
 void Game::update()
 {
     this->update_sfml_events();
+
     if (!this->states.empty())
     {
         this->states.top()->update(this->delta_time);
+        // State quit
+        if (this->states.top()->get_quit_state())
+        {
+            this->states.top()->end_state();
+            delete this->states.top();
+            this->states.pop();
+        }
+    }
+    // Application quit
+    if (this->states.empty())
+    {
+        this->window->close();
     }
 }
 
