@@ -18,7 +18,8 @@ private:
 
     void initialize_window();
     void initialize_states();
-    // void initialize_sfml_events();
+    void initialize_sfml_events();
+
 public:
     Game();
     virtual ~Game();

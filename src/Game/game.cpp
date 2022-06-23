@@ -9,12 +9,14 @@ Game::Game()
 
 Game::~Game()
 {
+
     delete this->window;
     while (!this->states.empty())
     {
         delete this->states.top();
         this->states.pop();
     }
+    std::cout << "Aplicacao finalizada" << std::endl;
 }
 
 // Private
@@ -82,7 +84,7 @@ void Game::draw()
 {
     // Double Buffering
 
-    this->window->clear(sf::Color::White);
+    this->window->clear(sf::Color::Black);
 
     if (!this->states.empty())
     {

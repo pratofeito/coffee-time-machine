@@ -18,10 +18,11 @@ build-linux:
 	${CC} ${CFLAGS} -I libs/sfml-linux/include -I include -c src/Game/state.cpp -o build/state.o
 	${CC} ${CFLAGS} -I libs/sfml-linux/include -I include -c src/Game/game-state.cpp -o build/game-state.o
 	${CC} ${CFLAGS} -I libs/sfml-linux/include -I include -c src/Game/game.cpp -o build/game.o
+	${CC} ${CFLAGS} -I libs/sfml-linux/include -I include -c src/Instances/instance.cpp -o build/instance.o
 
 link-linux:
 	export LD_LIBRARY_PATH=libs/sfml-linux/lib && ./main
-	${CC} ${CFLAGS} build/main.o build/state.o build/game-state.o build/game.o -o main -Llibs/sfml-linux/lib -lsfml-audio -lsfml-graphics -lsfml-window -lsfml-system
+	${CC} ${CFLAGS} build/main.o build/state.o build/game-state.o build/game.o build/instance.o -o main -Llibs/sfml-linux/lib -lsfml-audio -lsfml-graphics -lsfml-window -lsfml-system
 
 run-linux:
 	./main	
@@ -39,9 +40,10 @@ build-win:
 	${CC} ${CFLAGS} -I libs/sfml-win/include -I include -c src/Game/state.cpp -o build/state.o
 	${CC} ${CFLAGS} -I libs/sfml-win/include -I include -c src/Game/game-state.cpp -o build/game-state.o
 	${CC} ${CFLAGS} -I libs/sfml-win/include -I include -c src/Game/game.cpp -o build/game.o
+	${CC} ${CFLAGS} -I libs/sfml-win/include -I include -c src/Instances/instance.cpp -o build/instance.o
 
 link-win:
-	${CC} ${CFLAGS} build/main.o build/game.o build/state.o build/game-state.o -o libs/sfml-win/bin/main.exe -L libs/sfml-win/lib -lsfml-audio -lsfml-graphics -lsfml-window -lsfml-system
+	${CC} ${CFLAGS} build/main.o build/game.o build/state.o build/game-state.o build/instance.o -o libs/sfml-win/bin/main.exe -L libs/sfml-win/lib -lsfml-audio -lsfml-graphics -lsfml-window -lsfml-system
 
 run-win:
 	libs/sfml-win/bin/main.exe

@@ -6,6 +6,7 @@ class Game_state : public State
 {
 private:
     // Elementos de Game
+    Instance player;
 
 public:
     Game_state(sf::RenderWindow *window);

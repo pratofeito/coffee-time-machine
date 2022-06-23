@@ -6,20 +6,18 @@ Game_state::Game_state(sf::RenderWindow *window) : State(window)
 
 Game_state::~Game_state()
 {
+    std::cout << "Estado de jogo deletado" << std::endl;
 }
 
 void Game_state::update(const float &delta_time)
 {
     this->update_kb(delta_time);
-    std::cout << "Estou em Game State !!!" << std::endl;
-    if (sf::Keyboard::isKeyPressed(sf::Keyboard::A))
-    {
-        std::cout << "A" << std::endl;
-    }
+    this->player.instance_update(delta_time);
 }
 
 void Game_state::draw(sf::RenderTarget *target)
 {
+    this->player.instance_draw(this->window);
 }
 
 void Game_state::update_kb(const float &delta_time)

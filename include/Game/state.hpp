@@ -1,22 +1,15 @@
 #ifndef STATE_H
 #define STATE_H
 
-#include <stack>
-#include <map>
-#include <vector>
-#include <iostream>
-#include <ctime>
-#include <cstdlib>
-
-#include <SFML/Graphics.hpp>
+#include "Instances/instance.hpp"
 
 // Classe Abstrata
 class State
 {
-private:
+protected:
     sf::RenderWindow *window;
     std::vector<sf::Texture> textures;
-    bool quit_state;
+    bool quit_state = false;
 
 public:
     State(sf::RenderWindow *window);
