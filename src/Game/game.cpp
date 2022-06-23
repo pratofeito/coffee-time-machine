@@ -45,7 +45,12 @@ void Game::update_delta_time()
 {
     this->delta_time = this->delta_time_clock.restart().asSeconds();
 
-    system("cls");
+    #ifdef LINUX
+        system("clear");
+    #else
+        system("cls");
+    #endif
+
     std::cout << this->delta_time << std::endl;
 }
 

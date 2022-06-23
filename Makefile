@@ -17,7 +17,7 @@ build-linux:
 	${CC} ${CFLAGS} -I libs/sfml-linux/include -I include -c src/main.cpp -o build/main.o
 	${CC} ${CFLAGS} -I libs/sfml-linux/include -I include -c src/Game/state.cpp -o build/state.o
 	${CC} ${CFLAGS} -I libs/sfml-linux/include -I include -c src/Game/game-state.cpp -o build/game-state.o
-	${CC} ${CFLAGS} -I libs/sfml-linux/include -I include -c src/Game/game.cpp -o build/game.o
+	${CC} ${CFLAGS} -I libs/sfml-linux/include -I include -c src/Game/game.cpp -D LINUX -o build/game.o
 	${CC} ${CFLAGS} -I libs/sfml-linux/include -I include -c src/Instances/instance.cpp -o build/instance.o
 
 link-linux:
