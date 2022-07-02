@@ -6,7 +6,9 @@ class Game_state : public State
 {
 private:
     // Elementos de Game
-    Instance player;
+    Player player;
+    std::vector<Wall> walls;
+    Wall wall;
 
 public:
     Game_state(sf::RenderWindow *window);

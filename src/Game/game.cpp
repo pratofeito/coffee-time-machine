@@ -24,7 +24,7 @@ void Game::initialize_window()
 {
     sf::ContextSettings settings;
     settings.antialiasingLevel = 8;
-    this->window = new sf::RenderWindow(sf::VideoMode(800, 600), "RPG", sf::Style::Default, settings);
+    this->window = new sf::RenderWindow(sf::VideoMode(800, 640), "RPG", sf::Style::Default, settings);
     this->window->setFramerateLimit(30);
     this->window->setVerticalSyncEnabled(false);
 }
@@ -45,11 +45,11 @@ void Game::update_delta_time()
 {
     this->delta_time = this->delta_time_clock.restart().asSeconds();
 
-    #ifdef LINUX
-        system("clear");
-    #else
-        system("cls");
-    #endif
+#ifdef LINUX
+    system("clear");
+#else
+    system("cls");
+#endif
 
     std::cout << this->delta_time << std::endl;
 }

@@ -1,7 +1,8 @@
 #ifndef STATE_H
 #define STATE_H
 
-#include "Instances/instance.hpp"
+#include "Instances/player.hpp"
+#include "Instances/wall.hpp"
 
 // Classe Abstrata
 class State
