@@ -19,9 +19,9 @@ void Player::player_move(const float delta_time)
     if (move[DOWN] == true)
     {
         this->y += move_speed + delta_time;
-        if (this->y >= next_tile)
+        if (this->y >= next_tile_y)
         {
-            this->y = next_tile;
+            this->y = next_tile_y;
             walking = false;
             move[DOWN] = false;
         }
@@ -30,9 +30,9 @@ void Player::player_move(const float delta_time)
     if (move[UP] == true)
     {
         this->y -= move_speed - delta_time;
-        if (this->y <= next_tile)
+        if (this->y <= next_tile_y)
         {
-            this->y = next_tile;
+            this->y = next_tile_y;
             walking = false;
             move[UP] = false;
         }
@@ -41,9 +41,9 @@ void Player::player_move(const float delta_time)
     if (move[LEFT] == true)
     {
         this->x -= move_speed - delta_time;
-        if (this->x <= next_tile)
+        if (this->x <= next_tile_x)
         {
-            this->x = next_tile;
+            this->x = next_tile_x;
             walking = false;
             move[LEFT] = false;
         }
@@ -52,9 +52,9 @@ void Player::player_move(const float delta_time)
     if (move[RIGHT] == true)
     {
         this->x += move_speed + delta_time;
-        if (this->x >= next_tile)
+        if (this->x >= next_tile_x)
         {
-            this->x = next_tile;
+            this->x = next_tile_x;
             walking = false;
             move[RIGHT] = false;
         }
@@ -64,46 +64,91 @@ void Player::player_move(const float delta_time)
 
 void Player::player_inputs()
 {
-    if (sf::Keyboard::isKeyPressed(sf::Keyboard::W))
+    if (can_up)
     {
-        if (walking == false)
+        if (sf::Keyboard::isKeyPressed(sf::Keyboard::W))
         {
-            next_tile = y - GRID_SIZE;
-            move[UP] = true;
-            walking = true;
+            if (walking == false)
+            {
+                next_tile_y = y - GRID_SIZE;
+                move[UP] = true;
+                walking = true;
+            }
         }
     }
 
-    if (sf::Keyboard::isKeyPressed(sf::Keyboard::S))
+    if (can_down)
     {
-        // this->player_move(delta_time, 0.f, 1.f);
-        if (walking == false)
+        if (sf::Keyboard::isKeyPressed(sf::Keyboard::S))
         {
-            next_tile = y + GRID_SIZE;
-            move[DOWN] = true;
-            walking = true;
+
+            if (walking == false)
+            {
+                next_tile_y = y + GRID_SIZE;
+                move[DOWN] = true;
+                walking = true;
+            }
         }
     }
 
-    if (sf::Keyboard::isKeyPressed(sf::Keyboard::A))
+    if (can_left)
     {
-        // this->player_move(delta_time, -1.f, 0.f);
-        if (walking == false)
+        if (sf::Keyboard::isKeyPressed(sf::Keyboard::A))
         {
-            next_tile = x - GRID_SIZE;
-            move[LEFT] = true;
-            walking = true;
+
+            if (walking == false)
+            {
+                next_tile_x = x - GRID_SIZE;
+                move[LEFT] = true;
+                walking = true;
+            }
         }
     }
 
-    if (sf::Keyboard::isKeyPressed(sf::Keyboard::D))
+    if (can_right)
     {
-        // this->player_move(delta_time, 1.f, 0.f);
-        if (walking == false)
+        if (sf::Keyboard::isKeyPressed(sf::Keyboard::D))
         {
-            next_tile = x + GRID_SIZE;
-            move[RIGHT] = true;
-            walking = true;
+            if (walking == false)
+            {
+                next_tile_x = x + GRID_SIZE;
+                move[RIGHT] = true;
+                walking = true;
+            }
+        }
+    }
+}
+
+void Player::player_col(std::vector<Wall> colisions)
+{
+    for (auto &i : colisions)
+    {
+        // Teste Colisão Para cima
+        can_up = true;
+        can_down = true;
+        can_left = true;
+        can_right = true;
+        if (i.get_colision_mask().getPosition().x == next_tile_x && i.get_colision_mask().getPosition().y == next_tile_y - GRID_SIZE)
+        {
+            can_up = false;
+        }
+
+        // Teste Colisão Para baixo
+        if (i.get_colision_mask().getPosition().x == next_tile_x && i.get_colision_mask().getPosition().y == next_tile_y + GRID_SIZE)
+        {
+            can_down = false;
+        }
+
+        // Teste Colisão Para direita
+        if (i.get_colision_mask().getPosition().x == next_tile_x + GRID_SIZE && i.get_colision_mask().getPosition().y == next_tile_y)
+        {
+            can_right = false;
+        }
+
+        // Teste Colisão Para esquerda
+        if (i.get_colision_mask().getPosition().x == next_tile_x - GRID_SIZE && i.get_colision_mask().getPosition().y == next_tile_y)
+        {
+            can_left = false;
         }
     }
 }

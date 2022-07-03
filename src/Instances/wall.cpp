@@ -10,6 +10,11 @@ Wall::~Wall()
 {
 }
 
+sf::RectangleShape Wall::get_colision_mask()
+{
+    return this->colision_mask;
+}
+
 void Wall::instance_draw(sf::RenderTarget *target)
 {
     target->draw(this->colision_mask);

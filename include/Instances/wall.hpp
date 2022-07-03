@@ -9,6 +9,7 @@ private:
 public:
     Wall();
     ~Wall();
+    sf::RectangleShape get_colision_mask();
     virtual void instance_draw(sf::RenderTarget *target) override;
     virtual void instance_update(const float &delta_time) override;
 };

@@ -13,6 +13,7 @@ void Game_state::update(const float &delta_time)
 {
     this->update_kb(delta_time);
     this->player.instance_update(delta_time);
+    this->player.player_col(walls);
 }
 
 void Game_state::draw(sf::RenderTarget *target)
