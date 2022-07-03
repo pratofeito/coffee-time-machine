@@ -3,9 +3,9 @@
 
 Instance::Instance()
 {
-    this->colision_mask.setSize(sf::Vector2f(50.f, 50.f));
+    this->colision_mask.setSize(sf::Vector2f(32.f, 32.f));
     this->colision_mask.setOrigin(sf::Vector2f(0.f, 0.f));
-    this->colision_mask.setFillColor(sf::Color::Red);
+    this->colision_mask.setFillColor(sf::Color::Magenta);
     this->speed = 200.f;
 }
 

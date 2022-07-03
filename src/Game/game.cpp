@@ -4,7 +4,7 @@ Game::Game()
 {
     this->initialize_window();
     this->initialize_states();
-    // this->initialize_sfml_events();
+    map.load_map_assets();
 }
 
 Game::~Game()
@@ -24,7 +24,7 @@ void Game::initialize_window()
 {
     sf::ContextSettings settings;
     settings.antialiasingLevel = 8;
-    this->window = new sf::RenderWindow(sf::VideoMode(800, 600), "RPG", sf::Style::Default, settings);
+    this->window = new sf::RenderWindow(sf::VideoMode(800, 640), "RPG", sf::Style::Close, settings);
     this->window->setFramerateLimit(30);
     this->window->setVerticalSyncEnabled(false);
 }
@@ -90,6 +90,9 @@ void Game::draw()
     // Double Buffering
 
     this->window->clear(sf::Color::Black);
+    
+    map.draw_map(window);
+    map.draw_guide_lines(window);
 
     if (!this->states.empty())
     {

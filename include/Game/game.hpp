@@ -2,6 +2,7 @@
 #define GAME_H
 
 #include "game-state.hpp"
+#include "Map/map.hpp"
 
 class Game
 {
@@ -15,6 +16,8 @@ private:
     // Stack funciona exatamente igual a Stack estudada seguindo LIFO
     // Empilhar os estados de jogo para facilitar a mudança entre os estados
     std::stack<State *> states;
+
+    Map map;
 
     void initialize_window();
     void initialize_states();
