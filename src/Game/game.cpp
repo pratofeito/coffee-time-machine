@@ -4,7 +4,7 @@ Game::Game()
 {
     this->initialize_window();
     this->initialize_states();
-    // this->initialize_sfml_events();
+    this->initialize_sfml_events();
 }
 
 Game::~Game()
@@ -34,9 +34,8 @@ void Game::initialize_states()
     this->states.push(new Game_state(this->window));
 }
 
-void initialize_sfml_events()
+void Game::initialize_sfml_events()
 {
-    // Sfml events
 }
 
 // Public

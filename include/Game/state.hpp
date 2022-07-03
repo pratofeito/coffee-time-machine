@@ -18,7 +18,7 @@ public:
 
     // Serão definidos pelos states especializados
     virtual void update(const float &delta_time) = 0;
-    virtual void update_kb(const float &delta_time) = 0;
+    virtual void update_inputs(const float &delta_time) = 0;
 
     virtual void draw(sf::RenderTarget *target = nullptr) = 0;
 

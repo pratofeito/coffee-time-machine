@@ -7,16 +7,18 @@
 class Player : public Instance
 {
 private:
-    const float move_speed = 100.f / GRID_SIZE;
-
-    bool move[4]; // direções possíveis
+    // Movimentação e Colisão
+    const float move_speed = 150.f / GRID_SIZE;
+    bool move[4]; // Direções possíveis
     bool walking;
-    bool can_up, can_down, can_left, can_right;
+    bool can_up, can_down, can_left, can_right; // Colisão
+    std::string direction;
 
     int next_tile_x;
     int next_tile_y;
-
     float x, y;
+
+    bool interagiu = false;
 
 public:
     Player();
@@ -25,6 +27,7 @@ public:
     void player_move(const float delta_time);
     void player_inputs();
     void player_col(const std::vector<Wall> colisions);
+    void player_interact(const Wall interactable);
 
     enum MOVE
     {

@@ -64,9 +64,11 @@ void Player::player_move(const float delta_time)
 
 void Player::player_inputs()
 {
-    if (can_up)
+    // Movimentos
+
+    if (sf::Keyboard::isKeyPressed(sf::Keyboard::W))
     {
-        if (sf::Keyboard::isKeyPressed(sf::Keyboard::W))
+        if (can_up)
         {
             if (walking == false)
             {
@@ -75,13 +77,13 @@ void Player::player_inputs()
                 walking = true;
             }
         }
+        this->direction = "Looking UP";
     }
 
-    if (can_down)
+    if (sf::Keyboard::isKeyPressed(sf::Keyboard::S))
     {
-        if (sf::Keyboard::isKeyPressed(sf::Keyboard::S))
+        if (can_down)
         {
-
             if (walking == false)
             {
                 next_tile_y = y + GRID_SIZE;
@@ -89,13 +91,13 @@ void Player::player_inputs()
                 walking = true;
             }
         }
+        this->direction = "Looking DOWN";
     }
 
-    if (can_left)
+    if (sf::Keyboard::isKeyPressed(sf::Keyboard::A))
     {
-        if (sf::Keyboard::isKeyPressed(sf::Keyboard::A))
+        if (can_left)
         {
-
             if (walking == false)
             {
                 next_tile_x = x - GRID_SIZE;
@@ -103,11 +105,12 @@ void Player::player_inputs()
                 walking = true;
             }
         }
+        this->direction = "Looking LEFT";
     }
 
-    if (can_right)
+    if (sf::Keyboard::isKeyPressed(sf::Keyboard::D))
     {
-        if (sf::Keyboard::isKeyPressed(sf::Keyboard::D))
+        if (can_right)
         {
             if (walking == false)
             {
@@ -116,6 +119,7 @@ void Player::player_inputs()
                 walking = true;
             }
         }
+        this->direction = "Looking RIGHT";
     }
 }
 
@@ -131,24 +135,54 @@ void Player::player_col(std::vector<Wall> colisions)
         if (i.get_colision_mask().getPosition().x == next_tile_x && i.get_colision_mask().getPosition().y == next_tile_y - GRID_SIZE)
         {
             can_up = false;
+            player_interact(i);
         }
 
         // Teste Colisão Para baixo
         if (i.get_colision_mask().getPosition().x == next_tile_x && i.get_colision_mask().getPosition().y == next_tile_y + GRID_SIZE)
         {
             can_down = false;
+            player_interact(i);
         }
 
         // Teste Colisão Para direita
         if (i.get_colision_mask().getPosition().x == next_tile_x + GRID_SIZE && i.get_colision_mask().getPosition().y == next_tile_y)
         {
             can_right = false;
+            player_interact(i);
         }
 
         // Teste Colisão Para esquerda
         if (i.get_colision_mask().getPosition().x == next_tile_x - GRID_SIZE && i.get_colision_mask().getPosition().y == next_tile_y)
         {
             can_left = false;
+            player_interact(i);
+        }
+    }
+}
+
+void Player::player_interact(const Wall colisions)
+{
+    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space))
+    {
+        if (direction == "Looking UP" && can_up == false)
+        {
+            std::cout << "Interagiu" << std::endl;
+        }
+
+        if (direction == "Looking DOWN" && can_down == false)
+        {
+            std::cout << "Interagiu" << std::endl;
+        }
+
+        if (direction == "Looking LEFT" && can_left == false)
+        {
+            std::cout << "Interagiu" << std::endl;
+        }
+
+        if (direction == "Looking RIGHT" && can_right == false)
+        {
+            std::cout << "Interagiu" << std::endl;
         }
     }
 }
@@ -160,6 +194,7 @@ void Player::instance_draw(sf::RenderTarget *target)
 
 void Player::instance_update(const float &delta_time)
 {
+    // std::cout << this->direction << std::endl;
     player_inputs();
     player_move(delta_time);
 }
