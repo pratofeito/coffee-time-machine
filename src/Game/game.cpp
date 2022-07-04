@@ -4,11 +4,16 @@ Game::Game()
 {
     this->initialize_window();
     this->initialize_states();
-    map.load_map_assets();
+
+    // crio o meu mapa
+    map_bg = new Background("resources/bricks.png", "resources/map.csv", sf::Vector2i(0, 0));   
 }
 
 Game::~Game()
 {
+
+    // deleto o background do mapa criado no início
+    delete map_bg;
 
     delete this->window;
     while (!this->states.empty())
@@ -63,6 +68,25 @@ void Game::update_sfml_events()
     }
 }
 
+void Game::draw_guidelines() {
+    sf::RectangleShape vertical_line;
+    sf::RectangleShape horizontal_line;
+
+    vertical_line.setSize(sf::Vector2f(1, WINDOW_HEIGHT));
+    horizontal_line.setSize(sf::Vector2f(WINDOW_WIDTH, 1));
+
+    sf::Color ct (244, 125, 66, 100);
+    vertical_line.setFillColor(ct);
+    horizontal_line.setFillColor(ct);
+
+    for (int i = 1; i < (WINDOW_WIDTH / TILE_SIZE); i++) {
+        vertical_line.setPosition(TILE_SIZE * i, 0);
+        horizontal_line.setPosition(0, TILE_SIZE * i);
+        window->draw(vertical_line);
+        window->draw(horizontal_line);
+    }
+}
+
 void Game::update()
 {
     this->update_sfml_events();
@@ -91,14 +115,16 @@ void Game::draw()
 
     this->window->clear(sf::Color::Black);
     
-    map.draw_map(window);
-    map.draw_guide_lines(window);
+    
+    map_bg->draw(window);
+
+    this->draw_guidelines();
 
     if (!this->states.empty())
     {
         this->states.top()->draw(this->window);
     }
-
+    
     this->window->display();
 }
 

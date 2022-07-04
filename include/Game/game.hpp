@@ -1,8 +1,12 @@
 #ifndef GAME_H
 #define GAME_H
 
+#define WINDOW_WIDTH 800
+#define WINDOW_HEIGHT 640
+#define TILE_SIZE 32
+
 #include "game-state.hpp"
-#include "Map/map.hpp"
+#include "sprite-set/background.hpp"
 
 class Game
 {
@@ -17,11 +21,12 @@ private:
     // Empilhar os estados de jogo para facilitar a mudança entre os estados
     std::stack<State *> states;
 
-    Map map;
-
     void initialize_window();
     void initialize_states();
     void initialize_sfml_events();
+    void draw_guidelines();
+
+    Background* map_bg;
 
 public:
     Game();
