@@ -3,22 +3,22 @@
 
 #include "instance.hpp"
 #include "wall.hpp"
+#include "supported-keys.hpp"
 
 class Player : public Instance
 {
 private:
-    // Movimentação e Colisão
+    // Movimentação
     const float move_speed = 150.f / GRID_SIZE;
-    bool move[4]; // Direções possíveis
-    bool walking;
-    bool can_up, can_down, can_left, can_right; // Colisão
+    float velh, velv;
+    bool is_moving;
     std::string direction;
 
     int next_tile_x;
     int next_tile_y;
     float x, y;
 
-    bool interagiu = false;
+    // Controles
 
 public:
     Player();
@@ -26,15 +26,11 @@ public:
 
     void player_move(const float delta_time);
     void player_inputs();
-    void player_col(const std::vector<Wall> colisions);
-    void player_interact(const Wall interactable);
 
-    enum MOVE
+    enum states
     {
-        UP,
-        DOWN,
-        LEFT,
-        RIGHT
+        idle,
+        walking
     };
 
     virtual void instance_draw(sf::RenderTarget *target) override;

@@ -50,7 +50,7 @@ void Game::update_delta_time()
     system("cls");
 #endif
 
-    std::cout << this->delta_time << std::endl;
+    // std::cout << this->delta_time << std::endl;
 }
 
 void Game::update_sfml_events()

@@ -10,6 +10,7 @@ public:
     Wall();
     ~Wall();
     sf::RectangleShape get_colision_mask();
+    void set_color(sf::Color color);
     virtual void instance_draw(sf::RenderTarget *target) override;
     virtual void instance_update(const float &delta_time) override;
 };
