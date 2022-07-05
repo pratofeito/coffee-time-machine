@@ -1,8 +1,14 @@
 #include "Instances/player.hpp"
+#include <unistd.h>
 
-Player::Player()
+Player::Player(int x, int y) : Instance(x, y)
 {
-    this->colision_mask.setFillColor(sf::Color::Cyan);
+    // Hit box test
+    hit_box.setFillColor(sf::Color::Magenta);
+    hit_box.setSize(sf::Vector2f(GRID_SIZE, GRID_SIZE));
+    hit_box.setPosition(virtual_position.x * GRID_SIZE, virtual_position.y * GRID_SIZE);
+
+    is_moving = false;
 }
 
 Player::~Player()
@@ -11,38 +17,79 @@ Player::~Player()
 
 void Player::player_move(const float delta_time)
 {
-    x += velh;
-    y += velv;
-    colision_mask.setPosition(this->x, this->y);
-}
 
-void Player::player_inputs()
-{
-    // Movimentos
-    bool up = sf::Keyboard::isKeyPressed(sf::Keyboard::W);
-    bool down = sf::Keyboard::isKeyPressed(sf::Keyboard::S);
-    bool left = sf::Keyboard::isKeyPressed(sf::Keyboard::A);
-    bool right = sf::Keyboard::isKeyPressed(sf::Keyboard::D);
+    elapsed_time += delta_time;
+    int partial_move = (elapsed_time * GRID_SIZE) / move_time;
 
-    if (up || down || left || right)
+    if (partial_move >= GRID_SIZE)
     {
-        velv = move_speed * (down - up);
-        velh = move_speed * (right - left);
+        is_moving = false;
+        elapsed_time = 0;
+        virtual_position.x = next_tile.x;
+        virtual_position.y = next_tile.y;
+        hit_box.setPosition(sf::Vector2f(virtual_position.x * GRID_SIZE, virtual_position.y * GRID_SIZE));
     }
     else
     {
-        velv = 0;
-        velh = 0;
+        hit_box.setPosition(sf::Vector2f((virtual_position.x * GRID_SIZE) + (partial_move * move_dir.x),
+                                         (virtual_position.y * GRID_SIZE) + (partial_move * move_dir.y)));
+    }
+}
+
+void Player::check_inputs()
+{
+    // Movimentos
+    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up))
+    {
+        looking = UP;
+        is_moving = true;
+        elapsed_time = 0;
+        next_tile.x = virtual_position.x;
+        next_tile.y = virtual_position.y - 1;
+        move_dir = sf::Vector2i(0, -1);
+    }
+    else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down))
+    {
+        looking = DOWN;
+        is_moving = true;
+        elapsed_time = 0;
+        next_tile.x = virtual_position.x;
+        next_tile.y = virtual_position.y + 1;
+        move_dir = sf::Vector2i(0, 1);
+    }
+    else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left))
+    {
+        looking = LEFT;
+        is_moving = true;
+        elapsed_time = 0;
+        next_tile.x = virtual_position.x - 1;
+        next_tile.y = virtual_position.y;
+        move_dir = sf::Vector2i(-1, 0);
+    }
+    else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right))
+    {
+        looking = RIGHT;
+        is_moving = true;
+        elapsed_time = 0;
+        next_tile.x = virtual_position.x + 1;
+        next_tile.y = virtual_position.y;
+        move_dir = sf::Vector2i(1, 0);
     }
 }
 
 void Player::instance_draw(sf::RenderTarget *target)
 {
-    target->draw(this->colision_mask);
+    target->draw(this->hit_box);
 }
 
 void Player::instance_update(const float &delta_time)
 {
-    player_inputs();
-    player_move(delta_time);
+    if (is_moving)
+    {
+        player_move(delta_time);
+    }
+    else
+    {
+        check_inputs();
+    }
 }

@@ -20,13 +20,14 @@ build-linux:
 	${CC} ${CFLAGS} -I libs/sfml-linux/include -I include -c src/Game/game.cpp -D LINUX -o build/game.o
 	${CC} ${CFLAGS} -I libs/sfml-linux/include -I include -c src/Instances/instance.cpp -o build/instance.o
 	${CC} ${CFLAGS} -I libs/sfml-linux/include -I include -c src/Instances/player.cpp -o build/player.o
+	${CC} ${CFLAGS} -I libs/sfml-win/include -I include -c src/Instances/collision.cpp -o build/collision.o
+	${CC} ${CFLAGS} -I libs/sfml-win/include -I include -c src/Instances/wall.cpp -o build/wall.o
 
 link-linux:
-	export LD_LIBRARY_PATH=libs/sfml-linux/lib && ./main
-	${CC} ${CFLAGS} build/main.o build/state.o build/game-state.o build/game.o build/instance.o build/player.o -o main -Llibs/sfml-linux/lib -lsfml-audio -lsfml-graphics -lsfml-window -lsfml-system
+	${CC} ${CFLAGS} build/*.o -o main -Llibs/sfml-linux/lib -lsfml-audio -lsfml-graphics -lsfml-window -lsfml-system
 
 run-linux:
-	./main	
+		export LD_LIBRARY_PATH=libs/sfml-linux/lib && ./main	
 
 
 # Windows targets

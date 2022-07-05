@@ -2,35 +2,35 @@
 #define PLAYER_H
 
 #include "instance.hpp"
-#include "wall.hpp"
-#include "supported-keys.hpp"
+#include "collision.hpp"
 
 class Player : public Instance
 {
 private:
+    sf::RectangleShape hit_box;
     // Movimentação
-    const float move_speed = 150.f / GRID_SIZE;
-    float velh, velv;
     bool is_moving;
-    std::string direction;
+    int looking;
+    sf::Vector2i next_tile;
+    float move_time = 0.3;
+    float elapsed_time;
 
-    int next_tile_x;
-    int next_tile_y;
-    float x, y;
-
+    sf::Vector2i move_dir;
     // Controles
 
 public:
-    Player();
-    ~Player();
+    Player(int x, int y);
+    virtual ~Player();
 
     void player_move(const float delta_time);
-    void player_inputs();
+    void check_inputs();
 
-    enum states
+    enum directions
     {
-        idle,
-        walking
+        UP,
+        DOWN,
+        LEFT,
+        RIGHT
     };
 
     virtual void instance_draw(sf::RenderTarget *target) override;

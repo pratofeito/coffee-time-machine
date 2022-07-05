@@ -2,6 +2,7 @@
 #define STATE_H
 
 #include "Instances/player.hpp"
+#include "Instances/collision.hpp"
 #include "Instances/wall.hpp"
 
 // Classe Abstrata

@@ -1,10 +1,9 @@
 
 #include "Instances/instance.hpp"
 
-Instance::Instance()
+Instance::Instance(int x, int y)
 {
-    this->colision_mask.setSize(sf::Vector2f(GRID_SIZE, GRID_SIZE));
-    this->colision_mask.setOrigin(sf::Vector2f(0.f, 0.f));
+    this->virtual_position = sf::Vector2i(x, y);
 }
 
 Instance::~Instance()

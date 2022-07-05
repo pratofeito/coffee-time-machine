@@ -6,7 +6,8 @@ class Game_state : public State
 {
 private:
     // Elementos de Game
-    Player player;
+    Player *player;
+    Wall *wall;
 
 public:
     Game_state(sf::RenderWindow *window);
