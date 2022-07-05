@@ -1,9 +1,9 @@
 #ifndef STATE_H
 #define STATE_H
 
-#include "Instances/player.hpp"
-#include "Instances/collision.hpp"
-#include "Instances/wall.hpp"
+#include "instances/player.hpp"
+#include "collision/collision.hpp"
+#include "instances/wall.hpp"
 
 // Classe Abstrata
 class State

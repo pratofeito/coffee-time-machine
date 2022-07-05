@@ -2,7 +2,7 @@
 #define PLAYER_H
 
 #include "instance.hpp"
-#include "collision.hpp"
+#include "collision/collision.hpp"
 
 class Player : public Instance
 {

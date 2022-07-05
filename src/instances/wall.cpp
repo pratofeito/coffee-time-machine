@@ -1,4 +1,4 @@
-#include "Instances/wall.hpp"
+#include "instances/wall.hpp"
 
 Wall::Wall(int x, int y) : Instance(x, y)
 {

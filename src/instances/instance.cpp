@@ -1,5 +1,5 @@
 
-#include "Instances/instance.hpp"
+#include "instances/instance.hpp"
 
 Instance::Instance(int x, int y)
 {

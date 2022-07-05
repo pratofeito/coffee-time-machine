@@ -1,4 +1,4 @@
-#include "Instances/player.hpp"
+#include "instances/player.hpp"
 #include <unistd.h>
 
 Player::Player(int x, int y) : Instance(x, y)

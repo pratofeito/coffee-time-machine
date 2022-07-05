@@ -1,7 +1,7 @@
 #ifndef GAME_STATE_H
 #define GAME_STATE_H
 
-#include "Game/state.hpp"
+#include "game/state.hpp"
 class Game_state : public State
 {
 private:

@@ -1,7 +1,7 @@
 #ifndef COLLISION_H
 #define COLLISION_H
 
-#include "instance.hpp"
+#include "instances/instance.hpp"
 
 class Collision
 {
@@ -9,7 +9,9 @@ private:
     static std::vector<Instance *> collidable;
 
 public:
-    Collision();
+    Instance *get_collision(sf::Vector2i position);
+
+    Collision(Instance *new_object);
     ~Collision();
 };
 

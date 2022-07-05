@@ -15,13 +15,13 @@ linux-run: build-linux link-linux run-linux
 
 build-linux:
 	${CC} ${CFLAGS} -I libs/sfml-linux/include -I include -c src/main.cpp -o build/main.o
-	${CC} ${CFLAGS} -I libs/sfml-linux/include -I include -c src/Game/state.cpp -o build/state.o
-	${CC} ${CFLAGS} -I libs/sfml-linux/include -I include -c src/Game/game-state.cpp -o build/game-state.o
-	${CC} ${CFLAGS} -I libs/sfml-linux/include -I include -c src/Game/game.cpp -D LINUX -o build/game.o
-	${CC} ${CFLAGS} -I libs/sfml-linux/include -I include -c src/Instances/instance.cpp -o build/instance.o
-	${CC} ${CFLAGS} -I libs/sfml-linux/include -I include -c src/Instances/player.cpp -o build/player.o
-	${CC} ${CFLAGS} -I libs/sfml-win/include -I include -c src/Instances/collision.cpp -o build/collision.o
-	${CC} ${CFLAGS} -I libs/sfml-win/include -I include -c src/Instances/wall.cpp -o build/wall.o
+	${CC} ${CFLAGS} -I libs/sfml-linux/include -I include -c src/game/state.cpp -o build/state.o
+	${CC} ${CFLAGS} -I libs/sfml-linux/include -I include -c src/game/game-state.cpp -o build/game-state.o
+	${CC} ${CFLAGS} -I libs/sfml-linux/include -I include -c src/game/game.cpp -D LINUX -o build/game.o
+	${CC} ${CFLAGS} -I libs/sfml-linux/include -I include -c src/instances/instance.cpp -o build/instance.o
+	${CC} ${CFLAGS} -I libs/sfml-linux/include -I include -c src/instances/player.cpp -o build/player.o
+	${CC} ${CFLAGS} -I libs/sfml-linux/include -I include -c src/collision/collision.cpp -o build/collision.o
+	${CC} ${CFLAGS} -I libs/sfml-linux/include -I include -c src/instances/wall.cpp -o build/wall.o
 
 link-linux:
 	${CC} ${CFLAGS} build/*.o -o main -Llibs/sfml-linux/lib -lsfml-audio -lsfml-graphics -lsfml-window -lsfml-system
@@ -39,12 +39,13 @@ win-run: build-win link-win run-win
 
 build-win:
 	${CC} ${CFLAGS} -I libs/sfml-win/include -I include -c src/main.cpp -o build/main.o
-	${CC} ${CFLAGS} -I libs/sfml-win/include -I include -c src/Game/state.cpp -o build/state.o
-	${CC} ${CFLAGS} -I libs/sfml-win/include -I include -c src/Game/game-state.cpp -o build/game-state.o
-	${CC} ${CFLAGS} -I libs/sfml-win/include -I include -c src/Game/game.cpp -o build/game.o
-	${CC} ${CFLAGS} -I libs/sfml-win/include -I include -c src/Instances/instance.cpp -o build/instance.o
-	${CC} ${CFLAGS} -I libs/sfml-win/include -I include -c src/Instances/player.cpp -o build/player.o
-	${CC} ${CFLAGS} -I libs/sfml-win/include -I include -c src/Instances/Wall.cpp -o build/Wall.o
+	${CC} ${CFLAGS} -I libs/sfml-win/include -I include -c src/game/state.cpp -o build/state.o
+	${CC} ${CFLAGS} -I libs/sfml-win/include -I include -c src/game/game-state.cpp -o build/game-state.o
+	${CC} ${CFLAGS} -I libs/sfml-win/include -I include -c src/game/game.cpp -o build/game.o
+	${CC} ${CFLAGS} -I libs/sfml-win/include -I include -c src/instances/instance.cpp -o build/instance.o
+	${CC} ${CFLAGS} -I libs/sfml-win/include -I include -c src/instances/player.cpp -o build/player.o
+	${CC} ${CFLAGS} -I libs/sfml-win/include -I include -c src/instances/wall.cpp -o build/wall.o
+	${CC} ${CFLAGS} -I libs/sfml-win/include -I include -c src/collision/collision.cpp -o build/collision.o
 
 link-win:
 	${CC} ${CFLAGS} build/main.o build/game.o build/state.o build/game-state.o build/instance.o build/player.o build/Wall.o -o libs/sfml-win/bin/main.exe -L libs/sfml-win/lib -lsfml-audio -lsfml-graphics -lsfml-window -lsfml-system

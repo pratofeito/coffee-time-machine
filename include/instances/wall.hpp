@@ -2,12 +2,13 @@
 #ifndef WALL_H
 #define WALL_H
 
-#include "collision.hpp"
+#include "instances/instance.hpp"
 
 class Wall : public Instance
 {
 private:
     sf::RectangleShape hit_box;
+    Collision *wall_collision;
 
 public:
     Wall(int x, int y);
