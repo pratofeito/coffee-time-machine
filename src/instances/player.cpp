@@ -1,38 +1,47 @@
 #include "instances/player.hpp"
-#include <unistd.h>
 
 Player::Player(int x, int y) : Instance(x, y)
 {
+    is_moving = false;
+
     // Hit box test
     hit_box.setFillColor(sf::Color::Magenta);
     hit_box.setSize(sf::Vector2f(GRID_SIZE, GRID_SIZE));
     hit_box.setPosition(virtual_position.x * GRID_SIZE, virtual_position.y * GRID_SIZE);
 
-    is_moving = false;
+    // Inicializa a player_collision colocando ela no vetor de colisões
+    player_colision = new Collision(this);
 }
 
 Player::~Player()
 {
+    delete player_colision;
 }
 
 void Player::player_move(const float delta_time)
 {
-
-    elapsed_time += delta_time;
-    int partial_move = (elapsed_time * GRID_SIZE) / move_time;
-
-    if (partial_move >= GRID_SIZE)
+    if (player_colision->get_collision(next_tile) == nullptr)
     {
-        is_moving = false;
-        elapsed_time = 0;
-        virtual_position.x = next_tile.x;
-        virtual_position.y = next_tile.y;
-        hit_box.setPosition(sf::Vector2f(virtual_position.x * GRID_SIZE, virtual_position.y * GRID_SIZE));
+        elapsed_time += delta_time;
+        int partial_move = (elapsed_time * GRID_SIZE) / move_time;
+
+        if (partial_move >= GRID_SIZE)
+        {
+            is_moving = false;
+            elapsed_time = 0;
+            virtual_position.x = next_tile.x;
+            virtual_position.y = next_tile.y;
+            hit_box.setPosition(sf::Vector2f(virtual_position.x * GRID_SIZE, virtual_position.y * GRID_SIZE));
+        }
+        else
+        {
+            hit_box.setPosition(sf::Vector2f((virtual_position.x * GRID_SIZE) + (partial_move * move_dir.x),
+                                             (virtual_position.y * GRID_SIZE) + (partial_move * move_dir.y)));
+        }
     }
     else
     {
-        hit_box.setPosition(sf::Vector2f((virtual_position.x * GRID_SIZE) + (partial_move * move_dir.x),
-                                         (virtual_position.y * GRID_SIZE) + (partial_move * move_dir.y)));
+        is_moving = false;
     }
 }
 
@@ -84,6 +93,7 @@ void Player::instance_draw(sf::RenderTarget *target)
 
 void Player::instance_update(const float &delta_time)
 {
+
     if (is_moving)
     {
         player_move(delta_time);

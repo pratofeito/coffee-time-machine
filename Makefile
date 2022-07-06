@@ -48,7 +48,7 @@ build-win:
 	${CC} ${CFLAGS} -I libs/sfml-win/include -I include -c src/collision/collision.cpp -o build/collision.o
 
 link-win:
-	${CC} ${CFLAGS} build/main.o build/game.o build/state.o build/game-state.o build/instance.o build/player.o build/Wall.o -o libs/sfml-win/bin/main.exe -L libs/sfml-win/lib -lsfml-audio -lsfml-graphics -lsfml-window -lsfml-system
+	${CC} ${CFLAGS} build/*.o -o libs/sfml-win/bin/main.exe -L libs/sfml-win/lib -lsfml-audio -lsfml-graphics -lsfml-window -lsfml-system
 
 run-win:
 	libs/sfml-win/bin/main.exe

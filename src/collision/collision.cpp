@@ -1,5 +1,6 @@
 #include "collision/collision.hpp"
 
+std::vector<Instance *> Collision::collidable;
 Collision::Collision(Instance *new_object)
 {
     this->collidable.push_back(new_object);

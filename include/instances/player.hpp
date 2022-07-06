@@ -20,6 +20,7 @@ private:
 
 public:
     Player(int x, int y);
+    Collision *player_colision;
     virtual ~Player();
 
     void player_move(const float delta_time);

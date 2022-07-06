@@ -2,6 +2,7 @@
 #ifndef WALL_H
 #define WALL_H
 
+#include "collision/collision.hpp"
 #include "instances/instance.hpp"
 
 class Wall : public Instance
@@ -12,7 +13,7 @@ private:
 
 public:
     Wall(int x, int y);
-    virtual ~Wall() {}
+    virtual ~Wall();
 
     void instance_draw(sf::RenderTarget *target) override;
     void instance_update(const float &delta_time) override;

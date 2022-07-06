@@ -11,7 +11,6 @@
 #include <stack>
 
 #include <SFML/Graphics.hpp>
-#include "collision/collision.hpp"
 
 class Instance
 {
