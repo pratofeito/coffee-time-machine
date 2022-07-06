@@ -20,6 +20,7 @@ Player::~Player()
 
 void Player::player_move(const float delta_time)
 {
+    // Verificação redundante, é possível otimizar e parar de verificar todo frame (Resolver nas férias)
     if (player_colision->get_collision(next_tile) == nullptr)
     {
         elapsed_time += delta_time;
@@ -47,43 +48,28 @@ void Player::player_move(const float delta_time)
 
 void Player::check_inputs()
 {
-    // Movimentos
-    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up))
-    {
-        looking = UP;
-        is_moving = true;
-        elapsed_time = 0;
-        next_tile.x = virtual_position.x;
-        next_tile.y = virtual_position.y - 1;
-        move_dir = sf::Vector2i(0, -1);
-    }
-    else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down))
-    {
-        looking = DOWN;
-        is_moving = true;
-        elapsed_time = 0;
-        next_tile.x = virtual_position.x;
-        next_tile.y = virtual_position.y + 1;
-        move_dir = sf::Vector2i(0, 1);
-    }
-    else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left))
-    {
-        looking = LEFT;
-        is_moving = true;
-        elapsed_time = 0;
-        next_tile.x = virtual_position.x - 1;
-        next_tile.y = virtual_position.y;
-        move_dir = sf::Vector2i(-1, 0);
-    }
-    else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right))
-    {
-        looking = RIGHT;
-        is_moving = true;
-        elapsed_time = 0;
-        next_tile.x = virtual_position.x + 1;
-        next_tile.y = virtual_position.y;
-        move_dir = sf::Vector2i(1, 0);
-    }
+    // Move Keys
+    arrow_up = sf::Keyboard::isKeyPressed(sf::Keyboard::Up);
+    arrow_down = sf::Keyboard::isKeyPressed(sf::Keyboard::Down);
+    arrow_left = sf::Keyboard::isKeyPressed(sf::Keyboard::Left);
+    arrow_right = sf::Keyboard::isKeyPressed(sf::Keyboard::Right);
+
+    // Interact Keys
+    accept_key = sf::Keyboard::isKeyPressed(sf::Keyboard::Z);
+    deny_key = sf::Keyboard ::isKeyPressed(sf::Keyboard::X);
+}
+
+void Player::keyboard_step()
+{
+    check_inputs();
+    int y_result = arrow_down - arrow_up;
+    int x_result = arrow_right - arrow_left;
+
+    is_moving = true;
+    elapsed_time = 0;
+    next_tile.x = virtual_position.x + x_result;
+    next_tile.y = virtual_position.y + y_result;
+    move_dir = sf::Vector2i(x_result, y_result);
 }
 
 void Player::instance_draw(sf::RenderTarget *target)
@@ -93,13 +79,12 @@ void Player::instance_draw(sf::RenderTarget *target)
 
 void Player::instance_update(const float &delta_time)
 {
-
     if (is_moving)
     {
         player_move(delta_time);
     }
     else
     {
-        check_inputs();
+        keyboard_step();
     }
 }

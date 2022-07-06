@@ -14,9 +14,13 @@ private:
     sf::Vector2i next_tile;
     float move_time = 0.3;
     float elapsed_time;
-
     sf::Vector2i move_dir;
+
     // Controles
+    // Movimentação
+    bool arrow_up, arrow_down, arrow_left, arrow_right;
+    // Iteração
+    bool accept_key, deny_key;
 
 public:
     Player(int x, int y);
@@ -25,6 +29,7 @@ public:
 
     void player_move(const float delta_time);
     void check_inputs();
+    void keyboard_step();
 
     enum directions
     {
