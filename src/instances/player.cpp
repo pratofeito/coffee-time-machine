@@ -62,14 +62,24 @@ void Player::check_inputs()
 void Player::keyboard_step()
 {
     check_inputs();
-    int y_result = arrow_down - arrow_up;
-    int x_result = arrow_right - arrow_left;
-
+    int y_direction = arrow_down - arrow_up;
+    int x_direction = arrow_right - arrow_left;
     is_moving = true;
     elapsed_time = 0;
-    next_tile.x = virtual_position.x + x_result;
-    next_tile.y = virtual_position.y + y_result;
-    move_dir = sf::Vector2i(x_result, y_result);
+
+    // Aviso: Remover a estranhesa daqui (Férias)
+    if (arrow_up || arrow_down)
+    {
+        next_tile.x = virtual_position.x;
+        next_tile.y = virtual_position.y + y_direction;
+        move_dir = sf::Vector2i(0, y_direction);
+    }
+    else if (arrow_left || arrow_right)
+    {
+        next_tile.x = virtual_position.x + x_direction;
+        next_tile.y = virtual_position.y;
+        move_dir = sf::Vector2i(x_direction, 0);
+    }
 }
 
 void Player::instance_draw(sf::RenderTarget *target)
