@@ -1,10 +1,10 @@
-#include "Game/game.hpp"
+#include "game/game.hpp"
 
 Game::Game()
 {
     this->initialize_window();
     this->initialize_states();
-    // this->initialize_sfml_events();
+    this->initialize_sfml_events();
 }
 
 Game::~Game()
@@ -24,7 +24,7 @@ void Game::initialize_window()
 {
     sf::ContextSettings settings;
     settings.antialiasingLevel = 8;
-    this->window = new sf::RenderWindow(sf::VideoMode(800, 600), "RPG", sf::Style::Default, settings);
+    this->window = new sf::RenderWindow(sf::VideoMode(800, 640), "RPG", sf::Style::Default, settings);
     this->window->setFramerateLimit(30);
     this->window->setVerticalSyncEnabled(false);
 }
@@ -34,9 +34,8 @@ void Game::initialize_states()
     this->states.push(new Game_state(this->window));
 }
 
-void initialize_sfml_events()
+void Game::initialize_sfml_events()
 {
-    // Sfml events
 }
 
 // Public
@@ -45,13 +44,13 @@ void Game::update_delta_time()
 {
     this->delta_time = this->delta_time_clock.restart().asSeconds();
 
-    #ifdef LINUX
-        system("clear");
-    #else
-        system("cls");
-    #endif
+#ifdef LINUX
+    system("clear");
+#else
+    system("cls");
+#endif
 
-    std::cout << this->delta_time << std::endl;
+    // std::cout << this->delta_time << std::endl;
 }
 
 void Game::update_sfml_events()

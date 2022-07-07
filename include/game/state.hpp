@@ -1,7 +1,10 @@
 #ifndef STATE_H
 #define STATE_H
 
-#include "Instances/instance.hpp"
+#include "instances/player.hpp"
+#include "collision/collision.hpp"
+#include "instances/wall.hpp"
+#include "instances/npc.hpp"
 
 // Classe Abstrata
 class State
@@ -17,7 +20,7 @@ public:
 
     // Serão definidos pelos states especializados
     virtual void update(const float &delta_time) = 0;
-    virtual void update_kb(const float &delta_time) = 0;
+    virtual void update_inputs(const float &delta_time) = 0;
 
     virtual void draw(sf::RenderTarget *target = nullptr) = 0;
 
