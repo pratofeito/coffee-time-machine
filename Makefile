@@ -22,6 +22,7 @@ build-linux:
 	${CC} ${CFLAGS} -I libs/sfml-linux/include -I include -c src/instances/player.cpp -o build/player.o
 	${CC} ${CFLAGS} -I libs/sfml-linux/include -I include -c src/collision/collision.cpp -o build/collision.o
 	${CC} ${CFLAGS} -I libs/sfml-linux/include -I include -c src/instances/wall.cpp -o build/wall.o
+	${CC} ${CFLAGS} -I libs/sfml-linux/include -I include -c src/instances/npc.cpp -o build/npc.o
 
 link-linux:
 	${CC} ${CFLAGS} build/*.o -o main -Llibs/sfml-linux/lib -lsfml-audio -lsfml-graphics -lsfml-window -lsfml-system

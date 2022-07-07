@@ -2,7 +2,7 @@
 
 Player::Player(int x, int y) : Instance(x, y)
 {
-    is_moving = false;
+    player_state = NOTHING;
 
     // Hit box test
     hit_box.setFillColor(sf::Color::Magenta);
@@ -28,7 +28,7 @@ void Player::player_move(const float delta_time)
 
         if (partial_move >= GRID_SIZE)
         {
-            is_moving = false;
+            player_state = MOVING;
             elapsed_time = 0;
             virtual_position.x = next_tile.x;
             virtual_position.y = next_tile.y;
@@ -42,17 +42,17 @@ void Player::player_move(const float delta_time)
     }
     else
     {
-        is_moving = false;
+        player_state = NOTHING;
     }
 }
 
 void Player::player_interact()
 {
-    check_inputs();
     if (player_colision->get_collision(next_tile) != nullptr && accept_key)
     {
         player_colision->get_collision(next_tile)->instance_interact();
     }
+    player_state = NOTHING;
 }
 
 void Player::check_inputs()
@@ -63,22 +63,21 @@ void Player::check_inputs()
     arrow_left = sf::Keyboard::isKeyPressed(sf::Keyboard::Left);
     arrow_right = sf::Keyboard::isKeyPressed(sf::Keyboard::Right);
 
-    // Interact Keys
+    // Interact Keys (Trocar pra evento)
     accept_key = sf::Keyboard::isKeyPressed(sf::Keyboard::Z);
     deny_key = sf::Keyboard ::isKeyPressed(sf::Keyboard::X);
 }
 
 void Player::keyboard_step()
 {
-    check_inputs();
-    int y_direction = arrow_down - arrow_up;
-    int x_direction = arrow_right - arrow_left;
-    is_moving = true;
+    y_direction = arrow_down - arrow_up;
+    x_direction = arrow_right - arrow_left;
     elapsed_time = 0;
 
     // Aviso: Remover a estranheza daqui (Férias)
     if (arrow_up)
     {
+        player_state = MOVING;
         looking = UP;
         next_tile.x = virtual_position.x;
         next_tile.y = virtual_position.y + y_direction;
@@ -86,6 +85,7 @@ void Player::keyboard_step()
     }
     else if (arrow_down)
     {
+        player_state = MOVING;
         looking = DOWN;
         next_tile.x = virtual_position.x;
         next_tile.y = virtual_position.y + y_direction;
@@ -93,6 +93,7 @@ void Player::keyboard_step()
     }
     else if (arrow_left)
     {
+        player_state = MOVING;
         looking = LEFT;
         next_tile.x = virtual_position.x + x_direction;
         next_tile.y = virtual_position.y;
@@ -100,13 +101,45 @@ void Player::keyboard_step()
     }
     else if (arrow_right)
     {
+        player_state = MOVING;
         looking = RIGHT;
         next_tile.x = virtual_position.x + x_direction;
         next_tile.y = virtual_position.y;
         move_dir = sf::Vector2i(x_direction, 0);
     }
+    else if (accept_key)
+    {
+        switch (looking)
+        {
+        case UP:
+            next_tile.x = virtual_position.x;
+            next_tile.y = virtual_position.y - 1;
+            break;
+        case DOWN:
+            next_tile.x = virtual_position.x;
+            next_tile.y = virtual_position.y + 1;
+            break;
+        case LEFT:
+            next_tile.x = virtual_position.x - 1;
+            next_tile.y = virtual_position.y;
+            break;
+        case RIGHT:
+            next_tile.x = virtual_position.x + 1;
+            next_tile.y = virtual_position.y;
+            break;
+        }
+        std::cout << "x: " << next_tile.x << " y: " << next_tile.y << std::endl;
+        player_state = INTERACTING;
+    }
+    else
+    {
+        player_state = NOTHING;
+    }
 }
-void Player::instance_interact() {}
+
+void Player::instance_interact()
+{
+}
 
 void Player::instance_draw(sf::RenderTarget *target)
 {
@@ -115,13 +148,21 @@ void Player::instance_draw(sf::RenderTarget *target)
 
 void Player::instance_update(const float &delta_time)
 {
-    if (is_moving)
+
+    switch (player_state)
     {
-        player_move(delta_time);
-    }
-    else
-    {
-        keyboard_step();
+    case INTERACTING:
+        // std::cout << "Case Interacting" << std::endl;
         player_interact();
+        break;
+    case MOVING:
+        // std::cout << "Case Moving" << std::endl;
+        player_move(delta_time);
+        break;
+    case NOTHING:
+        // std::cout << "Case Nothing" << std::endl;
+        check_inputs();
+        keyboard_step();
+        break;
     }
 }

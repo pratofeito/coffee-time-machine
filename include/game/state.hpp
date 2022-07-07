@@ -4,6 +4,7 @@
 #include "instances/player.hpp"
 #include "collision/collision.hpp"
 #include "instances/wall.hpp"
+#include "instances/npc.hpp"
 
 // Classe Abstrata
 class State

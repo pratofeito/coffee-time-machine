@@ -8,6 +8,7 @@ private:
     // Elementos de Game
     Player *player;
     Wall *wall;
+    Npc *npc_leandro;
 
 public:
     Game_state(sf::RenderWindow *window);

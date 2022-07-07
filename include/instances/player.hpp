@@ -9,7 +9,7 @@ class Player : public Instance
 private:
     sf::RectangleShape hit_box;
     // Movimentação
-    bool is_moving;
+    int player_state;
     int looking;
     enum directions
     {
@@ -18,11 +18,19 @@ private:
         LEFT,
         RIGHT
     };
+
+    enum states
+    {
+        MOVING,
+        INTERACTING,
+        NOTHING
+    };
+
     sf::Vector2i next_tile;
     float move_time = 0.3;
     float elapsed_time;
     sf::Vector2i move_dir;
-    int y_direction, x_directon;
+    int y_direction, x_direction;
 
     // Controles
     // Movimento
