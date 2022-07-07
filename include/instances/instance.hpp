@@ -23,6 +23,7 @@ public:
     ~Instance();
     sf::Vector2i virtual_position;
 
+    virtual void instance_interact() = 0;
     virtual void instance_draw(sf::RenderTarget *target) = 0;
     virtual void instance_update(const float &delta_time) = 0;
 };

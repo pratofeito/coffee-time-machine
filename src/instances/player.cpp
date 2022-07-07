@@ -46,6 +46,15 @@ void Player::player_move(const float delta_time)
     }
 }
 
+void Player::player_interact()
+{
+    check_inputs();
+    if (player_colision->get_collision(next_tile) != nullptr && accept_key)
+    {
+        player_colision->get_collision(next_tile)->instance_interact();
+    }
+}
+
 void Player::check_inputs()
 {
     // Move Keys
@@ -67,20 +76,37 @@ void Player::keyboard_step()
     is_moving = true;
     elapsed_time = 0;
 
-    // Aviso: Remover a estranhesa daqui (Férias)
-    if (arrow_up || arrow_down)
+    // Aviso: Remover a estranheza daqui (Férias)
+    if (arrow_up)
     {
+        looking = UP;
         next_tile.x = virtual_position.x;
         next_tile.y = virtual_position.y + y_direction;
         move_dir = sf::Vector2i(0, y_direction);
     }
-    else if (arrow_left || arrow_right)
+    else if (arrow_down)
     {
+        looking = DOWN;
+        next_tile.x = virtual_position.x;
+        next_tile.y = virtual_position.y + y_direction;
+        move_dir = sf::Vector2i(0, y_direction);
+    }
+    else if (arrow_left)
+    {
+        looking = LEFT;
+        next_tile.x = virtual_position.x + x_direction;
+        next_tile.y = virtual_position.y;
+        move_dir = sf::Vector2i(x_direction, 0);
+    }
+    else if (arrow_right)
+    {
+        looking = RIGHT;
         next_tile.x = virtual_position.x + x_direction;
         next_tile.y = virtual_position.y;
         move_dir = sf::Vector2i(x_direction, 0);
     }
 }
+void Player::instance_interact() {}
 
 void Player::instance_draw(sf::RenderTarget *target)
 {
@@ -96,5 +122,6 @@ void Player::instance_update(const float &delta_time)
     else
     {
         keyboard_step();
+        player_interact();
     }
 }
