@@ -23,12 +23,14 @@ build-linux:
 	${CC} ${CFLAGS} -I libs/sfml-linux/include -I include -c src/collision/collision.cpp -o build/collision.o
 	${CC} ${CFLAGS} -I libs/sfml-linux/include -I include -c src/instances/wall.cpp -o build/wall.o
 	${CC} ${CFLAGS} -I libs/sfml-linux/include -I include -c src/instances/npc.cpp -o build/npc.o
+	${CC} ${CFLAGS} -I libs/sfml-linux/include -I include -c src/sprite-set/sprite-set.cpp -o build/sprite-set.o
+	${CC} ${CFLAGS} -I libs/sfml-linux/include -I include -c src/sprite-set/background.cpp -o build/background.o
 
 link-linux:
 	${CC} ${CFLAGS} build/*.o -o main -Llibs/sfml-linux/lib -lsfml-audio -lsfml-graphics -lsfml-window -lsfml-system
 
 run-linux:
-		export LD_LIBRARY_PATH=libs/sfml-linux/lib && ./main	
+	export LD_LIBRARY_PATH=libs/sfml-linux/lib && ./main	
 
 
 # Windows targets
@@ -47,6 +49,9 @@ build-win:
 	${CC} ${CFLAGS} -I libs/sfml-win/include -I include -c src/instances/player.cpp -o build/player.o
 	${CC} ${CFLAGS} -I libs/sfml-win/include -I include -c src/instances/wall.cpp -o build/wall.o
 	${CC} ${CFLAGS} -I libs/sfml-win/include -I include -c src/collision/collision.cpp -o build/collision.o
+	${CC} ${CFLAGS} -I libs/sfml-win/include -I include -c src/instances/npc.cpp -o build/npc.o
+	${CC} ${CFLAGS} -I libs/sfml-win/include -I include -c src/sprite-set/sprite-set.cpp -o build/sprite-set.o
+	${CC} ${CFLAGS} -I libs/sfml-win/include -I include -c src/sprite-set/background.cpp -o build/background.o
 
 link-win:
 	${CC} ${CFLAGS} build/*.o -o libs/sfml-win/bin/main.exe -L libs/sfml-win/lib -lsfml-audio -lsfml-graphics -lsfml-window -lsfml-system
