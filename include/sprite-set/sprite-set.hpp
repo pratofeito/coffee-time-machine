@@ -29,11 +29,11 @@ class SpriteSet {
 
         void clear_sprites_map();
 
-        SpriteSet(std::string tileset_dir);
-        virtual ~SpriteSet();
-
     public:
 
+        SpriteSet(std::string tileset_dir);
+        virtual ~SpriteSet();
+        
         std::vector<sf::Sprite*> sprites_map;
 
 };
