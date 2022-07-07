@@ -1,12 +1,14 @@
-#include "Game/game.hpp"
+#include "game/game.hpp"
 
 Game::Game()
 {
     this->initialize_window();
     this->initialize_states();
 
-    // crio o meu mapa
+    // criação do mapa
     map_bg = new Background("resources/bricks.png", "resources/map.csv", sf::Vector2i(0, 0));   
+
+    this->initialize_sfml_events();
 }
 
 Game::~Game()
@@ -39,9 +41,8 @@ void Game::initialize_states()
     this->states.push(new Game_state(this->window));
 }
 
-void initialize_sfml_events()
+void Game::initialize_sfml_events()
 {
-    // Sfml events
 }
 
 // Public
@@ -50,13 +51,13 @@ void Game::update_delta_time()
 {
     this->delta_time = this->delta_time_clock.restart().asSeconds();
 
-    #ifdef LINUX
-        system("clear");
-    #else
-        system("cls");
-    #endif
+#ifdef LINUX
+    system("clear");
+#else
+    system("cls");
+#endif
 
-    std::cout << this->delta_time << std::endl;
+    // std::cout << this->delta_time << std::endl;
 }
 
 void Game::update_sfml_events()

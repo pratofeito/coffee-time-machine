@@ -1,4 +1,4 @@
-#include "Game/state.hpp"
+#include "game/state.hpp"
 
 State::State(sf::RenderWindow *window)
 {
