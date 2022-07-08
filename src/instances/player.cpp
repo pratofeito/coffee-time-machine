@@ -14,7 +14,7 @@ Player::Player(int x, int y) : Instance(x, y)
 
     // animações do personagem
     player_animation = new Animation(this);
-    player_animation->new_state(1, "resources/sprites/player/player_right.png");
+    player_animation->new_state(0, 3, "resources/sprites/player/player_right.png");
     player_sprite = player_animation->get_sprite();
 
 }

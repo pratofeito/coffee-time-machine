@@ -13,12 +13,14 @@ class Animation {
         sf::Sprite current_sprite;
         float delta_time;
 
+        std::map<sf::Vector2i, SpriteSet*> sprites_collection;
+
     public:
 
         Animation(Instance *instance);
         virtual ~Animation();
 
-        void new_state(int state, std::string tileset_dir);
+        void new_state(int state, int direction, std::string tileset_dir);
         void update(int player_state, int looking, float delta_time);
         sf::Sprite* get_sprite();
 
