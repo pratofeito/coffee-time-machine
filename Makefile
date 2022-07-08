@@ -20,8 +20,11 @@ build-linux:
 	${CC} ${CFLAGS} -I libs/sfml-linux/include -I include -c src/game/game.cpp -D LINUX -o build/game.o
 	${CC} ${CFLAGS} -I libs/sfml-linux/include -I include -c src/instances/instance.cpp -o build/instance.o
 	${CC} ${CFLAGS} -I libs/sfml-linux/include -I include -c src/instances/player.cpp -o build/player.o
-	${CC} ${CFLAGS} -I libs/sfml-linux/include -I include -c src/collision/collision.cpp -o build/collision.o
 	${CC} ${CFLAGS} -I libs/sfml-linux/include -I include -c src/instances/wall.cpp -o build/wall.o
+	${CC} ${CFLAGS} -I libs/sfml-linux/include -I include -c src/instances/dialogue/dialogue.cpp -o build/dialogue.o
+	${CC} ${CFLAGS} -I libs/sfml-linux/include -I include -c src/instances/dialogue/dialogue_tree.cpp -o build/dialogue_tree.o
+	${CC} ${CFLAGS} -I libs/sfml-linux/include -I include -c src/instances/sound/sound.cpp -o build/sound.o
+	${CC} ${CFLAGS} -I libs/sfml-linux/include -I include -c src/collision/collision.cpp -o build/collision.o
 	${CC} ${CFLAGS} -I libs/sfml-linux/include -I include -c src/instances/npc.cpp -o build/npc.o
 	${CC} ${CFLAGS} -I libs/sfml-linux/include -I include -c src/sprite-set/sprite-set.cpp -o build/sprite-set.o
 	${CC} ${CFLAGS} -I libs/sfml-linux/include -I include -c src/sprite-set/background.cpp -o build/background.o
@@ -48,6 +51,9 @@ build-win:
 	${CC} ${CFLAGS} -I libs/sfml-win/include -I include -c src/instances/instance.cpp -o build/instance.o
 	${CC} ${CFLAGS} -I libs/sfml-win/include -I include -c src/instances/player.cpp -o build/player.o
 	${CC} ${CFLAGS} -I libs/sfml-win/include -I include -c src/instances/wall.cpp -o build/wall.o
+	${CC} ${CFLAGS} -I libs/sfml-win/include -I include -c src/instances/dialogue/dialogue_tree.cpp -o build/dialogue_tree.o
+	${CC} ${CFLAGS} -I libs/sfml-win/include -I include -c src/instances/dialogue/dialogue.cpp -o build/dialogue.o
+	${CC} ${CFLAGS} -I libs/sfml-win/include -I include -c src/instances/sound/sound.cpp -o build/sound.o
 	${CC} ${CFLAGS} -I libs/sfml-win/include -I include -c src/collision/collision.cpp -o build/collision.o
 	${CC} ${CFLAGS} -I libs/sfml-win/include -I include -c src/instances/npc.cpp -o build/npc.o
 	${CC} ${CFLAGS} -I libs/sfml-win/include -I include -c src/sprite-set/sprite-set.cpp -o build/sprite-set.o

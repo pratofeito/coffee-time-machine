@@ -5,6 +5,9 @@
 #include "collision/collision.hpp"
 #include "instances/wall.hpp"
 #include "instances/npc.hpp"
+#include "instances/sound/sound.hpp"
+#include "instances/dialogue/dialogue_tree.hpp"
+#include "instances/dialogue/dialogue.hpp"
 
 // Classe Abstrata
 class State
@@ -21,6 +24,8 @@ public:
     // Serão definidos pelos states especializados
     virtual void update(const float &delta_time) = 0;
     virtual void update_inputs(const float &delta_time) = 0;
+
+    // virtual void update_events(sf::Event event) = 0;
 
     virtual void draw(sf::RenderTarget *target = nullptr) = 0;
 
