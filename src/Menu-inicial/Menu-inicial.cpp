@@ -32,9 +32,6 @@ void Menu::set_values(){
     coords = {{0,0,0},{0,0,0},{0,0,0}}
     //tamanho da fontes
     sizes;
-    
-
-
 }
 
 
