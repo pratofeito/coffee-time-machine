@@ -3,6 +3,8 @@
 
 #include "instance.hpp"
 #include "collision/collision.hpp"
+#include "sprite-set/sprite-set.hpp"
+#include "animation/animation.hpp"
 
 class Player : public Instance
 {
@@ -37,6 +39,10 @@ private:
     bool arrow_up, arrow_down, arrow_left, arrow_right;
     // Iteração
     bool accept_key, deny_key;
+
+    // sprites e animação
+    sf::Sprite *player_sprite;
+    Animation *player_animation;
 
 public:
     Player(int x, int y);

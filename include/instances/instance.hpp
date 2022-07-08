@@ -16,12 +16,13 @@ class Instance
 {
 protected:
     sf::Texture *texture;
-    sf::Sprite sprite;
+    
 
 public:
     Instance(int x, int y);
     ~Instance();
     sf::Vector2i virtual_position;
+    sf::Vector2f projected_position;
 
     virtual void instance_interact() = 0;
     virtual void instance_draw(sf::RenderTarget *target) = 0;

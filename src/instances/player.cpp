@@ -11,6 +11,12 @@ Player::Player(int x, int y) : Instance(x, y)
 
     // Inicializa a player_collision colocando ela no vetor de colisões
     player_colision = new Collision(this);
+
+    // animações do personagem
+    player_animation = new Animation(this);
+    player_animation->new_state(1, "resources/sprites/player/player_right.png");
+    player_sprite = player_animation->get_sprite();
+
 }
 
 Player::~Player()
@@ -32,12 +38,12 @@ void Player::player_move(const float delta_time)
             elapsed_time = 0;
             virtual_position.x = next_tile.x;
             virtual_position.y = next_tile.y;
-            hit_box.setPosition(sf::Vector2f(virtual_position.x * GRID_SIZE, virtual_position.y * GRID_SIZE));
+            projected_position = sf::Vector2f(virtual_position.x * GRID_SIZE, virtual_position.y * GRID_SIZE);
         }
         else
         {
-            hit_box.setPosition(sf::Vector2f((virtual_position.x * GRID_SIZE) + (partial_move * move_dir.x),
-                                             (virtual_position.y * GRID_SIZE) + (partial_move * move_dir.y)));
+            projected_position = sf::Vector2f((virtual_position.x * GRID_SIZE) + (partial_move * move_dir.x),
+                                              (virtual_position.y * GRID_SIZE) + (partial_move * move_dir.y));
         }
     }
     else
@@ -143,11 +149,19 @@ void Player::instance_interact()
 
 void Player::instance_draw(sf::RenderTarget *target)
 {
-    target->draw(this->hit_box);
+    // target->draw(this->hit_box);
+    target->draw(*this->player_sprite);
 }
 
 void Player::instance_update(const float &delta_time)
 {
+
+    // atualiza a posição do objeto que estamos movendo que é modificada em algum outro lugar
+    hit_box.setPosition(projected_position);
+
+    // tem que atualizar primeiro de mudar a posição, a posição é sempre resetada!
+    player_animation->update(player_state, looking, delta_time);
+    player_sprite->setPosition(projected_position);
 
     switch (player_state)
     {

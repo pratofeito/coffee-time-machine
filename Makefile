@@ -25,6 +25,7 @@ build-linux:
 	${CC} ${CFLAGS} -I libs/sfml-linux/include -I include -c src/instances/npc.cpp -o build/npc.o
 	${CC} ${CFLAGS} -I libs/sfml-linux/include -I include -c src/sprite-set/sprite-set.cpp -o build/sprite-set.o
 	${CC} ${CFLAGS} -I libs/sfml-linux/include -I include -c src/sprite-set/background.cpp -o build/background.o
+	${CC} ${CFLAGS} -I libs/sfml-linux/include -I include -c src/animation/animation.cpp -o build/animation.o
 
 link-linux:
 	${CC} ${CFLAGS} build/*.o -o main -Llibs/sfml-linux/lib -lsfml-audio -lsfml-graphics -lsfml-window -lsfml-system
