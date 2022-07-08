@@ -6,7 +6,7 @@ Game::Game()
     this->initialize_states();
 
     // criação do mapa
-    map_bg = new Background("resources/bricks.png", "resources/map.csv", sf::Vector2i(0, 0));   
+    map_bg = new Background("resources/sprites/floor_tiles.png", "resources/maps/main_room.csv", sf::Vector2i(0, 0));   
 
     this->initialize_sfml_events();
 }
@@ -30,10 +30,12 @@ Game::~Game()
 void Game::initialize_window()
 {
     sf::ContextSettings settings;
-    settings.antialiasingLevel = 8;
-    this->window = new sf::RenderWindow(sf::VideoMode(800, 640), "RPG", sf::Style::Close, settings);
+    // tileset 25 x 17
+    this->window = new sf::RenderWindow(sf::VideoMode(800, 544), "RPG", sf::Style::Close, settings);
     this->window->setFramerateLimit(30);
     this->window->setVerticalSyncEnabled(false);
+    // extende a janela para um tamanho maior
+    this->window->setSize(sf::Vector2u(1000, 680));
 }
 
 void Game::initialize_states()
