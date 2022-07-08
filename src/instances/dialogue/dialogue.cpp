@@ -10,17 +10,18 @@ Dialogue::Dialogue(std::string myfile)
 
     if (!font.loadFromFile("resources/pixel.ttf"))
         std::cout << "Error loading font\n";
+    // colocar esse coisa de erro para outros abridores de arquivo!!!
 
-    this->m_text.setCharacterSize(27);
+    this->m_text.setCharacterSize(25);
     this->m_text.setFont(font);
     this->m_text.setOrigin(sf::Vector2f(0.f, 0.f));
     this->m_text.setFillColor(sf::Color::Black);
-    this->m_text.setPosition(110, 450);
+    this->m_text.setPosition(105, 405);
 
-    this->box.setSize(sf::Vector2f(600.f, 110.f));
+    this->box.setSize(sf::Vector2f(600.f, 100.f));
     this->box.setOrigin(sf::Vector2f(0.f, 0.f));
     this->box.setFillColor(sf::Color::White);
-    this->box.setPosition(100, 450);
+    this->box.setPosition(100, 400);
 
     barulho.define_sound("resources/typing2.wav");
 }
@@ -111,7 +112,7 @@ void Dialogue::uptade_event_dialogue(sf::Event gato)
             reset();
         }
 
-        if (gato.key.code == sf::Keyboard::Right)
+        if (gato.key.code == sf::Keyboard::M)
         {
             if (root->dir != NULL && root != NULL)
             {
@@ -126,7 +127,7 @@ void Dialogue::uptade_event_dialogue(sf::Event gato)
                 setPode(false);
         }
 
-        if (gato.key.code == sf::Keyboard::Left)
+        if (gato.key.code == sf::Keyboard::B)
         {
             if (root->esq != NULL && root != NULL)
             {

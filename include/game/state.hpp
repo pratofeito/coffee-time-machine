@@ -25,7 +25,7 @@ public:
     virtual void update(const float &delta_time) = 0;
     virtual void update_inputs(const float &delta_time) = 0;
 
-    // virtual void update_events(sf::Event event) = 0;
+    virtual void update_events(sf::Event event) = 0;
 
     virtual void draw(sf::RenderTarget *target = nullptr) = 0;
 

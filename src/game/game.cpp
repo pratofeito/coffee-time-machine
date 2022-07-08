@@ -69,7 +69,7 @@ void Game::update_sfml_events()
         if (sfml_event.type == sf::Event::Closed)
             this->window->close();
 
-        //  states.top()->update_events(this->sfml_event);
+        states.top()->update_events(this->sfml_event);
     }
 }
 
