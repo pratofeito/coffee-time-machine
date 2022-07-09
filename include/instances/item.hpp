@@ -10,6 +10,9 @@ private:
     std::string item_name;
     Collision *item_collision;
     sf::RectangleShape hit_box;
+    // Substituir pro icone que vai ser desenhado
+    sf::RectangleShape carrot_sprite;
+
     Dialogue item_dialogue;
     bool holding_item;
 
@@ -17,11 +20,13 @@ public:
     Item(std::string name, int x, int y);
     virtual ~Item();
 
-    void set_holding(bool value);
     bool get_holding();
 
     virtual void instance_desinteract() override;
+    std::string get_name();
+    
     virtual void instance_interact() override;
+    virtual void instance_interact(std::map<const std::string, bool> &bag) override;
     virtual void instance_draw(sf::RenderTarget *target) override;
     virtual void instance_update(const float &delta_time) override;
 };

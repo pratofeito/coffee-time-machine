@@ -46,8 +46,11 @@ void Player::player_move(const float delta_time)
     }
 }
 
+// VER O QUE É CERTO AQUI!!
+
 void Player::player_interact()
 {
+// <<<<<<< npc_speaks
     if (player_colision->get_collision(next_tile) != nullptr && accept_key == true)
     {
         player_colision->get_collision(next_tile)->instance_interact();
@@ -57,6 +60,17 @@ void Player::player_interact()
     {
         player_colision->get_collision(next_tile)->instance_desinteract();
         okay = false;
+// =======
+    Instance *object_collidable = player_colision->get_collision(next_tile);
+    if (object_collidable != nullptr && accept_key)
+    {
+        object_collidable->instance_interact();
+        if (object_collidable->instanceof <Item>(object_collidable))
+        {
+            object_collidable->instance_interact(this->bag);
+        }
+        //  arrumar bag.insert(std::pair<std::string, bool>(item, true));
+// >>>>>>> npc-dialogue-itens
     }
     player_state = NOTHING;
 }
@@ -169,7 +183,6 @@ void Player::instance_draw(sf::RenderTarget *target)
 
 void Player::instance_update(const float &delta_time)
 {
-
     switch (player_state)
     {
     case INTERACTING:

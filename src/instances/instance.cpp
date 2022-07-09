@@ -1,4 +1,3 @@
-
 #include "instances/instance.hpp"
 
 Instance::Instance(int x, int y)

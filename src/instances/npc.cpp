@@ -12,6 +12,7 @@ Npc::Npc(std::string name, int x, int y, std::string script) : Instance(x, y)
 
 Npc::~Npc()
 {
+    delete npc_dialogue;
     delete npc_collision;
 }
 
