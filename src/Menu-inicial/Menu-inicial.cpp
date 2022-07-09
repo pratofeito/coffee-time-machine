@@ -1,71 +1,84 @@
-#include "Game/menu-incial.hpp"
+#include "menu-inicial/menu-inicial.hpp"
 
 //contrutor
-Menu::menu(){
+Menu::Menu(){
+    winclose = new sf::RectangleShape();
+    Window = new sf::RenderWindow();
     font = new sf::Font();
     image = new sf::Texture(); 
-    sprite = new sf::bg();
-    Event = new sf::event();
+    bg = new sf::Sprite();
+    event = new sf::Event();
 }
 
 
 //destrutor
-Menu::~menu(){
+Menu::~Menu(){
+    delete winclose;
+    delete winclose;
     delete font;
-    delete Texture;
+    delete image;
     delete bg;
-    delete Event;
+    delete event;
+    delete Window;
 }
 
 //coisas da tela /possibilidade de fazer uma classe filha so para mecher com ela futuramente
 void Menu::set_values(){
+    Window->create(sf::VideoMode(1360,768),"MenuDoJogotest",sf::Style::Titlebar |sf::Style::Close);
+    Window->setPosition(sf::Vector2i(0,0));
+    std::cout << "CHEGUEI AQUI!!" << std::endl;
+   
     posicao=0;
     pressed = theselect = false;
+
+    font->loadFromFile("/resources/menu-resources/Adumu.ttf");
+    image->loadFromFile("/resources/menu-resources/4.png");
     
-    pos_mouse{0,0};
-    mouse_coord{0,0};
+    
+    bg->setTexture(*image);
 
 
     options = {"New game","Options","quit"};
     
     //preencher com as cordenadas das opções
-    coords = {{0,0,0},{0,0,0},{0,0,0}}
+    //coords = {{0,0,0},{0,0,0},{0,0,0}}
     //tamanho da fontes
-    sizes;
+    //sizes;
 }
 
 
 //oq vai acontecer ao mexer no menu?
 void Menu::loop_events(){
     sf::Event event;
-    while(window->pollEvent(__event)){
-        if(event.type == sf::Event){
-            window->close();
+    while(Window->pollEvent(event)){
+        if(event.type == sf::Event::Closed){
+            Window->close();
         }
         if(sf::Keyboard::isKeyPressed(sf::Keyboard::Down) && !pressed){
-            //pos tem que ir ate 4 por causa do numeros de opções do menu incial
-            if( pos < 3){
-                pos++;
+            //pos tem que ir ate 3 por causa do numeros de opções do menu incial
+            if( posicao < 3){
+                posicao++;
                 pressed = true;
-                texts[pos].setOutlineThickness(3);
-                texts[pos - 1].setOutlineThickness(0);
+                texts[posicao].setOutlineThickness(3);
+                texts[posicao - 1].setOutlineThickness(0);
                 pressed = false;
                 theselect = false;
             }
         }
-        if(sf::keyboard::isKeyPressed(sf::Keyboard::Up)){
-            if(pos > 1){
-                pos--;
+        if(sf::Keyboard::isKeyPressed(sf::Keyboard::Up)){
+            if(posicao > 1){
+                posicao--;
                 pressed = true;
-                texts[pos].setOutlineThickness(3);
-                texts[pos + 1].setOutlineThickness(0);
+                texts[posicao].setOutlineThickness(3);
+                texts[posicao + 1].setOutlineThickness(0);
                 pressed = false;
                 theselect= false;
             }
             if(sf::Keyboard::isKeyPressed(sf::Keyboard::Enter) && (!theselect)){
                 theselect = true;
-                if(window==3){
-                    window->clear;
+                std::cout<<"pos: "<<posicao<<std::endl;
+                if(posicao==3){
+                    Window->close();
                 }
             }
         }
@@ -73,7 +86,22 @@ void Menu::loop_events(){
 }
 
 
-void Menu::draw_all(){
+/*objetivos quando escolher alguma opção fazer da barulhinho 
+  fazer tocar uma musica durante o menu 
+  ter a seleções de opções *falta testar
+  
+  
+*/
 
+void Menu::draw_menu(){
+    Window->close();
+    Window->draw(*bg);
+    Window->display();
 }
 
+void Menu::run_menu(){
+    while(Window->isOpen()){
+        loop_events();
+        draw_menu();
+    }
+}
