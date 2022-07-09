@@ -3,11 +3,12 @@
 
 #include "instance.hpp"
 #include "collision/collision.hpp"
+#include "sprite-set/sprite-set.hpp"
+#include "animation/animation.hpp"
 
 class Player : public Instance
 {
 private:
-    sf::RectangleShape hit_box;
     // Movimentação
     int player_state;
     int looking;
@@ -27,7 +28,7 @@ private:
     };
 
     sf::Vector2i next_tile;
-    float move_time = 0.3;
+    float move_time = FRAME_TIME * 2;
     float elapsed_time;
     sf::Vector2i move_dir;
     int y_direction, x_direction;
@@ -37,6 +38,10 @@ private:
     bool arrow_up, arrow_down, arrow_left, arrow_right;
     // Iteração
     bool accept_key, deny_key;
+
+    // sprites e animação
+    sf::Sprite *player_sprite;
+    Animation *player_animation;
 
 public:
     Player(int x, int y);
