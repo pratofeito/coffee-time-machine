@@ -18,13 +18,13 @@ Npc::~Npc()
 void Npc::instance_desinteract()
 {
     std::cout << "NEGOUUUUUU";
-    // npc_dialogue->interact = false;
+    npc_dialogue->Pode = false;
 }
 
 void Npc::instance_interact()
 {
     std::cout << "YESSSSSS";
-    // npc_dialogue->interact = true;
+    npc_dialogue->Pode = true;
 }
 
 void Npc::instance_draw(sf::RenderTarget *target)
