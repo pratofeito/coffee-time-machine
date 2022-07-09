@@ -53,8 +53,10 @@ public:
     void player_move(const float delta_time);
     void player_interact();
     void check_inputs();
+    void uptade_event_player(sf::Event event);
     void keyboard_step();
 
+    virtual void instance_desinteract() override;
     virtual void instance_interact() override;
     virtual void instance_draw(sf::RenderTarget *target) override;
     virtual void instance_update(const float &delta_time) override;

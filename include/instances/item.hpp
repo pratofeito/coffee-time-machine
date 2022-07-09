@@ -19,6 +19,8 @@ public:
 
     void set_holding(bool value);
     bool get_holding();
+
+    virtual void instance_desinteract() override;
     virtual void instance_interact() override;
     virtual void instance_draw(sf::RenderTarget *target) override;
     virtual void instance_update(const float &delta_time) override;

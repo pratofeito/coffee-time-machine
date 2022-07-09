@@ -11,7 +11,7 @@ Dialogue_Tree::~Dialogue_Tree()
     // Limpa()
 }
 
-Node *Dialogue_Tree::CreateNode(std::string data)
+Node *Dialogue_Tree::CreateNode(std::string dialogue)
 {
     Node *newNode = new Node();
 
@@ -19,7 +19,7 @@ Node *Dialogue_Tree::CreateNode(std::string data)
     {
         std::cout << "Memory error\n";
     }
-    newNode->item = data;
+    newNode->data = dialogue;
     newNode->left = newNode->right = NULL;
     return newNode;
 }

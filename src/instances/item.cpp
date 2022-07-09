@@ -24,6 +24,11 @@ bool Item::get_holding()
 {
     return this->holding_item;
 }
+
+void Item::instance_desinteract()
+{
+}
+
 void Item::instance_interact()
 {
     std::cout << "Interagiu com: " << this->item_name << std::endl;

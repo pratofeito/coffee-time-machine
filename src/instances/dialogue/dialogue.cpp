@@ -87,11 +87,11 @@ void Dialogue::set_string(std::string s)
 
 void Dialogue::dialogue_draw(sf::RenderTarget *target)
 {
-    if (get_show() == true)
+    if (show == true && Pode == true)
     {
+        write();
         target->draw(this->box);
         target->draw(this->text);
-        write();
     }
 }
 
@@ -107,42 +107,51 @@ bool Dialogue::get_show()
 
 void Dialogue::uptade_event_dialogue(sf::Event event)
 {
-    if (event.type == sf::Event::KeyPressed)
+    if (Pode == true)
     {
-        if (event.key.code == sf::Keyboard::Space)
+        if (event.type == sf::Event::KeyPressed)
         {
-            set_show(true);
-            this->set_string(root->item);
-            reset();
-        }
-
-        if (event.key.code == sf::Keyboard::M)
-        {
-            if (root->right != NULL && root != NULL)
+            if (event.key.code == sf::Keyboard::Z)
             {
                 set_show(true);
-
-                this->set_string(root->right->item);
+                this->set_string(root->data);
                 reset();
-
-                root = root->right;
             }
-            else
-                set_show(false);
-        }
 
-        if (event.key.code == sf::Keyboard::B)
-        {
-            if (root->left != NULL && root != NULL)
+            if (event.key.code == sf::Keyboard::B)
             {
-                set_show(true);
-                set_string(root->left->item);
-                reset();
+                if (root->right != NULL && root != NULL)
+                {
+                    set_show(true);
 
-                root = root->left;
+                    this->set_string(root->right->data);
+                    reset();
+
+                    root = root->right;
+                }
+                else
+                {
+                    set_show(false);
+                    Pode = false;
+                }
             }
-            else
-                set_show(false);
+
+            if (event.key.code == sf::Keyboard::M)
+            {
+                if (root->left != NULL && root != NULL)
+                {
+                    set_show(true);
+                    set_string(root->left->data);
+                    reset();
+
+                    root = root->left;
+                }
+                else
+                {
+                    set_show(false);
+                    Pode = false;
+                }
+            }
         }
     }
 }
