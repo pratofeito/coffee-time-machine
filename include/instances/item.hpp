@@ -17,9 +17,11 @@ public:
     Item(std::string name, int x, int y);
     virtual ~Item();
 
-    void set_holding(bool value);
     bool get_holding();
+    std::string get_name();
+
     virtual void instance_interact() override;
+    virtual void instance_interact(std::map<const std::string, bool> &bag) override;
     virtual void instance_draw(sf::RenderTarget *target) override;
     virtual void instance_update(const float &delta_time) override;
 };

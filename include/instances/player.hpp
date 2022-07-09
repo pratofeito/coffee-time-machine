@@ -3,13 +3,12 @@
 
 #include "instance.hpp"
 #include "collision/collision.hpp"
-#include <map>
+#include "item.hpp"
+#include <set>
 
 class Player : public Instance
 {
 private:
-    // Atributos
-
     // Movimentação
     sf::RectangleShape hit_box;
     int player_state;
@@ -38,7 +37,7 @@ private:
     // Controles
     // Movimento
     bool arrow_up, arrow_down, arrow_left, arrow_right;
-    // Iteração
+    // Interação
     bool accept_key, deny_key;
 
 public:

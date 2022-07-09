@@ -8,7 +8,7 @@ class Collision
 {
 private:
     static std::list<Instance *> collidable;
-    Instance *auxiliar;
+    Instance *collidable_instance;
 
 public:
     Instance *get_collision(sf::Vector2i position);

@@ -48,9 +48,15 @@ void Player::player_move(const float delta_time)
 
 void Player::player_interact()
 {
-    if (player_colision->get_collision(next_tile) != nullptr && accept_key)
+    Instance *object_collidable = player_colision->get_collision(next_tile);
+    if (object_collidable != nullptr && accept_key)
     {
-        player_colision->get_collision(next_tile)->instance_interact();
+        object_collidable->instance_interact();
+        if (object_collidable->instanceof <Item>(object_collidable))
+        {
+            object_collidable->instance_interact(this->bag);
+        }
+        //  arrumar bag.insert(std::pair<std::string, bool>(item, true));
     }
     player_state = NOTHING;
 }
@@ -148,7 +154,10 @@ void Player::instance_draw(sf::RenderTarget *target)
 
 void Player::instance_update(const float &delta_time)
 {
-
+    if (bag["Carrot"] == true)
+    {
+        std::cout << "CENORAAAA" << std::endl;
+    }
     switch (player_state)
     {
     case INTERACTING:
