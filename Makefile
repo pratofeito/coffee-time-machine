@@ -21,6 +21,7 @@ build-linux:
 	${CC} ${CFLAGS} -I libs/sfml-linux/include -I include -c src/instances/instance.cpp -o build/instance.o
 	${CC} ${CFLAGS} -I libs/sfml-linux/include -I include -c src/instances/player.cpp -o build/player.o
 	${CC} ${CFLAGS} -I libs/sfml-linux/include -I include -c src/instances/wall.cpp -o build/wall.o
+	${CC} ${CFLAGS} -I libs/sfml-linux/include -I include -c src/instances/item.cpp -o build/item.o
 	${CC} ${CFLAGS} -I libs/sfml-linux/include -I include -c src/instances/dialogue/dialogue.cpp -o build/dialogue.o
 	${CC} ${CFLAGS} -I libs/sfml-linux/include -I include -c src/instances/dialogue/dialogue_tree.cpp -o build/dialogue_tree.o
 	${CC} ${CFLAGS} -I libs/sfml-linux/include -I include -c src/instances/audio/audio.cpp -o build/audio.o
@@ -51,6 +52,7 @@ build-win:
 	${CC} ${CFLAGS} -I libs/sfml-win/include -I include -c src/instances/instance.cpp -o build/instance.o
 	${CC} ${CFLAGS} -I libs/sfml-win/include -I include -c src/instances/player.cpp -o build/player.o
 	${CC} ${CFLAGS} -I libs/sfml-win/include -I include -c src/instances/wall.cpp -o build/wall.o
+	${CC} ${CFLAGS} -I libs/sfml-win/include -I include -c src/instances/item.cpp -o build/item.o
 	${CC} ${CFLAGS} -I libs/sfml-win/include -I include -c src/instances/dialogue/dialogue_tree.cpp -o build/dialogue_tree.o
 	${CC} ${CFLAGS} -I libs/sfml-win/include -I include -c src/instances/dialogue/dialogue.cpp -o build/dialogue.o
 	${CC} ${CFLAGS} -I libs/sfml-win/include -I include -c src/instances/audio/audio.cpp -o build/audio.o

@@ -9,6 +9,7 @@ private:
     Player *player;
     Wall *wall;
     Npc *npc_leandro;
+    Item *carrot;
 
     Dialogue *dialogo;
 
