@@ -34,8 +34,7 @@ protected:
     bool show = false;
 
 public:
-    bool interact = true;
-    bool restart = false;
+    bool interact;
 
     Node *root;
     Dialogue_Tree tree;
@@ -53,7 +52,7 @@ public:
     void dialogue_draw(sf::RenderTarget *target);
     void set_show(bool boolean);
     bool get_show();
-    void uptade_event_dialogue(sf::Event event);
+    void uptade_event_dialogue(sf::Event event, bool interagiu);
 };
 
 #endif

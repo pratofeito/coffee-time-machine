@@ -42,6 +42,7 @@ private:
     bool accept_key, deny_key;
 
 public:
+    bool okay;
     // Atributos
     std::map<const std::string, bool> bag;
 
@@ -54,7 +55,7 @@ public:
     void player_interact();
     void check_inputs();
 
-    void uptade_event_player(sf::Event event, bool please, bool porfavor);
+    void uptade_event_player(sf::Event event);
     void keyboard_step();
 
     virtual void instance_desinteract() override;

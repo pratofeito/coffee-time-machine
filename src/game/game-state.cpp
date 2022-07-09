@@ -57,10 +57,9 @@ void Game_state::update_events(sf::Event event)
 {
     if (event.type == sf::Event::KeyPressed)
     {
-        npc_leandro->get_npc_dialogue()->uptade_event_dialogue(event);
+        npc_leandro->get_npc_dialogue()->uptade_event_dialogue(event, player->okay);
+        player->uptade_event_player(event);
         // npc_edinho->get_npc_dialogue()->uptade_event_dialogue(event);
-        player->uptade_event_player(event, npc_leandro->get_npc_dialogue()->interact,
-                                    npc_leandro->get_npc_dialogue()->restart);
         // player->uptade_event_player(event, npc_edinho->get_npc_dialogue()->encerrar_int);
     }
 }

@@ -24,6 +24,8 @@ Dialogue::Dialogue(std::string myfile)
     this->box.setFillColor(sf::Color::White);
     this->box.setPosition(100, 400);
 
+    this->interact = true;
+
     audio_sound.define_sound("resources/typing2.wav", 50.f);
 }
 
@@ -87,7 +89,7 @@ void Dialogue::set_string(std::string s)
 
 void Dialogue::dialogue_draw(sf::RenderTarget *target)
 {
-    if (interact == true && show == true) //&& interact == false)
+    if (show == true) //&& interact == false)
     {
         write();
         target->draw(this->box);
@@ -105,18 +107,17 @@ bool Dialogue::get_show()
     return show;
 }
 
-void Dialogue::uptade_event_dialogue(sf::Event event)
+void Dialogue::uptade_event_dialogue(sf::Event event, bool conversa)
 {
-    if (interact == true)
+    if (conversa == true)
     {
         if (event.key.code == sf::Keyboard::Z)
         {
             set_show(true);
             this->set_string(root->data);
-            this->interact = true;
             reset();
         }
-        // colocar else aqui?
+
         if (event.key.code == sf::Keyboard::M)
         {
             if (root->right != NULL && root != NULL)
@@ -125,14 +126,11 @@ void Dialogue::uptade_event_dialogue(sf::Event event)
                 this->set_string(root->right->data);
                 reset();
                 root = root->right;
-
-                this->interact = true;
             }
             else
             {
                 set_show(false);
                 this->interact = false;
-                this->restart = true;
             }
         }
 
@@ -144,14 +142,11 @@ void Dialogue::uptade_event_dialogue(sf::Event event)
                 set_string(root->left->data);
                 reset();
                 root = root->left;
-
-                this->interact = true;
             }
             else
             {
                 set_show(false);
                 this->interact = false;
-                this->restart = true;
             }
         }
     }
