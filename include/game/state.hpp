@@ -5,7 +5,7 @@
 #include "collision/collision.hpp"
 #include "instances/wall.hpp"
 #include "instances/npc.hpp"
-#include "instances/sound/sound.hpp"
+#include "instances/audio/audio.hpp"
 #include "instances/dialogue/dialogue_tree.hpp"
 #include "instances/dialogue/dialogue.hpp"
 

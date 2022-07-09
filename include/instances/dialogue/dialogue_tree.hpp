@@ -1,38 +1,38 @@
-#ifndef DIALOGUETREE_HPP
-#define DIALOGUETREE_HPP
+#ifndef DIALOGUE_TREE_H
+#define DIALOGUE_TREE_H
 
 #include <iostream>
 #include <string>
 
-class TipoNo
+class Node
 {
 public:
-    TipoNo()
+    Node()
     {
         item = "";
-        esq = NULL;
-        dir = NULL;
+        left = NULL;
+        right = NULL;
     }
 
 public:
     std::string item;
-    TipoNo *esq;
-    TipoNo *dir;
+    Node *left;
+    Node *right;
 
-    friend class dialogueTree;
+    friend class Dialogue_Tree;
 };
 
-class dialogueTree
+class Dialogue_Tree
 {
 public:
-    dialogueTree();
-    ~dialogueTree();
-    TipoNo *CreateNode(std::string data);
-    TipoNo *InsertNode(TipoNo *root, std::string data);
+    Dialogue_Tree();
+    ~Dialogue_Tree();
+    Node *CreateNode(std::string data);
+    Node *InsertNode(Node *root, std::string data);
     void Limpa();
 
 protected:
-    TipoNo *raiz;
+    Node *raiz;
 };
 
 #endif

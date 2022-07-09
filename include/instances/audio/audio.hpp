@@ -1,5 +1,5 @@
-#ifndef SOUND_H
-#define SOUND_H
+#ifndef AUDIO_H
+#define AUDIO_H
 
 #include <SFML/Audio.hpp>
 
@@ -10,7 +10,7 @@
 #include <cstdlib>
 #include <stack>
 
-class Barulho
+class Audio
 {
     // usar singleton? como?
 private:
@@ -19,18 +19,17 @@ private:
     sf::SoundBuffer buffer;
     sf::Sound sound;
 
-    std::ifstream teste;
+    std::ifstream audio_file;
 
 protected:
 public:
-    Barulho();
-    // Sound(std::string myfile);
-    ~Barulho();
+    Audio();
+    ~Audio();
 
-    void define_music(std::string myfile);
+    void define_music(std::string myfile, float volume);
     void play_music();
 
-    void define_sound(std::string myfile);
+    void define_sound(std::string myfile, float volume);
     void play_sound();
 };
 

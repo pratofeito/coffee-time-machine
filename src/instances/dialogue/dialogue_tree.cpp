@@ -1,58 +1,61 @@
 #include "instances/dialogue/dialogue_tree.hpp"
 #include <queue>
 
-dialogueTree::dialogueTree()
+Dialogue_Tree::Dialogue_Tree()
 {
     raiz = NULL;
 }
 
-dialogueTree::~dialogueTree()
+Dialogue_Tree::~Dialogue_Tree()
 {
     // Limpa()
 }
 
-TipoNo *dialogueTree::CreateNode(std::string data)
+Node *Dialogue_Tree::CreateNode(std::string data)
 {
-    TipoNo *newNode = new TipoNo();
+    Node *newNode = new Node();
+
     if (!newNode)
     {
         std::cout << "Memory error\n";
     }
     newNode->item = data;
-    newNode->esq = newNode->dir = NULL;
+    newNode->left = newNode->right = NULL;
     return newNode;
 }
 
-TipoNo *dialogueTree::InsertNode(TipoNo *root, std::string data)
+Node *Dialogue_Tree::InsertNode(Node *root, std::string data)
 {
+    std::queue<Node *> q;
+    q.push(root);
+
     if (root == NULL)
     {
         root = CreateNode(data);
         return root;
     }
 
-    std::queue<TipoNo *> q;
-    q.push(root);
-
     while (!q.empty())
     {
-        TipoNo *temp = q.front();
+        Node *leaf = q.front();
         q.pop();
 
-        if (temp->esq != NULL)
-            q.push(temp->esq);
+        if (leaf->left != NULL)
+            q.push(leaf->left);
         else
         {
-            temp->esq = CreateNode(data);
+            leaf->left = CreateNode(data);
             return root;
         }
 
-        if (temp->dir != NULL)
-            q.push(temp->dir);
+        if (leaf->right != NULL)
+            q.push(leaf->right);
+
         else
         {
-            temp->dir = CreateNode(data);
+            leaf->right = CreateNode(data);
             return root;
         }
     }
+    return root;
 }

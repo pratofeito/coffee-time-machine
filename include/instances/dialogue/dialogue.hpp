@@ -5,7 +5,7 @@
 #include <SFML/Audio.hpp>
 
 #include "instances/dialogue/dialogue_tree.hpp"
-#include "instances/sound/sound.hpp"
+#include "instances/audio/audio.hpp"
 
 #include <iostream>
 #include <string>
@@ -21,49 +21,36 @@ class Dialogue
 {
 protected:
     sf::RectangleShape box;
-    sf::Text m_text;
+    sf::Text text;
     sf::Font font;
 
-    Barulho barulho;
+    Audio audio_sound;
 
-    sf::SoundBuffer m_buffer;
-    sf::Sound m_sound;
-    std::string m_string;
-    sf::Clock m_timer;
-    float m_offset;
+    std::string phrase;
+    sf::Clock timer;
 
-    std::ifstream teste;
+    std::ifstream text_file;
 
-    bool pode = false;
+    bool show = false;
 
 public:
-    TipoNo *root;
-    dialogueTree arvore;
+    Node *root;
+    Dialogue_Tree tree;
 
-    std::size_t m_itr;
-    std::size_t currItem = 0;
+    std::size_t itr;
 
     Dialogue();
     Dialogue(std::string myfile);
     ~Dialogue();
 
     void create_tree(std::string myfile);
-
     void write();
-
-    void setString(std::string s);
-
+    void set_string(std::string s);
     void reset();
-
     void dialogue_draw(sf::RenderTarget *target);
-
-    void setPode(bool boolean);
-
-    bool getPode();
-
-    void uptade_event_dialogue(sf::Event gato);
-
-    void show_dialogue(bool please);
+    void set_show(bool boolean);
+    bool get_show();
+    void uptade_event_dialogue(sf::Event event);
 };
 
 #endif

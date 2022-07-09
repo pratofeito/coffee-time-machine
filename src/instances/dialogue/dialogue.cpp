@@ -11,19 +11,20 @@ Dialogue::Dialogue(std::string myfile)
     if (!font.loadFromFile("resources/pixel.ttf"))
         std::cout << "Error loading font\n";
     // colocar esse coisa de erro para outros abridores de arquivo!!!
+    // Exception aqui
 
-    this->m_text.setCharacterSize(25);
-    this->m_text.setFont(font);
-    this->m_text.setOrigin(sf::Vector2f(0.f, 0.f));
-    this->m_text.setFillColor(sf::Color::Black);
-    this->m_text.setPosition(105, 405);
+    this->text.setCharacterSize(25);
+    this->text.setFont(font);
+    this->text.setOrigin(sf::Vector2f(0.f, 0.f));
+    this->text.setFillColor(sf::Color::Black);
+    this->text.setPosition(105, 405);
 
     this->box.setSize(sf::Vector2f(600.f, 100.f));
     this->box.setOrigin(sf::Vector2f(0.f, 0.f));
     this->box.setFillColor(sf::Color::White);
     this->box.setPosition(100, 400);
 
-    barulho.define_sound("resources/typing2.wav");
+    audio_sound.define_sound("resources/typing2.wav", 50.f);
 }
 
 Dialogue::~Dialogue()
@@ -32,15 +33,15 @@ Dialogue::~Dialogue()
 
 void Dialogue::create_tree(std::string myfile)
 {
-    teste = std::ifstream(myfile);
+    text_file = std::ifstream(myfile);
     std::string myline;
     std::vector<std::string> leia;
 
-    if (teste.is_open())
+    if (text_file.is_open())
     {
-        while (teste)
+        while (text_file)
         {
-            std::getline(teste, myline);
+            std::getline(text_file, myline);
 
             // identifica quebra de linha no arquivo
             size_t start_pos = 0;
@@ -53,92 +54,95 @@ void Dialogue::create_tree(std::string myfile)
         }
     }
 
-    root = arvore.CreateNode(leia[0]);
-    root->esq = arvore.CreateNode(leia[1]);
-    root->esq->esq = arvore.CreateNode(leia[2]);
-    root->dir = arvore.CreateNode(leia[3]);
-    root->dir->esq = arvore.CreateNode(leia[4]);
-    root->dir->dir = arvore.CreateNode(leia[5]);
+    root = tree.CreateNode(leia[0]);
+    root->left = tree.CreateNode(leia[1]);
+    root->left->left = tree.CreateNode(leia[2]);
+    root->right = tree.CreateNode(leia[3]);
+    root->right->left = tree.CreateNode(leia[4]);
+    root->right->right = tree.CreateNode(leia[5]);
 }
 
 void Dialogue::write()
 {
-    if (this->m_timer.getElapsedTime().asSeconds() > .03f && this->m_itr < this->m_string.size())
+    if (this->timer.getElapsedTime().asSeconds() > .025f && this->itr < this->phrase.size())
     {
-        this->m_timer.restart();
-        this->m_itr++;
+        this->timer.restart();
+        this->itr++;
 
-        barulho.play_sound();
+        audio_sound.play_sound();
     }
-    this->m_text.setString(m_string.substr(0, this->m_itr));
+    this->text.setString(phrase.substr(0, this->itr));
 }
 
 void Dialogue::reset()
 {
-    this->m_timer.restart();
-    this->m_itr = 0;
+    this->timer.restart();
+    this->itr = 0;
 };
 
-void Dialogue::setString(std::string s)
+void Dialogue::set_string(std::string s)
 {
-    this->m_string = s;
+    this->phrase = s;
 }
 
 void Dialogue::dialogue_draw(sf::RenderTarget *target)
 {
-    target->draw(this->box);
-    target->draw(this->m_text);
-    write();
-}
-
-void Dialogue::setPode(bool boolean)
-{
-    this->pode = boolean;
-}
-
-bool Dialogue::getPode()
-{
-    return pode;
-}
-
-void Dialogue::uptade_event_dialogue(sf::Event gato)
-{
-    if (gato.type == sf::Event::KeyPressed)
+    if (get_show() == true)
     {
-        if (gato.key.code == sf::Keyboard::Space)
+        target->draw(this->box);
+        target->draw(this->text);
+        write();
+    }
+}
+
+void Dialogue::set_show(bool boolean)
+{
+    this->show = boolean;
+}
+
+bool Dialogue::get_show()
+{
+    return show;
+}
+
+void Dialogue::uptade_event_dialogue(sf::Event event)
+{
+    if (event.type == sf::Event::KeyPressed)
+    {
+        if (event.key.code == sf::Keyboard::Space)
         {
-            setPode(true);
-            this->setString(root->item);
+            set_show(true);
+            this->set_string(root->item);
             reset();
         }
 
-        if (gato.key.code == sf::Keyboard::M)
+        if (event.key.code == sf::Keyboard::M)
         {
-            if (root->dir != NULL && root != NULL)
+            if (root->right != NULL && root != NULL)
             {
-                setPode(true);
+                set_show(true);
 
-                this->setString(root->dir->item);
+                this->set_string(root->right->item);
                 reset();
 
-                root = root->dir;
+                root = root->right;
             }
             else
-                setPode(false);
+                set_show(false);
         }
 
-        if (gato.key.code == sf::Keyboard::B)
+        if (event.key.code == sf::Keyboard::B)
         {
-            if (root->esq != NULL && root != NULL)
+            if (root->left != NULL && root != NULL)
             {
-                setPode(true);
-                setString(root->esq->item);
+                set_show(true);
+                set_string(root->left->item);
                 reset();
 
-                root = root->esq;
+                root = root->left;
             }
             else
-                setPode(false);
+                set_show(false);
         }
     }
 }

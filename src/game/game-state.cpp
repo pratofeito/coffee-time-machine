@@ -31,10 +31,7 @@ void Game_state::draw(sf::RenderTarget *target)
         target = this->window;
     }
 
-    if (dialogo->getPode() == true)
-    {
-        this->dialogo->dialogue_draw(target);
-    }
+    this->dialogo->dialogue_draw(target);
 
     this->player->instance_draw(target);
     this->wall->instance_draw(target);
