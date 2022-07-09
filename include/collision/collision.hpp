@@ -2,17 +2,20 @@
 #define COLLISION_H
 
 #include "instances/instance.hpp"
+#include <list>
 
 class Collision
 {
 private:
-    static std::vector<Instance *> collidable;
+    static std::list<Instance *> collidable;
+    Instance *auxiliar;
 
 public:
     Instance *get_collision(sf::Vector2i position);
 
     Collision(Instance *new_object);
-    ~Collision();
+    virtual ~Collision();
+    virtual void disable_collision();
 };
 
 #endif

@@ -5,6 +5,7 @@ Game_state::Game_state(sf::RenderWindow *window) : State(window)
     player = new Player(0, 0);
     wall = new Wall(4, 4);
     npc_leandro = new Npc("Leandro", 8, 8);
+    carrot = new Item("Carrot", 6, 6);
 
     dialogo = new Dialogue("resources/roteiro.txt");
 }
@@ -22,6 +23,7 @@ void Game_state::update(const float &delta_time)
 {
     this->update_inputs(delta_time);
     this->player->instance_update(delta_time);
+    carrot->instance_update(delta_time);
 }
 
 void Game_state::draw(sf::RenderTarget *target)
@@ -39,6 +41,7 @@ void Game_state::draw(sf::RenderTarget *target)
     this->player->instance_draw(target);
     this->wall->instance_draw(target);
     this->npc_leandro->instance_draw(target);
+    this->carrot->instance_draw(target);
 }
 
 void Game_state::update_inputs(const float &delta_time)

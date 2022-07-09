@@ -20,7 +20,7 @@ protected:
 
 public:
     Instance(int x, int y);
-    ~Instance();
+    virtual ~Instance();
     sf::Vector2i virtual_position;
 
     virtual void instance_interact() = 0;

@@ -3,12 +3,15 @@
 
 #include "instance.hpp"
 #include "collision/collision.hpp"
+#include <map>
 
 class Player : public Instance
 {
 private:
-    sf::RectangleShape hit_box;
+    // Atributos
+
     // Movimentação
+    sf::RectangleShape hit_box;
     int player_state;
     int looking;
     enum directions
@@ -39,6 +42,10 @@ private:
     bool accept_key, deny_key;
 
 public:
+    // Atributos
+    std::map<const std::string, bool> bag;
+
+    // Métodos
     Player(int x, int y);
     Collision *player_colision;
     virtual ~Player();

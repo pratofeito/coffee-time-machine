@@ -3,11 +3,16 @@
 
 #include "collision/collision.hpp"
 #include "instances/instance.hpp"
+#include "instances/dialogue/dialogue.hpp"
 
 class Npc : public Instance
 {
 private:
+    // Atributes
     std::string name;
+    Dialogue npc_dialogue;
+
+    // Collision
     sf::RectangleShape hit_box;
     Collision *npc_collision;
 
