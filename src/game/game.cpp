@@ -6,7 +6,7 @@ Game::Game()
     this->initialize_states();
 
     // criação do mapa
-    map_bg = new Background("resources/sprites/floor_tiles.png", "resources/maps/main_room.csv", sf::Vector2i(0, 0));   
+    map_bg = new Background("resources/sprites/main_room_tileset.png", "resources/maps/main_room.csv", sf::Vector2i(0, 0));   
 
     this->initialize_sfml_events();
 }

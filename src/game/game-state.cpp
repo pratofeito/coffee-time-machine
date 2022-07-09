@@ -3,7 +3,7 @@
 Game_state::Game_state(sf::RenderWindow *window) : State(window)
 {
     player = new Player(0, 0);
-    wall = new Wall(4, 4);
+    wall = new Wall(4, 6);
     npc_leandro = new Npc("Leandro", 8, 8);
 }
 
