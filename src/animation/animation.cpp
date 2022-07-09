@@ -3,55 +3,50 @@
 Animation::Animation(Instance *instance) {
     this->instance = instance;
     this->delta_time = 0;
+    this->past_state = -1;
+    this->animation_time = 0.15;
 }
 
 Animation::~Animation() {
-    // delete sprite_vec;
+    delete sprite_vec;
 }
 
 
-// O ERRO ESTÁ ENTRE A LINHA 17 E 22 !!!!
 void Animation::new_state(int state, int direction, std::string tileset_dir) {
-    // sprite_vec = new SpriteSet(tileset_dir);
-    // SpriteSet spr (tileset_dir);
     sprite_vec = new SpriteSet(tileset_dir);
-    sf::Vector2i vec (state, direction);
+    std::vector<int> vec ({state, direction});
     sprites_collection.insert({vec, sprite_vec});
-    // this->current_sprite = 
-
-    sf::Vector2i oiw (0, 3);
-    // current_sprite = *sprites_collection[oiw]->sprites_map[0];
 }
 
+// isso aqui precisa urgentemente de um try_catch
+// se ele tenta definir uma sprite que nao existe, simplesmente falha de segmentação
 void Animation::update(int player_state, int looking, float delta_time) {
 
+    // evita que se uma da opções nao exista na lista, nao dê falha de segmentação
+    if (player_state == 2) {
+        looking = NULL;
+    }
+
     int index = 0;
+    int sprites_collection_size = sprites_collection[{player_state, looking}]->sprites_map.size();
+    std::cout << "sprites_collection_size: " << sprites_collection_size << std::endl;
 
-    // switch (looking) {
-    //     case 0:
-    //         /* code */
-    //         break;
-    //     case 1:
-    //         /* code */
-    //         break;        
-    // }
-
-    if (player_state == 0) {
+    if (this->past_state == player_state) {
         this->delta_time += delta_time;
-        if (this->delta_time >= 0.15){
-            index = 1;
-        }
-        if (this->delta_time >= 0.3){
-            index = 0;
-            this->delta_time = 0;
+        if (this->delta_time >= animation_time) {
+            index++;
+            if (index >= sprites_collection_size){
+                this->delta_time = 0;
+                index = 0;
+            }
         }
     } else {
+        this->past_state = player_state;
         this->delta_time = 0;
-    }  
-
-    // current_sprite = *sprite_vec->sprites_map[index];
-    // sf::Vector2i dir_vec (0, 3);
-    // current_sprite = *sprites_collection[dir_vec]->sprites_map[index];
+    }
+ 
+    current_sprite = *sprites_collection[{player_state, looking}]->sprites_map[index];
+    
 }
 
 sf::Sprite* Animation::get_sprite() {

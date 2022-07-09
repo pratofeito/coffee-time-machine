@@ -15,6 +15,7 @@ private:
     int looking;
     enum directions
     {
+        NONE,
         UP,
         DOWN,
         LEFT,

@@ -14,7 +14,13 @@ Player::Player(int x, int y) : Instance(x, y)
 
     // animações do personagem
     player_animation = new Animation(this);
-    player_animation->new_state(0, 3, "resources/sprites/player/player_right.png");
+
+    player_animation->new_state(MOVING, UP, "resources/sprites/player/player_up.png");
+    player_animation->new_state(MOVING, DOWN, "resources/sprites/player/player_down.png");
+    player_animation->new_state(MOVING, LEFT, "resources/sprites/player/player_left.png");
+    player_animation->new_state(MOVING, RIGHT, "resources/sprites/player/player_right.png");
+    player_animation->new_state(NOTHING, NONE, "resources/sprites/player/player_idle.png");
+
     player_sprite = player_animation->get_sprite();
 
 }
@@ -161,6 +167,7 @@ void Player::instance_update(const float &delta_time)
 
     // tem que atualizar primeiro de mudar a posição, a posição é sempre resetada!
     player_animation->update(player_state, looking, delta_time);
+    // player_animation->update(0, 3, delta_time);
     player_sprite->setPosition(projected_position);
 
     switch (player_state)
