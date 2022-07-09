@@ -24,6 +24,8 @@ Dialogue::Dialogue(std::string myfile)
     this->box.setFillColor(sf::Color::White);
     this->box.setPosition(100, 400);
 
+    // this->interact = true;
+
     audio_sound.define_sound("resources/typing2.wav", 50.f);
 }
 
@@ -87,11 +89,11 @@ void Dialogue::set_string(std::string s)
 
 void Dialogue::dialogue_draw(sf::RenderTarget *target)
 {
-    if (get_show() == true)
+    if (show == true && Pode == true) //&& interact == false)
     {
+        write();
         target->draw(this->box);
         target->draw(this->text);
-        write();
     }
 }
 
@@ -107,12 +109,12 @@ bool Dialogue::get_show()
 
 void Dialogue::uptade_event_dialogue(sf::Event event)
 {
-    if (event.type == sf::Event::KeyPressed)
+    if (Pode == true)
     {
         if (event.key.code == sf::Keyboard::Space)
         {
             set_show(true);
-            this->set_string(root->item);
+            this->set_string(root->data);
             reset();
         }
 
@@ -121,14 +123,15 @@ void Dialogue::uptade_event_dialogue(sf::Event event)
             if (root->right != NULL && root != NULL)
             {
                 set_show(true);
-
-                this->set_string(root->right->item);
+                this->set_string(root->right->data);
                 reset();
-
                 root = root->right;
             }
             else
+            {
                 set_show(false);
+                Pode = false;
+            }
         }
 
         if (event.key.code == sf::Keyboard::B)
@@ -136,13 +139,15 @@ void Dialogue::uptade_event_dialogue(sf::Event event)
             if (root->left != NULL && root != NULL)
             {
                 set_show(true);
-                set_string(root->left->item);
+                set_string(root->left->data);
                 reset();
-
                 root = root->left;
             }
             else
+            {
                 set_show(false);
+                Pode = false;
+            }
         }
     }
 }

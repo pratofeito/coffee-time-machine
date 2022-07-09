@@ -46,8 +46,21 @@ void Player::player_move(const float delta_time)
     }
 }
 
+// VER O QUE É CERTO AQUI!!
+
 void Player::player_interact()
 {
+// <<<<<<< npc_speaks
+    if (player_colision->get_collision(next_tile) != nullptr && accept_key == true)
+    {
+        player_colision->get_collision(next_tile)->instance_interact();
+        okay = true;
+    }
+    if (player_colision->get_collision(next_tile) != nullptr && deny_key == true)
+    {
+        player_colision->get_collision(next_tile)->instance_desinteract();
+        okay = false;
+// =======
     Instance *object_collidable = player_colision->get_collision(next_tile);
     if (object_collidable != nullptr && accept_key)
     {
@@ -57,6 +70,7 @@ void Player::player_interact()
             object_collidable->instance_interact(this->bag);
         }
         //  arrumar bag.insert(std::pair<std::string, bool>(item, true));
+// >>>>>>> npc-dialogue-itens
     }
     player_state = NOTHING;
 }
@@ -68,10 +82,21 @@ void Player::check_inputs()
     arrow_down = sf::Keyboard::isKeyPressed(sf::Keyboard::Down);
     arrow_left = sf::Keyboard::isKeyPressed(sf::Keyboard::Left);
     arrow_right = sf::Keyboard::isKeyPressed(sf::Keyboard::Right);
+}
 
-    // Interact Keys (Trocar pra evento)
-    accept_key = sf::Keyboard::isKeyPressed(sf::Keyboard::Z);
-    deny_key = sf::Keyboard ::isKeyPressed(sf::Keyboard::X);
+void Player::uptade_event_player(sf::Event event)
+{
+    if (event.key.code == sf::Keyboard::Z)
+    {
+        accept_key = true;
+        deny_key = false;
+    }
+
+    if (event.key.code == sf::Keyboard::X)
+    {
+        deny_key = true;
+        accept_key = false;
+    }
 }
 
 void Player::keyboard_step()
@@ -113,7 +138,7 @@ void Player::keyboard_step()
         next_tile.y = virtual_position.y;
         move_dir = sf::Vector2i(x_direction, 0);
     }
-    else if (accept_key)
+    else if (accept_key || deny_key)
     {
         switch (looking)
         {
@@ -134,7 +159,7 @@ void Player::keyboard_step()
             next_tile.y = virtual_position.y;
             break;
         }
-        std::cout << "x: " << next_tile.x << " y: " << next_tile.y << std::endl;
+        // std::cout << "x: " << next_tile.x << " y: " << next_tile.y << std::endl;
         player_state = INTERACTING;
     }
     else
@@ -144,6 +169,10 @@ void Player::keyboard_step()
 }
 
 void Player::instance_interact()
+{
+}
+
+void Player::instance_desinteract()
 {
 }
 

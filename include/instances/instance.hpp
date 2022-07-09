@@ -24,6 +24,7 @@ public:
     virtual ~Instance();
     sf::Vector2i virtual_position;
 
+    virtual void instance_desinteract() = 0;
     virtual void instance_interact() = 0;
     virtual void instance_interact(std::map<const std::string, bool> &bag) {}
     virtual void instance_draw(sf::RenderTarget *target) = 0;

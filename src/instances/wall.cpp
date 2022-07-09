@@ -15,6 +15,10 @@ Wall::~Wall()
     delete wall_collision;
 }
 
+void Wall::instance_desinteract()
+{
+}
+
 void Wall::instance_interact()
 {
     this->hit_box.setFillColor(sf::Color::Red);

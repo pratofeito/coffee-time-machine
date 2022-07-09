@@ -20,6 +20,11 @@ bool Item::get_holding()
     return this->holding_item;
 }
 
+
+void Item::instance_desinteract()
+{
+}
+
 std::string Item::get_name()
 {
     return this->item_name;

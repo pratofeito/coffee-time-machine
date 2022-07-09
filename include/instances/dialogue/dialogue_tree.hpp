@@ -9,13 +9,13 @@ class Node
 public:
     Node()
     {
-        item = "";
+        data = "";
         left = NULL;
         right = NULL;
     }
 
 public:
-    std::string item;
+    std::string data;
     Node *left;
     Node *right;
 
