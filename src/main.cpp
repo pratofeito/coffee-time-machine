@@ -1,10 +1,7 @@
 #include "Game/game.hpp"
+#include "menu-inicial/menu-inicial.hpp"
 
 int main()
-{
-    Game game;
-
-    game.run();
-
-    return 0;
+{   
+    
 }

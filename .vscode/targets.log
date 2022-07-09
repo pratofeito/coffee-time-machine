@@ -8,7 +8,7 @@ make.exe: *** No rule to make target 'all'.  Stop.
 # This is free software: you are free to change and redistribute it.
 # There is NO WARRANTY, to the extent permitted by law.
 
-# Make data base, printed on Thu Jul 07 23:52:18 2022
+# Make data base, printed on Sat Jul 09 18:58:45 2022
 
 # Variables
 
@@ -49,13 +49,15 @@ PATHEXT = .COM;.EXE;.BAT;.CMD;.VBS;.VBE;.JS;.JSE;.WSF;.WSH;.MSC
 # makefile (from 'Makefile', line 1)
 MAKEFILE_LIST :=  Makefile
 # environment
+FPS_BROWSER_USER_PROFILE_STRING = Default
+# environment
 TMP = C:\Users\lucas\AppData\Local\Temp
 # environment
 PROGRAMW6432 = C:\Program Files
 # environment
 PROGRAMDATA = C:\ProgramData
 # environment
-VSCODE_CWD = C:\Users\lucas\Desktop\o jogo2.0\2022-1-TN-grupo02\src\game
+VSCODE_CWD = C:\Users\lucas\AppData\Local\Programs\Microsoft VS Code
 # default
 MAKE_HOST := x86_64-w64-mingw32
 # environment
@@ -79,7 +81,7 @@ ELECTRON_RUN_AS_NODE = 1
 # automatic
 %F = $(notdir $%)
 # environment
-CHROME_CRASHPAD_PIPE_NAME = \\.\pipe\crashpad_11660_USTJYBIPAUVLBKCF
+CHROME_CRASHPAD_PIPE_NAME = \\.\pipe\crashpad_11692_HIPPUEFHALITZKQC
 # environment
 COMPUTERNAME = DESKTOP-48JJ2OO
 # environment
@@ -99,7 +101,7 @@ VSCODE_AMD_ENTRYPOINT = vs/workbench/api/node/extensionHostProcess
 # environment
 VSCODE_CODE_CACHE_PATH = C:\Users\lucas\AppData\Roaming\Code\CachedData\92d25e35d9bf1a6b16f7d0758f25d48ace11e5b9
 # environment
-APPLICATION_INSIGHTS_NO_DIAGNOSTIC_CHANNEL = 1
+APPLICATION_INSIGHTS_NO_DIAGNOSTIC_CHANNEL = true
 # environment
 COMMONPROGRAMFILES = C:\Program Files\Common Files
 # environment
@@ -189,11 +191,13 @@ LANG = C
 # environment
 PROCESSOR_LEVEL = 6
 # environment
-VSCODE_PID = 11660
+FPS_BROWSER_APP_PROFILE_STRING = Internet Explorer
+# environment
+VSCODE_PID = 11692
 # environment
 USERDOMAIN_ROAMINGPROFILE = DESKTOP-48JJ2OO
 # variable set hash-table stats:
-# Load=90/1024=9%, Rehash=0, Collisions=15/111=14%
+# Load=92/1024=9%, Rehash=0, Collisions=15/113=13%
 
 # Pattern-specific Variable Values
 
@@ -234,7 +238,7 @@ link-win:
 #  Implicit rule search has not been done.
 #  Modification time never checked.
 #  File has not been updated.
-#  recipe to execute (from 'Makefile', line 48):
+#  recipe to execute (from 'Makefile', line 47):
 	${CC} ${CFLAGS} build/main.o build/game.o build/state.o build/game-state.o build/instance.o build/menu-inicial.o -o libs/sfml-win/bin/main.exe -L libs/sfml-win/lib -lsfml-audio -lsfml-graphics -lsfml-window -lsfml-system
 
 linux: build-linux link-linux
@@ -245,7 +249,7 @@ linux: build-linux link-linux
 # Not a target:
 Makefile:
 #  Implicit rule search has been done.
-#  Last modified 2022-07-07 10:58:43
+#  Last modified 2022-07-09 10:55:19
 #  File has been updated.
 #  Successfully updated.
 
@@ -258,14 +262,14 @@ run-linux:
 #  Implicit rule search has not been done.
 #  Modification time never checked.
 #  File has not been updated.
-#  recipe to execute (from 'Makefile', line 29):
-	./main	
+#  recipe to execute (from 'Makefile', line 28):
+	export LD_LIBRARY_PATH=libs/sfml-linux/lib && ./main
 
 build-win:
 #  Implicit rule search has not been done.
 #  Modification time never checked.
 #  File has not been updated.
-#  recipe to execute (from 'Makefile', line 40):
+#  recipe to execute (from 'Makefile', line 39):
 	${CC} ${CFLAGS} -I libs/sfml-win/include -I include -c src/main.cpp -o build/main.o
 	${CC} ${CFLAGS} -I libs/sfml-win/include -I include -c src/Game/state.cpp -o build/state.o
 	${CC} ${CFLAGS} -I libs/sfml-win/include -I include -c src/Game/game-state.cpp -o build/game-state.o
@@ -294,7 +298,7 @@ run-win:
 #  Implicit rule search has not been done.
 #  Modification time never checked.
 #  File has not been updated.
-#  recipe to execute (from 'Makefile', line 51):
+#  recipe to execute (from 'Makefile', line 50):
 	libs/sfml-win/bin/main.exe
 
 link-linux:
@@ -302,7 +306,6 @@ link-linux:
 #  Modification time never checked.
 #  File has not been updated.
 #  recipe to execute (from 'Makefile', line 25):
-	export LD_LIBRARY_PATH=libs/sfml-linux/lib && ./main
 	${CC} ${CFLAGS} build/main.o build/state.o build/game-state.o build/game.o build/instance.o -o main -Llibs/sfml-linux/lib -lsfml-audio -lsfml-graphics -lsfml-window -lsfml-system
 
 # files hash-table stats:
@@ -319,6 +322,6 @@ link-linux:
 # strcache performance: lookups = 48 / hit rate = 47%
 # hash-table stats:
 # Load=25/8192=0%, Rehash=0, Collisions=1/48=2%
-# Finished Make data base on Thu Jul 07 23:52:18 2022
+# Finished Make data base on Sat Jul 09 18:58:45 2022
 
  

@@ -22,11 +22,10 @@ build-linux:
 	${CC} ${CFLAGS} -I libs/sfml-linux/include -I include -c src/Menu_inicial/menu-inicial.cpp -o build/menu-inicial.o
 
 link-linux:
-	export LD_LIBRARY_PATH=libs/sfml-linux/lib && ./main
 	${CC} ${CFLAGS} build/main.o build/state.o build/game-state.o build/game.o build/instance.o -o main -Llibs/sfml-linux/lib -lsfml-audio -lsfml-graphics -lsfml-window -lsfml-system
 
 run-linux:
-	./main	
+	export LD_LIBRARY_PATH=libs/sfml-linux/lib && ./main
 
 
 # Windows targets
