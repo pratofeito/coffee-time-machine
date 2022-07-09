@@ -38,6 +38,10 @@ void Item::instance_interact(std::map<const std::string, bool> &bag)
     // Resolvido da mesma forma que em L01E06 - FOLHA SALARIAL asjdklajdlkasldjask
     bag.insert(std::pair<std::string, bool>(this->item_name, true));
     bag[item_name] = true;
+
+    carrot_sprite.setFillColor(sf::Color(255, 165, 0));
+    carrot_sprite.setSize(sf::Vector2f(GRID_SIZE, GRID_SIZE));
+    carrot_sprite.setPosition(1 * GRID_SIZE, 1 * GRID_SIZE);
 }
 
 void Item::instance_draw(sf::RenderTarget *target)
@@ -45,6 +49,10 @@ void Item::instance_draw(sf::RenderTarget *target)
     if (holding_item == false)
     {
         target->draw(this->hit_box);
+    }
+    else if (holding_item == true)
+    {
+        target->draw(this->carrot_sprite);
     }
 }
 void Item::instance_update(const float &delta_time)

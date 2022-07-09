@@ -10,6 +10,9 @@ private:
     std::string item_name;
     Collision *item_collision;
     sf::RectangleShape hit_box;
+    // Substituir pro icone que vai ser desenhado
+    sf::RectangleShape carrot_sprite;
+
     Dialogue item_dialogue;
     bool holding_item;
 

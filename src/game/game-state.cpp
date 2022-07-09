@@ -24,11 +24,6 @@ void Game_state::update(const float &delta_time)
     this->update_inputs(delta_time);
     this->player->instance_update(delta_time);
     carrot->instance_update(delta_time);
-    // std::cout << player->bag["Carrot"] << std::endl;
-    if (this->player->bag["Carrot"] == true)
-    {
-        std::cout << "CENORAAAA" << std::endl;
-    }
 }
 
 void Game_state::draw(sf::RenderTarget *target)

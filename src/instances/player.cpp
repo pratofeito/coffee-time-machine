@@ -154,10 +154,6 @@ void Player::instance_draw(sf::RenderTarget *target)
 
 void Player::instance_update(const float &delta_time)
 {
-    if (bag["Carrot"] == true)
-    {
-        std::cout << "CENORAAAA" << std::endl;
-    }
     switch (player_state)
     {
     case INTERACTING:
