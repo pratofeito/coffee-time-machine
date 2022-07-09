@@ -10,12 +10,16 @@ private:
     Wall *wall;
     Npc *npc_leandro;
 
+    Dialogue *dialogo;
+
 public:
     Game_state(sf::RenderWindow *window);
     virtual ~Game_state();
 
     void update(const float &delta_time) override;
     void update_inputs(const float &delta_time) override;
+    void update_events(sf::Event event) override;
+
     void draw(sf::RenderTarget *target = nullptr) override;
 
     void end_state() override;

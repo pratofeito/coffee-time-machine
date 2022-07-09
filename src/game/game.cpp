@@ -6,8 +6,7 @@ Game::Game()
     this->initialize_states();
 
     // criação do mapa
-    map_bg = new Background("resources/sprites/main_room_tileset.png", "resources/maps/main_room.csv", sf::Vector2i(0, 0));   
-
+    map_bg = new Background("resources/sprites/main_room_tileset.png", "resources/maps/main_room.csv", sf::Vector2i(0, 0));
     this->initialize_sfml_events();
 }
 
@@ -68,21 +67,25 @@ void Game::update_sfml_events()
     {
         if (sfml_event.type == sf::Event::Closed)
             this->window->close();
+
+        states.top()->update_events(this->sfml_event);
     }
 }
 
-void Game::draw_guidelines() {
+void Game::draw_guidelines()
+{
     sf::RectangleShape vertical_line;
     sf::RectangleShape horizontal_line;
 
     vertical_line.setSize(sf::Vector2f(1, WINDOW_HEIGHT));
     horizontal_line.setSize(sf::Vector2f(WINDOW_WIDTH, 1));
 
-    sf::Color ct (244, 125, 66, 100);
+    sf::Color ct(244, 125, 66, 100);
     vertical_line.setFillColor(ct);
     horizontal_line.setFillColor(ct);
 
-    for (int i = 1; i < (WINDOW_WIDTH / TILE_SIZE); i++) {
+    for (int i = 1; i < (WINDOW_WIDTH / TILE_SIZE); i++)
+    {
         vertical_line.setPosition(TILE_SIZE * i, 0);
         horizontal_line.setPosition(0, TILE_SIZE * i);
         window->draw(vertical_line);
@@ -117,8 +120,7 @@ void Game::draw()
     // Double Buffering
 
     this->window->clear(sf::Color::Black);
-    
-    
+
     map_bg->draw(window);
 
     this->draw_guidelines();
@@ -127,7 +129,7 @@ void Game::draw()
     {
         this->states.top()->draw(this->window);
     }
-    
+
     this->window->display();
 }
 
