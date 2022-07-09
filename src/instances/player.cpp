@@ -48,11 +48,11 @@ void Player::player_move(const float delta_time)
 
 void Player::player_interact()
 {
-    if (player_colision->get_collision(next_tile) != nullptr && accept_key)
+    if (player_colision->get_collision(next_tile) != nullptr && accept_key == true)
     {
         player_colision->get_collision(next_tile)->instance_interact();
     }
-    if (player_colision->get_collision(next_tile) != nullptr && deny_key)
+    if (player_colision->get_collision(next_tile) != nullptr && deny_key == true)
     {
         player_colision->get_collision(next_tile)->instance_desinteract();
     }
@@ -68,21 +68,18 @@ void Player::check_inputs()
     arrow_right = sf::Keyboard::isKeyPressed(sf::Keyboard::Right);
 }
 
-void Player::uptade_event_player(sf::Event event)
+void Player::uptade_event_player(sf::Event event, bool voo, bool rest)
 {
-    if (event.type == sf::Event::KeyPressed)
+    if ((event.key.code == sf::Keyboard::Z) || (voo == true))
     {
-        if (event.key.code == sf::Keyboard::Z)
-        {
-            accept_key = true;
-            deny_key = false;
-        }
+        accept_key = true;
+        deny_key = false;
+    }
 
-        if (event.key.code == sf::Keyboard::X)
-        {
-            deny_key = true;
-            accept_key = false;
-        }
+    if ((event.key.code == sf::Keyboard::X) || (voo == false))
+    {
+        deny_key = true;
+        accept_key = false;
     }
 }
 

@@ -87,7 +87,7 @@ void Dialogue::set_string(std::string s)
 
 void Dialogue::dialogue_draw(sf::RenderTarget *target)
 {
-    if (show == true && Pode == true)
+    if (interact == true && show == true) //&& interact == false)
     {
         write();
         target->draw(this->box);
@@ -107,50 +107,51 @@ bool Dialogue::get_show()
 
 void Dialogue::uptade_event_dialogue(sf::Event event)
 {
-    if (Pode == true)
+    if (interact == true)
     {
-        if (event.type == sf::Event::KeyPressed)
+        if (event.key.code == sf::Keyboard::Z)
         {
-            if (event.key.code == sf::Keyboard::Z)
+            set_show(true);
+            this->set_string(root->data);
+            this->interact = true;
+            reset();
+        }
+        // colocar else aqui?
+        if (event.key.code == sf::Keyboard::M)
+        {
+            if (root->right != NULL && root != NULL)
             {
                 set_show(true);
-                this->set_string(root->data);
+                this->set_string(root->right->data);
                 reset();
+                root = root->right;
+
+                this->interact = true;
             }
-
-            if (event.key.code == sf::Keyboard::B)
+            else
             {
-                if (root->right != NULL && root != NULL)
-                {
-                    set_show(true);
-
-                    this->set_string(root->right->data);
-                    reset();
-
-                    root = root->right;
-                }
-                else
-                {
-                    set_show(false);
-                    Pode = false;
-                }
+                set_show(false);
+                this->interact = false;
+                this->restart = true;
             }
+        }
 
-            if (event.key.code == sf::Keyboard::M)
+        if (event.key.code == sf::Keyboard::B)
+        {
+            if (root->left != NULL && root != NULL)
             {
-                if (root->left != NULL && root != NULL)
-                {
-                    set_show(true);
-                    set_string(root->left->data);
-                    reset();
+                set_show(true);
+                set_string(root->left->data);
+                reset();
+                root = root->left;
 
-                    root = root->left;
-                }
-                else
-                {
-                    set_show(false);
-                    Pode = false;
-                }
+                this->interact = true;
+            }
+            else
+            {
+                set_show(false);
+                this->interact = false;
+                this->restart = true;
             }
         }
     }

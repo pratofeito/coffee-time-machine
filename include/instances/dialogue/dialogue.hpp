@@ -34,7 +34,8 @@ protected:
     bool show = false;
 
 public:
-    bool Pode;
+    bool interact = true;
+    bool restart = false;
 
     Node *root;
     Dialogue_Tree tree;
