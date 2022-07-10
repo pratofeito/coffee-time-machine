@@ -50,27 +50,20 @@ void Player::player_move(const float delta_time)
 
 void Player::player_interact()
 {
-// <<<<<<< npc_speaks
-    if (player_colision->get_collision(next_tile) != nullptr && accept_key == true)
-    {
-        player_colision->get_collision(next_tile)->instance_interact();
-        okay = true;
-    }
-    if (player_colision->get_collision(next_tile) != nullptr && deny_key == true)
-    {
-        player_colision->get_collision(next_tile)->instance_desinteract();
-        okay = false;
-// =======
     Instance *object_collidable = player_colision->get_collision(next_tile);
     if (object_collidable != nullptr && accept_key)
     {
         object_collidable->instance_interact();
+        okay = true;
         if (object_collidable->instanceof <Item>(object_collidable))
         {
             object_collidable->instance_interact(this->bag);
         }
-        //  arrumar bag.insert(std::pair<std::string, bool>(item, true));
-// >>>>>>> npc-dialogue-itens
+        }
+    if (player_colision->get_collision(next_tile) != nullptr && deny_key == true)
+    {
+        player_colision->get_collision(next_tile)->instance_desinteract();
+        okay = false;
     }
     player_state = NOTHING;
 }
@@ -89,13 +82,13 @@ void Player::uptade_event_player(sf::Event event)
     if (event.key.code == sf::Keyboard::Z)
     {
         accept_key = true;
-        deny_key = false;
+        // deny_key = false;
     }
 
     if (event.key.code == sf::Keyboard::X)
     {
         deny_key = true;
-        accept_key = false;
+        // accept_key = false;
     }
 }
 
