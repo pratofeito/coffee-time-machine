@@ -8,7 +8,7 @@ make.exe: *** No rule to make target 'all'.  Stop.
 # This is free software: you are free to change and redistribute it.
 # There is NO WARRANTY, to the extent permitted by law.
 
-# Make data base, printed on Sat Jul 09 18:58:45 2022
+# Make data base, printed on Sun Jul 10 00:57:19 2022
 
 # Variables
 
@@ -81,7 +81,7 @@ ELECTRON_RUN_AS_NODE = 1
 # automatic
 %F = $(notdir $%)
 # environment
-CHROME_CRASHPAD_PIPE_NAME = \\.\pipe\crashpad_11692_HIPPUEFHALITZKQC
+CHROME_CRASHPAD_PIPE_NAME = \\.\pipe\crashpad_8132_MXXHETAARLHFTKKW
 # environment
 COMPUTERNAME = DESKTOP-48JJ2OO
 # environment
@@ -101,7 +101,7 @@ VSCODE_AMD_ENTRYPOINT = vs/workbench/api/node/extensionHostProcess
 # environment
 VSCODE_CODE_CACHE_PATH = C:\Users\lucas\AppData\Roaming\Code\CachedData\92d25e35d9bf1a6b16f7d0758f25d48ace11e5b9
 # environment
-APPLICATION_INSIGHTS_NO_DIAGNOSTIC_CHANNEL = true
+APPLICATION_INSIGHTS_NO_DIAGNOSTIC_CHANNEL = 1
 # environment
 COMMONPROGRAMFILES = C:\Program Files\Common Files
 # environment
@@ -193,7 +193,7 @@ PROCESSOR_LEVEL = 6
 # environment
 FPS_BROWSER_APP_PROFILE_STRING = Internet Explorer
 # environment
-VSCODE_PID = 11692
+VSCODE_PID = 8132
 # environment
 USERDOMAIN_ROAMINGPROFILE = DESKTOP-48JJ2OO
 # variable set hash-table stats:
@@ -322,6 +322,6 @@ link-linux:
 # strcache performance: lookups = 48 / hit rate = 47%
 # hash-table stats:
 # Load=25/8192=0%, Rehash=0, Collisions=1/48=2%
-# Finished Make data base on Sat Jul 09 18:58:45 2022
+# Finished Make data base on Sun Jul 10 00:57:19 2022
 
  

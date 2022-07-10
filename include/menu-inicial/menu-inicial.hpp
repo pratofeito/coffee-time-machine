@@ -9,7 +9,7 @@
 #include "Game/game.hpp"
 
 
-class Main_Menu_State{
+class Menu_State :public State{
     private:
         sf::RectangleShape background;
         
@@ -17,14 +17,15 @@ class Main_Menu_State{
         void initkeybinds();
 
     public:
-        Main_Menu_State(sf::RenderWindow* window,std::map<std::string, int>* supportedKeys);
-        virtual ~Main_Menu_State();
+        Menu_State(sf::RenderWindow *window);
+        virtual ~Menu_State();
 
-        void endState();
+    
+        void update_kb(const float &delta_time) override;
+        void update(const float &delta_time) override;
+        void draw(sf::RenderTarget *target= nullptr) override;
 
-        void updateInput(const float& dt);
-        void update(const float& dt);
-        void render(sf::RenderTarget* target=NULL);
+        void end_state() override;
 };
 
 #endif 

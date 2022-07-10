@@ -1,35 +1,40 @@
+
 #include "menu-inicial/menu-inicial.hpp"
 
-Main_Menu_State::Main_Menu_State(sf::RenderWindow* window,std::map<std::string, int>* supportedKeys)
+Menu_State::Menu_State(sf::RenderWindow* window)
 {
-    this->initkeybinds();
+  
     
-    this->background.setSize(sf::Vector2f(window->getSize().x, window->getSize().y));
+    this->background.setSize(sf::Vector2f((float)window->getSize().x, (float)window->getSize().y));
     this->background.setFillColor(sf::Color::White);
 
 }
 
-Main_Menu_State::~Main_Menu_State()
+Menu_State::~Menu_State()
 {
-
+   std::cout<<"Estado de jogo deletado"<<std::endl;
 }
 
-void Main_Menu_State::endState()
+void Menu_State::endState()
 {
-
+    std::cout<<"Ending menu state!!!"<< std::endl;
 }
 
-void Main_Menu_State::updateInput(const float& dt)
+void Menu_State::update(const float& delta_time)
 {
-    this->checkForQuit();
+    this->update_kb(delta_time);
 }
 
-void Main_Menu_State::update(const float& dt)
+void Menu_State::update_kb(const float& delta_time)
 {
+    this->kb_check_for_quit();
+    if(sf::Keyboard::isKeyPressed(sf::Keyboard::Enter))
+    {
 
+    }
 }
 
-void Main_Menu_State::render(sf::RenderTarget* target)
+void Menu_State::draw(sf::RenderTarget* target)
 {
     if(!target){
         target= this->window;
@@ -38,6 +43,7 @@ void Main_Menu_State::render(sf::RenderTarget* target)
 
 }
 
-void Main_Menu_State::initkeybinds(){
+void Menu_State::initkeybinds()
+{
     
 }

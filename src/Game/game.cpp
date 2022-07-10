@@ -31,6 +31,7 @@ void Game::initialize_window()
 
 void Game::initialize_states()
 {
+    this->states.push(new Menu_State(this->window));
     this->states.push(new Game_state(this->window));
 }
 
