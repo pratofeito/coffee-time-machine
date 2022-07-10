@@ -8,7 +8,7 @@ make.exe: *** No rule to make target 'all'.  Stop.
 # This is free software: you are free to change and redistribute it.
 # There is NO WARRANTY, to the extent permitted by law.
 
-# Make data base, printed on Sun Jul 10 00:57:19 2022
+# Make data base, printed on Sun Jul 10 10:47:09 2022
 
 # Variables
 
@@ -81,7 +81,7 @@ ELECTRON_RUN_AS_NODE = 1
 # automatic
 %F = $(notdir $%)
 # environment
-CHROME_CRASHPAD_PIPE_NAME = \\.\pipe\crashpad_8132_MXXHETAARLHFTKKW
+CHROME_CRASHPAD_PIPE_NAME = \\.\pipe\crashpad_3872_VDAAJZAJXHRVWZDF
 # environment
 COMPUTERNAME = DESKTOP-48JJ2OO
 # environment
@@ -193,7 +193,7 @@ PROCESSOR_LEVEL = 6
 # environment
 FPS_BROWSER_APP_PROFILE_STRING = Internet Explorer
 # environment
-VSCODE_PID = 8132
+VSCODE_PID = 3872
 # environment
 USERDOMAIN_ROAMINGPROFILE = DESKTOP-48JJ2OO
 # variable set hash-table stats:
@@ -225,7 +225,7 @@ build-linux:
 	${CC} ${CFLAGS} -I libs/sfml-linux/include -I include -c src/Game/game-state.cpp -o build/game-state.o
 	${CC} ${CFLAGS} -I libs/sfml-linux/include -I include -c src/Game/game.cpp -D LINUX -o build/game.o
 	${CC} ${CFLAGS} -I libs/sfml-linux/include -I include -c src/Instances/instance.cpp -o build/instance.o
-	${CC} ${CFLAGS} -I libs/sfml-linux/include -I include -c src/Menu_inicial/menu-inicial.cpp -o build/menu-inicial.o
+	${CC} ${CFLAGS} -I libs/sfml-linux/include -I include -c src/Game/menu-state.cpp -o build/menu-state.o
 
 # Not a target:
 all:
@@ -239,7 +239,7 @@ link-win:
 #  Modification time never checked.
 #  File has not been updated.
 #  recipe to execute (from 'Makefile', line 47):
-	${CC} ${CFLAGS} build/main.o build/game.o build/state.o build/game-state.o build/instance.o build/menu-inicial.o -o libs/sfml-win/bin/main.exe -L libs/sfml-win/lib -lsfml-audio -lsfml-graphics -lsfml-window -lsfml-system
+	${CC} ${CFLAGS} build/main.o build/game.o build/state.o build/game-state.o build/instance.o build/menu-state.o -o libs/sfml-win/bin/main.exe -L libs/sfml-win/lib -lsfml-audio -lsfml-graphics -lsfml-window -lsfml-system
 
 linux: build-linux link-linux
 #  Implicit rule search has not been done.
@@ -249,7 +249,7 @@ linux: build-linux link-linux
 # Not a target:
 Makefile:
 #  Implicit rule search has been done.
-#  Last modified 2022-07-09 10:55:19
+#  Last modified 2022-07-10 10:46:57
 #  File has been updated.
 #  Successfully updated.
 
@@ -275,7 +275,7 @@ build-win:
 	${CC} ${CFLAGS} -I libs/sfml-win/include -I include -c src/Game/game-state.cpp -o build/game-state.o
 	${CC} ${CFLAGS} -I libs/sfml-win/include -I include -c src/Game/game.cpp -o build/game.o
 	${CC} ${CFLAGS} -I libs/sfml-win/include -I include -c src/Instances/instance.cpp -o build/instance.o
-	${CC} ${CFLAGS} -I libs/sfml-win/include -I include -c src/Menu-inicial/menu-inicial.cpp -o build/menu-inicial.o
+	${CC} ${CFLAGS} -I libs/sfml-win/include -I include -c src/Game/menu-state.cpp -o build/menu-state.o
 	
 
 linux-run: build-linux link-linux run-linux
@@ -322,6 +322,6 @@ link-linux:
 # strcache performance: lookups = 48 / hit rate = 47%
 # hash-table stats:
 # Load=25/8192=0%, Rehash=0, Collisions=1/48=2%
-# Finished Make data base on Sun Jul 10 00:57:19 2022
+# Finished Make data base on Sun Jul 10 10:47:09 2022
 
  
