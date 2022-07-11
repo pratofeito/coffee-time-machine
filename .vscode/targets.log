@@ -8,7 +8,7 @@ make.exe: *** No rule to make target 'all'.  Stop.
 # This is free software: you are free to change and redistribute it.
 # There is NO WARRANTY, to the extent permitted by law.
 
-# Make data base, printed on Sun Jul 10 10:47:09 2022
+# Make data base, printed on Mon Jul 11 07:40:52 2022
 
 # Variables
 
@@ -81,7 +81,7 @@ ELECTRON_RUN_AS_NODE = 1
 # automatic
 %F = $(notdir $%)
 # environment
-CHROME_CRASHPAD_PIPE_NAME = \\.\pipe\crashpad_3872_VDAAJZAJXHRVWZDF
+CHROME_CRASHPAD_PIPE_NAME = \\.\pipe\crashpad_10656_MYMLIGVCZRKFWCCO
 # environment
 COMPUTERNAME = DESKTOP-48JJ2OO
 # environment
@@ -193,7 +193,7 @@ PROCESSOR_LEVEL = 6
 # environment
 FPS_BROWSER_APP_PROFILE_STRING = Internet Explorer
 # environment
-VSCODE_PID = 3872
+VSCODE_PID = 10656
 # environment
 USERDOMAIN_ROAMINGPROFILE = DESKTOP-48JJ2OO
 # variable set hash-table stats:
@@ -322,6 +322,6 @@ link-linux:
 # strcache performance: lookups = 48 / hit rate = 47%
 # hash-table stats:
 # Load=25/8192=0%, Rehash=0, Collisions=1/48=2%
-# Finished Make data base on Sun Jul 10 10:47:09 2022
+# Finished Make data base on Mon Jul 11 07:40:52 2022
 
  

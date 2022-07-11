@@ -7,12 +7,22 @@ Menu_State:: Menu_State(sf::RenderWindow *window) : State(window)
     
     this->background.setSize(sf::Vector2f((float)window->getSize().x, (float)window->getSize().y));
     this->background.setFillColor(sf::Color::White);
-
+    if(!this->font.loadFromFile("resources/adumu.ttf"))
+    {
+        std::cout<<"Error loading font \n";
+    }
+    this->background.setSize(static_cast<float>(this->window->getSize().x),static_cast<float>(this->window->getSize().y));
+    
+    if(!this->texture.loadFromFile("resources/menu_test.gif"))
+    {
+        std::cout<<"Erro loading texture"<<std::endl;
+    }
+    this->background.setTexture(&this->texture);
 }
 
 Menu_State::~Menu_State()
-{
-   std::cout<<"Estado de jogo deletado"<<std::endl;
+{   
+    std::cout<<"Estado de jogo deletado"<<std::endl;
 }
 
 void Menu_State::end_state()
@@ -46,4 +56,11 @@ void Menu_State::draw(sf::RenderTarget* target)
 void Menu_State::initkeybinds()
 {
     
+}
+
+void Menu_State::init_Fonts()
+{
+    if(!this->font.loadFromFile("resources/adumu.ttf")){
+        std::cout<<"Error loading font \n";
+    }
 }
