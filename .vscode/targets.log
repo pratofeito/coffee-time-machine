@@ -8,7 +8,7 @@ make.exe: *** No rule to make target 'all'.  Stop.
 # This is free software: you are free to change and redistribute it.
 # There is NO WARRANTY, to the extent permitted by law.
 
-# Make data base, printed on Mon Jul 11 07:40:52 2022
+# Make data base, printed on Mon Jul 11 17:31:21 2022
 
 # Variables
 
@@ -33,7 +33,7 @@ HOMEDRIVE = C:
 # automatic
 ^D = $(patsubst %/,%,$(patsubst %\,%,$(dir $^)))
 # makefile
-CURDIR := c:/Users/lucas/Desktop/o jogo/2022-1-TN-grupo02
+CURDIR := c:/Users/lucas/Desktop/o jogo2.0/2022-1-TN-grupo02
 # default
 SHELL := sh.exe
 # environment
@@ -81,7 +81,7 @@ ELECTRON_RUN_AS_NODE = 1
 # automatic
 %F = $(notdir $%)
 # environment
-CHROME_CRASHPAD_PIPE_NAME = \\.\pipe\crashpad_10656_MYMLIGVCZRKFWCCO
+CHROME_CRASHPAD_PIPE_NAME = \\.\pipe\crashpad_4032_SLFRSOIBKINVWYRK
 # environment
 COMPUTERNAME = DESKTOP-48JJ2OO
 # environment
@@ -193,7 +193,7 @@ PROCESSOR_LEVEL = 6
 # environment
 FPS_BROWSER_APP_PROFILE_STRING = Internet Explorer
 # environment
-VSCODE_PID = 10656
+VSCODE_PID = 4032
 # environment
 USERDOMAIN_ROAMINGPROFILE = DESKTOP-48JJ2OO
 # variable set hash-table stats:
@@ -205,7 +205,7 @@ USERDOMAIN_ROAMINGPROFILE = DESKTOP-48JJ2OO
 
 # Directories
 
-# . (key c:/Users/lucas/Desktop/o jogo/2022-1-TN-grupo02, mtime 1657144287): 12 files, no impossibilities.
+# . (key c:/Users/lucas/Desktop/o jogo2.0/2022-1-TN-grupo02, mtime 1657571083): 12 files, no impossibilities.
 
 # 12 files, no impossibilities in 1 directories.
 
@@ -226,6 +226,7 @@ build-linux:
 	${CC} ${CFLAGS} -I libs/sfml-linux/include -I include -c src/Game/game.cpp -D LINUX -o build/game.o
 	${CC} ${CFLAGS} -I libs/sfml-linux/include -I include -c src/Instances/instance.cpp -o build/instance.o
 	${CC} ${CFLAGS} -I libs/sfml-linux/include -I include -c src/Game/menu-state.cpp -o build/menu-state.o
+	${CC} ${CFLAGS} -I libs/sfml-linux/include -I include -c src/Game/buttons.cpp -o build/buttons.o
 
 # Not a target:
 all:
@@ -238,8 +239,8 @@ link-win:
 #  Implicit rule search has not been done.
 #  Modification time never checked.
 #  File has not been updated.
-#  recipe to execute (from 'Makefile', line 47):
-	${CC} ${CFLAGS} build/main.o build/game.o build/state.o build/game-state.o build/instance.o build/menu-state.o -o libs/sfml-win/bin/main.exe -L libs/sfml-win/lib -lsfml-audio -lsfml-graphics -lsfml-window -lsfml-system
+#  recipe to execute (from 'Makefile', line 48):
+	${CC} ${CFLAGS} build/main.o build/game.o build/state.o build/game-state.o build/instance.o build/menu-state.o build/buttons.o -o libs/sfml-win/bin/main.exe -L libs/sfml-win/lib -lsfml-audio -lsfml-graphics -lsfml-window -lsfml-system
 
 linux: build-linux link-linux
 #  Implicit rule search has not been done.
@@ -249,7 +250,7 @@ linux: build-linux link-linux
 # Not a target:
 Makefile:
 #  Implicit rule search has been done.
-#  Last modified 2022-07-10 10:46:57
+#  Last modified 2022-07-11 17:31:19
 #  File has been updated.
 #  Successfully updated.
 
@@ -262,21 +263,21 @@ run-linux:
 #  Implicit rule search has not been done.
 #  Modification time never checked.
 #  File has not been updated.
-#  recipe to execute (from 'Makefile', line 28):
+#  recipe to execute (from 'Makefile', line 29):
 	export LD_LIBRARY_PATH=libs/sfml-linux/lib && ./main
 
 build-win:
 #  Implicit rule search has not been done.
 #  Modification time never checked.
 #  File has not been updated.
-#  recipe to execute (from 'Makefile', line 39):
+#  recipe to execute (from 'Makefile', line 40):
 	${CC} ${CFLAGS} -I libs/sfml-win/include -I include -c src/main.cpp -o build/main.o
 	${CC} ${CFLAGS} -I libs/sfml-win/include -I include -c src/Game/state.cpp -o build/state.o
 	${CC} ${CFLAGS} -I libs/sfml-win/include -I include -c src/Game/game-state.cpp -o build/game-state.o
 	${CC} ${CFLAGS} -I libs/sfml-win/include -I include -c src/Game/game.cpp -o build/game.o
 	${CC} ${CFLAGS} -I libs/sfml-win/include -I include -c src/Instances/instance.cpp -o build/instance.o
 	${CC} ${CFLAGS} -I libs/sfml-win/include -I include -c src/Game/menu-state.cpp -o build/menu-state.o
-	
+	${CC} ${CFLAGS} -I libs/sfml-win/include -I include -c src/Game/buttons.cpp -o build/buttons.o
 
 linux-run: build-linux link-linux run-linux
 #  Implicit rule search has not been done.
@@ -298,14 +299,14 @@ run-win:
 #  Implicit rule search has not been done.
 #  Modification time never checked.
 #  File has not been updated.
-#  recipe to execute (from 'Makefile', line 50):
+#  recipe to execute (from 'Makefile', line 51):
 	libs/sfml-win/bin/main.exe
 
 link-linux:
 #  Implicit rule search has not been done.
 #  Modification time never checked.
 #  File has not been updated.
-#  recipe to execute (from 'Makefile', line 25):
+#  recipe to execute (from 'Makefile', line 26):
 	${CC} ${CFLAGS} build/main.o build/state.o build/game-state.o build/game.o build/instance.o -o main -Llibs/sfml-linux/lib -lsfml-audio -lsfml-graphics -lsfml-window -lsfml-system
 
 # files hash-table stats:
@@ -322,6 +323,6 @@ link-linux:
 # strcache performance: lookups = 48 / hit rate = 47%
 # hash-table stats:
 # Load=25/8192=0%, Rehash=0, Collisions=1/48=2%
-# Finished Make data base on Mon Jul 11 07:40:52 2022
+# Finished Make data base on Mon Jul 11 17:31:21 2022
 
  
