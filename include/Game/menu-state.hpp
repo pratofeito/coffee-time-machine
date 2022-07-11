@@ -13,7 +13,7 @@ class Menu_State: public State{
         sf::Texture texture;
         sf::RectangleShape background;
         sf::Font font;
-
+        sf::
         void initBackground();
         void initkeybinds();
         void init_Fonts();
