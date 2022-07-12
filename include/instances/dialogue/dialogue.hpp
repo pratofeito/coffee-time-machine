@@ -37,7 +37,7 @@ protected:
 public:
     bool Pode;
     bool Please;
-    bool given = false;
+    bool given;
 
     Node *root;
     Dialogue_Tree tree;
@@ -52,6 +52,7 @@ public:
     void write();
     void set_string(std::string s);
     bool get_Please();
+    void set_given(bool given);
 
     void reset();
     void dialogue_draw(sf::RenderTarget *target);

@@ -10,7 +10,7 @@ Game_state::Game_state(sf::RenderWindow *window) : State(window)
 
     timer = new Timer;
 
-    carrot = new Item("Carrot", 6, 6, 0);
+    carrot = new Item("Carrot", 1, 3, 0);
 
     // carrot2 = new Item("Carrot", 5, 6, 1);
 }
@@ -35,6 +35,35 @@ void Game_state::update(const float &delta_time)
     {
         // quit_state = true;
     }
+
+    if (carrot->get_holding() == true)
+    {
+        std::cout << "AAA" << npc_edinho2->get_npc_dialogue()->given << std::endl;
+        npc_edinho->npc_collision->disable_collision();
+        if (npc_edinho2->get_npc_dialogue()->given == false)
+        {
+            carrot->set_given(false);
+            // npc_edinho2->get_npc_dialogue()->set_given(false);
+        }
+        if (npc_edinho2->get_npc_dialogue()->given == true)
+        {
+            carrot->set_given(true);
+            std::cout << "UEEEPPAA";
+        }
+    }
+    /*   if (carrot->get_holding() == true)
+       {
+           npc_edinho->npc_collision->disable_collision();
+           if (npc_edinho2->get_npc_dialogue()->given == true)
+           {
+               carrot->set_given(false);
+               npc_edinho2->get_npc_dialogue()->set_given(false);
+           }
+           else
+           {
+               carrot->set_given(true);
+           }
+       }*/
 }
 
 void Game_state::draw(sf::RenderTarget *target)
@@ -80,13 +109,6 @@ void Game_state::update_events(sf::Event event)
 
             npc_edinho2->get_npc_dialogue()->uptade_event_dialogue(player->z, player->x, player->space);
         }
-    }
-    if (carrot->get_holding() == true)
-    {
-        npc_edinho->npc_collision->disable_collision();
-        carrot->set_given(npc_edinho2->get_npc_dialogue()->given);
-        bool a = npc_edinho2->get_npc_dialogue()->given;
-        std::cout << a << a << a << a << a;
     }
 }
 

@@ -26,7 +26,7 @@ Dialogue::Dialogue(std::string myfile)
 
     // this->first_interaction = true;
     this->Please = true;
-
+    this->given = false;
     audio_sound.define_sound("resources/typing2.wav", 50.f);
 }
 
@@ -101,6 +101,10 @@ void Dialogue::dialogue_draw(sf::RenderTarget *target)
         target->draw(this->box);
         target->draw(this->text);
     }
+}
+void Dialogue::set_given(bool given)
+{
+    this->given = given;
 }
 
 void Dialogue::uptade_event_dialogue(bool z, bool x, bool space)

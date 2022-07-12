@@ -48,18 +48,25 @@ void Item::instance_interact(std::map<const std::string, bool> &bag)
 
 void Item::instance_draw(sf::RenderTarget *target)
 {
+    std::cout << "BBBBBBBBBBBBBB" << this->given;
+
     if (holding_item == false)
     {
         target->draw(this->hit_box);
     }
-    if ((holding_item == true) && (given = false))
+    if (holding_item == true)
     {
-        target->draw(this->carrot_sprite);
-    }
-    if ((holding_item == true) && (given = true))
-    {
-        target->draw(this->carrot_sprite);
-        carrot_sprite.setFillColor(sf::Color::Transparent);
+        if (given == false)
+        {
+            std::cout << "trueee" << this->given << std::endl;
+            target->draw(this->carrot_sprite);
+        }
+        if (given == true)
+        {
+            std::cout << "false" << this->given << std::endl;
+            target->draw(this->carrot_sprite);
+            carrot_sprite.setFillColor(sf::Color::Transparent);
+        }
     }
 }
 void Item::instance_update(const float &delta_time)
@@ -72,4 +79,5 @@ void Item::instance_update(const float &delta_time)
 void Item::set_given(bool aqui)
 {
     this->given = aqui;
+    std::cout << "AAAAAAA" << this->given << aqui;
 }
