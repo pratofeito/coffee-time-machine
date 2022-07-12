@@ -24,7 +24,7 @@ public:
 
     std::string get_name();
 
-    virtual void instance_interact() override;
+    virtual bool instance_interact() override;
     virtual void instance_interact(std::map<const std::string, bool> &bag) override;
     virtual void instance_draw(sf::RenderTarget *target) override;
     virtual void instance_update(const float &delta_time) override;

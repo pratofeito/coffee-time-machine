@@ -58,8 +58,11 @@ void Game_state::update_events(sf::Event event)
     if (event.type == sf::Event::KeyPressed)
     {
         player->uptade_event_player(event);
-        npc_leandro->get_npc_dialogue()->uptade_event_dialogue(event);
-        npc_edinho->get_npc_dialogue()->uptade_event_dialogue(event);
+        if ((event.key.code != sf::Keyboard::Up) && (event.key.code != sf::Keyboard::Down) && (event.key.code != sf::Keyboard::Left) && (event.key.code != sf::Keyboard::Right))
+        {
+            npc_leandro->get_npc_dialogue()->uptade_event_dialogue(player->z, player->x);
+            npc_edinho->get_npc_dialogue()->uptade_event_dialogue(player->z, player->x);
+        }
     }
 }
 

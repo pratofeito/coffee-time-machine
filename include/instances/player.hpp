@@ -43,7 +43,7 @@ private:
 
 public:
     int player_state;
-    bool okay;
+    bool z = false, x = false;
     // Atributos
     std::map<const std::string, bool> bag;
 
@@ -59,7 +59,7 @@ public:
     void uptade_event_player(sf::Event event);
     void keyboard_step();
 
-    virtual void instance_interact() override;
+    virtual bool instance_interact() override;
     virtual void instance_draw(sf::RenderTarget *target) override;
     virtual void instance_update(const float &delta_time) override;
 };

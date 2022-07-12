@@ -36,6 +36,7 @@ protected:
 
 public:
     bool Pode;
+    bool Please;
 
     Node *root;
     Dialogue_Tree tree;
@@ -47,12 +48,13 @@ public:
     ~Dialogue();
 
     void create_tree(std::string myfile);
-    bool getPode();
     void write();
     void set_string(std::string s);
+    bool get_Please();
+
     void reset();
     void dialogue_draw(sf::RenderTarget *target);
-    void uptade_event_dialogue(sf::Event event);
+    void uptade_event_dialogue(bool z, bool x);
 };
 
 #endif

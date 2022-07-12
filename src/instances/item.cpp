@@ -25,8 +25,9 @@ std::string Item::get_name()
     return this->item_name;
 }
 
-void Item::instance_interact()
+bool Item::instance_interact()
 {
+    return 0;
 }
 
 void Item::instance_interact(std::map<const std::string, bool> &bag)

@@ -52,20 +52,16 @@ void Player::player_interact()
 
     if (object_collidable != nullptr)
     {
-        // std::cout << object_collidable->get_interact_status() << std::endl;
-        if (object_collidable->get_interact_status() == false)
-        {
-            object_collidable->instance_interact();
-            okay = true;
-            if (object_collidable->instanceof <Item>(object_collidable))
-            {
-                object_collidable->instance_interact(this->bag);
-            }
-        }
 
-        if (object_collidable->get_interact_status() == false)
+        if (object_collidable->instance_interact() == false)
         {
             player_state = NOTHING;
+        }
+
+        if (object_collidable->instanceof <Item>(object_collidable))
+        {
+            object_collidable->instance_interact(this->bag);
+            player_state = MOVING;
         }
     }
     else
@@ -85,9 +81,15 @@ void Player::check_inputs()
 
 void Player::uptade_event_player(sf::Event event)
 {
-    if (event.key.code == sf::Keyboard::Space)
+    if (event.key.code == sf::Keyboard::Z)
     {
         interact_key = true;
+        z = true;
+    }
+    if (event.key.code == sf::Keyboard::X)
+    {
+        interact_key = true;
+        x = true;
     }
     else
     {
@@ -164,7 +166,7 @@ void Player::keyboard_step()
     }
 }
 
-void Player::instance_interact()
+bool Player::instance_interact()
 {
 }
 

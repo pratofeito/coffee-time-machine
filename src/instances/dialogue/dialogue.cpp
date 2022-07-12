@@ -25,6 +25,7 @@ Dialogue::Dialogue(std::string myfile)
     this->box.setPosition(100, 400);
 
     // this->first_interaction = true;
+    this->Please = true;
 
     audio_sound.define_sound("resources/typing2.wav", 50.f);
 }
@@ -64,9 +65,9 @@ void Dialogue::create_tree(std::string myfile)
     root->right->right = tree.CreateNode(leia[5]);
 }
 
-bool Dialogue::getPode()
+bool Dialogue::get_Please()
 {
-    return this->Pode;
+    return Please;
 }
 
 void Dialogue::write()
@@ -102,7 +103,7 @@ void Dialogue::dialogue_draw(sf::RenderTarget *target)
     }
 }
 
-void Dialogue::uptade_event_dialogue(sf::Event event)
+void Dialogue::uptade_event_dialogue(bool z, bool x)
 {
     if (first_interaction == true)
     {
@@ -114,7 +115,7 @@ void Dialogue::uptade_event_dialogue(sf::Event event)
 
     if (Pode == true)
     {
-        if (event.key.code == sf::Keyboard::Z)
+        if (z == true)
         {
             if (root->right != NULL && root != NULL)
             {
@@ -127,11 +128,12 @@ void Dialogue::uptade_event_dialogue(sf::Event event)
             {
                 show = false;
                 Pode = false;
+                Please = false;
                 first_interaction = true;
             }
         }
 
-        if (event.key.code == sf::Keyboard::X)
+        if (x == true)
         {
             if (root->left != NULL && root != NULL)
             {
@@ -144,6 +146,7 @@ void Dialogue::uptade_event_dialogue(sf::Event event)
             {
                 show = false;
                 Pode = false;
+                Please = false;
                 first_interaction = true;
             }
         }

@@ -21,7 +21,7 @@ public:
     Npc(std::string name, int x, int y, std::string script);
     virtual ~Npc();
 
-    void instance_interact() override;
+    bool instance_interact() override;
     void instance_draw(sf::RenderTarget *target) override;
     void instance_update(const float &delta_time) override;
 
