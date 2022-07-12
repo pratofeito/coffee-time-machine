@@ -13,8 +13,7 @@ private:
     Timer *timer;
 
     Item *carrot;
-
-    Dialogue *dialogo;
+    Item *carrot2;
 
 public:
     Game_state(sf::RenderWindow *window);

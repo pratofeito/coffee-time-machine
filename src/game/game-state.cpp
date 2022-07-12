@@ -9,7 +9,8 @@ Game_state::Game_state(sf::RenderWindow *window) : State(window)
 
     timer = new Timer;
 
-    carrot = new Item("Carrot", 6, 6);
+    carrot = new Item("Carrot", 6, 6, 0);
+    carrot2 = new Item("Carrot", 5, 6, 1);
 }
 
 Game_state::~Game_state()
@@ -50,11 +51,9 @@ void Game_state::draw(sf::RenderTarget *target)
     // this->timer->hud_draw(target);
 
     this->carrot->instance_draw(target);
+    this->carrot2->instance_draw(target);
 
-    // if (npc_leandro->get_npc_dialogue()->Pode == true)
     this->npc_leandro->get_npc_dialogue()->dialogue_draw(target);
-
-    // if (npc_edinho->get_npc_dialogue()->Pode == true)
     this->npc_edinho->get_npc_dialogue()->dialogue_draw(target);
 }
 

@@ -1,6 +1,6 @@
 #include "instances/item.hpp"
 
-Item::Item(std::string name, int x, int y) : Instance(x, y)
+Item::Item(std::string name, int x, int y, int i) : Instance(x, y)
 {
     item_name = name;
     holding_item = false;
@@ -9,6 +9,7 @@ Item::Item(std::string name, int x, int y) : Instance(x, y)
     hit_box.setSize(sf::Vector2f(GRID_SIZE, GRID_SIZE));
     hit_box.setPosition(virtual_position.x * GRID_SIZE, virtual_position.y * GRID_SIZE);
     item_collision = new Collision(this);
+    this->i = i;
 }
 
 Item::~Item()
@@ -42,7 +43,7 @@ void Item::instance_interact(std::map<const std::string, bool> &bag)
 
     carrot_sprite.setFillColor(sf::Color(255, 165, 0));
     carrot_sprite.setSize(sf::Vector2f(GRID_SIZE, GRID_SIZE));
-    carrot_sprite.setPosition(1 * GRID_SIZE, 1 * GRID_SIZE);
+    carrot_sprite.setPosition((1 + i) * GRID_SIZE, 1 * GRID_SIZE);
 }
 
 void Item::instance_draw(sf::RenderTarget *target)

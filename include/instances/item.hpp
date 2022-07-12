@@ -15,9 +15,10 @@ private:
 
     Dialogue item_dialogue;
     bool holding_item;
+    int i;
 
 public:
-    Item(std::string name, int x, int y);
+    Item(std::string name, int x, int y, int i);
     virtual ~Item();
 
     bool get_holding();
