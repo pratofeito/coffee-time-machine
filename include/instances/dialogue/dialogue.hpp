@@ -32,6 +32,7 @@ protected:
     std::ifstream text_file;
 
     bool show = false;
+    bool first_interaction = true;
 
 public:
     bool Pode;
@@ -46,12 +47,11 @@ public:
     ~Dialogue();
 
     void create_tree(std::string myfile);
+    bool getPode();
     void write();
     void set_string(std::string s);
     void reset();
     void dialogue_draw(sf::RenderTarget *target);
-    void set_show(bool boolean);
-    bool get_show();
     void uptade_event_dialogue(sf::Event event);
 };
 

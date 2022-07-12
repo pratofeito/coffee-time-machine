@@ -18,17 +18,19 @@ class Instance
 protected:
     sf::Texture *texture;
     sf::Sprite sprite;
+    bool interact_status;
 
 public:
     Instance(int x, int y);
     virtual ~Instance();
     sf::Vector2i virtual_position;
 
-    virtual void instance_desinteract() = 0;
     virtual void instance_interact() = 0;
     virtual void instance_interact(std::map<const std::string, bool> &bag) {}
+    virtual void instance_interact(int &_player_state) {}
     virtual void instance_draw(sf::RenderTarget *target) = 0;
     virtual void instance_update(const float &delta_time) = 0;
+    virtual bool get_interact_status();
 
     // Checar o tipo da instancia
     template <typename Base, typename T>

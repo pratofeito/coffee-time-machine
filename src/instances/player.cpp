@@ -46,26 +46,32 @@ void Player::player_move(const float delta_time)
     }
 }
 
-// VER O QUE É CERTO AQUI!!
-
 void Player::player_interact()
 {
     Instance *object_collidable = player_colision->get_collision(next_tile);
-    if (object_collidable != nullptr && accept_key)
+
+    if (object_collidable != nullptr)
     {
-        object_collidable->instance_interact();
-        okay = true;
-        if (object_collidable->instanceof <Item>(object_collidable))
+        // std::cout << object_collidable->get_interact_status() << std::endl;
+        if (object_collidable->get_interact_status() == false)
         {
-            object_collidable->instance_interact(this->bag);
+            object_collidable->instance_interact();
+            okay = true;
+            if (object_collidable->instanceof <Item>(object_collidable))
+            {
+                object_collidable->instance_interact(this->bag);
+            }
         }
+
+        if (object_collidable->get_interact_status() == false)
+        {
+            player_state = NOTHING;
         }
-    if (player_colision->get_collision(next_tile) != nullptr && deny_key == true)
-    {
-        player_colision->get_collision(next_tile)->instance_desinteract();
-        okay = false;
     }
-    player_state = NOTHING;
+    else
+    {
+        player_state = NOTHING;
+    }
 }
 
 void Player::check_inputs()
@@ -79,16 +85,13 @@ void Player::check_inputs()
 
 void Player::uptade_event_player(sf::Event event)
 {
-    if (event.key.code == sf::Keyboard::Z)
+    if (event.key.code == sf::Keyboard::Space)
     {
-        accept_key = true;
-        // deny_key = false;
+        interact_key = true;
     }
-
-    if (event.key.code == sf::Keyboard::X)
+    else
     {
-        deny_key = true;
-        // accept_key = false;
+        interact_key = false;
     }
 }
 
@@ -131,7 +134,7 @@ void Player::keyboard_step()
         next_tile.y = virtual_position.y;
         move_dir = sf::Vector2i(x_direction, 0);
     }
-    else if (accept_key || deny_key)
+    else if (interact_key)
     {
         switch (looking)
         {
@@ -165,10 +168,6 @@ void Player::instance_interact()
 {
 }
 
-void Player::instance_desinteract()
-{
-}
-
 void Player::instance_draw(sf::RenderTarget *target)
 {
     target->draw(this->hit_box);
@@ -186,10 +185,15 @@ void Player::instance_update(const float &delta_time)
         // std::cout << "Case Moving" << std::endl;
         player_move(delta_time);
         break;
-    case NOTHING:
+    }
+
+    // tem que estar como verificação no fim porque ele pode estar movimentando, acabar
+    // um pedaço do movimento e ainda continuar pressionado. neste caso ele não deve mudar
+    // para o estado parado, mas sim continuar em movimento.
+    if (player_state == NOTHING)
+    {
         // std::cout << "Case Nothing" << std::endl;
         check_inputs();
         keyboard_step();
-        break;
     }
 }

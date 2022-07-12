@@ -4,6 +4,7 @@
 #include "collision/collision.hpp"
 #include "instances/instance.hpp"
 #include "instances/dialogue/dialogue.hpp"
+#include "instances/player.hpp"
 
 class Npc : public Instance
 {
@@ -17,12 +18,8 @@ private:
     Collision *npc_collision;
 
 public:
-    // bool Pode;
-
     Npc(std::string name, int x, int y, std::string script);
     virtual ~Npc();
-
-    void instance_desinteract() override;
 
     void instance_interact() override;
     void instance_draw(sf::RenderTarget *target) override;

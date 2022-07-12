@@ -4,6 +4,7 @@
 #include "instance.hpp"
 #include "collision/collision.hpp"
 #include "item.hpp"
+#include "npc.hpp"
 #include <set>
 
 class Player : public Instance
@@ -11,7 +12,7 @@ class Player : public Instance
 private:
     // Movimentação
     sf::RectangleShape hit_box;
-    int player_state;
+
     int looking;
     enum directions
     {
@@ -38,9 +39,10 @@ private:
     // Movimento
     bool arrow_up, arrow_down, arrow_left, arrow_right;
     // Interação
-    bool accept_key, deny_key;
+    bool interact_key;
 
 public:
+    int player_state;
     bool okay;
     // Atributos
     std::map<const std::string, bool> bag;
@@ -57,7 +59,6 @@ public:
     void uptade_event_player(sf::Event event);
     void keyboard_step();
 
-    virtual void instance_desinteract() override;
     virtual void instance_interact() override;
     virtual void instance_draw(sf::RenderTarget *target) override;
     virtual void instance_update(const float &delta_time) override;

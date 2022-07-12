@@ -16,15 +16,8 @@ Npc::~Npc()
     delete npc_collision;
 }
 
-void Npc::instance_desinteract()
-{
-    std::cout << "NEGOUUUUUU";
-    npc_dialogue->Pode = false;
-}
-
 void Npc::instance_interact()
 {
-    std::cout << "YESSSSSS";
     npc_dialogue->Pode = true;
 }
 
@@ -35,6 +28,7 @@ void Npc::instance_draw(sf::RenderTarget *target)
 
 void Npc::instance_update(const float &delta_time)
 {
+    this->interact_status = npc_dialogue->getPode();
 }
 
 Dialogue *Npc::get_npc_dialogue()

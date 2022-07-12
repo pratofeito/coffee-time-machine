@@ -24,7 +24,7 @@ Dialogue::Dialogue(std::string myfile)
     this->box.setFillColor(sf::Color::White);
     this->box.setPosition(100, 400);
 
-    // this->interact = true;
+    // this->first_interaction = true;
 
     audio_sound.define_sound("resources/typing2.wav", 50.f);
 }
@@ -64,6 +64,11 @@ void Dialogue::create_tree(std::string myfile)
     root->right->right = tree.CreateNode(leia[5]);
 }
 
+bool Dialogue::getPode()
+{
+    return this->Pode;
+}
+
 void Dialogue::write()
 {
     if (this->timer.getElapsedTime().asSeconds() > .025f && this->itr < this->phrase.size())
@@ -89,7 +94,7 @@ void Dialogue::set_string(std::string s)
 
 void Dialogue::dialogue_draw(sf::RenderTarget *target)
 {
-    if (show == true && Pode == true) //&& interact == false)
+    if (show == true && Pode == true)
     {
         write();
         target->draw(this->box);
@@ -97,56 +102,49 @@ void Dialogue::dialogue_draw(sf::RenderTarget *target)
     }
 }
 
-void Dialogue::set_show(bool boolean)
-{
-    this->show = boolean;
-}
-
-bool Dialogue::get_show()
-{
-    return show;
-}
-
 void Dialogue::uptade_event_dialogue(sf::Event event)
 {
+    if (first_interaction == true)
+    {
+        show = true;
+        this->set_string(root->data);
+        reset();
+        first_interaction = false;
+    }
+
     if (Pode == true)
     {
-        if (event.key.code == sf::Keyboard::Space)
-        {
-            set_show(true);
-            this->set_string(root->data);
-            reset();
-        }
-
-        if (event.key.code == sf::Keyboard::M)
+        if (event.key.code == sf::Keyboard::Z)
         {
             if (root->right != NULL && root != NULL)
             {
-                set_show(true);
-                this->set_string(root->right->data);
+                show = true;
+                set_string(root->right->data);
                 reset();
                 root = root->right;
             }
             else
             {
-                set_show(false);
+                show = false;
                 Pode = false;
+                first_interaction = true;
             }
         }
 
-        if (event.key.code == sf::Keyboard::B)
+        if (event.key.code == sf::Keyboard::X)
         {
             if (root->left != NULL && root != NULL)
             {
-                set_show(true);
+                show = true;
                 set_string(root->left->data);
                 reset();
                 root = root->left;
             }
             else
             {
-                set_show(false);
+                show = false;
                 Pode = false;
+                first_interaction = true;
             }
         }
     }

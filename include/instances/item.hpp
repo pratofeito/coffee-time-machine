@@ -22,9 +22,8 @@ public:
 
     bool get_holding();
 
-    virtual void instance_desinteract() override;
     std::string get_name();
-    
+
     virtual void instance_interact() override;
     virtual void instance_interact(std::map<const std::string, bool> &bag) override;
     virtual void instance_draw(sf::RenderTarget *target) override;
