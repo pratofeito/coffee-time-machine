@@ -10,10 +10,11 @@ private:
     Wall *wall;
     Npc *npc_leandro;
     Npc *npc_edinho;
+    Npc *npc_edinho2;
     Timer *timer;
 
     Item *carrot;
-    Item *carrot2;
+    // Item *carrot2;
 
 public:
     Game_state(sf::RenderWindow *window);

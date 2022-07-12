@@ -37,6 +37,7 @@ protected:
 public:
     bool Pode;
     bool Please;
+    bool given = false;
 
     Node *root;
     Dialogue_Tree tree;

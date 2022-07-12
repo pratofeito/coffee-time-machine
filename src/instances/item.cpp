@@ -52,9 +52,14 @@ void Item::instance_draw(sf::RenderTarget *target)
     {
         target->draw(this->hit_box);
     }
-    else if (holding_item == true)
+    if ((holding_item == true) && (given = false))
     {
         target->draw(this->carrot_sprite);
+    }
+    if ((holding_item == true) && (given = true))
+    {
+        target->draw(this->carrot_sprite);
+        carrot_sprite.setFillColor(sf::Color::Transparent);
     }
 }
 void Item::instance_update(const float &delta_time)
@@ -62,4 +67,9 @@ void Item::instance_update(const float &delta_time)
     // Eu tive uma ideia que funcionava (gambiarra)
     // Get setter ponteiro pro item o player olha (acessar as info de iten/npc)
     // Ver como isso se relacionaria com a janela
+}
+
+void Item::set_given(bool aqui)
+{
+    this->given = aqui;
 }

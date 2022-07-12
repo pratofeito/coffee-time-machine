@@ -115,6 +115,8 @@ void Dialogue::uptade_event_dialogue(bool z, bool x, bool space)
 
     if (Pode == true)
     {
+        given = true;
+
         if (z == true)
         {
             if (root->right != NULL && root != NULL)

@@ -15,9 +15,10 @@ private:
 
     // Collision
     sf::RectangleShape hit_box;
-    Collision *npc_collision;
 
 public:
+    Collision *npc_collision;
+
     Npc(std::string name, int x, int y, std::string script);
     virtual ~Npc();
 
