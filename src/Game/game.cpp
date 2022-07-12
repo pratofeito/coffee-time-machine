@@ -1,10 +1,12 @@
 #include "Game/game.hpp"
+#include "Game/menu-state.hpp"
 
 Game::Game()
 {
     this->initialize_window();
     this->initialize_states();
     // this->initialize_sfml_events();
+    
 }
 
 Game::~Game()

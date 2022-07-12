@@ -19,3 +19,10 @@ bool State::get_quit_state()
 {
     return this->quit_state;
 }
+
+void State::updateMousePositions()
+{
+    this->mousePosSreen = sf::Mouse::getPosition();
+    this->mousePosWindow = sf::Mouse::getPosition(*this->window);
+    this->mousePosView = this->window->mapPixelToCoords(sf::Mouse::getPosition(*this->window));
+}

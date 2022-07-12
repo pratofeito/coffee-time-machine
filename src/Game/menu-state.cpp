@@ -24,16 +24,22 @@ Menu_State:: Menu_State(sf::RenderWindow *window) : State(window)
     }
     this->background.setTexture(&this->texture);
     //inicializando botões
+
     
-    this->buttons["GAME_STATE"] = new Button(200,300,130,50,&this->font,"New Game" ,sf::Color(10,10,10,100),sf::Color(20,20,20,200),(40,40,40,400));
-    this->buttons["OPTIONS"] = new Button(400,300,130,50,&this->font,"Options", sf::color(10,10,10,10,100),sf::color(20,20,20,200),(40,40,40,400)); 
-    this->buttons["EXIT_STATE"] = new Button(600,300,130,50,&this->font,"Quit" ,sf::Color(10,10,10,100),sf::Color(20,20,20,200),(40,40,40,400));
+    this->buttons["GAME_STATE"] = new Button(200,300,130,50,&this->font,"New Game" ,sf::Color(10,10,10,100),sf::Color(20,20,20,200),sf::Color(40,40,40,400));
+    this->buttons["OPTIONS"] = new Button(400,300,130,50,&this->font,"Options", sf::Color(10,10,10,100),sf::Color(20,20,20,200),sf::Color(40,40,40,400)); 
+    this->buttons["EXIT_STATE"] = new Button(600,300,130,50,&this->font,"Quit" ,sf::Color(10,10,10,100),sf::Color(20,20,20,200),sf::Color(40,40,40,400));
  
 }
 
 Menu_State::~Menu_State()
-{   
-    std::cout<<"Estado de jogo deletado"<<std::endl;
+{  
+    auto it = this->buttons.begin();
+    for(it = this->buttons.begin();it != this->buttons.end(); it++)
+    {
+        delete it->second;
+    }
+    
 }
 
 void Menu_State::end_state()
@@ -42,8 +48,18 @@ void Menu_State::end_state()
 }
 
 void Menu_State::update(const float& delta_time)
-{
+{   
+    this->updateMousePositions();
     this->update_kb(delta_time);
+
+    std::cout<<this->mousePosView.x<<" "<<this->mousePosView.y<<std::endl;
+    
+    this->updateButtons();
+
+    if(this->buttons["EXIT"]->isPressed()){
+
+    }
+   // this->gamestate_btn->update(this->mousePosView);
 }
 
 void Menu_State::update_kb(const float& delta_time)
@@ -62,8 +78,11 @@ void Menu_State::draw(sf::RenderTarget* target)
     }
     target->draw(this->background);
 
+   // this->gamestate_btn->draw(target);
+
     sf::Text mouseText;
 
+    this->drawButtons(target);
     //remover later
     //mouseText.setPosition(this->mousePosView.x, this->mousePosView.y-50);
     //mouseText.setFont(this->font);
@@ -71,8 +90,33 @@ void Menu_State::draw(sf::RenderTarget* target)
     //mouseText.setString(this->mousePosView);
     //std::stringsteam string_steam;
     //string_steam<< this->mousePosView.x<<""<<this->mousePosView.y<<std::endl;
-   //mouseTExt.setstring(string_steam.str());
+    //mouseTExt.setstring(string_steam.str());
 
     //target->draw(mouseText);
+}
+
+void Menu_State::updateButtons()
+{
+    //this->states.push(new Menu_State(this->window,&this->supportedkeys));
+    this->gamestate_btn->update(this->mousePosView);
+    for(auto &it : this->buttons)
+    {
+        it.second->update(this->mousePosView);
+    }
+}
+
+void Menu_State::drawButtons(sf::RenderTarget *target= nullptr)
+{
+    
+    for(auto &it : this->buttons)
+    {
+        it.second->draw(target);
+    }
+    if(this->buttons["EXIT"]->isPressed())
+    {
+        window->clear();
+        end_state();  
+    }
+
 }
 

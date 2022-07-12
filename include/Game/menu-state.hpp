@@ -6,6 +6,7 @@
 #include "SFML/Graphics.hpp"
 #include "state.hpp"
 #include "game-state.hpp"
+#include "buttons.hpp"
 
 
 class Menu_State: public State{
@@ -13,11 +14,13 @@ class Menu_State: public State{
         sf::Texture texture;
         sf::RectangleShape background;
         sf::Font font;
-        sf::
-        void initBackground();
-        void initkeybinds();
-        void init_Fonts();
-        void initbuttons();
+
+        std::map<std::string, Button*> buttons;
+        
+        
+
+        Button* gamestate_btn;
+        
     public:
         Menu_State(sf::RenderWindow *window);
         virtual ~Menu_State();
@@ -26,7 +29,8 @@ class Menu_State: public State{
         void update_kb(const float &delta_time) override;
         void update(const float &delta_time) override;
         void draw(sf::RenderTarget *target= nullptr) override;
-
+        void updateButtons();
+        void drawButtons(sf::RenderTarget *target= nullptr);
         void end_state() override;
 };
 
