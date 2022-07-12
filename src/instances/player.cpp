@@ -56,6 +56,10 @@ void Player::player_interact()
         if (object_collidable->instance_interact() == false)
         {
             player_state = NOTHING;
+
+            space = false;
+            x = false;
+            z = false;
         }
 
         if (object_collidable->instanceof <Item>(object_collidable))
@@ -79,21 +83,30 @@ void Player::check_inputs()
     arrow_right = sf::Keyboard::isKeyPressed(sf::Keyboard::Right);
 }
 
-void Player::uptade_event_player(sf::Event event)
+bool Player::uptade_event_player(sf::Event event)
 {
     if (event.key.code == sf::Keyboard::Z)
     {
         interact_key = true;
         z = true;
+        return true;
     }
-    if (event.key.code == sf::Keyboard::X)
+    else if (event.key.code == sf::Keyboard::X)
     {
         interact_key = true;
         x = true;
+        return true;
+    }
+    else if (event.key.code == sf::Keyboard::Space)
+    {
+        interact_key = true;
+        return true;
     }
     else
     {
         interact_key = false;
+        space = true;
+        return false;
     }
 }
 

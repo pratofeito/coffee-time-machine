@@ -43,7 +43,7 @@ private:
 
 public:
     int player_state;
-    bool z = false, x = false;
+    bool z = false, x = false, space = false;
     // Atributos
     std::map<const std::string, bool> bag;
 
@@ -56,7 +56,7 @@ public:
     void player_interact();
     void check_inputs();
 
-    void uptade_event_player(sf::Event event);
+    bool uptade_event_player(sf::Event event);
     void keyboard_step();
 
     virtual bool instance_interact() override;

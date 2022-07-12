@@ -54,7 +54,7 @@ public:
 
     void reset();
     void dialogue_draw(sf::RenderTarget *target);
-    void uptade_event_dialogue(bool z, bool x);
+    void uptade_event_dialogue(bool z, bool x, bool space);
 };
 
 #endif

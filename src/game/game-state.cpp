@@ -31,7 +31,7 @@ void Game_state::update(const float &delta_time)
 
     if (timer->timer_update() == 110)
     {
-        quit_state = true;
+        // quit_state = true;
     }
 }
 
@@ -47,7 +47,7 @@ void Game_state::draw(sf::RenderTarget *target)
     this->npc_leandro->instance_draw(target);
     this->npc_edinho->instance_draw(target);
 
-    this->timer->hud_draw(target);
+    // this->timer->hud_draw(target);
 
     this->carrot->instance_draw(target);
 
@@ -67,11 +67,10 @@ void Game_state::update_events(sf::Event event)
 {
     if (event.type == sf::Event::KeyPressed)
     {
-        player->uptade_event_player(event);
-        if ((event.key.code != sf::Keyboard::Up) && (event.key.code != sf::Keyboard::Down) && (event.key.code != sf::Keyboard::Left) && (event.key.code != sf::Keyboard::Right))
+        if (player->uptade_event_player(event) == true)
         {
-            npc_leandro->get_npc_dialogue()->uptade_event_dialogue(player->z, player->x);
-            npc_edinho->get_npc_dialogue()->uptade_event_dialogue(player->z, player->x);
+            npc_leandro->get_npc_dialogue()->uptade_event_dialogue(player->z, player->x, player->space);
+            npc_edinho->get_npc_dialogue()->uptade_event_dialogue(player->z, player->x, player->space);
         }
     }
 }

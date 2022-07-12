@@ -103,14 +103,14 @@ void Dialogue::dialogue_draw(sf::RenderTarget *target)
     }
 }
 
-void Dialogue::uptade_event_dialogue(bool z, bool x)
+void Dialogue::uptade_event_dialogue(bool z, bool x, bool space)
 {
-    if (first_interaction == true)
+    Please = true;
+    if (space == true)
     {
         show = true;
         this->set_string(root->data);
         reset();
-        first_interaction = false;
     }
 
     if (Pode == true)
@@ -129,7 +129,6 @@ void Dialogue::uptade_event_dialogue(bool z, bool x)
                 show = false;
                 Pode = false;
                 Please = false;
-                first_interaction = true;
             }
         }
 
@@ -147,7 +146,6 @@ void Dialogue::uptade_event_dialogue(bool z, bool x)
                 show = false;
                 Pode = false;
                 Please = false;
-                first_interaction = true;
             }
         }
     }
