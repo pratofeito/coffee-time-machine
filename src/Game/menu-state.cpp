@@ -1,9 +1,9 @@
 #include "Game/menu-state.hpp"
 #include "Game/state.hpp"
 
-Menu_State:: Menu_State(sf::RenderWindow *window) : State(window)
+Menu_State:: Menu_State(sf::RenderWindow *window,std::map<std::string,int>* supportedKeys,std::stack<State *>* states) : State(window,supportedKeys,states)
 {
-  
+
     
     this->background.setSize(sf::Vector2f((float)window->getSize().x, (float)window->getSize().y));
     this->background.setFillColor(sf::Color::White);
@@ -14,7 +14,8 @@ Menu_State:: Menu_State(sf::RenderWindow *window) : State(window)
     {
         std::cout<<"Error loading font \n";
     }
-    this->background.setSize(static_cast<float>(this->window->getSize().x),static_cast<float>(this->window->getSize().y));
+    
+    this->background.setSize(sf::Vector2f(static_cast<float>(this->window->getSize().x),static_cast<float>(this->window->getSize().y)));
     
 
     //carregando arquivo de texturas
@@ -26,9 +27,9 @@ Menu_State:: Menu_State(sf::RenderWindow *window) : State(window)
     //inicializando botões
 
     
-    this->buttons["GAME_STATE"] = new Button(200,300,130,50,&this->font,"New Game" ,sf::Color(10,10,10,100),sf::Color(20,20,20,200),sf::Color(40,40,40,400));
-    this->buttons["OPTIONS"] = new Button(400,300,130,50,&this->font,"Options", sf::Color(10,10,10,100),sf::Color(20,20,20,200),sf::Color(40,40,40,400)); 
-    this->buttons["EXIT_STATE"] = new Button(600,300,130,50,&this->font,"Quit" ,sf::Color(10,10,10,100),sf::Color(20,20,20,200),sf::Color(40,40,40,400));
+    this->buttons["GAME_STATE"] = new Button(200,300,130,50,&this->font,"New Game" ,sf::Color(10,10,10,100),sf::Color(20,20,20,200),sf::Color(40,40,40,144));
+    this->buttons["OPTIONS"] = new Button(400,300,130,50,&this->font,"Options", sf::Color(10,10,10,100),sf::Color(20,20,20,200),sf::Color(40,40,40,144)); 
+    this->buttons["EXIT_STATE"] = new Button(600,300,130,50,&this->font,"Quit" ,sf::Color(10,10,10,100),sf::Color(20,20,20,200),sf::Color(40,40,40,144));
  
 }
 
@@ -103,9 +104,19 @@ void Menu_State::updateButtons()
     {
         it.second->update(this->mousePosView);
     }
+    if(this->buttons["EXIT"]->isPressed())
+    {
+        window->clear();
+        end_state();  
+    }
+
+    if(this->buttons["GAME_STATE"]->isPressed())
+    {
+        this->states->push(new Game_state(this->window,this->supportedKeys,this->states));
+    }
 }
 
-void Menu_State::drawButtons(sf::RenderTarget *target= nullptr)
+void Menu_State::drawButtons(sf::RenderTarget *target)
 {
     
     for(auto &it : this->buttons)

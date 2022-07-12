@@ -11,6 +11,9 @@ class State
 
 
     protected:
+        std::stack<State *>* states;
+        std::map<std::string,int>* supportedKeys;
+        std::map<std::string,int> keybinds;
         sf::RenderWindow *window;
         std::vector<sf::Texture> textures;
         bool quit_state = false;
@@ -21,7 +24,7 @@ class State
     
     
     public:
-        State(sf::RenderWindow *window);
+        State(sf::RenderWindow *window,std::map<std::string,int>* supportedKeys,std::stack<State *>* states);
         virtual ~State();
 
         // Serão definidos pelos states especializados

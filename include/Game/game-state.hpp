@@ -9,7 +9,7 @@ private:
     Instance player;
 
 public:
-    Game_state(sf::RenderWindow *window);
+    Game_state(sf::RenderWindow *window,std::map<std::string,int>* supportedKeys,std::stack<State *>* states);
     virtual ~Game_state();
 
     void update(const float &delta_time) override;

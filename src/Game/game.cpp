@@ -32,9 +32,12 @@ void Game::initialize_window()
 }
 
 void Game::initialize_states()
-{
-    this->states.push(new Menu_State(this->window));
-    this->states.push(new Game_state(this->window));
+{   
+
+    //problema para resolver em iniciar states
+    //(sf::RenderWindow *window,std::map<std::string,int>* supportedKeys,std::stack<State *> states);
+    this->states.push(new Menu_State(this->window,&this->supportedKeys,&this->states));
+    this->states.push(new Game_state(this->window,&this->supportedKeys,&this->states));
 }
 
 void initialize_sfml_events()

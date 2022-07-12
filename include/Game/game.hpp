@@ -17,6 +17,8 @@ private:
     // Empilhar os estados de jogo para facilitar a mudança entre os estados
     std::stack<State *> states;
 
+    std::map<std::string, int>supportedKeys;
+
     void initialize_window();
     void initialize_states();
     void initialize_sfml_events();

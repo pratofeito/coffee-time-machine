@@ -7,6 +7,7 @@
 #include "state.hpp"
 #include "game-state.hpp"
 #include "buttons.hpp"
+#include "game.hpp"
 
 
 class Menu_State: public State{
@@ -22,7 +23,7 @@ class Menu_State: public State{
         Button* gamestate_btn;
         
     public:
-        Menu_State(sf::RenderWindow *window);
+        Menu_State(sf::RenderWindow *window,std::map<std::string,int>* supportedKeys,std::stack<State *>* states);
         virtual ~Menu_State();
 
 

@@ -1,8 +1,10 @@
 #include "Game/state.hpp"
 
-State::State(sf::RenderWindow *window)
+State::State(sf::RenderWindow *window,std::map<std::string,int>* supportedKeys,std::stack<State *>* states)
 {
     this->window = window;
+    this->supportedKeys=supportedKeys;
+    this->states =  states;
 }
 State::~State() {}
 
