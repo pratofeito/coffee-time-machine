@@ -60,9 +60,10 @@ void Dialogue::create_tree(std::string myfile)
     root = tree.CreateNode(leia[0]);
     root->left = tree.CreateNode(leia[1]);
     root->left->left = tree.CreateNode(leia[2]);
-    root->right = tree.CreateNode(leia[3]);
-    root->right->left = tree.CreateNode(leia[4]);
-    root->right->right = tree.CreateNode(leia[5]);
+    root->left->right = tree.CreateNode(leia[3]);
+    root->right = tree.CreateNode(leia[4]);
+    root->right->left = tree.CreateNode(leia[5]);
+    root->right->right = tree.CreateNode(leia[6]);
 }
 
 bool Dialogue::get_on_going()
@@ -108,72 +109,64 @@ void Dialogue::set_given(bool given)
 
 void Dialogue::update_event_dialogue(bool z, bool x, bool space)
 {
-    if (interacted == true)
+    given = true;
+    on_going = true;
+    if ((first_interaction == true) && ((z == true) || (x == true)))
     {
-        given = true;
+        show_dialogue = true;
+        set_string(root->data);
+        reset();
+        first_interaction = false;
+        z = false;
+        x = false;
+    }
 
-        if (z == true)
+    if ((z == true) && (x == false))
+    {
+        on_going = true;
+        if (root->left != NULL && root != NULL)
         {
-            on_going = true;
-            if ((first_interaction == true) && (z == true))
-            {
-                show_dialogue = true;
-                set_string(root->data);
-                reset();
-                first_interaction = false;
-                z = false;
-                x = false;
-            }
-            else if (root->left != NULL && root != NULL)
-            {
-                show_dialogue = true;
-                set_string(root->left->data);
-                reset();
-                root = root->left;
-                z = false;
-                x = false;
-            }
-            else
-            {
-                show_dialogue = false;
-                interacted = false;
-                on_going = false;
-                first_interaction = true;
-                z = false;
-                x = false;
-            }
+            show_dialogue = true;
+            set_string(root->left->data);
+            reset();
+            root = root->left;
+            z = false;
+            x = false;
+            space = false;
         }
-
-        if (x == true)
+        else
         {
-            on_going = true;
-            if ((first_interaction == true) && (x == true))
-            {
-                show_dialogue = true;
-                set_string(root->data);
-                reset();
-                first_interaction = false;
-                x = false;
-                z = false;
-            }
-            else if (root->right != NULL && root != NULL)
-            {
-                show_dialogue = true;
-                set_string(root->right->data);
-                reset();
-                root = root->right;
-                z = false;
-                x = false;
-            }
-            else
-            {
-                show_dialogue = false;
-                interacted = false;
-                on_going = false;
-                first_interaction = true;
-                x = false;
-                z = false;
-            }
+            show_dialogue = false;
+            interacted = false;
+            on_going = false;
+            first_interaction = true;
+            z = false;
+            x = false;
+            space = false;
+        }
+    }
+
+    if ((x == true) && (z == false))
+    {
+        if (root->right != NULL && root != NULL)
+        {
+            show_dialogue = true;
+            set_string(root->right->data);
+            reset();
+            root = root->right;
+            z = false;
+            x = false;
+            space = false;
+        }
+        else
+        {
+            show_dialogue = false;
+            interacted = false;
+            on_going = false;
+            first_interaction = true;
+            x = false;
+            z = false;
+            space = false;
         }
     }
 }

@@ -96,6 +96,9 @@ void Player::check_inputs()
 
 bool Player::uptade_event_player(sf::Event event)
 {
+    z = false;
+    x = false;
+
     if (event.key.code == sf::Keyboard::Z)
     {
         interact_key = true;
