@@ -1,4 +1,4 @@
-#include "Game/ending-state.hpp"
+#include "game/ending-state.hpp"
 
 Ending_state::Ending_state(sf::RenderWindow *window) : State(window)
 {
