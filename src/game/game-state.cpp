@@ -1,6 +1,6 @@
 #include "game/game-state.hpp"
 
-GameState::GameState(sf::RenderWindow *window) : State(window)
+GameState::GameState(sf::RenderWindow *window,std::stack<State *>* states) : State(window,states)
 {
     player = new Player(0, 0);
     wall = new Wall(4, 4);

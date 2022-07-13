@@ -10,7 +10,7 @@ private:
     Intro *intro;
 
 public:
-    IntroState(sf::RenderWindow *window);
+    IntroState(sf::RenderWindow *window, std::stack<State *> *states);
     virtual ~IntroState();
 
     void update(const float &delta_time) override;

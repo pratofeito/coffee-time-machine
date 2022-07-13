@@ -1,6 +1,6 @@
 #include "game/intro-state.hpp"
 
-IntroState::IntroState(sf::RenderWindow *window) : State(window)
+IntroState::IntroState(sf::RenderWindow *window, std::stack<State *> *states) : State(window, states)
 {
     wall = new Wall(4, 4);
     intro = new Intro("resources/intro.txt");

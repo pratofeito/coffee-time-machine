@@ -1,0 +1,328 @@
+make.exe all --print-data-base --no-builtin-variables --no-builtin-rules --question
+make.exe: *** No rule to make target 'all'.  Stop.
+
+# GNU Make 4.2.1
+# Built for x86_64-w64-mingw32
+# Copyright (C) 1988-2016 Free Software Foundation, Inc.
+# License GPLv3+: GNU GPL version 3 or later <http://gnu.org/licenses/gpl.html>
+# This is free software: you are free to change and redistribute it.
+# There is NO WARRANTY, to the extent permitted by law.
+
+# Make data base, printed on Wed Jul 13 00:39:48 2022
+
+# Variables
+
+# 'override' directive
+GNUMAKEFLAGS := 
+# automatic
+<D = $(patsubst %/,%,$(patsubst %\,%,$(dir $<)))
+# automatic
+?F = $(notdir $?)
+# default
+.SHELLFLAGS := -c
+# makefile
+MAKEFLAGS = pqrR
+# automatic
+?D = $(patsubst %/,%,$(patsubst %\,%,$(dir $?)))
+# automatic
+@D = $(patsubst %/,%,$(patsubst %\,%,$(dir $@)))
+# environment
+HOMEDRIVE = C:
+# automatic
+@F = $(notdir $@)
+# automatic
+^D = $(patsubst %/,%,$(patsubst %\,%,$(dir $^)))
+# makefile
+CURDIR := c:/Users/lucas/Desktop/o jogo2.0/2022-1-TN-grupo02
+# default
+SHELL := sh.exe
+# environment
+WINDIR = C:\WINDOWS
+# environment
+VSCODE_NLS_CONFIG = {"locale":"pt-br","availableLanguages":{"*":"pt-br"},"_languagePackId":"586ada59ea240d9b175b3ea817e73e56.pt-br","_translationsConfigFile":"C:\\Users\\lucas\\AppData\\Roaming\\Code\\clp\\586ada59ea240d9b175b3ea817e73e56.pt-br\\tcf.json","_cacheRoot":"C:\\Users\\lucas\\AppData\\Roaming\\Code\\clp\\586ada59ea240d9b175b3ea817e73e56.pt-br","_resolvedLanguagePackCoreLocation":"C:\\Users\\lucas\\AppData\\Roaming\\Code\\clp\\586ada59ea240d9b175b3ea817e73e56.pt-br\\b06ae3b2d2dbfe28bca3134cc6be65935cdfea6a","_corruptedFile":"C:\\Users\\lucas\\AppData\\Roaming\\Code\\clp\\586ada59ea240d9b175b3ea817e73e56.pt-br\\corrupted.info","_languagePackSupport":true}
+# makefile (from 'Makefile', line 3)
+CFLAGS = -std=c++11 -Wall
+# environment
+ONEDRIVE = C:\Users\lucas\OneDrive
+# environment
+PATHEXT = .COM;.EXE;.BAT;.CMD;.VBS;.VBE;.JS;.JSE;.WSF;.WSH;.MSC
+# makefile (from 'Makefile', line 1)
+MAKEFILE_LIST :=  Makefile
+# environment
+FPS_BROWSER_USER_PROFILE_STRING = Default
+# environment
+TMP = C:\Users\lucas\AppData\Local\Temp
+# environment
+PROGRAMW6432 = C:\Program Files
+# environment
+PROGRAMDATA = C:\ProgramData
+# environment
+VSCODE_CWD = C:\Users\lucas\AppData\Local\Programs\Microsoft VS Code
+# default
+MAKE_HOST := x86_64-w64-mingw32
+# environment
+PATH = C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\WINDOWS\System32\OpenSSH\;C:\MinGW\bin;C:\Program Files\Git\cmd;C:\Program Files (x86)\NVIDIA Corporation\PhysX\Common;C:\Program Files\NVIDIA Corporation\NVIDIA NvDLISR;C:\Users\lucas\AppData\Local\Programs\Python\Python310\Scripts\;C:\Users\lucas\AppData\Local\Programs\Python\Python310\;C:\Users\lucas\AppData\Local\Microsoft\WindowsApps;C:\Users\lucas\AppData\Local\Programs\Microsoft VS Code\bin;c:\MinGW\bin\mingw32-make.exe;c:\MinGW\bin\make.exe;
+# environment
+COMMONPROGRAMW6432 = C:\Program Files\Common Files
+# makefile (from 'Makefile', line 7)
+INCLUDE_DIR = ./include
+# environment
+PROCESSOR_ARCHITECTURE = AMD64
+# environment
+USERPROFILE = C:\Users\lucas
+# environment
+ALLUSERSPROFILE = C:\ProgramData
+# environment
+NUMBER_OF_PROCESSORS = 12
+# environment
+ELECTRON_RUN_AS_NODE = 1
+# default
+.FEATURES := target-specific order-only second-expansion else-if shortest-stem undefine oneshell archives jobserver output-sync
+# automatic
+%F = $(notdir $%)
+# environment
+CHROME_CRASHPAD_PIPE_NAME = \\.\pipe\crashpad_9968_FFBNEWWPILSMUMGS
+# environment
+COMPUTERNAME = DESKTOP-48JJ2OO
+# environment
+PROGRAMFILES = C:\Program Files
+# default
+.LOADED := 
+# environment
+DRIVERDATA = C:\Windows\System32\Drivers\DriverData
+# environment
+ORIGINAL_XDG_CURRENT_DESKTOP = undefined
+# environment
+USERNAME = lucas
+# environment
+PUBLIC = C:\Users\Public
+# environment
+VSCODE_AMD_ENTRYPOINT = vs/workbench/api/node/extensionHostProcess
+# environment
+VSCODE_CODE_CACHE_PATH = C:\Users\lucas\AppData\Roaming\Code\CachedData\b06ae3b2d2dbfe28bca3134cc6be65935cdfea6a
+# environment
+APPLICATION_INSIGHTS_NO_DIAGNOSTIC_CHANNEL = true
+# environment
+COMMONPROGRAMFILES = C:\Program Files\Common Files
+# environment
+LOGONSERVER = \\DESKTOP-48JJ2OO
+# environment
+VSCODE_HANDLES_UNCAUGHT_ERRORS = true
+# environment
+USERDOMAIN = DESKTOP-48JJ2OO
+# environment
+MAKELEVEL := 0
+# default
+MAKE = $(MAKE_COMMAND)
+# default
+MAKECMDGOALS := all
+# makefile (from 'Makefile', line 2)
+CC = g++
+# makefile (from 'Makefile', line 5)
+BUILD_DIR = ./build
+# default
+MAKE_VERSION := 4.2.1
+# makefile
+.DEFAULT_GOAL := linux
+# environment
+PROGRAMFILES(X86) = C:\Program Files (x86)
+# automatic
+%D = $(patsubst %/,%,$(patsubst %\,%,$(dir $%)))
+# environment
+LOCALAPPDATA = C:\Users\lucas\AppData\Local
+# environment
+PSMODULEPATH = C:\Program Files\WindowsPowerShell\Modules;C:\WINDOWS\system32\WindowsPowerShell\v1.0\Modules
+# default
+MAKE_COMMAND := make.exe
+# default
+.VARIABLES := 
+# automatic
+*F = $(notdir $*)
+# environment
+PROCESSOR_IDENTIFIER = Intel64 Family 6 Model 165 Stepping 5, GenuineIntel
+# environment
+OS = Windows_NT
+# environment
+VSCODE_IPC_HOOK = \\.\pipe\a455070ff8f206a26667cb642345a850-1.69.1-main-sock
+# environment
+HOMEPATH = \Users\lucas
+# environment
+COMMONPROGRAMFILES(X86) = C:\Program Files (x86)\Common Files
+# environment
+PROMPT = $P$G
+# environment
+MFLAGS = -pqrR
+# automatic
+*D = $(patsubst %/,%,$(patsubst %\,%,$(dir $*)))
+# environment
+SYSTEMROOT = C:\WINDOWS
+# automatic
++D = $(patsubst %/,%,$(patsubst %\,%,$(dir $+)))
+# automatic
++F = $(notdir $+)
+# environment
+APPDATA = C:\Users\lucas\AppData\Roaming
+# environment
+TEMP = C:\Users\lucas\AppData\Local\Temp
+# environment
+COMSPEC = C:\WINDOWS\system32\cmd.exe
+# default
+MAKEFILES := 
+# makefile (from 'Makefile', line 6)
+SRC_DIR = ./src
+# automatic
+<F = $(notdir $<)
+# environment
+LC_ALL = C
+# automatic
+^F = $(notdir $^)
+# default
+SUFFIXES := 
+# environment
+SYSTEMDRIVE = C:
+# environment
+SESSIONNAME = Console
+# environment
+PROCESSOR_REVISION = a505
+# default
+.RECIPEPREFIX := 
+# environment
+LANG = C
+# environment
+PROCESSOR_LEVEL = 6
+# environment
+FPS_BROWSER_APP_PROFILE_STRING = Internet Explorer
+# environment
+VSCODE_PID = 9968
+# environment
+USERDOMAIN_ROAMINGPROFILE = DESKTOP-48JJ2OO
+# variable set hash-table stats:
+# Load=92/1024=9%, Rehash=0, Collisions=15/113=13%
+
+# Pattern-specific Variable Values
+
+# No pattern-specific variable values.
+
+# Directories
+
+# . (key c:/Users/lucas/Desktop/o jogo2.0/2022-1-TN-grupo02, mtime 1657571083): 12 files, no impossibilities.
+
+# 12 files, no impossibilities in 1 directories.
+
+# Implicit Rules
+
+# No implicit rules.
+
+# Files
+
+build-linux:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+#  recipe to execute (from 'Makefile', line 17):
+	${CC} ${CFLAGS} -I libs/sfml-linux/include -I include -c src/main.cpp -o build/main.o
+	${CC} ${CFLAGS} -I libs/sfml-linux/include -I include -c src/Game/state.cpp -o build/state.o
+	${CC} ${CFLAGS} -I libs/sfml-linux/include -I include -c src/Game/game-state.cpp -o build/game-state.o
+	${CC} ${CFLAGS} -I libs/sfml-linux/include -I include -c src/Game/game.cpp -D LINUX -o build/game.o
+	${CC} ${CFLAGS} -I libs/sfml-linux/include -I include -c src/Instances/instance.cpp -o build/instance.o
+	${CC} ${CFLAGS} -I libs/sfml-linux/include -I include -c src/Game/menu-state.cpp -o build/menu-state.o
+	${CC} ${CFLAGS} -I libs/sfml-linux/include -I include -c src/Game/buttons.cpp -o build/buttons.o
+
+# Not a target:
+all:
+#  Command line target.
+#  Implicit rule search has been done.
+#  File does not exist.
+#  File has not been updated.
+
+link-win:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+#  recipe to execute (from 'Makefile', line 48):
+	${CC} ${CFLAGS} build/main.o build/game.o build/state.o build/game-state.o build/instance.o build/menu-state.o build/buttons.o -o libs/sfml-win/bin/main.exe -L libs/sfml-win/lib -lsfml-audio -lsfml-graphics -lsfml-window -lsfml-system
+
+linux: build-linux link-linux
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+Makefile:
+#  Implicit rule search has been done.
+#  Last modified 2022-07-11 17:31:19
+#  File has been updated.
+#  Successfully updated.
+
+win-run: build-win link-win run-win
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+run-linux:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+#  recipe to execute (from 'Makefile', line 29):
+	export LD_LIBRARY_PATH=libs/sfml-linux/lib && ./main
+
+build-win:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+#  recipe to execute (from 'Makefile', line 40):
+	${CC} ${CFLAGS} -I libs/sfml-win/include -I include -c src/main.cpp -o build/main.o
+	${CC} ${CFLAGS} -I libs/sfml-win/include -I include -c src/Game/state.cpp -o build/state.o
+	${CC} ${CFLAGS} -I libs/sfml-win/include -I include -c src/Game/game-state.cpp -o build/game-state.o
+	${CC} ${CFLAGS} -I libs/sfml-win/include -I include -c src/Game/game.cpp -o build/game.o
+	${CC} ${CFLAGS} -I libs/sfml-win/include -I include -c src/Instances/instance.cpp -o build/instance.o
+	${CC} ${CFLAGS} -I libs/sfml-win/include -I include -c src/Game/menu-state.cpp -o build/menu-state.o
+	${CC} ${CFLAGS} -I libs/sfml-win/include -I include -c src/Game/buttons.cpp -o build/buttons.o
+
+linux-run: build-linux link-linux run-linux
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+.DEFAULT:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+win: build-win link-win
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+run-win:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+#  recipe to execute (from 'Makefile', line 51):
+	libs/sfml-win/bin/main.exe
+
+link-linux:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+#  recipe to execute (from 'Makefile', line 26):
+	${CC} ${CFLAGS} build/main.o build/state.o build/game-state.o build/game.o build/instance.o -o main -Llibs/sfml-linux/lib -lsfml-audio -lsfml-graphics -lsfml-window -lsfml-system
+
+# files hash-table stats:
+# Load=14/1024=1%, Rehash=0, Collisions=1/40=3%
+# VPATH Search Paths
+
+# No 'vpath' search paths.
+
+# No general ('VPATH' variable) search path.
+
+# strcache buffers: 1 (0) / strings = 25 / storage = 187 B / avg = 7 B
+# current buf: size = 8162 B / used = 187 B / count = 25 / avg = 7 B
+
+# strcache performance: lookups = 48 / hit rate = 47%
+# hash-table stats:
+# Load=25/8192=0%, Rehash=0, Collisions=1/48=2%
+# Finished Make data base on Wed Jul 13 00:39:48 2022
+
+ 

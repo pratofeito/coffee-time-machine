@@ -11,7 +11,7 @@ protected:
     sf::Event sfml_event;
 
 public:
-    EndingState(sf::RenderWindow *window);
+    EndingState(sf::RenderWindow *window, std::stack<State *> *states);
     virtual ~EndingState();
 
     void update(const float &delta_time) override;

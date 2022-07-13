@@ -1,6 +1,6 @@
 #include "game/ending-state.hpp"
 
-EndingState::EndingState(sf::RenderWindow *window) : State(window)
+EndingState::EndingState(sf::RenderWindow *window, std::stack<State *> *states) : State(window, states)
 {
     wall = new Wall(5, 5);
 }

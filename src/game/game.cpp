@@ -1,4 +1,5 @@
 #include "game/game.hpp"
+#include "game/menu-state.hpp"
 
 Game::Game()
 {
@@ -39,9 +40,7 @@ void Game::initialize_window()
 
 void Game::initialize_states()
 {
-    // this->states.push(new Ending_state(this->window));
-    this->states.push(new GameState(this->window));
-    // this->states.push(new Intro_state(this->window));
+    this->states.push(new Menu_state(this->window, &this->states));
 }
 
 void Game::initialize_sfml_events()
@@ -53,14 +52,7 @@ void Game::initialize_sfml_events()
 void Game::update_delta_time()
 {
     this->delta_time = this->delta_time_clock.restart().asSeconds();
-
-#ifdef LINUX
-    system("clear");
-#else
-    system("cls");
-#endif
-
-    // std::cout << this->delta_time << std::endl;
+    std::cout << this->delta_time << std::endl;
 }
 
 void Game::update_sfml_events()
