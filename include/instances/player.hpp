@@ -29,7 +29,6 @@ private:
         NOTHING
     };
 
-    sf::Vector2i next_tile;
     float move_time = 0.3;
     float elapsed_time;
     sf::Vector2i move_dir;
@@ -42,6 +41,8 @@ private:
     bool interact_key;
 
 public:
+    sf::Vector2i next_tile;
+
     int player_state;
     bool z = false, x = false, space = false;
     // Atributos

@@ -110,12 +110,10 @@ void Dialogue::set_given(bool given)
 void Dialogue::uptade_event_dialogue(bool z, bool x, bool space)
 {
     Please = true;
-    if (space == true)
-    {
-        show = true;
-        this->set_string(root->data);
-        reset();
-    }
+
+    show = true;
+    set_string(root->data);
+    reset();
 
     if (Pode == true)
     {

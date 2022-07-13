@@ -57,7 +57,6 @@ void Player::player_interact()
         {
             player_state = NOTHING;
 
-            space = false;
             x = false;
             z = false;
         }
@@ -97,15 +96,9 @@ bool Player::uptade_event_player(sf::Event event)
         x = true;
         return true;
     }
-    else if (event.key.code == sf::Keyboard::Space)
-    {
-        interact_key = true;
-        return true;
-    }
     else
     {
         interact_key = false;
-        space = true;
         return false;
     }
 }
@@ -181,6 +174,7 @@ void Player::keyboard_step()
 
 bool Player::instance_interact()
 {
+    return 0;
 }
 
 void Player::instance_draw(sf::RenderTarget *target)

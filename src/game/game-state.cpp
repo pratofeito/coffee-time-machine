@@ -51,19 +51,6 @@ void Game_state::update(const float &delta_time)
             std::cout << "UEEEPPAA";
         }
     }
-    /*   if (carrot->get_holding() == true)
-       {
-           npc_edinho->npc_collision->disable_collision();
-           if (npc_edinho2->get_npc_dialogue()->given == true)
-           {
-               carrot->set_given(false);
-               npc_edinho2->get_npc_dialogue()->set_given(false);
-           }
-           else
-           {
-               carrot->set_given(true);
-           }
-       }*/
 }
 
 void Game_state::draw(sf::RenderTarget *target)
@@ -99,16 +86,19 @@ void Game_state::update_inputs(const float &delta_time)
 
 void Game_state::update_events(sf::Event event)
 {
+    Instance *object_collidable = player->player_colision->get_collision(player->next_tile);
+
     if (event.type == sf::Event::KeyPressed)
     {
-        if (player->uptade_event_player(event) == true)
-        {
-            npc_leandro->get_npc_dialogue()->uptade_event_dialogue(player->z, player->x, player->space);
+        if ((player->uptade_event_player(event) == true))
+            if (!object_collidable->instanceof <Item>(object_collidable))
+            {
+                npc_leandro->get_npc_dialogue()->uptade_event_dialogue(player->z, player->x, player->space);
 
-            npc_edinho->get_npc_dialogue()->uptade_event_dialogue(player->z, player->x, player->space);
+                npc_edinho->get_npc_dialogue()->uptade_event_dialogue(player->z, player->x, player->space);
 
-            npc_edinho2->get_npc_dialogue()->uptade_event_dialogue(player->z, player->x, player->space);
-        }
+                npc_edinho2->get_npc_dialogue()->uptade_event_dialogue(player->z, player->x, player->space);
+            }
     }
 }
 
