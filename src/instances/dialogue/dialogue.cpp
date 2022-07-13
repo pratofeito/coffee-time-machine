@@ -109,22 +109,26 @@ void Dialogue::set_given(bool given)
 
 void Dialogue::update_event_dialogue(bool z, bool x, bool space)
 {
-    on_going = true;
-
-    show_dialogue = true;
-    set_string(root->data);
-    reset();
-
     if (interacted == true)
     {
         given = true;
 
         if (z == true)
         {
-            if (root->right != NULL && root != NULL)
+            z = false;
+            on_going = true;
+            if (first_interaction == true)
+            {
+                show_dialogue = true;
+                set_string(root->data);
+                reset();
+                first_interaction = false;
+            }
+            else if (root->right != NULL && root != NULL)
             {
                 show_dialogue = true;
                 set_string(root->right->data);
+
                 reset();
                 root = root->right;
             }
@@ -133,15 +137,26 @@ void Dialogue::update_event_dialogue(bool z, bool x, bool space)
                 show_dialogue = false;
                 interacted = false;
                 on_going = false;
+                first_interaction = true;
             }
         }
 
         if (x == true)
         {
-            if (root->left != NULL && root != NULL)
+            x = false;
+            on_going = true;
+            if (first_interaction == true)
+            {
+                show_dialogue = true;
+                set_string(root->data);
+                reset();
+                first_interaction = false;
+            }
+            else if (root->left != NULL && root != NULL)
             {
                 show_dialogue = true;
                 set_string(root->left->data);
+
                 reset();
                 root = root->left;
             }
@@ -150,6 +165,7 @@ void Dialogue::update_event_dialogue(bool z, bool x, bool space)
                 show_dialogue = false;
                 interacted = false;
                 on_going = false;
+                first_interaction = true;
             }
         }
     }

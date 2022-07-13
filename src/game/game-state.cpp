@@ -87,19 +87,19 @@ void GameState::update_events(sf::Event event)
 
     if (event.type == sf::Event::KeyPressed)
     {
-        if ((player->uptade_event_player(event) == true))
+        if (player->uptade_event_player(event))
         {
-            // if (!object_collidable->instanceof <Item>(object_collidable))
+
+            if ((object_collidable == npc_edinho) || (object_collidable == npc_edinho2))
             {
                 npc_edinho->get_npc_dialogue()->update_event_dialogue(player->z, player->x, player->space);
-
-                // if (npc_leandro->get_npc_dialogue()->interacted == false)
-                npc_leandro->get_npc_dialogue()->update_event_dialogue(player->z, player->x, player->space);
-                // if (object_collidable == npc_edinho)
-                // npc_edinho->get_npc_dialogue()->update_event_dialogue(player->z, player->x, player->space);
-                // if (object_collidable == npc_edinho2)
                 npc_edinho2->get_npc_dialogue()->update_event_dialogue(player->z, player->x, player->space);
             }
+            // if (npc_leandro->get_npc_dialogue()->interacted == false)
+            if (object_collidable == npc_leandro)
+                npc_leandro->get_npc_dialogue()->update_event_dialogue(player->z, player->x, player->space);
+            // if (object_collidable == npc_edinho)
+            // npc_edinho->get_npc_dialogue()->update_event_dialogue(player->z, player->x, player->space);
         }
     }
 }

@@ -37,6 +37,7 @@ public:
     bool interacted;
     bool on_going;
     bool given;
+    bool first_interaction = true;
 
     Node *root;
     DialogueTree tree;
