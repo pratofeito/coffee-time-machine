@@ -21,16 +21,16 @@ class Button{
         sf::Font* font;
         sf::Text text;
 
-        sf::Color idleColor;
-        sf::Color haverColor;
-        sf::Color activeColor;
+        sf::Color idle_Color;
+        sf::Color haver_Color;
+        sf::Color active_Color;
 
 
 
 
 
     public:
-        Button(float x,float y,float width,float height,sf::Font* font,std::string text,sf::Color idleColor,sf::Color haverColor,sf::Color activeColor);
+        Button(float x,float y,float width,float height,sf::Font* font,std::string text,sf::Color idle_Color,sf::Color haver_Color,sf::Color active_Color);
         ~Button();
         void draw(sf::RenderTarget* target);
         void update(sf::Vector2f mousePos);

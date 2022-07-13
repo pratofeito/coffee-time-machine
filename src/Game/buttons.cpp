@@ -17,11 +17,11 @@ Button::Button(float x,float y,float width,float height,sf::Font* font,std::stri
 
     this->text.setPosition(this->shape.getPosition().x + (this->shape.getGlobalBounds().width /2.f) - this->text.getGlobalBounds().width/2.f , this->shape.getPosition().y + (this->shape.getGlobalBounds().height / 2.f) - this->text.getGlobalBounds().height/2.f);
 
-    this->idleColor = idleColor;
-    this->haverColor = haverColor;
-    this->activeColor= activeColor;
+    this->idle_Color = idleColor;
+    this->haver_Color = haverColor;
+    this->active_Color= activeColor;
 
-    this->shape.setFillColor(this->idleColor);
+    this->shape.setFillColor(this->idle_Color);
 }
 
 
@@ -62,15 +62,15 @@ void Button::update(const sf::Vector2f mousePos)
     switch (this->buttonState)
     {
     case BTN_IDLE:
-        this->shape.setFillColor(this->idleColor);
+        this->shape.setFillColor(this->idle_Color);
         break;
     
     case BTN_HAVER:
-        this->shape.setFillColor(this->haverColor);
+        this->shape.setFillColor(this->haver_Color);
         break;
     
     case BTN_PRESSED:
-        this->shape.setFillColor(this->activeColor);
+        this->shape.setFillColor(this->active_Color);
         break;
     
     default:
