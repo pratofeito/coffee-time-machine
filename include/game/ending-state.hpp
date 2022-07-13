@@ -1,7 +1,7 @@
 #ifndef ENDING_STATE_H
 #define ENDING_STATE_H
 
-#include "Game/state.hpp"
+#include "game/state.hpp"
 
 class Ending_state : public State
 {
