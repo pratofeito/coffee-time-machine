@@ -6,7 +6,6 @@ Game::Game()
     this->initialize_window();
     this->initialize_states();
     // this->initialize_sfml_events();
-    
 }
 
 Game::~Game()
@@ -32,12 +31,8 @@ void Game::initialize_window()
 }
 
 void Game::initialize_states()
-{   
-
-    //problema para resolver em iniciar states
-    //(sf::RenderWindow *window,std::map<std::string,int>* supportedKeys,std::stack<State *> states);
-    this->states.push(new Menu_State(this->window,&this->supportedKeys,&this->states));
-    this->states.push(new Game_state(this->window,&this->supportedKeys,&this->states));
+{
+    this->states.push(new Menu_state(this->window, &this->states));
 }
 
 void initialize_sfml_events()
@@ -50,13 +45,6 @@ void initialize_sfml_events()
 void Game::update_delta_time()
 {
     this->delta_time = this->delta_time_clock.restart().asSeconds();
-
-    #ifdef LINUX
-        system("clear");
-    #else
-        system("cls");
-    #endif
-
     std::cout << this->delta_time << std::endl;
 }
 

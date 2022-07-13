@@ -1,133 +1,108 @@
 #include "Game/menu-state.hpp"
 #include "Game/state.hpp"
 
-Menu_State:: Menu_State(sf::RenderWindow *window,std::map<std::string,int>* supportedKeys,std::stack<State *>* states) : State(window,supportedKeys,states)
+Menu_state::Menu_state(sf::RenderWindow *window, std::stack<State *> *states) : State(window, states)
 {
+    // Inicializando Background
+    this->background.setSize(sf::Vector2f(static_cast<float>(this->window->getSize().x),
+                                          static_cast<float>(this->window->getSize().y)));
 
-    
-    this->background.setSize(sf::Vector2f((float)window->getSize().x, (float)window->getSize().y));
-    this->background.setFillColor(sf::Color::White);
-    
-    //carregando fontes
-    
-    if(!this->font.loadFromFile("resources/adumu.ttf"))
+    // Carregando arquivo de texturas
+    if (!this->bg_texture.loadFromFile("resources/menu_test.gif"))
     {
-        std::cout<<"Error loading font \n";
+        std::cout << "Erro loading texture" << std::endl;
     }
-    
-    this->background.setSize(sf::Vector2f(static_cast<float>(this->window->getSize().x),static_cast<float>(this->window->getSize().y)));
-    
+    this->background.setTexture(&this->bg_texture);
 
-    //carregando arquivo de texturas
-    if(!this->texture.loadFromFile("resources/menu_test.gif"))
+    // Carregando fontes
+
+    if (!this->font.loadFromFile("resources/Adumu.ttf"))
     {
-        std::cout<<"Erro loading texture"<<std::endl;
+        std::cout << "Error loading font \n";
     }
-    this->background.setTexture(&this->texture);
-    //inicializando botões
 
-    
-    this->buttons["GAME_STATE"] = new Button(200,300,130,50,&this->font,"New Game" ,sf::Color(10,10,10,100),sf::Color(20,20,20,200),sf::Color(40,40,40,144));
-    this->buttons["OPTIONS"] = new Button(400,300,130,50,&this->font,"Options", sf::Color(10,10,10,100),sf::Color(20,20,20,200),sf::Color(40,40,40,144)); 
-    this->buttons["EXIT_STATE"] = new Button(600,300,130,50,&this->font,"Quit" ,sf::Color(10,10,10,100),sf::Color(20,20,20,200),sf::Color(40,40,40,144));
- 
+    // Inicializando botões
+
+    this->buttons["GAME_STATE"] = new Button(200, 300, 130, 50, &this->font, "New Game", sf::Color(10, 10, 10, 100), sf::Color(20, 20, 20, 200), sf::Color(40, 40, 40, 144));
+    this->buttons["OPTIONS"] = new Button(400, 300, 130, 50, &this->font, "Options", sf::Color(10, 10, 10, 100), sf::Color(20, 20, 20, 200), sf::Color(40, 40, 40, 144));
+    this->buttons["EXIT_STATE"] = new Button(600, 300, 130, 50, &this->font, "Quit", sf::Color(10, 10, 10, 100), sf::Color(20, 20, 20, 200), sf::Color(40, 40, 40, 144));
 }
 
-Menu_State::~Menu_State()
-{  
+Menu_state::~Menu_state()
+{
     auto it = this->buttons.begin();
-    for(it = this->buttons.begin();it != this->buttons.end(); it++)
+    for (it = this->buttons.begin(); it != this->buttons.end(); it++)
     {
         delete it->second;
     }
-    
 }
 
-void Menu_State::end_state()
+void Menu_state::end_state()
 {
-    std::cout<<"Ending menu state!!!"<< std::endl;
+    std::cout << "Ending menu state!!!" << std::endl;
 }
 
-void Menu_State::update(const float& delta_time)
-{   
+void Menu_state::update(const float &delta_time)
+{
     this->updateMousePositions();
     this->update_kb(delta_time);
 
-    std::cout<<this->mousePosView.x<<" "<<this->mousePosView.y<<std::endl;
-    
     this->updateButtons();
-
-    if(this->buttons["EXIT"]->isPressed()){
-
+    if (this->buttons["EXIT_STATE"]->isPressed())
+    {
+        this->quit_state = true;
     }
-   // this->gamestate_btn->update(this->mousePosView);
 }
 
-void Menu_State::update_kb(const float& delta_time)
+void Menu_state::update_kb(const float &delta_time)
 {
     this->kb_check_for_quit();
-    if(sf::Keyboard::isKeyPressed(sf::Keyboard::Enter))
+    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Enter))
     {
-
     }
 }
 
-void Menu_State::draw(sf::RenderTarget* target)
+void Menu_state::draw(sf::RenderTarget *target)
 {
-    if(!target){
-        target= this->window;
+    if (!target)
+    {
+        target = this->window;
     }
     target->draw(this->background);
-
-   // this->gamestate_btn->draw(target);
-
-    sf::Text mouseText;
-
     this->drawButtons(target);
-    //remover later
-    //mouseText.setPosition(this->mousePosView.x, this->mousePosView.y-50);
-    //mouseText.setFont(this->font);
-    //mouseText.setCharactersize(12);
-    //mouseText.setString(this->mousePosView);
-    //std::stringsteam string_steam;
-    //string_steam<< this->mousePosView.x<<""<<this->mousePosView.y<<std::endl;
-    //mouseTExt.setstring(string_steam.str());
-
-    //target->draw(mouseText);
+    // std::cout << "ATIZAP" << std::endl;
 }
 
-void Menu_State::updateButtons()
+void Menu_state::updateButtons()
 {
-    //this->states.push(new Menu_State(this->window,&this->supportedkeys));
-    this->gamestate_btn->update(this->mousePosView);
-    for(auto &it : this->buttons)
+    for (auto &it : this->buttons)
     {
         it.second->update(this->mousePosView);
     }
-    if(this->buttons["EXIT"]->isPressed())
+
+    // Começar o jogo
+    if (this->buttons["GAME_STATE"]->isPressed())
     {
-        window->clear();
-        end_state();  
+        this->states->push(new Game_state(this->window, this->states));
     }
 
-    if(this->buttons["GAME_STATE"]->isPressed())
+    if (this->buttons["EXIT_STATE"]->isPressed())
     {
-        this->states->push(new Game_state(this->window,this->supportedKeys,this->states));
+        window->clear();
+        end_state();
+        // quit = true
     }
 }
 
-void Menu_State::drawButtons(sf::RenderTarget *target)
+void Menu_state::drawButtons(sf::RenderTarget *target)
 {
-    
-    for(auto &it : this->buttons)
+    for (auto &it : this->buttons)
     {
         it.second->draw(target);
     }
-    if(this->buttons["EXIT"]->isPressed())
+    if (this->buttons["EXIT_STATE"]->isPressed())
     {
         window->clear();
-        end_state();  
+        end_state();
     }
-
 }
-

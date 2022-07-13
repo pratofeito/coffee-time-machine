@@ -5,7 +5,6 @@ g++ -std=c++11 -Wall -I libs/sfml-linux/include -I include -c src/Game/state.cpp
 g++ -std=c++11 -Wall -I libs/sfml-linux/include -I include -c src/Game/game-state.cpp -o build/game-state.o
 g++ -std=c++11 -Wall -I libs/sfml-linux/include -I include -c src/Game/game.cpp -D LINUX -o build/game.o
 g++ -std=c++11 -Wall -I libs/sfml-linux/include -I include -c src/Instances/instance.cpp -o build/instance.o
- 
 g++ -std=c++11 -Wall -I libs/sfml-linux/include -I include -c src/Game/menu-state.cpp -o build/menu-state.o
 g++ -std=c++11 -Wall -I libs/sfml-linux/include -I include -c src/Game/buttons.cpp -o build/buttons.o
 g++ -std=c++11 -Wall build/main.o build/state.o build/game-state.o build/game.o build/instance.o -o main -Llibs/sfml-linux/lib -lsfml-audio -lsfml-graphics -lsfml-window -lsfml-system

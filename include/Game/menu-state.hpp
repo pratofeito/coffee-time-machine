@@ -9,30 +9,25 @@
 #include "buttons.hpp"
 #include "game.hpp"
 
+class Menu_state : public State
+{
+private:
+    sf::Texture bg_texture;
+    sf::RectangleShape background;
+    sf::Font font;
 
-class Menu_State: public State{
-    private:
-        sf::Texture texture;
-        sf::RectangleShape background;
-        sf::Font font;
+    std::map<std::string, Button *> buttons;
 
-        std::map<std::string, Button*> buttons;
-        
-        
+public:
+    Menu_state(sf::RenderWindow *window, std::stack<State *> *states);
+    virtual ~Menu_state();
 
-        Button* gamestate_btn;
-        
-    public:
-        Menu_State(sf::RenderWindow *window,std::map<std::string,int>* supportedKeys,std::stack<State *>* states);
-        virtual ~Menu_State();
-
-
-        void update_kb(const float &delta_time) override;
-        void update(const float &delta_time) override;
-        void draw(sf::RenderTarget *target= nullptr) override;
-        void updateButtons();
-        void drawButtons(sf::RenderTarget *target= nullptr);
-        void end_state() override;
+    void update_kb(const float &delta_time) override;
+    void update(const float &delta_time) override;
+    void draw(sf::RenderTarget *target = nullptr) override;
+    void updateButtons();
+    void drawButtons(sf::RenderTarget *target = nullptr);
+    void end_state() override;
 };
 
-#endif 
+#endif
