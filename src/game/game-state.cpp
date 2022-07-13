@@ -83,10 +83,10 @@ void GameState::draw(sf::RenderTarget *target)
     // this->timer->hud_draw(target);
 
     this->carrot->instance_draw(target);
-    this->carrot2->instance_draw(target); //
+    //  this->carrot2->instance_draw(target); //
 
     this->npc_leandro->get_npc_dialogue()->dialogue_draw(target);
-    this->npc_leandro2->get_npc_dialogue()->dialogue_draw(target);
+    // this->npc_leandro2->get_npc_dialogue()->dialogue_draw(target);
 
     this->npc_edinho->get_npc_dialogue()->dialogue_draw(target);
     this->npc_edinho2->get_npc_dialogue()->dialogue_draw(target);
@@ -112,13 +112,11 @@ void GameState::update_events(sf::Event event)
                 npc_edinho2->get_npc_dialogue()->update_event_dialogue(player->z, player->x, player->space);
             }
             // if (npc_leandro->get_npc_dialogue()->interacted == false)
-            if ((object_collidable == npc_leandro) || (object_collidable == npc_leandro2))
+            if ((object_collidable == npc_leandro)) //|| (object_collidable == npc_leandro2))
             {
                 npc_leandro->get_npc_dialogue()->update_event_dialogue(player->z, player->x, player->space);
-                npc_leandro2->get_npc_dialogue()->update_event_dialogue(player->z, player->x, player->space);
+                //  npc_leandro2->get_npc_dialogue()->update_event_dialogue(player->z, player->x, player->space);
             }
-            // if (object_collidable == npc_edinho)
-            // npc_edinho->get_npc_dialogue()->update_event_dialogue(player->z, player->x, player->space);
         }
     }
 }
