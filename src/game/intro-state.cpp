@@ -1,19 +1,19 @@
 #include "game/intro-state.hpp"
 
-Intro_state::Intro_state(sf::RenderWindow *window) : State(window)
+IntroState::IntroState(sf::RenderWindow *window) : State(window)
 {
     wall = new Wall(4, 4);
     intro = new Intro("resources/intro.txt");
 }
 
-Intro_state::~Intro_state()
+IntroState::~IntroState()
 {
     delete wall;
     delete intro;
     std::cout << "Estado de jogo deletado" << std::endl;
 }
 
-void Intro_state::update(const float &delta_time)
+void IntroState::update(const float &delta_time)
 {
     if (intro->get_next_state() == true)
     {
@@ -24,7 +24,7 @@ void Intro_state::update(const float &delta_time)
     // carrot->instance_update(delta_time);
 }
 
-void Intro_state::draw(sf::RenderTarget *target)
+void IntroState::draw(sf::RenderTarget *target)
 {
     if (!target)
     {
@@ -34,12 +34,12 @@ void Intro_state::draw(sf::RenderTarget *target)
     this->intro->intro_draw(target);
 }
 
-void Intro_state::update_inputs(const float &delta_time)
+void IntroState::update_inputs(const float &delta_time)
 {
     this->kb_check_for_quit();
 }
 
-void Intro_state::update_events(sf::Event event)
+void IntroState::update_events(sf::Event event)
 {
     if (event.type == sf::Event::KeyPressed)
     {
@@ -47,7 +47,7 @@ void Intro_state::update_events(sf::Event event)
     }
 }
 
-void Intro_state::end_state()
+void IntroState::end_state()
 {
     std::cout << "Ending game state!!!" << std::endl;
 }

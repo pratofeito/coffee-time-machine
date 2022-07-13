@@ -18,8 +18,8 @@ Npc::~Npc()
 
 bool Npc::instance_interact()
 {
-    npc_dialogue->Pode = true;
-    return npc_dialogue->get_Please();
+    npc_dialogue->interacted = true;
+    return npc_dialogue->get_on_going();
 }
 
 void Npc::instance_draw(sf::RenderTarget *target)

@@ -1,6 +1,6 @@
 #include "game/game-state.hpp"
 
-Game_state::Game_state(sf::RenderWindow *window) : State(window)
+GameState::GameState(sf::RenderWindow *window) : State(window)
 {
     player = new Player(0, 0);
     wall = new Wall(4, 4);
@@ -15,7 +15,7 @@ Game_state::Game_state(sf::RenderWindow *window) : State(window)
     // carrot2 = new Item("Carrot", 5, 6, 1);
 }
 
-Game_state::~Game_state()
+GameState::~GameState()
 {
     delete timer;
     delete player;
@@ -25,7 +25,7 @@ Game_state::~Game_state()
     std::cout << "Estado de jogo deletado" << std::endl;
 }
 
-void Game_state::update(const float &delta_time)
+void GameState::update(const float &delta_time)
 {
     this->update_inputs(delta_time);
     this->player->instance_update(delta_time);
@@ -38,22 +38,19 @@ void Game_state::update(const float &delta_time)
 
     if (carrot->get_holding() == true)
     {
-        std::cout << "AAA" << npc_edinho2->get_npc_dialogue()->given << std::endl;
         npc_edinho->npc_collision->disable_collision();
         if (npc_edinho2->get_npc_dialogue()->given == false)
         {
             carrot->set_given(false);
-            // npc_edinho2->get_npc_dialogue()->set_given(false);
         }
         if (npc_edinho2->get_npc_dialogue()->given == true)
         {
             carrot->set_given(true);
-            std::cout << "UEEEPPAA";
         }
     }
 }
 
-void Game_state::draw(sf::RenderTarget *target)
+void GameState::draw(sf::RenderTarget *target)
 {
     if (!target)
     {
@@ -79,12 +76,12 @@ void Game_state::draw(sf::RenderTarget *target)
     this->npc_edinho2->get_npc_dialogue()->dialogue_draw(target);
 }
 
-void Game_state::update_inputs(const float &delta_time)
+void GameState::update_inputs(const float &delta_time)
 {
     this->kb_check_for_quit();
 }
 
-void Game_state::update_events(sf::Event event)
+void GameState::update_events(sf::Event event)
 {
     Instance *object_collidable = player->player_colision->get_collision(player->next_tile);
 
@@ -93,16 +90,16 @@ void Game_state::update_events(sf::Event event)
         if ((player->uptade_event_player(event) == true))
             if (!object_collidable->instanceof <Item>(object_collidable))
             {
-                npc_leandro->get_npc_dialogue()->uptade_event_dialogue(player->z, player->x, player->space);
+                npc_leandro->get_npc_dialogue()->update_event_dialogue(player->z, player->x, player->space);
 
-                npc_edinho->get_npc_dialogue()->uptade_event_dialogue(player->z, player->x, player->space);
+                npc_edinho->get_npc_dialogue()->update_event_dialogue(player->z, player->x, player->space);
 
-                npc_edinho2->get_npc_dialogue()->uptade_event_dialogue(player->z, player->x, player->space);
+                npc_edinho2->get_npc_dialogue()->update_event_dialogue(player->z, player->x, player->space);
             }
     }
 }
 
-void Game_state::end_state()
+void GameState::end_state()
 {
     std::cout << "Ending game state!!!" << std::endl;
 }

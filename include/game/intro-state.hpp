@@ -2,7 +2,7 @@
 #define INTRO_STATE_H
 
 #include "game/state.hpp"
-class Intro_state : public State
+class IntroState : public State
 {
 private:
     // Elementos de Game
@@ -10,8 +10,8 @@ private:
     Intro *intro;
 
 public:
-    Intro_state(sf::RenderWindow *window);
-    virtual ~Intro_state();
+    IntroState(sf::RenderWindow *window);
+    virtual ~IntroState();
 
     void update(const float &delta_time) override;
     void update_inputs(const float &delta_time) override;

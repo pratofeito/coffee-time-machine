@@ -41,7 +41,7 @@ void Game::initialize_window()
 void Game::initialize_states()
 {
     // this->states.push(new Ending_state(this->window));
-    this->states.push(new Game_state(this->window));
+    this->states.push(new GameState(this->window));
     // this->states.push(new Intro_state(this->window));
 }
 

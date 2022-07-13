@@ -22,14 +22,13 @@ public:
     friend class Dialogue_Tree;
 };
 
-class Dialogue_Tree
+class DialogueTree
 {
 public:
-    Dialogue_Tree();
-    ~Dialogue_Tree();
+    DialogueTree();
+    ~DialogueTree();
     Node *CreateNode(std::string data);
     Node *InsertNode(Node *root, std::string data);
-    void Limpa();
 
 protected:
     Node *raiz;

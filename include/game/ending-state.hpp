@@ -3,7 +3,7 @@
 
 #include "game/state.hpp"
 
-class Ending_state : public State
+class EndingState : public State
 {
 protected:
     // Elementos de Game
@@ -11,8 +11,8 @@ protected:
     sf::Event sfml_event;
 
 public:
-    Ending_state(sf::RenderWindow *window);
-    virtual ~Ending_state();
+    EndingState(sf::RenderWindow *window);
+    virtual ~EndingState();
 
     void update(const float &delta_time) override;
     void update_inputs(const float &delta_time) override;

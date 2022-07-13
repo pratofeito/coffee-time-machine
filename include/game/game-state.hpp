@@ -2,7 +2,7 @@
 #define GAME_STATE_H
 
 #include "game/state.hpp"
-class Game_state : public State
+class GameState : public State
 {
 private:
     // Elementos de Game
@@ -17,8 +17,8 @@ private:
     // Item *carrot2;
 
 public:
-    Game_state(sf::RenderWindow *window);
-    virtual ~Game_state();
+    GameState(sf::RenderWindow *window);
+    virtual ~GameState();
 
     void update(const float &delta_time) override;
     void update_inputs(const float &delta_time) override;

@@ -51,7 +51,7 @@ void Intro::text_sequence(std::string myfile)
                 myline.replace(start_pos, 2, "\n");
                 start_pos += 1;
             }
-            leia.push_back(myline);
+            description.push_back(myline);
         }
     }
 }
@@ -131,13 +131,13 @@ void Intro::uptade_event_intro(sf::Event event)
 {
     if (event.key.code == sf::Keyboard::Right)
     {
-        if (currItem < leia.size() - 1)
+        if (curr < description.size() - 1)
         {
             show = true;
-            set_string(leia[currItem]);
-            set_image(image[currItem]);
+            set_string(description[curr]);
+            set_image(image[curr]);
             reset();
-            currItem++;
+            curr++;
         }
         else
         {

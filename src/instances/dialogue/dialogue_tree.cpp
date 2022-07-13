@@ -1,17 +1,17 @@
 #include "instances/dialogue/dialogue_tree.hpp"
 #include <queue>
 
-Dialogue_Tree::Dialogue_Tree()
+DialogueTree::DialogueTree()
 {
     raiz = NULL;
 }
 
-Dialogue_Tree::~Dialogue_Tree()
+DialogueTree::~DialogueTree()
 {
     // Limpa()
 }
 
-Node *Dialogue_Tree::CreateNode(std::string dialogue)
+Node *DialogueTree::CreateNode(std::string dialogue)
 {
     Node *newNode = new Node();
 
@@ -24,7 +24,7 @@ Node *Dialogue_Tree::CreateNode(std::string dialogue)
     return newNode;
 }
 
-Node *Dialogue_Tree::InsertNode(Node *root, std::string data)
+Node *DialogueTree::InsertNode(Node *root, std::string data)
 {
     std::queue<Node *> q;
     q.push(root);

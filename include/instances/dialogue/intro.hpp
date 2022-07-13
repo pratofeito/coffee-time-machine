@@ -35,12 +35,12 @@ protected:
     sf::Clock timer;
 
     std::ifstream text_file;
-    std::vector<std::string> leia;
+    std::vector<std::string> description;
     std::vector<sf::RectangleShape> image;
 
     bool show = false;
     bool next_state = false;
-    std::size_t currItem = 0;
+    std::size_t curr = 0;
 
 public:
     std::size_t itr;

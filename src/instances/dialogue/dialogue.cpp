@@ -25,7 +25,7 @@ Dialogue::Dialogue(std::string myfile)
     this->box.setPosition(100, 400);
 
     // this->first_interaction = true;
-    this->Please = true;
+    this->on_going = true;
     this->given = false;
     audio_sound.define_sound("resources/typing2.wav", 50.f);
 }
@@ -65,9 +65,9 @@ void Dialogue::create_tree(std::string myfile)
     root->right->right = tree.CreateNode(leia[5]);
 }
 
-bool Dialogue::get_Please()
+bool Dialogue::get_on_going()
 {
-    return Please;
+    return on_going;
 }
 
 void Dialogue::write()
@@ -95,7 +95,7 @@ void Dialogue::set_string(std::string s)
 
 void Dialogue::dialogue_draw(sf::RenderTarget *target)
 {
-    if (show == true && Pode == true)
+    if (show_dialogue == true && interacted == true)
     {
         write();
         target->draw(this->box);
@@ -107,15 +107,15 @@ void Dialogue::set_given(bool given)
     this->given = given;
 }
 
-void Dialogue::uptade_event_dialogue(bool z, bool x, bool space)
+void Dialogue::update_event_dialogue(bool z, bool x, bool space)
 {
-    Please = true;
+    on_going = true;
 
-    show = true;
+    show_dialogue = true;
     set_string(root->data);
     reset();
 
-    if (Pode == true)
+    if (interacted == true)
     {
         given = true;
 
@@ -123,16 +123,16 @@ void Dialogue::uptade_event_dialogue(bool z, bool x, bool space)
         {
             if (root->right != NULL && root != NULL)
             {
-                show = true;
+                show_dialogue = true;
                 set_string(root->right->data);
                 reset();
                 root = root->right;
             }
             else
             {
-                show = false;
-                Pode = false;
-                Please = false;
+                show_dialogue = false;
+                interacted = false;
+                on_going = false;
             }
         }
 
@@ -140,16 +140,16 @@ void Dialogue::uptade_event_dialogue(bool z, bool x, bool space)
         {
             if (root->left != NULL && root != NULL)
             {
-                show = true;
+                show_dialogue = true;
                 set_string(root->left->data);
                 reset();
                 root = root->left;
             }
             else
             {
-                show = false;
-                Pode = false;
-                Please = false;
+                show_dialogue = false;
+                interacted = false;
+                on_going = false;
             }
         }
     }
