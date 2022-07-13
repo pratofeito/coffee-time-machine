@@ -8,6 +8,9 @@
 #include "instances/audio/audio.hpp"
 #include "instances/dialogue/dialogue_tree.hpp"
 #include "instances/dialogue/dialogue.hpp"
+#include "instances/dialogue/intro.hpp"
+#include "instances/item.hpp"
+#include "hud/timer.hpp"
 
 // Classe Abstrata
 class State

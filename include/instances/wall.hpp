@@ -15,7 +15,7 @@ public:
     Wall(int x, int y);
     virtual ~Wall();
 
-    void instance_interact() override;
+    bool instance_interact() override;
     void instance_draw(sf::RenderTarget *target) override;
     void instance_update(const float &delta_time) override;
 };

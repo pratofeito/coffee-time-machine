@@ -13,6 +13,7 @@
 #define COLLISION_H
 
 #include "instances/instance.hpp"
+#include <list>
 
 /**
  * @brief Define uma colisão e torna elementos colidíveis
@@ -21,11 +22,13 @@
 class Collision
 {
 private:
+
     /**
      * @brief Vetor estático que armazena todos os objetos colidíveis
      *
      */
-    static std::vector<Instance *> collidable;
+    static std::list<Instance *> collidable;
+    Instance *collidable_instance;
 
 public:
     /**
@@ -34,12 +37,14 @@ public:
      * @param new_object Ponteiro de instância para o objeto a ser adicionado colidível
      */
     Collision(Instance *new_object);
-
+    
     /**
      * @brief Destrói o objeto do tipo Collision
      *
      */
-    ~Collision();
+    virtual ~Collision();
+    
+    virtual void disable_collision();
 
     /**
      * @brief Verifica se há uma colisão

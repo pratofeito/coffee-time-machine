@@ -24,6 +24,9 @@ Dialogue::Dialogue(std::string myfile)
     this->box.setFillColor(sf::Color::White);
     this->box.setPosition(100, 400);
 
+    // this->first_interaction = true;
+    this->on_going = true;
+    this->given = false;
     audio_sound.define_sound("resources/typing2.wav", 50.f);
 }
 
@@ -62,6 +65,11 @@ void Dialogue::create_tree(std::string myfile)
     root->right->right = tree.CreateNode(leia[5]);
 }
 
+bool Dialogue::get_on_going()
+{
+    return on_going;
+}
+
 void Dialogue::write()
 {
     if (this->timer.getElapsedTime().asSeconds() > .025f && this->itr < this->phrase.size())
@@ -87,62 +95,62 @@ void Dialogue::set_string(std::string s)
 
 void Dialogue::dialogue_draw(sf::RenderTarget *target)
 {
-    if (get_show() == true)
+    if (show_dialogue == true && interacted == true)
     {
+        write();
         target->draw(this->box);
         target->draw(this->text);
-        write();
     }
 }
-
-void Dialogue::set_show(bool boolean)
+void Dialogue::set_given(bool given)
 {
-    this->show = boolean;
+    this->given = given;
 }
 
-bool Dialogue::get_show()
+void Dialogue::update_event_dialogue(bool z, bool x, bool space)
 {
-    return show;
-}
+    on_going = true;
 
-void Dialogue::uptade_event_dialogue(sf::Event event)
-{
-    if (event.type == sf::Event::KeyPressed)
+    show_dialogue = true;
+    set_string(root->data);
+    reset();
+
+    if (interacted == true)
     {
-        if (event.key.code == sf::Keyboard::Space)
-        {
-            set_show(true);
-            this->set_string(root->item);
-            reset();
-        }
+        given = true;
 
-        if (event.key.code == sf::Keyboard::M)
+        if (z == true)
         {
             if (root->right != NULL && root != NULL)
             {
-                set_show(true);
-
-                this->set_string(root->right->item);
+                show_dialogue = true;
+                set_string(root->right->data);
                 reset();
-
                 root = root->right;
             }
             else
-                set_show(false);
+            {
+                show_dialogue = false;
+                interacted = false;
+                on_going = false;
+            }
         }
 
-        if (event.key.code == sf::Keyboard::B)
+        if (x == true)
         {
             if (root->left != NULL && root != NULL)
             {
-                set_show(true);
-                set_string(root->left->item);
+                show_dialogue = true;
+                set_string(root->left->data);
                 reset();
-
                 root = root->left;
             }
             else
-                set_show(false);
+            {
+                show_dialogue = false;
+                interacted = false;
+                on_going = false;
+            }
         }
     }
 }

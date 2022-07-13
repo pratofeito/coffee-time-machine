@@ -15,10 +15,11 @@ Wall::~Wall()
     delete wall_collision;
 }
 
-void Wall::instance_interact()
+bool Wall::instance_interact()
 {
     this->hit_box.setFillColor(sf::Color::Red);
     std::cout << "Interagiu" << std::endl;
+    return 0;
 }
 
 void Wall::instance_draw(sf::RenderTarget *target)

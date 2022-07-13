@@ -1,67 +1,41 @@
-# Variables
-CC=g++
-CFLAGS=-std=c++11 -Wall
+TARGET   := program
 
-BUILD_DIR    = ./build
-SRC_DIR    = ./src
-INCLUDE_DIR  = ./include
+ifeq ($(OS),Windows_NT)
+	SYSTEM 	= win
+	SUFFIX	= .exe
+	RUN	= libs/sfml-win/bin/${TARGET}${SUFFIX}
+	OUT_DIR	= libs/sfml-win/bin/
+	MKDIR	= (@mkdir $(subst /,\,$(dir $@)))&
+else
+	SYSTEM 	= linux
+	SUFFIX	=
+	RUN	= export LD_LIBRARY_PATH=libs/sfml-linux/lib && ./${TARGET}${SUFFIX}
+	OUT_DIR	= 
+	MKDIR	= @mkdir -p $(@D)
+endif
 
-# Linux targets
+CC       := g++
+CXXFLAGS := -std=c++11 -g -Wall
+LDFLAGS  := -Llibs/sfml-${SYSTEM}/lib -lsfml-audio -lsfml-graphics -lsfml-window -lsfml-system
+BUILD    := ./build
+INCLUDE  := -I include -I libs/sfml-${SYSTEM}/include
 
-linux: build-linux link-linux
-
-linux-run: build-linux link-linux run-linux
-
-
-build-linux:
-	${CC} ${CFLAGS} -I libs/sfml-linux/include -I include -c src/main.cpp -o build/main.o
-	${CC} ${CFLAGS} -I libs/sfml-linux/include -I include -c src/game/state.cpp -o build/state.o
-	${CC} ${CFLAGS} -I libs/sfml-linux/include -I include -c src/game/game-state.cpp -o build/game-state.o
-	${CC} ${CFLAGS} -I libs/sfml-linux/include -I include -c src/game/game.cpp -D LINUX -o build/game.o
-	${CC} ${CFLAGS} -I libs/sfml-linux/include -I include -c src/instances/instance.cpp -o build/instance.o
-	${CC} ${CFLAGS} -I libs/sfml-linux/include -I include -c src/instances/player.cpp -o build/player.o
-	${CC} ${CFLAGS} -I libs/sfml-linux/include -I include -c src/instances/wall.cpp -o build/wall.o
-	${CC} ${CFLAGS} -I libs/sfml-linux/include -I include -c src/instances/dialogue/dialogue.cpp -o build/dialogue.o
-	${CC} ${CFLAGS} -I libs/sfml-linux/include -I include -c src/instances/dialogue/dialogue_tree.cpp -o build/dialogue_tree.o
-	${CC} ${CFLAGS} -I libs/sfml-linux/include -I include -c src/instances/audio/audio.cpp -o build/audio.o
-	${CC} ${CFLAGS} -I libs/sfml-linux/include -I include -c src/collision/collision.cpp -o build/collision.o
-	${CC} ${CFLAGS} -I libs/sfml-linux/include -I include -c src/instances/npc.cpp -o build/npc.o
-	${CC} ${CFLAGS} -I libs/sfml-linux/include -I include -c src/sprite-set/sprite-set.cpp -o build/sprite-set.o
-	${CC} ${CFLAGS} -I libs/sfml-linux/include -I include -c src/sprite-set/background.cpp -o build/background.o
-	${CC} ${CFLAGS} -I libs/sfml-linux/include -I include -c src/animation/animation.cpp -o build/animation.o
-
-link-linux:
-	${CC} ${CFLAGS} build/*.o -o main -Llibs/sfml-linux/lib -lsfml-audio -lsfml-graphics -lsfml-window -lsfml-system
-
-run-linux:
-	export LD_LIBRARY_PATH=libs/sfml-linux/lib && ./main	
+SRC      := $(wildcard src/**/**/**/*.cpp) $(wildcard src/**/**/*.cpp) $(wildcard src/**/*.cpp) $(wildcard src/*.cpp)
+OBJECTS  := $(SRC:%.cpp=$(BUILD)/%.o)
 
 
-# Windows targets
+all: $(TARGET)
 
-win: build-win link-win
+$(BUILD)/%.o: %.cpp
+	${MKDIR}
+	$(CXX) $(CXXFLAGS) $(INCLUDE) -c $< -o $@
 
-win-run: build-win link-win run-win
+$(TARGET): $(OBJECTS)
+	${MKDIR}
+	$(CXX) $(CXXFLAGS) -o ${OUT_DIR}$(TARGET)${SUFFIX} $^ $(LDFLAGS)
 
 
-build-win:
-	${CC} ${CFLAGS} -I libs/sfml-win/include -I include -c src/main.cpp -o build/main.o
-	${CC} ${CFLAGS} -I libs/sfml-win/include -I include -c src/game/state.cpp -o build/state.o
-	${CC} ${CFLAGS} -I libs/sfml-win/include -I include -c src/game/game-state.cpp -o build/game-state.o
-	${CC} ${CFLAGS} -I libs/sfml-win/include -I include -c src/game/game.cpp -o build/game.o
-	${CC} ${CFLAGS} -I libs/sfml-win/include -I include -c src/instances/instance.cpp -o build/instance.o
-	${CC} ${CFLAGS} -I libs/sfml-win/include -I include -c src/instances/player.cpp -o build/player.o
-	${CC} ${CFLAGS} -I libs/sfml-win/include -I include -c src/instances/wall.cpp -o build/wall.o
-	${CC} ${CFLAGS} -I libs/sfml-win/include -I include -c src/instances/dialogue/dialogue_tree.cpp -o build/dialogue_tree.o
-	${CC} ${CFLAGS} -I libs/sfml-win/include -I include -c src/instances/dialogue/dialogue.cpp -o build/dialogue.o
-	${CC} ${CFLAGS} -I libs/sfml-win/include -I include -c src/instances/audio/audio.cpp -o build/audio.o
-	${CC} ${CFLAGS} -I libs/sfml-win/include -I include -c src/collision/collision.cpp -o build/collision.o
-	${CC} ${CFLAGS} -I libs/sfml-win/include -I include -c src/instances/npc.cpp -o build/npc.o
-	${CC} ${CFLAGS} -I libs/sfml-win/include -I include -c src/sprite-set/sprite-set.cpp -o build/sprite-set.o
-	${CC} ${CFLAGS} -I libs/sfml-win/include -I include -c src/sprite-set/background.cpp -o build/background.o
-
-link-win:
-	${CC} ${CFLAGS} build/*.o -o libs/sfml-win/bin/main.exe -L libs/sfml-win/lib -lsfml-audio -lsfml-graphics -lsfml-window -lsfml-system
-
-run-win:
-	libs/sfml-win/bin/main.exe
+.PHONY: run
+	
+run:
+	${RUN}	

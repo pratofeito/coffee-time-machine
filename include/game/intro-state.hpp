@@ -1,24 +1,17 @@
-#ifndef GAME_STATE_H
-#define GAME_STATE_H
+#ifndef INTRO_STATE_H
+#define INTRO_STATE_H
 
 #include "game/state.hpp"
-class GameState : public State
+class IntroState : public State
 {
 private:
     // Elementos de Game
-    Player *player;
     Wall *wall;
-    Npc *npc_leandro;
-    Npc *npc_edinho;
-    Npc *npc_edinho2;
-    Timer *timer;
-
-    Item *carrot;
-    // Item *carrot2;
+    Intro *intro;
 
 public:
-    GameState(sf::RenderWindow *window);
-    virtual ~GameState();
+    IntroState(sf::RenderWindow *window);
+    virtual ~IntroState();
 
     void update(const float &delta_time) override;
     void update_inputs(const float &delta_time) override;

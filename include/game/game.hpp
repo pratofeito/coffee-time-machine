@@ -6,6 +6,8 @@
 #define TILE_SIZE 32
 
 #include "game-state.hpp"
+#include "intro-state.hpp"
+#include "ending-state.hpp"
 #include "sprite-set/background.hpp"
 
 class Game
@@ -26,7 +28,7 @@ private:
     void initialize_sfml_events();
     void draw_guidelines();
 
-    Background* map_bg;
+    Background *map_bg;
 
 public:
     Game();

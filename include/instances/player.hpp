@@ -1,8 +1,11 @@
 #ifndef PLAYER_H
 #define PLAYER_H
 
+#include <set>
 #include "instance.hpp"
 #include "collision/collision.hpp"
+#include "item.hpp"
+#include "npc.hpp"
 #include "sprite-set/sprite-set.hpp"
 #include "animation/animation.hpp"
 
@@ -10,7 +13,8 @@ class Player : public Instance
 {
 private:
     // Movimentação
-    int player_state;
+    sf::RectangleShape hit_box;
+
     int looking;
     enum directions
     {
@@ -27,7 +31,6 @@ private:
         NOTHING
     };
 
-    sf::Vector2i next_tile;
     float move_time = FRAME_TIME * 2;
     float elapsed_time;
     sf::Vector2i move_dir;
@@ -36,14 +39,22 @@ private:
     // Controles
     // Movimento
     bool arrow_up, arrow_down, arrow_left, arrow_right;
-    // Iteração
-    bool accept_key, deny_key;
+    // Interação
+    bool interact_key;
 
     // sprites e animação
     sf::Sprite *player_sprite;
     Animation *player_animation;
 
 public:
+    sf::Vector2i next_tile;
+
+    int player_state;
+    bool z = false, x = false, space = false;
+    // Atributos
+    std::map<const std::string, bool> bag;
+
+    // Métodos
     Player(int x, int y);
     Collision *player_colision;
     virtual ~Player();
@@ -51,9 +62,11 @@ public:
     void player_move(const float delta_time);
     void player_interact();
     void check_inputs();
+
+    bool uptade_event_player(sf::Event event);
     void keyboard_step();
 
-    virtual void instance_interact() override;
+    virtual bool instance_interact() override;
     virtual void instance_draw(sf::RenderTarget *target) override;
     virtual void instance_update(const float &delta_time) override;
 };

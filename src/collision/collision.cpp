@@ -1,9 +1,11 @@
 #include "collision/collision.hpp"
 
-std::vector<Instance *> Collision::collidable;
+std::list<Instance *> Collision::collidable;
+
 Collision::Collision(Instance *new_object)
 {
     this->collidable.push_back(new_object);
+    collidable_instance = new_object;
 }
 
 Collision::~Collision()
@@ -20,4 +22,9 @@ Instance *Collision::get_collision(sf::Vector2i position)
         }
     }
     return nullptr;
+}
+
+void Collision::disable_collision()
+{
+    this->collidable.remove(collidable_instance);
 }

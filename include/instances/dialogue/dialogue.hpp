@@ -31,11 +31,15 @@ protected:
 
     std::ifstream text_file;
 
-    bool show = false;
+    bool show_dialogue = false;
 
 public:
+    bool interacted;
+    bool on_going;
+    bool given;
+
     Node *root;
-    Dialogue_Tree tree;
+    DialogueTree tree;
 
     std::size_t itr;
 
@@ -46,11 +50,12 @@ public:
     void create_tree(std::string myfile);
     void write();
     void set_string(std::string s);
+    bool get_on_going();
+    void set_given(bool given);
+
     void reset();
     void dialogue_draw(sf::RenderTarget *target);
-    void set_show(bool boolean);
-    bool get_show();
-    void uptade_event_dialogue(sf::Event event);
+    void update_event_dialogue(bool z, bool x, bool space);
 };
 
 #endif

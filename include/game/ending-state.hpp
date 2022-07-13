@@ -1,24 +1,18 @@
-#ifndef GAME_STATE_H
-#define GAME_STATE_H
+#ifndef ENDING_STATE_H
+#define ENDING_STATE_H
 
 #include "game/state.hpp"
-class GameState : public State
-{
-private:
-    // Elementos de Game
-    Player *player;
-    Wall *wall;
-    Npc *npc_leandro;
-    Npc *npc_edinho;
-    Npc *npc_edinho2;
-    Timer *timer;
 
-    Item *carrot;
-    // Item *carrot2;
+class EndingState : public State
+{
+protected:
+    // Elementos de Game
+    Wall *wall;
+    sf::Event sfml_event;
 
 public:
-    GameState(sf::RenderWindow *window);
-    virtual ~GameState();
+    EndingState(sf::RenderWindow *window);
+    virtual ~EndingState();
 
     void update(const float &delta_time) override;
     void update_inputs(const float &delta_time) override;
