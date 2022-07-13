@@ -69,8 +69,6 @@ void Player::player_interact()
         if (object_collidable->instance_interact() == false)
         {
             player_state = NOTHING;
-            x = false;
-            z = false;
         }
 
         if (object_collidable->instanceof <Item>(object_collidable))

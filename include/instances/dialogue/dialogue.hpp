@@ -35,7 +35,8 @@ protected:
 
 public:
     bool interacted;
-    bool on_going;
+    // comando de deixar ele parado é on_going
+    bool on_going = false;
     bool given;
     bool first_interaction = true;
 

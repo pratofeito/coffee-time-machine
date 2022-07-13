@@ -110,15 +110,17 @@ void Dialogue::set_given(bool given)
 void Dialogue::update_event_dialogue(bool z, bool x, bool space)
 {
     given = true;
-    on_going = true;
+
     if ((first_interaction == true) && ((z == true) || (x == true)))
     {
+        on_going = true;
         show_dialogue = true;
         set_string(root->data);
         reset();
         first_interaction = false;
         z = false;
         x = false;
+        on_going = false;
     }
 
     if ((z == true) && (x == false))
@@ -148,6 +150,8 @@ void Dialogue::update_event_dialogue(bool z, bool x, bool space)
 
     if ((x == true) && (z == false))
     {
+        on_going = true;
+
         if (root->right != NULL && root != NULL)
         {
             show_dialogue = true;
