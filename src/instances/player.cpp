@@ -4,13 +4,26 @@ Player::Player(int x, int y) : Instance(x, y)
 {
     player_state = NOTHING;
 
-    // Hit box test
-    hit_box.setFillColor(sf::Color::Magenta);
-    hit_box.setSize(sf::Vector2f(GRID_SIZE, GRID_SIZE));
-    hit_box.setPosition(virtual_position.x * GRID_SIZE, virtual_position.y * GRID_SIZE);
-
     // Inicializa a player_collision colocando ela no vetor de colisões
     player_colision = new Collision(this);
+
+    // animações do personagem
+    player_animation = new Animation(this);
+
+    player_animation->new_state(MOVING, UP, "resources/sprites/player/player_walking_up.png");
+    player_animation->new_state(MOVING, DOWN, "resources/sprites/player/player_walking_down.png");
+    player_animation->new_state(MOVING, LEFT, "resources/sprites/player/player_walking_left.png");
+    player_animation->new_state(MOVING, RIGHT, "resources/sprites/player/player_walking_right.png");
+    player_animation->new_state(NOTHING, UP, "resources/sprites/player/player_idle_up.png");
+    player_animation->new_state(NOTHING, DOWN, "resources/sprites/player/player_idle_down.png");
+    player_animation->new_state(NOTHING, LEFT, "resources/sprites/player/player_idle_left.png");
+    player_animation->new_state(NOTHING, RIGHT, "resources/sprites/player/player_idle_right.png");
+
+    player_sprite = player_animation->get_sprite();
+
+    // change default player position
+    this->virtual_position = sf::Vector2i(4, 9);
+    this->projected_position = sf::Vector2f(virtual_position.x * TILE_SIZE, virtual_position.y * TILE_SIZE);
 }
 
 Player::~Player()
@@ -32,12 +45,12 @@ void Player::player_move(const float delta_time)
             elapsed_time = 0;
             virtual_position.x = next_tile.x;
             virtual_position.y = next_tile.y;
-            hit_box.setPosition(sf::Vector2f(virtual_position.x * GRID_SIZE, virtual_position.y * GRID_SIZE));
+            projected_position = sf::Vector2f(virtual_position.x * GRID_SIZE, virtual_position.y * GRID_SIZE);
         }
         else
         {
-            hit_box.setPosition(sf::Vector2f((virtual_position.x * GRID_SIZE) + (partial_move * move_dir.x),
-                                             (virtual_position.y * GRID_SIZE) + (partial_move * move_dir.y)));
+            projected_position = sf::Vector2f((virtual_position.x * GRID_SIZE) + (partial_move * move_dir.x),
+                                              (virtual_position.y * GRID_SIZE) + (partial_move * move_dir.y));
         }
     }
     else
@@ -179,7 +192,8 @@ bool Player::instance_interact()
 
 void Player::instance_draw(sf::RenderTarget *target)
 {
-    target->draw(this->hit_box);
+    // desenha a sprite do player, que já foi atualizada em update() com a classe animação
+    target->draw(*this->player_sprite);
 }
 
 void Player::instance_update(const float &delta_time)
@@ -205,4 +219,7 @@ void Player::instance_update(const float &delta_time)
         check_inputs();
         keyboard_step();
     }
+
+    player_animation->update(player_state, looking, delta_time);
+    player_sprite->setPosition(projected_position);
 }

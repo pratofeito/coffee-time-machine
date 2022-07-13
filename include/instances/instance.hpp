@@ -17,13 +17,14 @@ class Instance
 {
 protected:
     sf::Texture *texture;
-    sf::Sprite sprite;
+    //sf::Sprite sprite;
     bool interact_status;
 
 public:
     Instance(int x, int y);
     virtual ~Instance();
     sf::Vector2i virtual_position;
+    sf::Vector2f projected_position;
 
     virtual bool instance_interact() = 0;
     virtual void instance_interact(std::map<const std::string, bool> &bag) {}
