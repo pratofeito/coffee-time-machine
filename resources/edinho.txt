@@ -3,4 +3,4 @@
 3 root left left
 4 root right
 5 root right left
-6 root right left
+6 root right right 2

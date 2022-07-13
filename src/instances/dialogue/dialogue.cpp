@@ -115,50 +115,24 @@ void Dialogue::update_event_dialogue(bool z, bool x, bool space)
 
         if (z == true)
         {
-            z = false;
             on_going = true;
-            if (first_interaction == true)
+            if ((first_interaction == true) && (z == true))
             {
                 show_dialogue = true;
                 set_string(root->data);
                 reset();
                 first_interaction = false;
-            }
-            else if (root->right != NULL && root != NULL)
-            {
-                show_dialogue = true;
-                set_string(root->right->data);
-
-                reset();
-                root = root->right;
-            }
-            else
-            {
-                show_dialogue = false;
-                interacted = false;
-                on_going = false;
-                first_interaction = true;
-            }
-        }
-
-        if (x == true)
-        {
-            x = false;
-            on_going = true;
-            if (first_interaction == true)
-            {
-                show_dialogue = true;
-                set_string(root->data);
-                reset();
-                first_interaction = false;
+                z = false;
+                x = false;
             }
             else if (root->left != NULL && root != NULL)
             {
                 show_dialogue = true;
                 set_string(root->left->data);
-
                 reset();
                 root = root->left;
+                z = false;
+                x = false;
             }
             else
             {
@@ -166,6 +140,40 @@ void Dialogue::update_event_dialogue(bool z, bool x, bool space)
                 interacted = false;
                 on_going = false;
                 first_interaction = true;
+                z = false;
+                x = false;
+            }
+        }
+
+        if (x == true)
+        {
+            on_going = true;
+            if ((first_interaction == true) && (x == true))
+            {
+                show_dialogue = true;
+                set_string(root->data);
+                reset();
+                first_interaction = false;
+                x = false;
+                z = false;
+            }
+            else if (root->right != NULL && root != NULL)
+            {
+                show_dialogue = true;
+                set_string(root->right->data);
+                reset();
+                root = root->right;
+                z = false;
+                x = false;
+            }
+            else
+            {
+                show_dialogue = false;
+                interacted = false;
+                on_going = false;
+                first_interaction = true;
+                x = false;
+                z = false;
             }
         }
     }
