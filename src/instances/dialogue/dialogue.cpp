@@ -76,7 +76,6 @@ void Dialogue::write()
     {
         this->timer.restart();
         this->itr++;
-
         audio_sound.play_sound();
     }
     this->text.setString(phrase.substr(0, this->itr));
