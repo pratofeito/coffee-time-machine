@@ -55,11 +55,11 @@ void GameState::update(const float &delta_time)
         npc_leandro->npc_collision->disable_collision();
         if (npc_leandro2->get_npc_dialogue()->given == false)
         {
-            carrot->set_given(false);
+            carrot2->set_given(false);
         }
         if (npc_leandro2->get_npc_dialogue()->given == true)
         {
-            carrot->set_given(true);
+            carrot2->set_given(true);
         }
     }
 }
