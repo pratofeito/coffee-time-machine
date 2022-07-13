@@ -1,6 +1,4 @@
 make.exe all --print-data-base --no-builtin-variables --no-builtin-rules --question
-make.exe: *** No rule to make target 'all'.  Stop.
-
 # GNU Make 4.2.1
 # Built for x86_64-w64-mingw32
 # Copyright (C) 1988-2016 Free Software Foundation, Inc.
@@ -8,7 +6,7 @@ make.exe: *** No rule to make target 'all'.  Stop.
 # This is free software: you are free to change and redistribute it.
 # There is NO WARRANTY, to the extent permitted by law.
 
-# Make data base, printed on Wed Jul 13 00:39:48 2022
+# Make data base, printed on Wed Jul 13 14:08:26 2022
 
 # Variables
 
@@ -20,8 +18,12 @@ GNUMAKEFLAGS :=
 ?F = $(notdir $?)
 # default
 .SHELLFLAGS := -c
+# makefile (from 'Makefile', line 23)
+SRC :=  src/instances/audio/audio.cpp src/instances/dialogue/dialogue.cpp src/instances/dialogue/dialogue_tree.cpp src/instances/dialogue/intro.cpp src/instances/hud/timer.cpp src/animation/animation.cpp src/collision/collision.cpp src/game/game.cpp src/game/ending-state.cpp src/game/game-state.cpp src/game/intro-state.cpp src/game/state.cpp src/game/menu-state.cpp src/game/buttons.cpp src/instances/instance.cpp src/instances/wall.cpp src/instances/npc.cpp src/instances/player.cpp src/instances/item.cpp src/sprite-set/sprite-set.cpp src/sprite-set/background.cpp src/main.cpp
 # makefile
 MAKEFLAGS = pqrR
+# makefile (from 'Makefile', line 1)
+TARGET := program
 # automatic
 ?D = $(patsubst %/,%,$(patsubst %\,%,$(dir $?)))
 # automatic
@@ -33,15 +35,13 @@ HOMEDRIVE = C:
 # automatic
 ^D = $(patsubst %/,%,$(patsubst %\,%,$(dir $^)))
 # makefile
-CURDIR := c:/Users/lucas/Desktop/o jogo2.0/2022-1-TN-grupo02
+CURDIR := c:/Users/lucas/Desktop/partesfinais/2022-1-TN-grupo02
 # default
 SHELL := sh.exe
 # environment
 WINDIR = C:\WINDOWS
 # environment
-VSCODE_NLS_CONFIG = {"locale":"pt-br","availableLanguages":{"*":"pt-br"},"_languagePackId":"586ada59ea240d9b175b3ea817e73e56.pt-br","_translationsConfigFile":"C:\\Users\\lucas\\AppData\\Roaming\\Code\\clp\\586ada59ea240d9b175b3ea817e73e56.pt-br\\tcf.json","_cacheRoot":"C:\\Users\\lucas\\AppData\\Roaming\\Code\\clp\\586ada59ea240d9b175b3ea817e73e56.pt-br","_resolvedLanguagePackCoreLocation":"C:\\Users\\lucas\\AppData\\Roaming\\Code\\clp\\586ada59ea240d9b175b3ea817e73e56.pt-br\\b06ae3b2d2dbfe28bca3134cc6be65935cdfea6a","_corruptedFile":"C:\\Users\\lucas\\AppData\\Roaming\\Code\\clp\\586ada59ea240d9b175b3ea817e73e56.pt-br\\corrupted.info","_languagePackSupport":true}
-# makefile (from 'Makefile', line 3)
-CFLAGS = -std=c++11 -Wall
+VSCODE_NLS_CONFIG = {"locale":"pt-br","availableLanguages":{"*":"pt-br"},"_languagePackId":"dc7ba51c4efcfec965eaa07de065afd6.pt-br","_translationsConfigFile":"C:\\Users\\lucas\\AppData\\Roaming\\Code\\clp\\dc7ba51c4efcfec965eaa07de065afd6.pt-br\\tcf.json","_cacheRoot":"C:\\Users\\lucas\\AppData\\Roaming\\Code\\clp\\dc7ba51c4efcfec965eaa07de065afd6.pt-br","_resolvedLanguagePackCoreLocation":"C:\\Users\\lucas\\AppData\\Roaming\\Code\\clp\\dc7ba51c4efcfec965eaa07de065afd6.pt-br\\b06ae3b2d2dbfe28bca3134cc6be65935cdfea6a","_corruptedFile":"C:\\Users\\lucas\\AppData\\Roaming\\Code\\clp\\dc7ba51c4efcfec965eaa07de065afd6.pt-br\\corrupted.info","_languagePackSupport":true}
 # environment
 ONEDRIVE = C:\Users\lucas\OneDrive
 # environment
@@ -52,8 +52,12 @@ MAKEFILE_LIST :=  Makefile
 FPS_BROWSER_USER_PROFILE_STRING = Default
 # environment
 TMP = C:\Users\lucas\AppData\Local\Temp
+# makefile (from 'Makefile', line 18)
+CXXFLAGS := -std=c++11 -g -Wall
 # environment
 PROGRAMW6432 = C:\Program Files
+# makefile (from 'Makefile', line 4)
+SYSTEM = win
 # environment
 PROGRAMDATA = C:\ProgramData
 # environment
@@ -64,8 +68,6 @@ MAKE_HOST := x86_64-w64-mingw32
 PATH = C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\WINDOWS\System32\OpenSSH\;C:\MinGW\bin;C:\Program Files\Git\cmd;C:\Program Files (x86)\NVIDIA Corporation\PhysX\Common;C:\Program Files\NVIDIA Corporation\NVIDIA NvDLISR;C:\Users\lucas\AppData\Local\Programs\Python\Python310\Scripts\;C:\Users\lucas\AppData\Local\Programs\Python\Python310\;C:\Users\lucas\AppData\Local\Microsoft\WindowsApps;C:\Users\lucas\AppData\Local\Programs\Microsoft VS Code\bin;c:\MinGW\bin\mingw32-make.exe;c:\MinGW\bin\make.exe;
 # environment
 COMMONPROGRAMW6432 = C:\Program Files\Common Files
-# makefile (from 'Makefile', line 7)
-INCLUDE_DIR = ./include
 # environment
 PROCESSOR_ARCHITECTURE = AMD64
 # environment
@@ -76,12 +78,14 @@ ALLUSERSPROFILE = C:\ProgramData
 NUMBER_OF_PROCESSORS = 12
 # environment
 ELECTRON_RUN_AS_NODE = 1
+# makefile (from 'Makefile', line 19)
+LDFLAGS := -Llibs/sfml-win/lib -lsfml-audio -lsfml-graphics -lsfml-window -lsfml-system
 # default
 .FEATURES := target-specific order-only second-expansion else-if shortest-stem undefine oneshell archives jobserver output-sync
 # automatic
 %F = $(notdir $%)
 # environment
-CHROME_CRASHPAD_PIPE_NAME = \\.\pipe\crashpad_9968_FFBNEWWPILSMUMGS
+CHROME_CRASHPAD_PIPE_NAME = \\.\pipe\crashpad_8796_VCACAKHGRMGPBFUS
 # environment
 COMPUTERNAME = DESKTOP-48JJ2OO
 # environment
@@ -101,7 +105,7 @@ VSCODE_AMD_ENTRYPOINT = vs/workbench/api/node/extensionHostProcess
 # environment
 VSCODE_CODE_CACHE_PATH = C:\Users\lucas\AppData\Roaming\Code\CachedData\b06ae3b2d2dbfe28bca3134cc6be65935cdfea6a
 # environment
-APPLICATION_INSIGHTS_NO_DIAGNOSTIC_CHANNEL = true
+APPLICATION_INSIGHTS_NO_DIAGNOSTIC_CHANNEL = 1
 # environment
 COMMONPROGRAMFILES = C:\Program Files\Common Files
 # environment
@@ -110,24 +114,32 @@ LOGONSERVER = \\DESKTOP-48JJ2OO
 VSCODE_HANDLES_UNCAUGHT_ERRORS = true
 # environment
 USERDOMAIN = DESKTOP-48JJ2OO
+# makefile (from 'Makefile', line 8)
+MKDIR = (@mkdir $(subst /,\,$(dir $@)))&
 # environment
 MAKELEVEL := 0
 # default
 MAKE = $(MAKE_COMMAND)
 # default
 MAKECMDGOALS := all
-# makefile (from 'Makefile', line 2)
-CC = g++
-# makefile (from 'Makefile', line 5)
-BUILD_DIR = ./build
+# makefile (from 'Makefile', line 17)
+CC := g++
 # default
 MAKE_VERSION := 4.2.1
 # makefile
-.DEFAULT_GOAL := linux
+.DEFAULT_GOAL := all
+# makefile (from 'Makefile', line 5)
+SUFFIX = .exe
+# makefile (from 'Makefile', line 21)
+INCLUDE := -I include -I libs/sfml-win/include
+# makefile (from 'Makefile', line 6)
+RUN = libs/sfml-win/bin/${TARGET}${SUFFIX}
 # environment
 PROGRAMFILES(X86) = C:\Program Files (x86)
 # automatic
 %D = $(patsubst %/,%,$(patsubst %\,%,$(dir $%)))
+# makefile (from 'Makefile', line 7)
+OUT_DIR = libs/sfml-win/bin/
 # environment
 LOCALAPPDATA = C:\Users\lucas\AppData\Local
 # environment
@@ -168,8 +180,8 @@ TEMP = C:\Users\lucas\AppData\Local\Temp
 COMSPEC = C:\WINDOWS\system32\cmd.exe
 # default
 MAKEFILES := 
-# makefile (from 'Makefile', line 6)
-SRC_DIR = ./src
+# makefile (from 'Makefile', line 20)
+BUILD := ./build
 # automatic
 <F = $(notdir $<)
 # environment
@@ -186,6 +198,8 @@ SESSIONNAME = Console
 PROCESSOR_REVISION = a505
 # default
 .RECIPEPREFIX := 
+# makefile (from 'Makefile', line 24)
+OBJECTS := ./build/src/instances/audio/audio.o ./build/src/instances/dialogue/dialogue.o ./build/src/instances/dialogue/dialogue_tree.o ./build/src/instances/dialogue/intro.o ./build/src/instances/hud/timer.o ./build/src/animation/animation.o ./build/src/collision/collision.o ./build/src/game/game.o ./build/src/game/ending-state.o ./build/src/game/game-state.o ./build/src/game/intro-state.o ./build/src/game/state.o ./build/src/game/menu-state.o ./build/src/game/buttons.o ./build/src/instances/instance.o ./build/src/instances/wall.o ./build/src/instances/npc.o ./build/src/instances/player.o ./build/src/instances/item.o ./build/src/sprite-set/sprite-set.o ./build/src/sprite-set/background.o ./build/src/main.o
 # environment
 LANG = C
 # environment
@@ -193,11 +207,11 @@ PROCESSOR_LEVEL = 6
 # environment
 FPS_BROWSER_APP_PROFILE_STRING = Internet Explorer
 # environment
-VSCODE_PID = 9968
+VSCODE_PID = 8796
 # environment
 USERDOMAIN_ROAMINGPROFILE = DESKTOP-48JJ2OO
 # variable set hash-table stats:
-# Load=92/1024=9%, Rehash=0, Collisions=15/113=13%
+# Load=100/1024=10%, Rehash=0, Collisions=17/137=12%
 
 # Pattern-specific Variable Values
 
@@ -205,44 +219,146 @@ USERDOMAIN_ROAMINGPROFILE = DESKTOP-48JJ2OO
 
 # Directories
 
-# . (key c:/Users/lucas/Desktop/o jogo2.0/2022-1-TN-grupo02, mtime 1657571083): 12 files, no impossibilities.
+# src/instances/dialogue/intro.cpp (key c:/Users/lucas/Desktop/partesfinais/2022-1-TN-grupo02/src/instances/dialogue/intro.cpp, mtime 1657732030): could not be opened.
+# src/instances/hud/timer.cpp (key c:/Users/lucas/Desktop/partesfinais/2022-1-TN-grupo02/src/instances/hud/timer.cpp, mtime 1657732030): could not be opened.
+# src/animation/animation.cpp (key c:/Users/lucas/Desktop/partesfinais/2022-1-TN-grupo02/src/animation/animation.cpp, mtime 1657732030): could not be opened.
+# src/animation (key c:/Users/lucas/Desktop/partesfinais/2022-1-TN-grupo02/src/animation, mtime 1657732030): 3 files, no impossibilities.
+# src/instances/dialogue/dialogue.cpp (key c:/Users/lucas/Desktop/partesfinais/2022-1-TN-grupo02/src/instances/dialogue/dialogue.cpp, mtime 1657732030): could not be opened.
+# src/instances/audio (key c:/Users/lucas/Desktop/partesfinais/2022-1-TN-grupo02/src/instances/audio, mtime 1657732030): 3 files, no impossibilities.
+# src/game/state.cpp (key c:/Users/lucas/Desktop/partesfinais/2022-1-TN-grupo02/src/game/state.cpp, mtime 1657732030): could not be opened.
+# src/instances/audio/audio.cpp (key c:/Users/lucas/Desktop/partesfinais/2022-1-TN-grupo02/src/instances/audio/audio.cpp, mtime 1657732030): could not be opened.
+# . (key c:/Users/lucas/Desktop/partesfinais/2022-1-TN-grupo02, mtime 1657732030): 15 files, no impossibilities.
+# src/sprite-set/background.cpp (key c:/Users/lucas/Desktop/partesfinais/2022-1-TN-grupo02/src/sprite-set/background.cpp, mtime 1657732030): could not be opened.
+# src/instances/player.cpp (key c:/Users/lucas/Desktop/partesfinais/2022-1-TN-grupo02/src/instances/player.cpp, mtime 1657732030): could not be opened.
+# src/instances (key c:/Users/lucas/Desktop/partesfinais/2022-1-TN-grupo02/src/instances, mtime 1657732030): 10 files, no impossibilities.
+# src/game/menu-state.cpp (key c:/Users/lucas/Desktop/partesfinais/2022-1-TN-grupo02/src/game/menu-state.cpp, mtime 1657732030): could not be opened.
+# src/instances/npc.cpp (key c:/Users/lucas/Desktop/partesfinais/2022-1-TN-grupo02/src/instances/npc.cpp, mtime 1657732030): could not be opened.
+# src/collision (key c:/Users/lucas/Desktop/partesfinais/2022-1-TN-grupo02/src/collision, mtime 1657732030): 3 files, no impossibilities.
+# src/collision/collision.cpp (key c:/Users/lucas/Desktop/partesfinais/2022-1-TN-grupo02/src/collision/collision.cpp, mtime 1657732030): could not be opened.
+# src/instances/hud (key c:/Users/lucas/Desktop/partesfinais/2022-1-TN-grupo02/src/instances/hud, mtime 1657732030): 3 files, no impossibilities.
+# src/instances/item.cpp (key c:/Users/lucas/Desktop/partesfinais/2022-1-TN-grupo02/src/instances/item.cpp, mtime 1657732030): could not be opened.
+# src/sprite-set (key c:/Users/lucas/Desktop/partesfinais/2022-1-TN-grupo02/src/sprite-set, mtime 1657732030): 4 files, no impossibilities.
+# src/game (key c:/Users/lucas/Desktop/partesfinais/2022-1-TN-grupo02/src/game, mtime 1657732030): 9 files, no impossibilities.
+# src/instances/dialogue/dialogue_tree.cpp (key c:/Users/lucas/Desktop/partesfinais/2022-1-TN-grupo02/src/instances/dialogue/dialogue_tree.cpp, mtime 1657732030): could not be opened.
+# src/sprite-set/sprite-set.cpp (key c:/Users/lucas/Desktop/partesfinais/2022-1-TN-grupo02/src/sprite-set/sprite-set.cpp, mtime 1657732030): could not be opened.
+# src/instances/dialogue (key c:/Users/lucas/Desktop/partesfinais/2022-1-TN-grupo02/src/instances/dialogue, mtime 1657732030): 5 files, no impossibilities.
+# src/game/intro-state.cpp (key c:/Users/lucas/Desktop/partesfinais/2022-1-TN-grupo02/src/game/intro-state.cpp, mtime 1657732030): could not be opened.
+# src (key c:/Users/lucas/Desktop/partesfinais/2022-1-TN-grupo02/src, mtime 1657732030): 8 files, no impossibilities.
+# src/game/ending-state.cpp (key c:/Users/lucas/Desktop/partesfinais/2022-1-TN-grupo02/src/game/ending-state.cpp, mtime 1657732030): could not be opened.
+# src/instances/instance.cpp (key c:/Users/lucas/Desktop/partesfinais/2022-1-TN-grupo02/src/instances/instance.cpp, mtime 1657732030): could not be opened.
+# src/main.cpp (key c:/Users/lucas/Desktop/partesfinais/2022-1-TN-grupo02/src/main.cpp, mtime 1657732030): could not be opened.
+# src/game/game.cpp (key c:/Users/lucas/Desktop/partesfinais/2022-1-TN-grupo02/src/game/game.cpp, mtime 1657732030): could not be opened.
+# src/game/buttons.cpp (key c:/Users/lucas/Desktop/partesfinais/2022-1-TN-grupo02/src/game/buttons.cpp, mtime 1657732030): could not be opened.
+# src/game/game-state.cpp (key c:/Users/lucas/Desktop/partesfinais/2022-1-TN-grupo02/src/game/game-state.cpp, mtime 1657732030): could not be opened.
+# src/instances/wall.cpp (key c:/Users/lucas/Desktop/partesfinais/2022-1-TN-grupo02/src/instances/wall.cpp, mtime 1657732030): could not be opened.
 
-# 12 files, no impossibilities in 1 directories.
+# 63 files, no impossibilities in 32 directories.
 
 # Implicit Rules
 
-# No implicit rules.
+build/%.o: %.cpp
+#  recipe to execute (from 'Makefile', line 30):
+	${MKDIR}
+	$(CXX) $(CXXFLAGS) $(INCLUDE) -c $< -o $@
+
+# 1 implicit rules, 0 (0.0%) terminal.
 
 # Files
 
-build-linux:
+# Not a target:
+build/src/game/ending-state.o:
 #  Implicit rule search has not been done.
 #  Modification time never checked.
 #  File has not been updated.
-#  recipe to execute (from 'Makefile', line 17):
-	${CC} ${CFLAGS} -I libs/sfml-linux/include -I include -c src/main.cpp -o build/main.o
-	${CC} ${CFLAGS} -I libs/sfml-linux/include -I include -c src/Game/state.cpp -o build/state.o
-	${CC} ${CFLAGS} -I libs/sfml-linux/include -I include -c src/Game/game-state.cpp -o build/game-state.o
-	${CC} ${CFLAGS} -I libs/sfml-linux/include -I include -c src/Game/game.cpp -D LINUX -o build/game.o
-	${CC} ${CFLAGS} -I libs/sfml-linux/include -I include -c src/Instances/instance.cpp -o build/instance.o
-	${CC} ${CFLAGS} -I libs/sfml-linux/include -I include -c src/Game/menu-state.cpp -o build/menu-state.o
-	${CC} ${CFLAGS} -I libs/sfml-linux/include -I include -c src/Game/buttons.cpp -o build/buttons.o
 
 # Not a target:
-all:
+build/src/game/game.o:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+src/instances/audio/audio.cpp:
+#  Implicit rule search has been done.
+#  Last modified 2022-07-13 14:07:10
+#  File has been updated.
+#  Successfully updated.
+
+program: build/src/instances/audio/audio.o build/src/instances/dialogue/dialogue.o build/src/instances/dialogue/dialogue_tree.o build/src/instances/dialogue/intro.o build/src/instances/hud/timer.o build/src/animation/animation.o build/src/collision/collision.o build/src/game/game.o build/src/game/ending-state.o build/src/game/game-state.o build/src/game/intro-state.o build/src/game/state.o build/src/game/menu-state.o build/src/game/buttons.o build/src/instances/instance.o build/src/instances/wall.o build/src/instances/npc.o build/src/instances/player.o build/src/instances/item.o build/src/sprite-set/sprite-set.o build/src/sprite-set/background.o build/src/main.o
+#  Implicit rule search has not been done.
+#  Last modified 2022-07-13 14:07:10
+#  File has been updated.
+#  Needs to be updated (-q is set).
+# variable set hash-table stats:
+# Load=0/32=0%, Rehash=0, Collisions=0/7=0%
+#  recipe to execute (from 'Makefile', line 34):
+	${MKDIR}
+	$(CXX) $(CXXFLAGS) -o ${OUT_DIR}$(TARGET)${SUFFIX} $^ $(LDFLAGS)
+
+# Not a target:
+build/src/game/state.o:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+build/src/instances/audio/audio.o: src/instances/audio/audio.cpp
+#  Implicit rule search has been done.
+#  Implicit/static pattern stem: 'src/instances/audio/audio'
+#  File does not exist.
+#  File has been updated.
+#  Needs to be updated (-q is set).
+# automatic
+# @ := build/src/instances/audio/audio.o
+# automatic
+# % := 
+# automatic
+# * := src/instances/audio/audio
+# automatic
+# + := src/instances/audio/audio.cpp
+# automatic
+# | := 
+# automatic
+# < := src/instances/audio/audio.cpp
+# automatic
+# ^ := src/instances/audio/audio.cpp
+# automatic
+# ? := src/instances/audio/audio.cpp
+# variable set hash-table stats:
+# Load=8/32=25%, Rehash=0, Collisions=2/18=11%
+#  recipe to execute (from 'Makefile', line 30):
+	${MKDIR}
+	$(CXX) $(CXXFLAGS) $(INCLUDE) -c $< -o $@
+
+all: program
 #  Command line target.
 #  Implicit rule search has been done.
 #  File does not exist.
-#  File has not been updated.
+#  File has been updated.
+#  Needs to be updated (-q is set).
+# variable set hash-table stats:
+# Load=0/32=0%, Rehash=0, Collisions=0/7=0%
 
-link-win:
+# Not a target:
+build/src/instances/player.o:
 #  Implicit rule search has not been done.
 #  Modification time never checked.
 #  File has not been updated.
-#  recipe to execute (from 'Makefile', line 48):
-	${CC} ${CFLAGS} build/main.o build/game.o build/state.o build/game-state.o build/instance.o build/menu-state.o build/buttons.o -o libs/sfml-win/bin/main.exe -L libs/sfml-win/lib -lsfml-audio -lsfml-graphics -lsfml-window -lsfml-system
 
-linux: build-linux link-linux
+.PHONY: run
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+#  recipe to execute (from 'Makefile', line 39):
+	
+
+# Not a target:
+build/src/instances/npc.o:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+build/src/instances/dialogue/dialogue_tree.o:
 #  Implicit rule search has not been done.
 #  Modification time never checked.
 #  File has not been updated.
@@ -250,36 +366,60 @@ linux: build-linux link-linux
 # Not a target:
 Makefile:
 #  Implicit rule search has been done.
-#  Last modified 2022-07-11 17:31:19
+#  Last modified 2022-07-13 14:07:10
 #  File has been updated.
 #  Successfully updated.
 
-win-run: build-win link-win run-win
+# Not a target:
+build/src/game/buttons.o:
 #  Implicit rule search has not been done.
 #  Modification time never checked.
 #  File has not been updated.
 
-run-linux:
+# Not a target:
+build/src/instances/wall.o:
 #  Implicit rule search has not been done.
 #  Modification time never checked.
 #  File has not been updated.
-#  recipe to execute (from 'Makefile', line 29):
-	export LD_LIBRARY_PATH=libs/sfml-linux/lib && ./main
 
-build-win:
+# Not a target:
+build/src/collision/collision.o:
 #  Implicit rule search has not been done.
 #  Modification time never checked.
 #  File has not been updated.
-#  recipe to execute (from 'Makefile', line 40):
-	${CC} ${CFLAGS} -I libs/sfml-win/include -I include -c src/main.cpp -o build/main.o
-	${CC} ${CFLAGS} -I libs/sfml-win/include -I include -c src/Game/state.cpp -o build/state.o
-	${CC} ${CFLAGS} -I libs/sfml-win/include -I include -c src/Game/game-state.cpp -o build/game-state.o
-	${CC} ${CFLAGS} -I libs/sfml-win/include -I include -c src/Game/game.cpp -o build/game.o
-	${CC} ${CFLAGS} -I libs/sfml-win/include -I include -c src/Instances/instance.cpp -o build/instance.o
-	${CC} ${CFLAGS} -I libs/sfml-win/include -I include -c src/Game/menu-state.cpp -o build/menu-state.o
-	${CC} ${CFLAGS} -I libs/sfml-win/include -I include -c src/Game/buttons.cpp -o build/buttons.o
 
-linux-run: build-linux link-linux run-linux
+# Not a target:
+build/src/sprite-set/sprite-set.o:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+build/src/instances/instance.o:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+build/src/game/game-state.o:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+build/src/instances/dialogue/intro.o:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+build/src/instances/hud/timer.o:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+build/src/instances/dialogue/dialogue.o:
 #  Implicit rule search has not been done.
 #  Modification time never checked.
 #  File has not been updated.
@@ -290,39 +430,64 @@ linux-run: build-linux link-linux run-linux
 #  Modification time never checked.
 #  File has not been updated.
 
-win: build-win link-win
+run:
+#  Phony target (prerequisite of .PHONY).
+#  Implicit rule search has not been done.
+#  File does not exist.
+#  File has not been updated.
+#  recipe to execute (from 'Makefile', line 41):
+	${RUN}	
+
+# Not a target:
+build/src/animation/animation.o:
 #  Implicit rule search has not been done.
 #  Modification time never checked.
 #  File has not been updated.
 
-run-win:
+# Not a target:
+build/src/game/intro-state.o:
 #  Implicit rule search has not been done.
 #  Modification time never checked.
 #  File has not been updated.
-#  recipe to execute (from 'Makefile', line 51):
-	libs/sfml-win/bin/main.exe
 
-link-linux:
+# Not a target:
+build/src/main.o:
 #  Implicit rule search has not been done.
 #  Modification time never checked.
 #  File has not been updated.
-#  recipe to execute (from 'Makefile', line 26):
-	${CC} ${CFLAGS} build/main.o build/state.o build/game-state.o build/game.o build/instance.o -o main -Llibs/sfml-linux/lib -lsfml-audio -lsfml-graphics -lsfml-window -lsfml-system
+
+# Not a target:
+build/src/sprite-set/background.o:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+build/src/game/menu-state.o:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+build/src/instances/item.o:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
 
 # files hash-table stats:
-# Load=14/1024=1%, Rehash=0, Collisions=1/40=3%
+# Load=30/1024=3%, Rehash=0, Collisions=1/70=1%
 # VPATH Search Paths
 
 # No 'vpath' search paths.
 
 # No general ('VPATH' variable) search path.
 
-# strcache buffers: 1 (0) / strings = 25 / storage = 187 B / avg = 7 B
-# current buf: size = 8162 B / used = 187 B / count = 25 / avg = 7 B
+# strcache buffers: 1 (0) / strings = 105 / storage = 1879 B / avg = 17 B
+# current buf: size = 8162 B / used = 1879 B / count = 105 / avg = 17 B
 
-# strcache performance: lookups = 48 / hit rate = 47%
+# strcache performance: lookups = 137 / hit rate = 23%
 # hash-table stats:
-# Load=25/8192=0%, Rehash=0, Collisions=1/48=2%
-# Finished Make data base on Wed Jul 13 00:39:48 2022
+# Load=105/8192=1%, Rehash=0, Collisions=12/137=9%
+# Finished Make data base on Wed Jul 13 14:08:26 2022
 
  
