@@ -18,7 +18,6 @@ Npc::Npc(std::string name, int x, int y, std::string script) : Instance(x, y)
     npc_animation = new Animation(this);
     npc_animation->new_state(-2, -2, "resources/sprites/demo/player_idle.png");
     npc_sprite = npc_animation->get_sprite();
-
 }
 
 Npc::~Npc()
@@ -52,6 +51,12 @@ Dialogue *Npc::get_npc_dialogue()
     return npc_dialogue;
 }
 
-void Npc::set_looking(int direction) {
+void Npc::set_looking(int direction)
+{
     this->looking = direction;
+}
+
+int Npc::get_looking()
+{
+    return this->looking;
 }

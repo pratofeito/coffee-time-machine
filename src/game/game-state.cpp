@@ -86,15 +86,27 @@ void GameState::draw(sf::RenderTarget *target)
 
     this->player->instance_draw(target);
     this->wall->instance_draw(target);
-
+    
     // desenha walls
     for (auto wall : walls)
     {
         wall->instance_draw(target);
     }
 
-    this->npc_leandro->instance_draw(target);
-    this->npc_leandro2->instance_draw(target); //
+// Verificar problema
+    if (player->bag["Carrot 2"] == true)
+    {
+        if (npc_leandro->cloned == false)
+        {
+            npc_leandro2->set_looking(npc_leandro->get_looking());
+        }
+        npc_leandro->cloned = true;
+        this->npc_leandro2->instance_draw(target); //
+    }
+    else
+    {
+        this->npc_leandro->instance_draw(target);
+    }
 
     this->npc_edinho->instance_draw(target);
     this->npc_edinho2->instance_draw(target);
