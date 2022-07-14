@@ -36,32 +36,6 @@ void GameState::update(const float &delta_time)
     {
         // quit_state = true;
     }
-
-    if (carrot->get_holding() == true)
-    {
-        npc_edinho->npc_collision->disable_collision();
-        if (npc_edinho2->get_npc_dialogue()->given == false)
-        {
-            carrot->set_given(false);
-        }
-        if (npc_edinho2->get_npc_dialogue()->given == true)
-        {
-            carrot->set_given(true);
-        }
-    }
-
-    if (carrot2->get_holding() == true)
-    {
-        npc_leandro->npc_collision->disable_collision();
-        if (npc_leandro2->get_npc_dialogue()->given == false)
-        {
-            carrot2->set_given(false);
-        }
-        if (npc_leandro2->get_npc_dialogue()->given == true)
-        {
-            carrot2->set_given(true);
-        }
-    }
 }
 
 void GameState::draw(sf::RenderTarget *target)
@@ -83,10 +57,10 @@ void GameState::draw(sf::RenderTarget *target)
     // this->timer->hud_draw(target);
 
     this->carrot->instance_draw(target);
-    //  this->carrot2->instance_draw(target); //
+    this->carrot2->instance_draw(target); //
 
     this->npc_leandro->get_npc_dialogue()->dialogue_draw(target);
-    // this->npc_leandro2->get_npc_dialogue()->dialogue_draw(target);
+    this->npc_leandro2->get_npc_dialogue()->dialogue_draw(target);
 
     this->npc_edinho->get_npc_dialogue()->dialogue_draw(target);
     this->npc_edinho2->get_npc_dialogue()->dialogue_draw(target);
@@ -107,13 +81,37 @@ void GameState::update_events(sf::Event event)
 
         if ((object_collidable == npc_edinho) || (object_collidable == npc_edinho2))
         {
-            npc_edinho->get_npc_dialogue()->update_event_dialogue(player->z, player->x, player->space);
-            npc_edinho2->get_npc_dialogue()->update_event_dialogue(player->z, player->x, player->space);
+            npc_edinho->get_npc_dialogue()->update_event_dialogue(player->z, player->x, false);
+            npc_edinho2->get_npc_dialogue()->update_event_dialogue(player->z, player->x, true);
+            if (carrot->get_holding() == true)
+            {
+                npc_edinho->npc_collision->disable_collision();
+                if (npc_edinho2->get_npc_dialogue()->given == false)
+                {
+                    carrot->set_given(false);
+                }
+                if (npc_edinho2->get_npc_dialogue()->given == true)
+                {
+                    carrot->set_given(true);
+                }
+            }
         }
         if ((object_collidable == npc_leandro) || (object_collidable == npc_leandro2))
         {
-            npc_leandro->get_npc_dialogue()->update_event_dialogue(player->z, player->x, player->space);
-            npc_leandro2->get_npc_dialogue()->update_event_dialogue(player->z, player->x, player->space);
+            npc_leandro->get_npc_dialogue()->update_event_dialogue(player->z, player->x, false);
+            npc_leandro2->get_npc_dialogue()->update_event_dialogue(player->z, player->x, true);
+            if (carrot2->get_holding() == true)
+            {
+                npc_leandro->npc_collision->disable_collision();
+                if (npc_leandro2->get_npc_dialogue()->given == false)
+                {
+                    carrot2->set_given(false);
+                }
+                if (npc_leandro2->get_npc_dialogue()->given == true)
+                {
+                    carrot2->set_given(true);
+                }
+            }
         }
     }
 }

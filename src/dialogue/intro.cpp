@@ -1,4 +1,4 @@
-#include "instances/dialogue/intro.hpp"
+#include "dialogue/intro.hpp"
 
 Intro::Intro()
 {

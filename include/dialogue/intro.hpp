@@ -4,7 +4,7 @@
 #include <SFML/Graphics.hpp>
 #include <SFML/Audio.hpp>
 
-#include "instances/audio/audio.hpp"
+#include "audio/audio.hpp"
 
 #include <iostream>
 #include <string>

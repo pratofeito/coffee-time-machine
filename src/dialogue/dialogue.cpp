@@ -1,4 +1,4 @@
-#include "instances/dialogue/dialogue.hpp"
+#include "dialogue/dialogue.hpp"
 
 Dialogue::Dialogue()
 {
@@ -102,31 +102,25 @@ void Dialogue::dialogue_draw(sf::RenderTarget *target)
         target->draw(this->text);
     }
 }
-void Dialogue::set_given(bool given)
+
+void Dialogue::update_event_dialogue(bool z, bool x, bool given_)
 {
-    this->given = given;
-}
-
-void Dialogue::update_event_dialogue(bool z, bool x, bool space)
-{
-    given = true;
-
-    if ((first_interaction == true) && ((z == true) || (x == true)))
-    {
-        on_going = true;
-        show_dialogue = true;
-        set_string(root->data);
-        reset();
-        first_interaction = false;
-        z = false;
-        x = false;
-        on_going = false;
-    }
-
     if ((z == true) && (x == false))
     {
+        this->given = given_;
         on_going = true;
-        if (root->left != NULL && root != NULL)
+
+        if (first_interaction == true)
+        {
+            show_dialogue = true;
+            set_string(root->data);
+            reset();
+            first_interaction = false;
+            z = false;
+            x = false;
+            // on_going = false;
+        }
+        else if (root->left != NULL && root != NULL)
         {
             show_dialogue = true;
             set_string(root->left->data);
@@ -134,7 +128,6 @@ void Dialogue::update_event_dialogue(bool z, bool x, bool space)
             root = root->left;
             z = false;
             x = false;
-            space = false;
         }
         else
         {
@@ -144,15 +137,23 @@ void Dialogue::update_event_dialogue(bool z, bool x, bool space)
             first_interaction = true;
             z = false;
             x = false;
-            space = false;
         }
     }
 
     if ((x == true) && (z == false))
     {
+        this->given = given_;
         on_going = true;
 
-        if (root->right != NULL && root != NULL)
+        if (first_interaction == true)
+        {
+            show_dialogue = true;
+            set_string(root->data);
+            reset();
+            first_interaction = false;
+            // on_going = false;
+        }
+        else if (root->right != NULL && root != NULL)
         {
             show_dialogue = true;
             set_string(root->right->data);
@@ -160,7 +161,6 @@ void Dialogue::update_event_dialogue(bool z, bool x, bool space)
             root = root->right;
             z = false;
             x = false;
-            space = false;
         }
         else
         {
@@ -170,7 +170,6 @@ void Dialogue::update_event_dialogue(bool z, bool x, bool space)
             first_interaction = true;
             x = false;
             z = false;
-            space = false;
         }
     }
 }

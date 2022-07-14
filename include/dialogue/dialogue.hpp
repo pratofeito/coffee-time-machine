@@ -4,8 +4,8 @@
 #include <SFML/Graphics.hpp>
 #include <SFML/Audio.hpp>
 
-#include "instances/dialogue/dialogue_tree.hpp"
-#include "instances/audio/audio.hpp"
+#include "dialogue/dialogue_tree.hpp"
+#include "audio/audio.hpp"
 
 #include <iostream>
 #include <string>
@@ -53,11 +53,10 @@ public:
     void write();
     void set_string(std::string s);
     bool get_on_going();
-    void set_given(bool given);
 
     void reset();
     void dialogue_draw(sf::RenderTarget *target);
-    void update_event_dialogue(bool z, bool x, bool space);
+    void update_event_dialogue(bool z, bool x, bool given);
 };
 
 #endif

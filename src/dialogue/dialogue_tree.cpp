@@ -1,4 +1,4 @@
-#include "instances/dialogue/dialogue_tree.hpp"
+#include "dialogue/dialogue_tree.hpp"
 #include <queue>
 
 DialogueTree::DialogueTree()
