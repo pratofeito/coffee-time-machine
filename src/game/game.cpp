@@ -52,7 +52,7 @@ void Game::initialize_sfml_events()
 void Game::update_delta_time()
 {
     this->delta_time = this->delta_time_clock.restart().asSeconds();
-    std::cout << this->delta_time << std::endl;
+    // std::cout << this->delta_time << std::endl;
 }
 
 void Game::update_sfml_events()

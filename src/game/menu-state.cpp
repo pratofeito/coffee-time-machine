@@ -77,7 +77,7 @@ void Menu_state::updateButtons()
 {
     for (auto &it : this->buttons)
     {
-        it.second->update(this->mousePosView);
+        it.second->update(this->mouse_position_view);
     }
 
     // Começar o jogo
