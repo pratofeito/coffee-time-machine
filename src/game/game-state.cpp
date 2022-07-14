@@ -20,10 +20,10 @@ GameState::GameState(sf::RenderWindow *window, std::stack<State *> *states) : St
 
     timer = new Timer;
 
-    coffee = new Item("Coffee", 19, 7, 0);
-    chocolate = new Item("Chocolate", 10, 7, 1);
-    penguin = new Item("Penguin", 7, 12, 2);
-    camera = new Item("Camera", 7, 7, 3);
+    coffee = new Item("Coffee", 19, 7, 0, "resources/sprites/items/item_coffee_small.png", "resources/sprites/items/item_coffee.png");
+    chocolate = new Item("Chocolate", 10, 7, 1, "resources/sprites/items/item_choco_small.png", "resources/sprites/items/item_choco.png");
+    penguin = new Item("Penguin", 7, 12, 2, "resources/sprites/items/item_penguin_small.png", "resources/sprites/items/item_penguin.png");
+    camera = new Item("Camera", 7, 7, 3, "resources/sprites/items/item_cam_small.png", "resources/sprites/items/item_cam.png");
 
     // audio
     game_soundtrack = new Audio();
@@ -148,7 +148,11 @@ void GameState::update(const float &delta_time)
     this->npc_jitsi_complete->instance_update(delta_time);
 
     coffee->instance_update(delta_time);
-    chocolate->instance_update(delta_time);
+     chocolate->instance_update(delta_time);
+    penguin->instance_update(delta_time);
+     camera->instance_update(delta_time);
+    
+    
 
     if (timer->timer_update() == 110)
     {
@@ -239,8 +243,8 @@ void GameState::draw(sf::RenderTarget *target)
     }
 
     // JITSI
-    if(player->bag["Chocolate"] == true && player->bag["Chocolate"]== true
-    && player->bag["Chocolate"] == true &&player->bag["Chocolate"]== true)
+    if(player->bag["Chocolate"] == true && player->bag["Penguin"]== true
+    && player->bag["Camera"] == true &&player->bag["Coffee"]== true)
     {
         if(npc_jitsi_intro->cloned == false)
         {
@@ -253,11 +257,6 @@ void GameState::draw(sf::RenderTarget *target)
         this->npc_jitsi_intro->instance_draw(target);
     }
     // this->timer->hud_draw(target);
-
-    this->coffee->instance_draw(target);
-    this->chocolate->instance_draw(target);
-    this->camera->instance_draw(target);
-    this->penguin->instance_draw(target);
 
     // objetos em cima do mapa
     map_obj->draw(window);
@@ -276,6 +275,11 @@ void GameState::draw(sf::RenderTarget *target)
 
     this->npc_jitsi_intro->get_npc_dialogue()->dialogue_draw(target);
     this->npc_jitsi_complete->get_npc_dialogue()->dialogue_draw(target);
+
+    this->coffee->instance_draw(target);
+    this->chocolate->instance_draw(target);
+    this->camera->instance_draw(target);
+    this->penguin->instance_draw(target);
 }
 
 void GameState::update_inputs(const float &delta_time)
