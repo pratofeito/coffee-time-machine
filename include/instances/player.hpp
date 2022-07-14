@@ -137,7 +137,7 @@ public:
     virtual void instance_draw(sf::RenderTarget *target) override;
     
     /**
-     * @brief 
+     * @brief Desenha o objeto Instance para o destino de renderização
      * 
      * @param delta_time 
      */

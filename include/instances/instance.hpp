@@ -26,7 +26,7 @@
 #include <map>
 
 /**
- * @brief 
+ * @brief Cria uma classe Instance 
  * 
  */
 class Instance
@@ -40,8 +40,8 @@ public:
     /**
      * @brief Constrói o objeto do tipo Instance 
      * 
-     * @param x 
-     * @param y 
+     * @param x Parametros do construtor do objeto Instance
+     * @param y Parametros do construtor do objeto Instance
      */
     Instance(int x, int y);
     
@@ -54,7 +54,7 @@ public:
     sf::Vector2f projected_position;
 
     /**
-     * @brief retorna se é true ou false de acordo com  a interação
+     * @brief Retorna se é true ou false de acordo com  a interação
      * 
      * @return true 
      * @return false 

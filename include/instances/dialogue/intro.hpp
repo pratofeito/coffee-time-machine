@@ -25,7 +25,7 @@
 #include <vector>
 
 /**
- * @brief 
+ * @brief Cria uma organização sematica para evitar conflitos de nome da class RenderTarget
  * 
  */
 
@@ -35,7 +35,7 @@ namespace sf
 }
 
 /**
- * @brief 
+ * @brief Cria uma classe do tipo Intro
  * 
  */
 

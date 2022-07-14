@@ -36,23 +36,23 @@ public:
 
 
     /**
-     * @brief Construct a new Npc object
+     * @brief Constroi o objeto do tipo Npc
      * 
-     * @param name 
-     * @param x 
-     * @param y 
-     * @param script 
+     * @param name Parametro do objeto Npc do tipo string
+     * @param x Parametro do objeto Npc do tipo int 
+     * @param y Parametro do objeto Npc do tipo int
+     * @param script Parametro do objeto Npc do tipo string
      */
     Npc(std::string name, int x, int y, std::string script);
     
     /**
-     * @brief Destroy the Npc object
+     * @brief Destroi o objeto do tipo Npc
      * 
      */
     virtual ~Npc();
 
     /**
-     * @brief 
+     * @brief Retorna true ou false de acordo com a interação
      * 
      * @return true 
      * @return false 
@@ -60,21 +60,21 @@ public:
     bool instance_interact() override;
     
     /**
-     * @brief 
+     * @brief Desenha o objeto Instance para o destino de renderização
      * 
-     * @param target 
+     * @param target Parametro do tipo ponteiro de RenderTarget da classe Instance 
      */
     void instance_draw(sf::RenderTarget *target) override;
     
     /**
-     * @brief 
+     * @brief Atualiza a insntancia 
      * 
-     * @param delta_time 
+     * @param delta_time parametro passado pelo metodo instance_update
      */
     void instance_update(const float &delta_time) override;
 
     /**
-     * @brief Get the npc dialogue object
+     * @brief Retorna a variavel npc_dialogue
      * 
      * @return Dialogue* 
      */

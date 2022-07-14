@@ -91,14 +91,14 @@ public:
     virtual void instance_interact(std::map<const std::string, bool> &bag) override;
     
     /**
-     * @brief 
+     * @brief Desenha o objeto Instance para o destino de renderização
      * 
-     * @param target 
+     * @param target variavel do tipo ponteiro de RenderTarget do metodo instance_draw
      */
     virtual void instance_draw(sf::RenderTarget *target) override;
     
     /**
-     * @brief 
+     * @brief Atualiza o objeto Instance
      * 
      * @param delta_time 
      */
