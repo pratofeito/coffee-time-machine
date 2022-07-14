@@ -15,22 +15,6 @@ private:
     // Movimentação
     sf::RectangleShape hit_box;
 
-    int looking;
-    enum directions
-    {
-        UP,
-        DOWN,
-        LEFT,
-        RIGHT
-    };
-
-    enum states
-    {
-        MOVING,
-        INTERACTING,
-        NOTHING
-    };
-
     float move_time = FRAME_TIME * 2;
     float elapsed_time;
     sf::Vector2i move_dir;
@@ -49,7 +33,7 @@ private:
 public:
     sf::Vector2i next_tile;
 
-    int player_state;
+    // int player_state;
     bool z = false, x = false, space = false;
     // Atributos
     std::map<const std::string, bool> bag;
@@ -62,6 +46,7 @@ public:
     void player_move(const float delta_time);
     void player_interact();
     void check_inputs();
+    int invert_looking(int looking);
 
     bool uptade_event_player(sf::Event event);
     void keyboard_step();

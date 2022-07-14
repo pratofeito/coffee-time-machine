@@ -3,17 +3,26 @@
 GameState::GameState(sf::RenderWindow *window,std::stack<State *>* states) : State(window,states)
 {
     player = new Player(0, 0);
-    wall = new Wall(4, 4);
-    npc_leandro = new Npc("Leandro", 2, 3, "resources/dialogues/leandro.txt");
-    npc_leandro2 = new Npc("Leandro", 2, 3, "resources/dialogues/leandro_item.txt");
+    wall = new Wall(15, 10);
+    npc_leandro = new Npc("Leandro", 10, 10, "resources/dialogues/leandro.txt");
+    npc_leandro2 = new Npc("Leandro", 10, 10, "resources/dialogues/leandro_item.txt");
+    npc_edinho = new Npc("Edinho", 5, 10, "resources/dialogues/edinho.txt");
+    npc_edinho2 = new Npc("Edinho", 5, 10, "resources/dialogues/edinho_item.txt");
 
-    npc_edinho = new Npc("Edinho", 5, 5, "resources/dialogues/edinho.txt");
-    npc_edinho2 = new Npc("Edinho", 5, 5, "resources/dialogues/edinho_item.txt");
+    npc_leandro->npc_animation->new_state(NOTHING, UP, "resources/sprites/npcs/npc-blue/npc_blue_idle_up.png");
+    npc_leandro->npc_animation->new_state(NOTHING, DOWN, "resources/sprites/npcs/npc-blue/npc_blue_idle_down.png");
+    npc_leandro->npc_animation->new_state(NOTHING, LEFT, "resources/sprites/npcs/npc-blue/npc_blue_idle_left.png");
+    npc_leandro->npc_animation->new_state(NOTHING, RIGHT, "resources/sprites/npcs/npc-blue/npc_blue_idle_right.png");
+
+    npc_leandro2->npc_animation->new_state(NOTHING, UP, "resources/sprites/npcs/npc-blue/npc_blue_idle_up.png");
+    npc_leandro2->npc_animation->new_state(NOTHING, DOWN, "resources/sprites/npcs/npc-blue/npc_blue_idle_down.png");
+    npc_leandro2->npc_animation->new_state(NOTHING, LEFT, "resources/sprites/npcs/npc-blue/npc_blue_idle_left.png");
+    npc_leandro2->npc_animation->new_state(NOTHING, RIGHT, "resources/sprites/npcs/npc-blue/npc_blue_idle_right.png");
 
     timer = new Timer;
 
-    carrot = new Item("Carrot", 1, 3, 0);
-    carrot2 = new Item("Carrot 2", 7, 7, 1);
+    carrot = new Item("Carrot", 5, 7, 0);
+    carrot2 = new Item("Carrot 2", 10, 7, 1);
 }
 
 GameState::~GameState()
@@ -29,8 +38,14 @@ void GameState::update(const float &delta_time)
 {
     this->update_inputs(delta_time);
     this->player->instance_update(delta_time);
+
+    this->npc_leandro->instance_update(delta_time);
+    this->npc_leandro2->instance_update(delta_time);
+    this->npc_edinho->instance_update(delta_time);
+    this->npc_edinho2->instance_update(delta_time);
+
     carrot->instance_update(delta_time);
-    carrot2->instance_update(delta_time); //
+    carrot2->instance_update(delta_time);
 
     if (timer->timer_update() == 110)
     {

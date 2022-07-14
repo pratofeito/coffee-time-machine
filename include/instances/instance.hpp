@@ -19,6 +19,23 @@ protected:
     sf::Texture *texture;
     //sf::Sprite sprite;
     bool interact_status;
+    int looking;
+    int instance_state;
+
+    enum directions
+    {
+        UP,
+        DOWN,
+        LEFT,
+        RIGHT
+    };
+
+    enum states
+    {
+        MOVING,
+        INTERACTING,
+        NOTHING
+    };
 
 public:
     Instance(int x, int y);

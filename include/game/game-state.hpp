@@ -6,6 +6,21 @@
 class GameState : public State
 {
 private:
+    enum directions
+    {
+        UP,
+        DOWN,
+        LEFT,
+        RIGHT
+    };
+
+    enum states
+    {
+        MOVING,
+        INTERACTING,
+        NOTHING
+    };
+
     // Elementos de Game
     Player *player;
     Wall *wall;
