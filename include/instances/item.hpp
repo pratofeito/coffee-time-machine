@@ -1,7 +1,7 @@
 /**
  * @file item.hpp
- * @author your name (you@domain.com)
- * @brief 
+ * @author heitoeu
+ * @brief definição da classe Item
  * @version 0.1
  * @date 2022-07-13
  * 
@@ -16,7 +16,7 @@
 #include "instances/dialogue/dialogue.hpp"
 
 /**
- * @brief 
+ * @brief Cria uma classe Item que é filha de Instance
  * 
  */
 
@@ -38,7 +38,7 @@ public:
     sf::RectangleShape carrot_sprite;
 
     /**
-     * @brief Construct a new Item object
+     * @brief Constroi um objeto do tipo Item
      * 
      * @param name 
      * @param x 
@@ -48,13 +48,13 @@ public:
     Item(std::string name, int x, int y, int i);
     
     /**
-     * @brief Destroy the Item object
+     * @brief Destrói o objeto do Item 
      * 
      */
     virtual ~Item();
     
     /**
-     * @brief Get the holding object
+     * @brief Obtem o objeto carregado
      * 
      * @return true 
      * @return false 
@@ -62,14 +62,14 @@ public:
     bool get_holding();
 
     /**
-     * @brief Set the given object
+     * @brief Define o Lugar onde Item está
      * 
      * @param aqui 
      */
     void set_given(bool aqui);
 
     /**
-     * @brief Get the name object
+     * @brief Obtem o nome do objeto
      * 
      * @return std::string 
      */

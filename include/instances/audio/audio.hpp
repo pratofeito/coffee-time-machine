@@ -1,7 +1,7 @@
 /**
  * @file audio.hpp
- * @author your name (you@domain.com)
- * @brief 
+ * @author brisabn
+ * @brief Definições da classe Audio
  * @version 0.1
  * @date 2022-07-13
  * 
@@ -22,7 +22,7 @@
 #include <stack>
 
 /**
- * @brief 
+ * @brief cria uma classe Audio
  * 
  */
 class Audio
@@ -40,41 +40,41 @@ protected:
 public:
 
     /**
-     * @brief Construct a new Audio object
+     * @brief Constrói o objeto do tipo Audio
      * 
      */
     Audio();
 
     /**
-     * @brief Destroy the Audio object
+     * @brief Destrói o objeto Audio
      * 
      */
     ~Audio();
 
     /**
-     * @brief 
+     * @brief Define a musica do tipo Audio
      * 
      * @param myfile 
-     * @param volume 
+     * @param volume Parametro que pega o valor float para alterar intesidade da musica do objeto Audio
      */
     void define_music(std::string myfile, float volume);
     
     /**
-     * @brief 
+     * @brief Toca a musica do objeto Audio
      * 
      */
     void play_music();
 
     /**
-     * @brief 
+     * @brief Define a som do tipo Audio 
      * 
      * @param myfile 
-     * @param volume 
+     * @param volume Parametro que pega um valor float para alterar a intesidade do som do objeto Audio
      */
     void define_sound(std::string myfile, float volume);
     
     /**
-     * @brief 
+     * @brief Toca o som do objeto Audio
      * 
      */
     void play_sound();

@@ -1,7 +1,7 @@
 /**
  * @file player.hpp
- * @author your name (you@domain.com)
- * @brief 
+ * @author heitoeu
+ * @brief Definição da classe player.
  * @version 0.1
  * @date 2022-07-13
  * 
@@ -21,7 +21,7 @@
 #include "animation/animation.hpp"
 
 /**
- * @brief 
+ * @brief Cria uma classe Player que é filha de Instance
  * 
  */
 class Player : public Instance
@@ -72,7 +72,7 @@ public:
     // Métodos
 
     /**
-     * @brief Construct a new Player object
+     * @brief Constroi um novo objeto Player
      * 
      * @param x 
      * @param y 
@@ -82,7 +82,7 @@ public:
     Collision *player_colision;
     
     /**
-     * @brief Destroy the Player object
+     * @brief Destrói o objeto player
      * 
      */
     virtual ~Player();

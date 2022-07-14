@@ -1,6 +1,6 @@
 /**
  * @file game.hpp
- * @author 
+ * @author heitoeu
  * @brief Definições da classe Game
  * @version 0.1
  * @date 2022-07-13
@@ -43,7 +43,7 @@ private:
     std::map<std::string, int>supportedKeys;
 
     /**
-     * @brief inicializa a tela 
+     * @brief Inicializa a tela 
      * 
      */
     void initialize_window();

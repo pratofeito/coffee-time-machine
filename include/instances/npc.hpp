@@ -1,7 +1,7 @@
 /**
  * @file npc.hpp
- * @author your name (you@domain.com)
- * @brief 
+ * @author brisabn, heitoeu
+ * @brief Definição da classe Npc
  * @version 0.1
  * @date 2022-07-13
  * 
@@ -18,7 +18,7 @@
 
 
 /**
- * @brief 
+ * @brief Cria uma classe Npc que é filha de Instance 
  * 
  */
 class Npc : public Instance

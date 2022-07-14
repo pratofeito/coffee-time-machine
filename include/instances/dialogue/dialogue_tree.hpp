@@ -1,7 +1,7 @@
 /**
  * @file dialogue_tree.hpp
- * @author your name (you@domain.com)
- * @brief 
+ * @author brisabn
+ * @brief definições da classe dialogue_tree  e de node
  * @version 0.1
  * @date 2022-07-13
  * 
@@ -16,7 +16,7 @@
 #include <string>
 
 /**
- * @brief 
+ * @brief Cria uma classe Node
  * 
  */
 
@@ -25,7 +25,7 @@ class Node
 public:
 
     /**
-     * @brief Construct a new Node object
+     * @brief Constrói um objeto do tipo Node
      * 
      */
     Node()
@@ -45,7 +45,7 @@ public:
 
 
 /**
- * @brief 
+ * @brief Cria uma classe DialogueTreee
  * 
  */
 
@@ -53,19 +53,19 @@ class DialogueTree
 {
 public:
     /**
-     * @brief Construct a new Dialogue Tree object
+     * @brief Constrói um objeto do tipo DialogueTree
      * 
      */
     DialogueTree();
 
     /**
-     * @brief Destroy the Dialogue Tree object
+     * @brief Destrói o objeto DialogueTree
      * 
      */
     ~DialogueTree();
 
     /**
-     * @brief Create a Node object
+     * @brief Constrói um objeto Node
      * 
      * @param data 
      * @return Node* 
@@ -73,7 +73,7 @@ public:
     Node *CreateNode(std::string data);
 
     /**
-     * @brief 
+     * @brief insere um Node na fila
      * 
      * @param root 
      * @param data 

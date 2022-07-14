@@ -1,7 +1,7 @@
 /**
  * @file intro.hpp
- * @author your name (you@domain.com)
- * @brief 
+ * @author brisabn
+ * @brief Definições da classe intro
  * @version 0.1
  * @date 2022-07-13
  * 

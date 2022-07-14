@@ -1,6 +1,6 @@
 /**
  * @file intro-state.hpp
- * @author Brisabn
+ * @author brisabn
  * @brief Definições da classe Intro_state
  * @version 0.1
  * @date 2022-07-13
@@ -42,7 +42,7 @@ public:
     virtual ~IntroState();
 
     /**
-     * @brief Atualiza do objeto Intro_state
+     * @brief Atualiza o objeto Intro_state
      * 
      * @param delta_time 
      */

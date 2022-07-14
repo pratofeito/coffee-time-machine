@@ -1,7 +1,7 @@
 /**
  * @file state.hpp
- * @author your name (you@domain.com)
- * @brief 
+ * @author heitoeu
+ * @brief Definições da classe state
  * @version 0.1
  * @date 2022-07-13
  * 

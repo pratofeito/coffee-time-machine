@@ -1,7 +1,7 @@
 /**
  * @file wall.hpp
- * @author your name (you@domain.com)
- * @brief 
+ * @author heitoeu
+ * @brief Definição da classe Wall
  * @version 0.1
  * @date 2022-07-13
  * 
@@ -15,7 +15,7 @@
 #include "instances/instance.hpp"
 
 /**
- * @brief 
+ * @brief Cria uma classe Wall que é filha de Instance
  * 
  */
 class Wall : public Instance
@@ -27,7 +27,7 @@ private:
 public:
 
     /**
-     * @brief Construct a new Wall object
+     * @brief Constrói um novo objeto wall
      * 
      * @param x 
      * @param y 
@@ -35,7 +35,7 @@ public:
     Wall(int x, int y);
 
     /**
-     * @brief Destroy the Wall object
+     * @brief Destrói um novo objeto Wall
      * 
      */
     virtual ~Wall();

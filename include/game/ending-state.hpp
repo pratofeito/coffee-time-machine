@@ -1,6 +1,6 @@
 /**
  * @file ending-state.hpp
- * @author 
+ * @author brisabn
  * @brief Definições da classe EndingState
  * @version 0.1
  * @date 2022-07-13

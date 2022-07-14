@@ -1,7 +1,7 @@
 /**
  * @file dialogue.hpp
- * @author your name (you@domain.com)
- * @brief 
+ * @author brisabn
+ * @brief Definições da classe dialogue
  * @version 0.1
  * @date 2022-07-13
  * 
@@ -25,7 +25,7 @@
 #include <fstream>
 
 /**
- * @brief 
+ * @brief Cria uma organização para evitar conflitos de nomes de variaveis
  * 
  */
 
@@ -36,7 +36,7 @@ namespace sf
 
 
 /**
- * @brief 
+ * @brief Cria uma classe Dialogue
  * 
  */
 
@@ -67,26 +67,26 @@ public:
     std::size_t itr;
     
     /**
-     * @brief Construct a new Dialogue object
+     * @brief Constrói o objeto de Dialogue
      * 
      */
     Dialogue();
 
     /**
-     * @brief Construct a new Dialogue object
+     * @brief Controi um novo objeto de Dialogue
      * 
      * @param myfile 
      */
     Dialogue(std::string myfile);
 
     /**
-     * @brief Destroy the Dialogue object
+     * @brief Destrói o objeto Dialogue
      * 
      */
     ~Dialogue();
 
     /**
-     * @brief Create a tree object
+     * @brief cria um objeto create_tree
      * 
      * @param myfile 
      */

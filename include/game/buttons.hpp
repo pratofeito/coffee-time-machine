@@ -51,7 +51,7 @@ private:
 
 public:
     /**
-     * @brief Controi um novo objeto do tipo button
+     * @brief Constroi um novo objeto do tipo button
      * 
      * @param x Parametro para definir posição do objeto no eixo X
      * @param y Parametro para definir posição do objeito no eixo Y
