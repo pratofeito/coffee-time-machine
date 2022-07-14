@@ -67,7 +67,6 @@ void GameState::init_npcs()
     npc_cyan_clone = new Npc("Cyan", 15, 7, "resources/dialogues/cyan_item.txt");
     // Jitsi
     npc_jitsi_intro = new Npc("Jitsi Intro", 12, 3, "resources/dialogues/jitsi_intro.txt");
-    npc_jitsi_mission = new Npc("Jitsi Mission", 12, 3, "resources/dialogues/jitsi_mission.txt");
     npc_jitsi_complete = new Npc("Jitsi Complete", 12, 3, "resources/dialogues/jitsi_complete.txt");
 
     // Blue
@@ -124,11 +123,6 @@ void GameState::init_npcs()
     npc_jitsi_intro->npc_animation->new_state(NOTHING, LEFT, "resources/sprites/npcs/npc-jitsi/jitsi_idle_left.png");
     npc_jitsi_intro->npc_animation->new_state(NOTHING, RIGHT, "resources/sprites/npcs/npc-jitsi/jitsi_idle_right.png");
 
-    npc_jitsi_mission->npc_animation->new_state(NOTHING, UP, "resources/sprites/npcs/npc-jitsi/jitsi_idle_up.png");
-    npc_jitsi_mission->npc_animation->new_state(NOTHING, DOWN, "resources/sprites/npcs/npc-jitsi/jitsi_idle_down.png");
-    npc_jitsi_mission->npc_animation->new_state(NOTHING, LEFT, "resources/sprites/npcs/npc-jitsi/jitsi_idle_left.png");
-    npc_jitsi_mission->npc_animation->new_state(NOTHING, RIGHT, "resources/sprites/npcs/npc-jitsi/jitsi_idle_right.png");
-
     npc_jitsi_complete->npc_animation->new_state(NOTHING, UP, "resources/sprites/npcs/npc-jitsi/jitsi_idle_up.png");
     npc_jitsi_complete->npc_animation->new_state(NOTHING, DOWN, "resources/sprites/npcs/npc-jitsi/jitsi_idle_down.png");
     npc_jitsi_complete->npc_animation->new_state(NOTHING, LEFT, "resources/sprites/npcs/npc-jitsi/jitsi_idle_left.png");
@@ -151,7 +145,6 @@ void GameState::update(const float &delta_time)
     this->npc_yellow->instance_update(delta_time);
     this->npc_yellow_clone->instance_update(delta_time);
     this->npc_jitsi_intro->instance_update(delta_time);
-    this->npc_jitsi_mission->instance_update(delta_time);
     this->npc_jitsi_complete->instance_update(delta_time);
 
     coffee->instance_update(delta_time);
@@ -245,12 +238,20 @@ void GameState::draw(sf::RenderTarget *target)
         this->npc_cyan->instance_draw(target);
     }
 
-
     // JITSI
-    this->npc_jitsi_intro->instance_draw(target);
-    this->npc_jitsi_mission->instance_draw(target);
-    this->npc_jitsi_complete->instance_draw(target);
-
+    if(player->bag["Chocolate"] == true && player->bag["Chocolate"]== true
+    && player->bag["Chocolate"] == true &&player->bag["Chocolate"]== true)
+    {
+        if(npc_jitsi_intro->cloned == false)
+        {
+            this->npc_jitsi_complete->instance_draw(target);
+        }
+        npc_jitsi_intro->cloned = true;
+        npc_jitsi_complete->instance_draw(target);
+    }else
+    {
+        this->npc_jitsi_intro->instance_draw(target);
+    }
     // this->timer->hud_draw(target);
 
     this->coffee->instance_draw(target);
@@ -272,7 +273,9 @@ void GameState::draw(sf::RenderTarget *target)
 
     this->npc_cyan->get_npc_dialogue()->dialogue_draw(target);
     this->npc_cyan_clone->get_npc_dialogue()->dialogue_draw(target);
-    
+
+    this->npc_jitsi_intro->get_npc_dialogue()->dialogue_draw(target);
+    this->npc_jitsi_complete->get_npc_dialogue()->dialogue_draw(target);
 }
 
 void GameState::update_inputs(const float &delta_time)
@@ -357,6 +360,17 @@ void GameState::update_events(sf::Event event)
                 {
                     penguin->set_given(true);
                 }
+            }
+        }
+
+        if ((object_collidable == npc_jitsi_intro) || (object_collidable == npc_jitsi_complete))
+        {
+            npc_jitsi_intro->get_npc_dialogue()->update_event_dialogue(player->z, player->x, false);
+            npc_jitsi_complete->get_npc_dialogue()->update_event_dialogue(player->z, player->x, true);
+            if (player->bag["Chocolate"] == true && player->bag["Camera"] == true && player->bag["Penguin"] == true && player->bag["Coffee"] == true)
+            {
+                // Levar para ending state
+                std::cout << "AAAAAAAAAAAJITIJSIJ" << std::endl;
             }
         }
     }

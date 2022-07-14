@@ -47,7 +47,6 @@ private:
 
     // Jitsi
     Npc *npc_jitsi_intro;
-    Npc *npc_jitsi_mission;
     Npc *npc_jitsi_complete;
 
     std::vector<Wall *> walls;
