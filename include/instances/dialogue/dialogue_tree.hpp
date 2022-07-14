@@ -75,8 +75,8 @@ public:
     /**
      * @brief insere um Node na fila
      * 
-     * @param root 
-     * @param data 
+     * @param root Parametro do tipo Node ponteiro passado pelo metodo insertNode 
+     * @param data Parametro do tipo String  passado pelo metodo insertNode
      * @return Node* 
      */
     Node *InsertNode(Node *root, std::string data);

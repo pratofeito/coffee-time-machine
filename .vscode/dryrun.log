@@ -2,6 +2,7 @@ make.exe --dry-run --always-make --keep-going --print-directory
 make.exe: Entering directory 'c:/Users/lucas/Desktop/partesfinais/2022-1-TN-grupo02'
 (@mkdir build\src\instances\audio\)&
 g++ -std=c++11 -g -Wall -I include -I libs/sfml-win/include -c src/instances/audio/audio.cpp -o build/src/instances/audio/audio.o
+ 
 (@mkdir build\src\instances\dialogue\)&
 g++ -std=c++11 -g -Wall -I include -I libs/sfml-win/include -c src/instances/dialogue/dialogue.cpp -o build/src/instances/dialogue/dialogue.o
 (@mkdir build\src\instances\dialogue\)&
@@ -10,6 +11,7 @@ g++ -std=c++11 -g -Wall -I include -I libs/sfml-win/include -c src/instances/dia
 g++ -std=c++11 -g -Wall -I include -I libs/sfml-win/include -c src/instances/dialogue/intro.cpp -o build/src/instances/dialogue/intro.o
 (@mkdir build\src\instances\hud\)&
 g++ -std=c++11 -g -Wall -I include -I libs/sfml-win/include -c src/instances/hud/timer.cpp -o build/src/instances/hud/timer.o
+ 
 (@mkdir build\src\animation\)&
 g++ -std=c++11 -g -Wall -I include -I libs/sfml-win/include -c src/animation/animation.cpp -o build/src/animation/animation.o
 (@mkdir build\src\collision\)&

@@ -86,9 +86,9 @@ public:
     ~Dialogue();
 
     /**
-     * @brief cria um objeto create_tree
+     * @brief Cria um objeto create_tree
      * 
-     * @param myfile 
+     * @param myfile parametro atribuido em create_tree
      */
     void create_tree(std::string myfile);
     
@@ -99,14 +99,14 @@ public:
     void write();
 
     /**
-     * @brief Set the string object
+     * @brief Faz a atribuição entre a variavel phrase  e o parametro s
      * 
-     * @param s 
+     * @param s Parametro passado pelo metodo set_string
      */
     void set_string(std::string s);
     
     /**
-     * @brief Get the on going object
+     * @brief 
      * 
      * @return true 
      * @return false 
@@ -114,31 +114,31 @@ public:
     bool get_on_going();
 
     /**
-     * @brief Set the given object
+     * @brief Faz a atribuição entre variavel given e o parametro given
      * 
-     * @param given 
+     * @param given Parametro do metodo set_given
      */
     void set_given(bool given);
 
     /**
-     * @brief 
+     * @brief Reinicia o tempo
      * 
      */
     void reset();
 
     /**
-     * @brief 
+     * @brief Desenha o objeto Dialogue para o destino de renderização
      * 
      * @param target 
      */
     void dialogue_draw(sf::RenderTarget *target);
     
     /**
-     * @brief 
+     * @brief Atualiza o eventos do objeto Dialogue
      * 
-     * @param z 
-     * @param x 
-     * @param space 
+     * @param z retorna true caso seja pressionado
+     * @param x retorna true caso seja pressionado
+     * @param space retorna true caso seja pressionado 
      */
     void update_event_dialogue(bool z, bool x, bool space);
 };

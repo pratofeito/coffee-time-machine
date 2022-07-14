@@ -68,20 +68,20 @@ public:
     std::size_t itr;
 
     /**
-     * @brief Construct a new Intro object
+     * @brief Constroi um  objeto do tipo Intro
      * 
      */
     Intro();
 
     /**
-     * @brief Construct a new Intro object
+     * @brief Constroi um objeto do tipo Intro chamando parametros 
      * 
-     * @param myfile 
+     * @param myfile Parametro do tipo string passado pelo construtor de Intro
      */
     Intro(std::string myfile);
     
     /**
-     * @brief Destroy the Intro object
+     * @brief Destroi o objeto Intro
      * 
      */
     ~Intro();
@@ -93,62 +93,62 @@ public:
     void write();
 
     /**
-     * @brief 
+     * @brief Faz a atribuição entre a variavel box e a variavel caixa 
      * 
      */
     void imagine();
 
 
     /**
-     * @brief Set the string object
+     * @brief Faz a atribuição entre a variavel phrase  e o parametro s
      * 
-     * @param s 
+     * @param s Parametro passado pelo metodo set_string
      */
     void set_string(std::string s);
     
     /**
-     * @brief Set the image object
+     * @brief Faz a atribuição entre a variavel caixa e o parametro r
      * 
-     * @param r 
+     * @param r parametro do tipo RectangleShape passado pelo meotodo set_image
      */
     void set_image(sf::RectangleShape r);
 
     /**
-     * @brief 
+     * @brief Cria um objeto do tipo RectangleShape e atribui suas informações 
      * 
      */
     void image_sequence();
     
     /**
-     * @brief 
+     * @brief Cria um loop para objeto RectangleShape
      * 
-     * @param myfile 
+     * @param myfile Parametro do tipo string passado pelo metodo text_sequence
      */
     void text_sequence(std::string myfile);
 
     
     /**
-     * @brief 
+     * @brief Reinicia o tempo 
      * 
      */
     void reset();
     
     /**
-     * @brief 
+     * @brief Desenha o objeto Intro para o destino de renderização
      * 
      * @param target 
      */
     void intro_draw(sf::RenderTarget *target);
     
     /**
-     * @brief 
+     * @brief atualiza o evento do objeto intro
      * 
-     * @param event 
+     * @param event variavel do tipo event passada pelo metodo update_event_intro
      */
     void uptade_event_intro(sf::Event event);
 
     /**
-     * @brief Get the next state object
+     * @brief Obtem o proximo estado do objeto
      * 
      * @return true 
      * @return false 

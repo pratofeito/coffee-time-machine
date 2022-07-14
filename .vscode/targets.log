@@ -5,9 +5,8 @@ make.exe all --print-data-base --no-builtin-variables --no-builtin-rules --quest
 # License GPLv3+: GNU GPL version 3 or later <http://gnu.org/licenses/gpl.html>
 # This is free software: you are free to change and redistribute it.
 # There is NO WARRANTY, to the extent permitted by law.
- 
 
-# Make data base, printed on Wed Jul 13 19:51:51 2022
+# Make data base, printed on Thu Jul 14 01:36:23 2022
 
 # Variables
 
@@ -20,7 +19,8 @@ GNUMAKEFLAGS :=
 # default
 .SHELLFLAGS := -c
 # makefile (from 'Makefile', line 23)
-SRC :=  src/instances/audio/audio.cpp src/instances/dialogue/dialogue.cpp src/instances/dialogue/dialogue_tree.cpp src/instances/dialogue/intro.cpp src/instances/hud/timer.cpp src/animation/animation.cpp src/collision/collision.cpp src/game/game.cpp src/game/ending-state.cpp src/game/game-state.cpp src/game/intro-state.cpp src/game/state.cpp src/game/menu-state.cpp src/game/buttons.cpp src/instances/instance.cpp src/instances/wall.cpp src/instances/npc.cpp src/instances/player.cpp src/instances/item.cpp src/sprite-set/sprite-set.cpp src/sprite-set/background.cpp src/main.cpp
+SRC :=  src/instances/audio/audio.cpp src/instances/dialogue/dialogue.cpp src/instances/dialogue/dialogue_tree.cpp src/instances/dialogue/intro.cpp src/instances/hud/timer.cpp src/animation/animation.cpp src/collision/collision.cpp src/game/game. 
+cpp src/game/ending-state.cpp src/game/game-state.cpp src/game/intro-state.cpp src/game/state.cpp src/game/menu-state.cpp src/game/buttons.cpp src/instances/instance.cpp src/instances/wall.cpp src/instances/npc.cpp src/instances/player.cpp src/instances/item.cpp src/sprite-set/sprite-set.cpp src/sprite-set/background.cpp src/main.cpp
 # makefile
 MAKEFLAGS = pqrR
 # makefile (from 'Makefile', line 1)
@@ -86,7 +86,7 @@ LDFLAGS := -Llibs/sfml-win/lib -lsfml-audio -lsfml-graphics -lsfml-window -lsfml
 # automatic
 %F = $(notdir $%)
 # environment
-CHROME_CRASHPAD_PIPE_NAME = \\.\pipe\crashpad_14708_NNVMGQIJHFYJSEIZ
+CHROME_CRASHPAD_PIPE_NAME = \\.\pipe\crashpad_2080_DAPFRIRVEJFPPSSJ
 # environment
 COMPUTERNAME = DESKTOP-48JJ2OO
 # environment
@@ -208,7 +208,7 @@ PROCESSOR_LEVEL = 6
 # environment
 FPS_BROWSER_APP_PROFILE_STRING = Internet Explorer
 # environment
-VSCODE_PID = 14708
+VSCODE_PID = 2080
 # environment
 USERDOMAIN_ROAMINGPROFILE = DESKTOP-48JJ2OO
 # variable set hash-table stats:
@@ -489,6 +489,6 @@ build/src/instances/item.o:
 # strcache performance: lookups = 137 / hit rate = 23%
 # hash-table stats:
 # Load=105/8192=1%, Rehash=0, Collisions=12/137=9%
-# Finished Make data base on Wed Jul 13 19:51:51 2022
+# Finished Make data base on Thu Jul 14 01:36:23 2022
 
  
