@@ -5,18 +5,11 @@ Game::Game()
 {
     this->initialize_window();
     this->initialize_states();
-
-    // criação do mapa
-    map_bg = new Background("resources/sprites/maps/main_room.png", "resources/maps/main_room.csv", sf::Vector2i(0, 0));
     this->initialize_sfml_events();
 }
 
 Game::~Game()
 {
-
-    // deleto o background do mapa criado no início
-    delete map_bg;
-
     delete this->window;
     while (!this->states.empty())
     {
@@ -117,14 +110,12 @@ void Game::draw()
 
     this->window->clear(sf::Color::Black);
 
-    map_bg->draw(window);
-
-    this->draw_guidelines();
-
     if (!this->states.empty())
     {
         this->states.top()->draw(this->window);
     }
+
+    this->draw_guidelines();
 
     this->window->display();
 }

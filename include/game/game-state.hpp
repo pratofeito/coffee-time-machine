@@ -2,6 +2,7 @@
 #define GAME_STATE_H
 
 #include "game/state.hpp"
+#include "sprite-set/background.hpp"
 
 class GameState : public State
 {
@@ -21,11 +22,19 @@ private:
         NOTHING
     };
 
+    // Background
+    Background *map_floor;
+    Background *map_chairs;
+    Background *map_tables;
+    Background *map_obj;
+
     // Elementos de Game
     Player *player;
     Wall *wall;
     Npc *npc_leandro;
     Npc *npc_leandro2;
+    std::vector<Wall*> walls;
+    std::ifstream walls_file;
 
     Npc *npc_edinho;
     Npc *npc_edinho2;
@@ -33,6 +42,8 @@ private:
 
     Item *carrot;
     Item *carrot2;
+
+    void generate_walls(std::string walls_dir);
 
 public:
     GameState(sf::RenderWindow *window, std::stack<State *> *states);
