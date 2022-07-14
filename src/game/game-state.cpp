@@ -20,10 +20,10 @@ GameState::GameState(sf::RenderWindow *window, std::stack<State *> *states) : St
 
     timer = new Timer;
 
-    coffee = new Item("Carrot", 5, 7, 0);
-    chocolate = new Item("Carrot 2", 10, 7, 1);
-    penguin = new Item("Penguin", 6, 6, 0);
-    camera = new Item("Camera", 7, 7, 7);
+    coffee = new Item("Coffee", 19, 7, 0);
+    chocolate = new Item("Chocolate", 10, 7, 1);
+    penguin = new Item("Penguin", 7, 12, 2);
+    camera = new Item("Camera", 7, 7, 3);
 
     // audio
     game_soundtrack = new Audio();
@@ -57,18 +57,18 @@ void GameState::init_npcs()
     npc_blue = new Npc("Blue", 9, 10, "resources/dialogues/blue.txt");
     npc_blue_clone = new Npc("Blue", 9, 10, "resources/dialogues/blue_item.txt");
     // Pink
-    npc_pink = new Npc("Pink", 5, 10, "resources/dialogues/pink.txt");
-    npc_pink_clone = new Npc("Pink", 5, 10, "resources/dialogues/pink_item.txt");
+    npc_pink = new Npc("Pink", 20, 6, "resources/dialogues/pink.txt");
+    npc_pink_clone = new Npc("Pink", 20, 6, "resources/dialogues/pink_item.txt");
     // Yellow
-    npc_yellow = new Npc("Yellow", 8, 10, "resources/dialogues/yellow.txt");
-    npc_yellow_clone = new Npc("Yellow", 8, 10, "resources/dialogues/yellow_item.txt");
+    npc_yellow = new Npc("Yellow", 5, 5, "resources/dialogues/yellow.txt");
+    npc_yellow_clone = new Npc("Yellow", 5, 5, "resources/dialogues/yellow_item.txt");
     // cyan
-    npc_cyan = new Npc("cyan", 11, 10, "resources/dialogues/cyan.txt");
-    npc_cyan_clone = new Npc("cyan", 11, 10, "resources/dialogues/cyan_item.txt");
+    npc_cyan = new Npc("Cyan", 15, 7, "resources/dialogues/cyan.txt");
+    npc_cyan_clone = new Npc("Cyan", 15, 7, "resources/dialogues/cyan_item.txt");
     // Jitsi
-    npc_jitsi_intro = new Npc("Jitsi Intro", 16, 10, "resources/dialogues/jitsi_intro.txt");
-    npc_jitsi_mission = new Npc("Jitsi Mission", 16, 10, "resources/dialogues/jitsi_mission.txt");
-    npc_jitsi_complete = new Npc("Jitsi Complete", 16, 10, "resources/dialogues/jitsi_complete.txt");
+    npc_jitsi_intro = new Npc("Jitsi Intro", 12, 3, "resources/dialogues/jitsi_intro.txt");
+    npc_jitsi_mission = new Npc("Jitsi Mission", 12, 3, "resources/dialogues/jitsi_mission.txt");
+    npc_jitsi_complete = new Npc("Jitsi Complete", 12, 3, "resources/dialogues/jitsi_complete.txt");
 
     // Blue
     npc_blue->npc_animation->new_state(NOTHING, UP, "resources/sprites/npcs/npc-blue/npc_blue_idle_up.png");
@@ -92,7 +92,7 @@ void GameState::init_npcs()
     npc_pink_clone->npc_animation->new_state(NOTHING, DOWN, "resources/sprites/npcs/npc-pink/npc_pink_idle_down.png");
     npc_pink_clone->npc_animation->new_state(NOTHING, LEFT, "resources/sprites/npcs/npc-pink/npc_pink_idle_left.png");
     npc_pink_clone->npc_animation->new_state(NOTHING, RIGHT, "resources/sprites/npcs/npc-pink/npc_pink_idle_right.png");
-    npc_pink->set_looking(DOWN);
+    npc_pink->set_looking(UP);
 
     // Yellow
     npc_yellow->npc_animation->new_state(NOTHING, UP, "resources/sprites/npcs/npc-yellow/npc_yellow_idle_up.png");
@@ -119,20 +119,20 @@ void GameState::init_npcs()
     npc_cyan->set_looking(RIGHT);
 
     // Jitsi
-    npc_jitsi_intro->npc_animation->new_state(NOTHING, UP, "resources/sprites/npcs/npc-cyan/jitsi_idle_up.png");
-    npc_jitsi_intro->npc_animation->new_state(NOTHING, DOWN, "resources/sprites/npcs/npc-cyan/jitsi_idle_down.png");
-    npc_jitsi_intro->npc_animation->new_state(NOTHING, LEFT, "resources/sprites/npcs/npc-cyan/jitsi_idle_left.png");
-    npc_jitsi_intro->npc_animation->new_state(NOTHING, RIGHT, "resources/sprites/npcs/npc-cyan/jitsi_idle_right.png");
+    npc_jitsi_intro->npc_animation->new_state(NOTHING, UP, "resources/sprites/npcs/npc-jitsi/jitsi_idle_up.png");
+    npc_jitsi_intro->npc_animation->new_state(NOTHING, DOWN, "resources/sprites/npcs/npc-jitsi/jitsi_idle_down.png");
+    npc_jitsi_intro->npc_animation->new_state(NOTHING, LEFT, "resources/sprites/npcs/npc-jitsi/jitsi_idle_left.png");
+    npc_jitsi_intro->npc_animation->new_state(NOTHING, RIGHT, "resources/sprites/npcs/npc-jitsi/jitsi_idle_right.png");
 
-    npc_jitsi_mission->npc_animation->new_state(NOTHING, UP, "resources/sprites/npcs/npc-cyan/jitsi_intro_idle_up.png");
-    npc_jitsi_mission->npc_animation->new_state(NOTHING, DOWN, "resources/sprites/npcs/npc-cyan/jitsi_intro_idle_down.png");
-    npc_jitsi_mission->npc_animation->new_state(NOTHING, LEFT, "resources/sprites/npcs/npc-cyan/jitsi_intro_idle_left.png");
-    npc_jitsi_mission->npc_animation->new_state(NOTHING, RIGHT, "resources/sprites/npcs/npc-cyan/jitsi_intro_idle_right.png");
+    npc_jitsi_mission->npc_animation->new_state(NOTHING, UP, "resources/sprites/npcs/npc-jitsi/jitsi_idle_up.png");
+    npc_jitsi_mission->npc_animation->new_state(NOTHING, DOWN, "resources/sprites/npcs/npc-jitsi/jitsi_idle_down.png");
+    npc_jitsi_mission->npc_animation->new_state(NOTHING, LEFT, "resources/sprites/npcs/npc-jitsi/jitsi_idle_left.png");
+    npc_jitsi_mission->npc_animation->new_state(NOTHING, RIGHT, "resources/sprites/npcs/npc-jitsi/jitsi_idle_right.png");
 
-    npc_jitsi_complete->npc_animation->new_state(NOTHING, UP, "resources/sprites/npcs/npc-cyan/jitsi_intro_idle_up.png");
-    npc_jitsi_complete->npc_animation->new_state(NOTHING, DOWN, "resources/sprites/npcs/npc-cyan/jitsi_intro_idle_down.png");
-    npc_jitsi_complete->npc_animation->new_state(NOTHING, LEFT, "resources/sprites/npcs/npc-cyan/jitsi_intro_idle_left.png");
-    npc_jitsi_complete->npc_animation->new_state(NOTHING, RIGHT, "resources/sprites/npcs/npc-cyan/jitsi_intro_idle_right.png");
+    npc_jitsi_complete->npc_animation->new_state(NOTHING, UP, "resources/sprites/npcs/npc-jitsi/jitsi_idle_up.png");
+    npc_jitsi_complete->npc_animation->new_state(NOTHING, DOWN, "resources/sprites/npcs/npc-jitsi/jitsi_idle_down.png");
+    npc_jitsi_complete->npc_animation->new_state(NOTHING, LEFT, "resources/sprites/npcs/npc-jitsi/jitsi_idle_left.png");
+    npc_jitsi_complete->npc_animation->new_state(NOTHING, RIGHT, "resources/sprites/npcs/npc-jitsi/jitsi_idle_right.png");
 
     npc_jitsi_intro->set_looking(DOWN);
 }
@@ -245,6 +245,7 @@ void GameState::draw(sf::RenderTarget *target)
         this->npc_cyan->instance_draw(target);
     }
 
+
     // JITSI
     this->npc_jitsi_intro->instance_draw(target);
     this->npc_jitsi_mission->instance_draw(target);
@@ -257,6 +258,9 @@ void GameState::draw(sf::RenderTarget *target)
     this->camera->instance_draw(target);
     this->penguin->instance_draw(target);
 
+    // objetos em cima do mapa
+    map_obj->draw(window);
+
     this->npc_blue->get_npc_dialogue()->dialogue_draw(target);
     this->npc_blue_clone->get_npc_dialogue()->dialogue_draw(target);
 
@@ -268,9 +272,7 @@ void GameState::draw(sf::RenderTarget *target)
 
     this->npc_cyan->get_npc_dialogue()->dialogue_draw(target);
     this->npc_cyan_clone->get_npc_dialogue()->dialogue_draw(target);
-
-    // objetos em cima do mapa
-    map_obj->draw(window);
+    
 }
 
 void GameState::update_inputs(const float &delta_time)
@@ -349,11 +351,11 @@ void GameState::update_events(sf::Event event)
                 npc_cyan->npc_collision->disable_collision();
                 if (npc_cyan_clone->get_npc_dialogue()->given == false)
                 {
-                    camera->set_given(false);
+                    penguin->set_given(false);
                 }
                 if (npc_cyan_clone->get_npc_dialogue()->given == true)
                 {
-                    camera->set_given(true);
+                    penguin->set_given(true);
                 }
             }
         }
