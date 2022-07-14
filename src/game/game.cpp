@@ -7,7 +7,7 @@ Game::Game()
     this->initialize_states();
 
     // criação do mapa
-    map_bg = new Background("resources/sprites/main_room_tileset.png", "resources/maps/main_room.csv", sf::Vector2i(0, 0));
+    map_bg = new Background("resources/sprites/maps/main_room.png", "resources/maps/main_room.csv", sf::Vector2i(0, 0));
     this->initialize_sfml_events();
 }
 
@@ -30,12 +30,14 @@ Game::~Game()
 void Game::initialize_window()
 {
     sf::ContextSettings settings;
+    settings.antialiasingLevel = 0;
+
     // tileset 25 x 17
-    this->window = new sf::RenderWindow(sf::VideoMode(800, 544), "RPG", sf::Style::Close, settings);
+    this->window = new sf::RenderWindow(sf::VideoMode(WINDOW_WIDTH, WINDOW_HEIGHT), "Coffee Time Machine", sf::Style::Close, settings);
     this->window->setFramerateLimit(30);
-    this->window->setVerticalSyncEnabled(false);
+    this->window->setVerticalSyncEnabled(true);
     // extende a janela para um tamanho maior
-    this->window->setSize(sf::Vector2u(1000, 680));
+    this->window->setSize(sf::Vector2u(WINDOW_WIDTH * WINDOW_SCALING, WINDOW_HEIGHT * WINDOW_SCALING));
 }
 
 void Game::initialize_states()

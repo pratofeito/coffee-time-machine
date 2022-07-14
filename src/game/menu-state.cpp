@@ -8,7 +8,7 @@ Menu_state::Menu_state(sf::RenderWindow *window, std::stack<State *> *states) : 
                                           static_cast<float>(this->window->getSize().y)));
 
     // Carregando arquivo de texturas
-    if (!this->bg_texture.loadFromFile("resources/menu_test.gif"))
+    if (!this->bg_texture.loadFromFile("resources/sprites/menu/menu_test.gif"))
     {
         std::cout << "Erro loading texture" << std::endl;
     }
@@ -16,7 +16,7 @@ Menu_state::Menu_state(sf::RenderWindow *window, std::stack<State *> *states) : 
 
     // Carregando fontes
 
-    if (!this->font.loadFromFile("resources/Adumu.ttf"))
+    if (!this->font.loadFromFile("resources/fonts/Adumu.ttf"))
     {
         std::cout << "Error loading font \n";
     }

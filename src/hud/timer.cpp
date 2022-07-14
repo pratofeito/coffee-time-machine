@@ -2,7 +2,7 @@
 
 Timer::Timer()
 {
-    if (!font.loadFromFile("resources/sansation.ttf"))
+    if (!font.loadFromFile("resources/fonts/sansation.ttf"))
         std::cout << "Error loading font\n";
 
     this->m_text.setCharacterSize(35);

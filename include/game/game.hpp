@@ -2,7 +2,8 @@
 #define GAME_H
 
 #define WINDOW_WIDTH 800
-#define WINDOW_HEIGHT 640
+#define WINDOW_HEIGHT 544
+#define WINDOW_SCALING 1.25
 #define TILE_SIZE 32
 
 #include "game-state.hpp"

@@ -4,11 +4,11 @@ GameState::GameState(sf::RenderWindow *window,std::stack<State *>* states) : Sta
 {
     player = new Player(0, 0);
     wall = new Wall(4, 4);
-    npc_leandro = new Npc("Leandro", 2, 3, "resources/leandro.txt");
-    npc_leandro2 = new Npc("Leandro", 2, 3, "resources/leandro_item.txt");
+    npc_leandro = new Npc("Leandro", 2, 3, "resources/dialogues/leandro.txt");
+    npc_leandro2 = new Npc("Leandro", 2, 3, "resources/dialogues/leandro_item.txt");
 
-    npc_edinho = new Npc("Edinho", 5, 5, "resources/edinho.txt");
-    npc_edinho2 = new Npc("Edinho", 5, 5, "resources/edinho_item.txt");
+    npc_edinho = new Npc("Edinho", 5, 5, "resources/dialogues/edinho.txt");
+    npc_edinho2 = new Npc("Edinho", 5, 5, "resources/dialogues/edinho_item.txt");
 
     timer = new Timer;
 

@@ -9,7 +9,7 @@ Intro::Intro(std::string myfile)
     text_sequence(myfile);
     image_sequence();
 
-    if (!font.loadFromFile("resources/pixel.ttf"))
+    if (!font.loadFromFile("resources/fonts/pixel.ttf"))
         std::cout << "Error loading font\n";
     // colocar esse coisa de erro para outros abridores de arquivo!!!
     // Exception aqui
@@ -25,8 +25,8 @@ Intro::Intro(std::string myfile)
     this->box1.setFillColor(sf::Color::Black);
     this->box1.setPosition(0, 0);
 
-    audio_music.define_music("resources/gris.ogg", 20.f);
-    audio_sound.define_sound("resources/typing2.wav", 10.f);
+    // audio_music.define_music("resources/gris.ogg", 20.f);
+    audio_sound.define_sound("resources/audio/typing.wav", 10.f);
 }
 
 Intro::~Intro()

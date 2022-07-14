@@ -10,13 +10,13 @@ Player::Player(int x, int y) : Instance(x, y)
     // animações do personagem
     player_animation = new Animation(this);
 
-    player_animation->new_state(MOVING, UP, "resources/sprites/player/player_walking_up.png");
-    player_animation->new_state(MOVING, DOWN, "resources/sprites/player/player_walking_down.png");
-    player_animation->new_state(MOVING, LEFT, "resources/sprites/player/player_walking_left.png");
-    player_animation->new_state(MOVING, RIGHT, "resources/sprites/player/player_walking_right.png");
-    player_animation->new_state(NOTHING, UP, "resources/sprites/player/player_idle_up.png");
-    player_animation->new_state(NOTHING, DOWN, "resources/sprites/player/player_idle_down.png");
-    player_animation->new_state(NOTHING, LEFT, "resources/sprites/player/player_idle_left.png");
+    player_animation->new_state(MOVING, UP,     "resources/sprites/player/player_walking_up.png");
+    player_animation->new_state(MOVING, DOWN,   "resources/sprites/player/player_walking_down.png");
+    player_animation->new_state(MOVING, LEFT,   "resources/sprites/player/player_walking_left.png");
+    player_animation->new_state(MOVING, RIGHT,  "resources/sprites/player/player_walking_right.png");
+    player_animation->new_state(NOTHING, UP,    "resources/sprites/player/player_idle_up.png");
+    player_animation->new_state(NOTHING, DOWN,  "resources/sprites/player/player_idle_down.png");
+    player_animation->new_state(NOTHING, LEFT,  "resources/sprites/player/player_idle_left.png");
     player_animation->new_state(NOTHING, RIGHT, "resources/sprites/player/player_idle_right.png");
 
     player_sprite = player_animation->get_sprite();

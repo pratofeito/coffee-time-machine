@@ -8,7 +8,7 @@ Dialogue::Dialogue(std::string myfile)
 {
     create_tree(myfile);
 
-    if (!font.loadFromFile("resources/pixel.ttf"))
+    if (!font.loadFromFile("resources/fonts/pixel.ttf"))
         std::cout << "Error loading font\n";
     // colocar esse coisa de erro para outros abridores de arquivo!!!
     // Exception aqui
@@ -27,7 +27,7 @@ Dialogue::Dialogue(std::string myfile)
     // this->first_interaction = true;
     this->on_going = true;
     this->given = false;
-    audio_sound.define_sound("resources/typing2.wav", 50.f);
+    audio_sound.define_sound("resources/audio/typing.wav", 50.f);
 }
 
 Dialogue::~Dialogue()
