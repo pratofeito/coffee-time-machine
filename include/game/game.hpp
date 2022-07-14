@@ -1,3 +1,14 @@
+/**
+ * @file game.hpp
+ * @author 
+ * @brief Definições da classe Game
+ * @version 0.1
+ * @date 2022-07-13
+ * 
+ * @copyright Copyright (c) 2022
+ * 
+ */
+
 #ifndef GAME_H
 #define GAME_H
 
@@ -10,6 +21,11 @@
 #include "intro-state.hpp"
 #include "ending-state.hpp"
 #include "sprite-set/background.hpp"
+
+/**
+ * @brief Classe que constroi Game 
+ * 
+ */
 
 class Game
 {
@@ -26,23 +42,73 @@ private:
 
     std::map<std::string, int>supportedKeys;
 
+    /**
+     * @brief inicializa a tela 
+     * 
+     */
     void initialize_window();
+    
+    /**
+     * @brief Inicializa os estados 
+     * 
+     */
     void initialize_states();
+    
+    /**
+     * @brief Inicializa os eventos
+     * 
+     */
     void initialize_sfml_events();
+    
+    /**
+     * @brief 
+     * 
+     */
     void draw_guidelines();
 
     Background *map_bg;
 
 public:
+    /**
+     * @brief Constrói o objeto Game 
+     * 
+     */
     Game();
+    
+    /**
+     * @brief Destrói o objeto Game
+     * 
+     */
     virtual ~Game();
 
+    /**
+     * @brief 
+     * 
+     */
     void update_delta_time();
+    
+    /**
+     * @brief Atualiza o evento do objeto Game
+     * 
+     */
     void update_sfml_events();
+    
+    /**
+     * @brief Atualiza o estado do objeto Game
+     * 
+     */
     void update();
 
+    /**
+     * @brief Desenha na tela 
+     * 
+     */
     void draw();
 
+    /**
+     * @brief Inicia o loop principal
+     * 
+     */
     void run();
 };
 
