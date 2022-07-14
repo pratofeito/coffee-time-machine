@@ -83,14 +83,14 @@ public:
     virtual void instance_draw(sf::RenderTarget *target) = 0;
     
     /**
-     * @brief Atualiza o objeto instance
+     * @brief Atualiza o objeto Instance
      * 
      * @param delta_time 
      */
     virtual void instance_update(const float &delta_time) = 0;
     
     /**
-     * @brief Get the interact status object
+     * @brief Metodo bool que retorna interact_status 
      * 
      * @return true 
      * @return false 
