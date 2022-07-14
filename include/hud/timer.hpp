@@ -6,6 +6,7 @@
 #include <iostream>
 #include <sstream>
 #include <string>
+#define TEMPO 119
 
 #include <ctime>
 
@@ -15,10 +16,11 @@ private:
     sf::Clock m_clock;
     sf::Text m_text;
     sf::Font font;
+    int tempo_total;
 
 protected:
 public:
-    Timer();
+    Timer(int tempo);
     ~Timer();
 
     void hud_draw(sf::RenderTarget *target);

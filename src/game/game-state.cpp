@@ -34,7 +34,7 @@ GameState::GameState(sf::RenderWindow *window, std::stack<State *> *states) : St
     npc_blue_clone->npc_animation->new_state(NOTHING, LEFT, "resources/sprites/npcs/npc-blue/npc_blue_idle_left.png");
     npc_blue_clone->npc_animation->new_state(NOTHING, RIGHT, "resources/sprites/npcs/npc-blue/npc_blue_idle_right.png");
 
-    timer = new Timer;
+    timer = new Timer(119);
 
     carrot = new Item("Carrot", 5, 7, 0);
     carrot2 = new Item("Carrot 2", 10, 7, 1);
@@ -95,6 +95,9 @@ void GameState::draw(sf::RenderTarget *target)
 
     this->player->instance_draw(target);
     this->wall->instance_draw(target);
+
+    // cronometro
+    timer->hud_draw(target);
     
     // desenha walls
     for (auto wall : walls)

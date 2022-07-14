@@ -210,15 +210,12 @@ void Player::keyboard_step()
             next_tile.y = virtual_position.y;
             break;
         }
-        std::cout << "estou dentro do player estranho" << std::endl;
         // std::cout << "x: " << next_tile.x << " y: " << next_tile.y << std::endl;
         instance_state = INTERACTING;
     }
     else
     {
-        std::cout << "estou dentro do instance nothing" << std::endl;
         instance_state = NOTHING;
-        std::cout << " saindo do instance nothing" << std::endl;
     }
 }
 
@@ -235,10 +232,7 @@ void Player::instance_draw(sf::RenderTarget *target)
 
 void Player::instance_update(const float &delta_time)
 {
-    std::cout << "instance state: " << instance_state << std::endl;
-    std::cout << "instance looking: " << looking << std::endl;
-    std::cout << "virtual position x: " << virtual_position.x << std::endl;
-    std::cout << "virtual position y: " << virtual_position.y << std::endl;
+
     switch (instance_state)
     {
     case INTERACTING:
@@ -260,12 +254,6 @@ void Player::instance_update(const float &delta_time)
         check_inputs();
         keyboard_step();
     }
-
-    std::cout << "instance state: " << instance_state << std::endl;
-    std::cout << "instance looking: " << looking << std::endl;
-    std::cout << "virtual position x: " << virtual_position.x << std::endl;
-    std::cout << "virtual position y: " << virtual_position.y << std::endl;
-    std::cout << "fimm" << std::endl;
 
     player_animation->update(instance_state, looking, delta_time);
     player_sprite->setPosition(projected_position);
