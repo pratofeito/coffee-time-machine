@@ -3,7 +3,7 @@
 
 #include "collision/collision.hpp"
 #include "instances/instance.hpp"
-#include "instances/dialogue/dialogue.hpp"
+#include "dialogue/dialogue.hpp"
 #include "instances/player.hpp"
 
 class Npc : public Instance

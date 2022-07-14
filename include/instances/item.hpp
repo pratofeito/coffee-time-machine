@@ -2,7 +2,7 @@
 #define ITEM_H
 
 #include "collision/collision.hpp"
-#include "instances/dialogue/dialogue.hpp"
+#include "dialogue/dialogue.hpp"
 
 class Item : public Instance
 {
@@ -25,7 +25,7 @@ public:
     virtual ~Item();
 
     bool get_holding();
-    void set_given(bool aqui);
+    void set_given(bool given_item);
 
     std::string get_name();
 

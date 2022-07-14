@@ -69,9 +69,6 @@ void Player::player_interact()
         if (object_collidable->instance_interact() == false)
         {
             player_state = NOTHING;
-
-            x = false;
-            z = false;
         }
 
         if (object_collidable->instanceof <Item>(object_collidable))
@@ -97,6 +94,9 @@ void Player::check_inputs()
 
 bool Player::uptade_event_player(sf::Event event)
 {
+    z = false;
+    x = false;
+
     if (event.key.code == sf::Keyboard::Z)
     {
         interact_key = true;
