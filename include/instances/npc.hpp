@@ -24,6 +24,9 @@ public:
     Collision *npc_collision;
     Animation *npc_animation;
 
+    // Clone
+    bool cloned = false;
+
     Npc(std::string name, int x, int y, std::string script);
     virtual ~Npc();
 
@@ -31,6 +34,7 @@ public:
     void instance_draw(sf::RenderTarget *target) override;
     void instance_update(const float &delta_time) override;
     void set_looking(int direction);
+    int get_looking();
 
     Dialogue *get_npc_dialogue();
 };

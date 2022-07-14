@@ -74,10 +74,12 @@ void Player::player_interact()
         if (object_collidable->instanceof <Item>(object_collidable))
         {
             object_collidable->instance_interact(this->bag);
-            instance_state = MOVING;
+            instance_state = NOTHING;
         }
+
         if (object_collidable->instanceof <Npc>(object_collidable))
         {
+            object_collidable->instance_interact();
             Npc *bc = dynamic_cast<Npc *>(object_collidable);
             bc->set_looking(invert_looking(looking));
             // instance_state = MOVING;
