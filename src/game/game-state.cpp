@@ -2,8 +2,21 @@
 
 GameState::GameState(sf::RenderWindow *window, std::stack<State *> *states) : State(window, states)
 {
+
+    // criação do mapa
+    map_floor = new Background("resources/sprites/maps/main_room.png", "resources/maps/main_room_floor.csv", sf::Vector2i(0, 0));
+    map_chairs = new Background("resources/sprites/maps/main_room.png", "resources/maps/main_room_chairs.csv", sf::Vector2i(0, 0));
+    map_tables = new Background("resources/sprites/maps/main_room.png", "resources/maps/main_room_tables.csv", sf::Vector2i(0, 0));
+    map_obj = new Background("resources/sprites/maps/main_room.png", "resources/maps/main_room_obj.csv", sf::Vector2i(0, 0));
+
+    // criação do player
     player = new Player(0, 0);
+
+    // criação das paredes
     wall = new Wall(15, 10);
+    generate_walls("resources/maps/main_room_walls.csv");
+
+    // criação dos npcs
     npc_leandro = new Npc("Leandro", 10, 10, "resources/dialogues/leandro.txt");
     npc_leandro2 = new Npc("Leandro", 10, 10, "resources/dialogues/leandro_item.txt");
     npc_edinho = new Npc("Edinho", 5, 10, "resources/dialogues/edinho.txt");
@@ -30,6 +43,12 @@ GameState::~GameState()
     delete timer;
     delete player;
     delete wall;
+
+    // deleto o background do mapa criado no início
+    delete map_floor;
+    delete map_chairs;
+    delete map_tables;
+    delete map_obj;
 
     std::cout << "Estado de jogo deletado" << std::endl;
 }
@@ -60,9 +79,21 @@ void GameState::draw(sf::RenderTarget *target)
         target = this->window;
     }
 
+    // desenha primeiras partes do mapa
+    map_floor->draw(window);
+    map_chairs->draw(window);
+    map_tables->draw(window);
+
     this->player->instance_draw(target);
     this->wall->instance_draw(target);
+    
+    // desenha walls
+    for (auto wall : walls)
+    {
+        wall->instance_draw(target);
+    }
 
+// Verificar problema
     if (player->bag["Carrot 2"] == true)
     {
         if (npc_leandro->cloned == false)
@@ -90,6 +121,9 @@ void GameState::draw(sf::RenderTarget *target)
 
     this->npc_edinho->get_npc_dialogue()->dialogue_draw(target);
     this->npc_edinho2->get_npc_dialogue()->dialogue_draw(target);
+
+    // objetos em cima do mapa
+    map_obj->draw(window);
 }
 
 void GameState::update_inputs(const float &delta_time)
@@ -145,4 +179,42 @@ void GameState::update_events(sf::Event event)
 void GameState::end_state()
 {
     std::cout << "Ending game state!!!" << std::endl;
+}
+
+void GameState::generate_walls(std::string walls_dir)
+{
+    sf::Vector2i positionset_wall (0, 0);
+    std::vector<int> walls_index;
+    walls_file = std::ifstream(walls_dir);
+    std::string line;
+
+    while (std::getline(walls_file, line))
+    {
+        positionset_wall.y++;
+        std::stringstream original_string(line);
+        std::string parte;
+        while (std::getline(original_string, parte, ','))
+        {
+            positionset_wall.x++;
+            walls_index.push_back(stoi(parte));
+        }
+    }
+
+    // remove as redundancias
+    positionset_wall.x /= positionset_wall.y;
+
+    // define a posição absoluta de cada sprite
+    int index = 0;
+    for (int i = 0; i < positionset_wall.y; i++)
+    {
+        for (int j = 0; j < positionset_wall.x; j++)
+        {
+            if (walls_index[index] == 0)
+            {
+                Wall *new_wall = new Wall(j, i);
+                walls.push_back(new_wall);
+            }
+            index++;
+        }
+    }
 }
