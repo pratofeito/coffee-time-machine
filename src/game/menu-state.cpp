@@ -4,11 +4,10 @@
 Menu_state::Menu_state(sf::RenderWindow *window, std::stack<State *> *states) : State(window, states)
 {
     // Inicializando Background
-    this->background.setSize(sf::Vector2f(static_cast<float>(this->window->getSize().x),
-                                          static_cast<float>(this->window->getSize().y)));
+    this->background.setSize(sf::Vector2f(WINDOW_WIDTH, WINDOW_HEIGHT));
 
     // Carregando arquivo de texturas
-    if (!this->bg_texture.loadFromFile("resources/sprites/menu/menu_test.gif"))
+    if (!this->bg_texture.loadFromFile("resources/sprites/menu/menu_background.png"))
     {
         std::cout << "Erro loading texture" << std::endl;
     }
@@ -16,16 +15,23 @@ Menu_state::Menu_state(sf::RenderWindow *window, std::stack<State *> *states) : 
 
     // Carregando fontes
 
-    if (!this->font.loadFromFile("resources/fonts/Adumu.ttf"))
+    if (!this->font.loadFromFile("resources/fonts/pixel.ttf"))
     {
         std::cout << "Error loading font \n";
     }
 
     // Inicializando botões
 
-    this->buttons["GAME_STATE"] = new Button(200, 300, 130, 50, &this->font, "New Game", sf::Color(10, 10, 10, 100), sf::Color(20, 20, 20, 200), sf::Color(40, 40, 40, 144));
-    this->buttons["OPTIONS"] = new Button(400, 300, 130, 50, &this->font, "Options", sf::Color(10, 10, 10, 100), sf::Color(20, 20, 20, 200), sf::Color(40, 40, 40, 144));
-    this->buttons["EXIT_STATE"] = new Button(600, 300, 130, 50, &this->font, "Quit", sf::Color(10, 10, 10, 100), sf::Color(20, 20, 20, 200), sf::Color(40, 40, 40, 144));
+    int vertical_pos = (WINDOW_WIDTH / 2) - (128 / 2);
+    int horizontal_center = WINDOW_HEIGHT / 2;
+
+    this->buttons["GAME_STATE"] = new Button(vertical_pos, horizontal_center - 50, 128, 32, &this->font, "NEW GAME", sf::Color(10, 10, 10, 100), sf::Color(20, 20, 20, 200), sf::Color(40, 40, 40, 144));
+    this->buttons["OPTIONS"] = new Button(vertical_pos, horizontal_center, 128, 32, &this->font, "CREDITS", sf::Color(10, 10, 10, 100), sf::Color(20, 20, 20, 200), sf::Color(40, 40, 40, 144));
+    this->buttons["EXIT_STATE"] = new Button(vertical_pos, horizontal_center + 50, 128, 32, &this->font, "QUIT", sf::Color(10, 10, 10, 100), sf::Color(20, 20, 20, 200), sf::Color(40, 40, 40, 144));
+
+    menu_soundtrack = new Audio();
+    menu_soundtrack->define_music("resources/audio/the_space_is_deep.ogg", 60);
+    menu_soundtrack->play_music();
 }
 
 Menu_state::~Menu_state()
@@ -35,6 +41,7 @@ Menu_state::~Menu_state()
     {
         delete it->second;
     }
+    delete menu_soundtrack;
 }
 
 void Menu_state::end_state()
@@ -83,6 +90,7 @@ void Menu_state::updateButtons()
     // Começar o jogo
     if (this->buttons["GAME_STATE"]->isPressed())
     {
+        delete menu_soundtrack;
         this->states->push(new GameState(this->window, this->states));
     }
 

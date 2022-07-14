@@ -36,6 +36,11 @@ GameState::GameState(sf::RenderWindow *window, std::stack<State *> *states) : St
 
     carrot = new Item("Carrot", 5, 7, 0);
     carrot2 = new Item("Carrot 2", 10, 7, 1);
+
+    // audio
+    game_soundtrack = new Audio();
+    game_soundtrack->define_music("resources/audio/the_space_is_home.ogg", 60);
+    game_soundtrack->play_music();
 }
 
 GameState::~GameState()
@@ -49,6 +54,8 @@ GameState::~GameState()
     delete map_chairs;
     delete map_tables;
     delete map_obj;
+
+    delete game_soundtrack;
 
     std::cout << "Estado de jogo deletado" << std::endl;
 }

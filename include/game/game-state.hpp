@@ -3,6 +3,7 @@
 
 #include "game/state.hpp"
 #include "sprite-set/background.hpp"
+#include "audio/audio.hpp"
 
 class GameState : public State
 {
@@ -44,6 +45,9 @@ private:
     Item *carrot2;
 
     void generate_walls(std::string walls_dir);
+
+    // audio
+    Audio *game_soundtrack;
 
 public:
     GameState(sf::RenderWindow *window, std::stack<State *> *states);
