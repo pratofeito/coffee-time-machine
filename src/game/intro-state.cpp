@@ -3,7 +3,7 @@
 IntroState::IntroState(sf::RenderWindow *window, std::stack<State *> *states) : State(window, states)
 {
     wall = new Wall(4, 4);
-    intro = new Intro("resources/intro.txt");
+    intro = new Intro("resources/dialogues/intro.txt");
 }
 
 IntroState::~IntroState()
@@ -50,4 +50,5 @@ void IntroState::update_events(sf::Event event)
 void IntroState::end_state()
 {
     std::cout << "Ending game state!!!" << std::endl;
+    // this->states->push(new GameState(this->window, this->states));
 }

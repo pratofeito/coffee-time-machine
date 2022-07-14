@@ -92,6 +92,7 @@ void Menu_state::updateButtons()
     {
         delete menu_soundtrack;
         this->states->push(new GameState(this->window, this->states));
+        // this->states->push(new IntroState(this->window, this->states));
     }
 
     if (this->buttons["EXIT_STATE"]->isPressed())

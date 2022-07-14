@@ -4,6 +4,7 @@
 #include "game/state.hpp"
 #include "sprite-set/background.hpp"
 #include "audio/audio.hpp"
+#include "game/game-state.hpp"
 
 class GameState : public State
 {

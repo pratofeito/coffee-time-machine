@@ -148,6 +148,8 @@ void GameState::update_events(sf::Event event)
     {
         player->uptade_event_player(event);
 
+        std::cout << "entrei em coiso estranho" << std::endl;
+
         if ((object_collidable == npc_edinho) || (object_collidable == npc_edinho2))
         {
             npc_edinho->get_npc_dialogue()->update_event_dialogue(player->z, player->x, false);
@@ -165,6 +167,7 @@ void GameState::update_events(sf::Event event)
                 }
             }
         }
+        std::cout << "primeiro if" << std::endl;
         if ((object_collidable == npc_blue) || (object_collidable == npc_blue_clone))
         {
             npc_blue->get_npc_dialogue()->update_event_dialogue(player->z, player->x, false);
@@ -182,6 +185,7 @@ void GameState::update_events(sf::Event event)
                 }
             }
         }
+        std::cout << "segundo if" << std::endl;
     }
 }
 
