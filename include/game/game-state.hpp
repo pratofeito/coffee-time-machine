@@ -4,6 +4,7 @@
 #include "game/state.hpp"
 #include "sprite-set/background.hpp"
 #include "audio/audio.hpp"
+#include "game/game-state.hpp"
 
 class GameState : public State
 {
@@ -16,7 +17,7 @@ private:
         RIGHT
     };
 
-    enum states
+    enum states_player
     {
         MOVING,
         INTERACTING,
@@ -35,6 +36,7 @@ private:
     // Blue
     Npc *npc_blue;
     Npc *npc_blue_clone;
+
     // Pink
     Npc *npc_pink;
     Npc *npc_pink_clone;

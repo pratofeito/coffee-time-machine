@@ -1,8 +1,8 @@
 #include "game/game-state.hpp"
+#include "game/ending-state.hpp"
 
 GameState::GameState(sf::RenderWindow *window, std::stack<State *> *states) : State(window, states)
 {
-
     // criação do mapa
     map_floor = new Background("resources/sprites/maps/main_room.png", "resources/maps/main_room_floor.csv", sf::Vector2i(0, 0));
     map_chairs = new Background("resources/sprites/maps/main_room.png", "resources/maps/main_room_chairs.csv", sf::Vector2i(0, 0));
@@ -18,7 +18,7 @@ GameState::GameState(sf::RenderWindow *window, std::stack<State *> *states) : St
     // inicializa os npcs
     init_npcs();
 
-    timer = new Timer;
+    timer = new Timer(119);
 
     coffee = new Item("Coffee", 19, 7, 0, "resources/sprites/items/item_coffee_small.png", "resources/sprites/items/item_coffee.png");
     chocolate = new Item("Chocolate", 10, 7, 1, "resources/sprites/items/item_choco_small.png", "resources/sprites/items/item_choco.png");
@@ -154,9 +154,9 @@ void GameState::update(const float &delta_time)
     
     
 
-    if (timer->timer_update() == 110)
+    if (timer->timer_update() == 115)
     {
-        // quit_state = true;
+        this->states->push(new EndingState(this->window, this->states));
     }
 }
 
@@ -173,6 +173,10 @@ void GameState::draw(sf::RenderTarget *target)
     map_tables->draw(window);
 
     this->player->instance_draw(target);
+    this->wall->instance_draw(target);
+
+    // cronometro
+    timer->hud_draw(target);
 
     // desenha walls
     for (auto wall : walls)

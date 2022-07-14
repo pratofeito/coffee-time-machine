@@ -63,9 +63,12 @@ void Player::player_interact()
 {
     Instance *object_collidable = player_colision->get_collision(next_tile);
 
+    // // evitando problema de falha de segmentação
+    // z = sf::Keyboard::isKeyPressed(sf::Keyboard::Z);
+    // x = sf::Keyboard::isKeyPressed(sf::Keyboard::X);
+    // if (object_collidable != nullptr && (z || x))
     if (object_collidable != nullptr)
     {
-
         if (object_collidable->instance_interact() == false)
         {
             instance_state = NOTHING;
@@ -89,6 +92,8 @@ void Player::player_interact()
     {
         instance_state = NOTHING;
     }
+    z = false;
+    x = false;
 }
 
 void Player::check_inputs()
@@ -227,6 +232,7 @@ void Player::instance_draw(sf::RenderTarget *target)
 
 void Player::instance_update(const float &delta_time)
 {
+
     switch (instance_state)
     {
     case INTERACTING:

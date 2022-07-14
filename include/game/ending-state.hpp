@@ -7,7 +7,10 @@ class EndingState : public State
 {
 protected:
     // Elementos de Game
+    sf::Text text;
+    sf::Font font;
     Wall *wall;
+    Intro *intro;
     sf::Event sfml_event;
 
 public:
