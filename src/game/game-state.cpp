@@ -154,10 +154,12 @@ void GameState::update(const float &delta_time)
     
     
 
-    if (timer->timer_update() == 115)
+    if (timer->timer_update() == 0)
     {
         this->states->push(new EndingState(this->window, this->states));
     }
+
+
 }
 
 void GameState::draw(sf::RenderTarget *target)
@@ -173,7 +175,6 @@ void GameState::draw(sf::RenderTarget *target)
     map_tables->draw(window);
 
     this->player->instance_draw(target);
-    this->wall->instance_draw(target);
 
     // cronometro
     timer->hud_draw(target);
@@ -378,7 +379,7 @@ void GameState::update_events(sf::Event event)
             if (player->bag["Chocolate"] == true && player->bag["Camera"] == true && player->bag["Penguin"] == true && player->bag["Coffee"] == true)
             {
                 // Levar para ending state
-                std::cout << "AAAAAAAAAAAJITIJSIJ" << std::endl;
+                this->states->push(new EndingState(this->window, this->states));
             }
         }
     }
