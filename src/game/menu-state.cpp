@@ -1,4 +1,6 @@
 #include "game/menu-state.hpp"
+#include "game/credits-state.hpp"
+#include "game/intro-state.hpp"
 #include "game/state.hpp"
 
 Menu_state::Menu_state(sf::RenderWindow *window, std::stack<State *> *states) : State(window, states)
@@ -91,8 +93,7 @@ void Menu_state::updateButtons()
     if (this->buttons["GAME_STATE"]->isPressed())
     {
         delete menu_soundtrack;
-        this->states->push(new GameState(this->window, this->states));
-        // this->states->push(new IntroState(this->window, this->states));
+        this->states->push(new IntroState(this->window, this->states));
     }
 
     if (this->buttons["EXIT_STATE"]->isPressed())
@@ -100,6 +101,10 @@ void Menu_state::updateButtons()
         window->clear();
         end_state();
         // quit = true
+    }
+    if (this->buttons["OPTIONS"]->isPressed())
+    {
+        this->states->push(new CreditsState(this->window, this->states));
     }
 }
 

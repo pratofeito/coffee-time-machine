@@ -1,8 +1,8 @@
 #include "game/game-state.hpp"
+#include "game/ending-state.hpp"
 
 GameState::GameState(sf::RenderWindow *window, std::stack<State *> *states) : State(window, states)
 {
-
     // criação do mapa
     map_floor = new Background("resources/sprites/maps/main_room.png", "resources/maps/main_room_floor.csv", sf::Vector2i(0, 0));
     map_chairs = new Background("resources/sprites/maps/main_room.png", "resources/maps/main_room_chairs.csv", sf::Vector2i(0, 0));
@@ -75,9 +75,9 @@ void GameState::update(const float &delta_time)
     carrot->instance_update(delta_time);
     carrot2->instance_update(delta_time);
 
-    if (timer->timer_update() == 110)
+    if (timer->timer_update() == 115)
     {
-        // quit_state = true;
+        this->states->push(new EndingState(this->window, this->states));
     }
 }
 
@@ -98,14 +98,14 @@ void GameState::draw(sf::RenderTarget *target)
 
     // cronometro
     timer->hud_draw(target);
-    
+
     // desenha walls
     for (auto wall : walls)
     {
         wall->instance_draw(target);
     }
 
-// Verificar problema
+    // Verificar problema
     if (player->bag["Carrot 2"] == true)
     {
         if (npc_blue->cloned == false)
@@ -199,7 +199,7 @@ void GameState::end_state()
 
 void GameState::generate_walls(std::string walls_dir)
 {
-    sf::Vector2i positionset_wall (0, 0);
+    sf::Vector2i positionset_wall(0, 0);
     std::vector<int> walls_index;
     walls_file = std::ifstream(walls_dir);
     std::string line;

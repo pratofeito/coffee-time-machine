@@ -17,7 +17,7 @@ private:
         RIGHT
     };
 
-    enum states
+    enum states_player
     {
         MOVING,
         INTERACTING,
@@ -35,7 +35,7 @@ private:
     Wall *wall;
     Npc *npc_blue;
     Npc *npc_blue_clone;
-    std::vector<Wall*> walls;
+    std::vector<Wall *> walls;
     std::ifstream walls_file;
 
     Npc *npc_edinho;

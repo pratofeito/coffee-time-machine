@@ -7,6 +7,7 @@
 #define TILE_SIZE 32
 
 #include "game-state.hpp"
+#include "credits-state.hpp"
 #include "menu-state.hpp"
 #include "intro-state.hpp"
 #include "ending-state.hpp"
@@ -24,7 +25,7 @@ private:
     // Empilhar os estados de jogo para facilitar a mudança entre os estados
     std::stack<State *> states;
 
-    std::map<std::string, int>supportedKeys;
+    std::map<std::string, int> supportedKeys;
 
     void initialize_window();
     void initialize_states();

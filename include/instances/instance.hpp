@@ -17,7 +17,7 @@ class Instance
 {
 protected:
     sf::Texture *texture;
-    //sf::Sprite sprite;
+    // sf::Sprite sprite;
     bool interact_status;
     int looking;
     int instance_state;
