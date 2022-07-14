@@ -32,18 +32,34 @@ private:
 
     // Elementos de Game
     Player *player;
-    Wall *wall;
+
+    // Blue
     Npc *npc_blue;
     Npc *npc_blue_clone;
+
+    // Pink
+    Npc *npc_pink;
+    Npc *npc_pink_clone;
+    // Cian
+    Npc *npc_cyan;
+    Npc *npc_cyan_clone;
+    // Yellow
+    Npc *npc_yellow;
+    Npc *npc_yellow_clone;
+
+    // Jitsi
+    Npc *npc_jitsi_intro;
+    Npc *npc_jitsi_complete;
+
     std::vector<Wall *> walls;
     std::ifstream walls_file;
 
-    Npc *npc_edinho;
-    Npc *npc_edinho2;
     Timer *timer;
 
-    Item *carrot;
-    Item *carrot2;
+    Item *coffee;
+    Item *chocolate;
+    Item *penguin;
+    Item *camera;
 
     void generate_walls(std::string walls_dir);
 
@@ -54,6 +70,7 @@ public:
     GameState(sf::RenderWindow *window, std::stack<State *> *states);
     virtual ~GameState();
 
+    void init_npcs();
     void update(const float &delta_time) override;
     void update_inputs(const float &delta_time) override;
     void update_events(sf::Event event) override;

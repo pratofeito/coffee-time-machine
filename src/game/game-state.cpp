@@ -13,31 +13,17 @@ GameState::GameState(sf::RenderWindow *window, std::stack<State *> *states) : St
     player = new Player(0, 0);
 
     // criação das paredes
-    wall = new Wall(15, 10);
     generate_walls("resources/maps/main_room_walls.csv");
 
-    // criação dos npcs
-    npc_blue = new Npc("Leandro", 9, 10, "resources/dialogues/leandro.txt");
-    npc_blue_clone = new Npc("Leandro", 9, 10, "resources/dialogues/leandro_item.txt");
-    npc_edinho = new Npc("Edinho", 5, 10, "resources/dialogues/edinho.txt");
-    npc_edinho2 = new Npc("Edinho", 5, 10, "resources/dialogues/edinho_item.txt");
-
-    npc_blue->set_looking(LEFT);
-
-    npc_blue->npc_animation->new_state(NOTHING, UP, "resources/sprites/npcs/npc-blue/npc_blue_idle_up.png");
-    npc_blue->npc_animation->new_state(NOTHING, DOWN, "resources/sprites/npcs/npc-blue/npc_blue_idle_down.png");
-    npc_blue->npc_animation->new_state(NOTHING, LEFT, "resources/sprites/npcs/npc-blue/npc_blue_idle_left.png");
-    npc_blue->npc_animation->new_state(NOTHING, RIGHT, "resources/sprites/npcs/npc-blue/npc_blue_idle_right.png");
-
-    npc_blue_clone->npc_animation->new_state(NOTHING, UP, "resources/sprites/npcs/npc-blue/npc_blue_idle_up.png");
-    npc_blue_clone->npc_animation->new_state(NOTHING, DOWN, "resources/sprites/npcs/npc-blue/npc_blue_idle_down.png");
-    npc_blue_clone->npc_animation->new_state(NOTHING, LEFT, "resources/sprites/npcs/npc-blue/npc_blue_idle_left.png");
-    npc_blue_clone->npc_animation->new_state(NOTHING, RIGHT, "resources/sprites/npcs/npc-blue/npc_blue_idle_right.png");
+    // inicializa os npcs
+    init_npcs();
 
     timer = new Timer(119);
 
-    carrot = new Item("Carrot", 5, 7, 0);
-    carrot2 = new Item("Carrot 2", 10, 7, 1);
+    coffee = new Item("Coffee", 19, 7, 0, "resources/sprites/items/item_coffee_small.png", "resources/sprites/items/item_coffee.png");
+    chocolate = new Item("Chocolate", 10, 7, 1, "resources/sprites/items/item_choco_small.png", "resources/sprites/items/item_choco.png");
+    penguin = new Item("Penguin", 7, 12, 2, "resources/sprites/items/item_penguin_small.png", "resources/sprites/items/item_penguin.png");
+    camera = new Item("Camera", 7, 7, 3, "resources/sprites/items/item_cam_small.png", "resources/sprites/items/item_cam.png");
 
     // audio
     game_soundtrack = new Audio();
@@ -49,17 +35,100 @@ GameState::~GameState()
 {
     delete timer;
     delete player;
-    delete wall;
 
     // deleto o background do mapa criado no início
     delete map_floor;
     delete map_chairs;
     delete map_tables;
     delete map_obj;
+    for (auto wall : walls)
+    {
+        delete wall;
+    }
 
     delete game_soundtrack;
 
     std::cout << "Estado de jogo deletado" << std::endl;
+}
+void GameState::init_npcs()
+{
+    // Criação dos npcs
+    // Blue
+    npc_blue = new Npc("Blue", 9, 10, "resources/dialogues/blue.txt");
+    npc_blue_clone = new Npc("Blue", 9, 10, "resources/dialogues/blue_item.txt");
+    // Pink
+    npc_pink = new Npc("Pink", 20, 6, "resources/dialogues/pink.txt");
+    npc_pink_clone = new Npc("Pink", 20, 6, "resources/dialogues/pink_item.txt");
+    // Yellow
+    npc_yellow = new Npc("Yellow", 5, 5, "resources/dialogues/yellow.txt");
+    npc_yellow_clone = new Npc("Yellow", 5, 5, "resources/dialogues/yellow_item.txt");
+    // cyan
+    npc_cyan = new Npc("Cyan", 15, 7, "resources/dialogues/cyan.txt");
+    npc_cyan_clone = new Npc("Cyan", 15, 7, "resources/dialogues/cyan_item.txt");
+    // Jitsi
+    npc_jitsi_intro = new Npc("Jitsi Intro", 12, 3, "resources/dialogues/jitsi_intro.txt");
+    npc_jitsi_complete = new Npc("Jitsi Complete", 12, 3, "resources/dialogues/jitsi_complete.txt");
+
+    // Blue
+    npc_blue->npc_animation->new_state(NOTHING, UP, "resources/sprites/npcs/npc-blue/npc_blue_idle_up.png");
+    npc_blue->npc_animation->new_state(NOTHING, DOWN, "resources/sprites/npcs/npc-blue/npc_blue_idle_down.png");
+    npc_blue->npc_animation->new_state(NOTHING, LEFT, "resources/sprites/npcs/npc-blue/npc_blue_idle_left.png");
+    npc_blue->npc_animation->new_state(NOTHING, RIGHT, "resources/sprites/npcs/npc-blue/npc_blue_idle_right.png");
+
+    npc_blue_clone->npc_animation->new_state(NOTHING, UP, "resources/sprites/npcs/npc-blue/npc_blue_idle_up.png");
+    npc_blue_clone->npc_animation->new_state(NOTHING, DOWN, "resources/sprites/npcs/npc-blue/npc_blue_idle_down.png");
+    npc_blue_clone->npc_animation->new_state(NOTHING, LEFT, "resources/sprites/npcs/npc-blue/npc_blue_idle_left.png");
+    npc_blue_clone->npc_animation->new_state(NOTHING, RIGHT, "resources/sprites/npcs/npc-blue/npc_blue_idle_right.png");
+    npc_blue->set_looking(LEFT);
+
+    // Pink
+    npc_pink->npc_animation->new_state(NOTHING, UP, "resources/sprites/npcs/npc-pink/npc_pink_idle_up.png");
+    npc_pink->npc_animation->new_state(NOTHING, DOWN, "resources/sprites/npcs/npc-pink/npc_pink_idle_down.png");
+    npc_pink->npc_animation->new_state(NOTHING, LEFT, "resources/sprites/npcs/npc-pink/npc_pink_idle_left.png");
+    npc_pink->npc_animation->new_state(NOTHING, RIGHT, "resources/sprites/npcs/npc-pink/npc_pink_idle_right.png");
+
+    npc_pink_clone->npc_animation->new_state(NOTHING, UP, "resources/sprites/npcs/npc-pink/npc_pink_idle_up.png");
+    npc_pink_clone->npc_animation->new_state(NOTHING, DOWN, "resources/sprites/npcs/npc-pink/npc_pink_idle_down.png");
+    npc_pink_clone->npc_animation->new_state(NOTHING, LEFT, "resources/sprites/npcs/npc-pink/npc_pink_idle_left.png");
+    npc_pink_clone->npc_animation->new_state(NOTHING, RIGHT, "resources/sprites/npcs/npc-pink/npc_pink_idle_right.png");
+    npc_pink->set_looking(UP);
+
+    // Yellow
+    npc_yellow->npc_animation->new_state(NOTHING, UP, "resources/sprites/npcs/npc-yellow/npc_yellow_idle_up.png");
+    npc_yellow->npc_animation->new_state(NOTHING, DOWN, "resources/sprites/npcs/npc-yellow/npc_yellow_idle_down.png");
+    npc_yellow->npc_animation->new_state(NOTHING, LEFT, "resources/sprites/npcs/npc-yellow/npc_yellow_idle_left.png");
+    npc_yellow->npc_animation->new_state(NOTHING, RIGHT, "resources/sprites/npcs/npc-yellow/npc_yellow_idle_right.png");
+
+    npc_yellow_clone->npc_animation->new_state(NOTHING, UP, "resources/sprites/npcs/npc-yellow/npc_yellow_idle_up.png");
+    npc_yellow_clone->npc_animation->new_state(NOTHING, DOWN, "resources/sprites/npcs/npc-yellow/npc_yellow_idle_down.png");
+    npc_yellow_clone->npc_animation->new_state(NOTHING, LEFT, "resources/sprites/npcs/npc-yellow/npc_yellow_idle_left.png");
+    npc_yellow_clone->npc_animation->new_state(NOTHING, RIGHT, "resources/sprites/npcs/npc-yellow/npc_yellow_idle_right.png");
+    npc_yellow->set_looking(UP);
+
+    // cyan
+    npc_cyan->npc_animation->new_state(NOTHING, UP, "resources/sprites/npcs/npc-cyan/npc_cyan_idle_up.png");
+    npc_cyan->npc_animation->new_state(NOTHING, DOWN, "resources/sprites/npcs/npc-cyan/npc_cyan_idle_down.png");
+    npc_cyan->npc_animation->new_state(NOTHING, LEFT, "resources/sprites/npcs/npc-cyan/npc_cyan_idle_left.png");
+    npc_cyan->npc_animation->new_state(NOTHING, RIGHT, "resources/sprites/npcs/npc-cyan/npc_cyan_idle_right.png");
+
+    npc_cyan_clone->npc_animation->new_state(NOTHING, UP, "resources/sprites/npcs/npc-cyan/npc_cyan_idle_up.png");
+    npc_cyan_clone->npc_animation->new_state(NOTHING, DOWN, "resources/sprites/npcs/npc-cyan/npc_cyan_idle_down.png");
+    npc_cyan_clone->npc_animation->new_state(NOTHING, LEFT, "resources/sprites/npcs/npc-cyan/npc_cyan_idle_left.png");
+    npc_cyan_clone->npc_animation->new_state(NOTHING, RIGHT, "resources/sprites/npcs/npc-cyan/npc_cyan_idle_right.png");
+    npc_cyan->set_looking(RIGHT);
+
+    // Jitsi
+    npc_jitsi_intro->npc_animation->new_state(NOTHING, UP, "resources/sprites/npcs/npc-jitsi/jitsi_idle_up.png");
+    npc_jitsi_intro->npc_animation->new_state(NOTHING, DOWN, "resources/sprites/npcs/npc-jitsi/jitsi_idle_down.png");
+    npc_jitsi_intro->npc_animation->new_state(NOTHING, LEFT, "resources/sprites/npcs/npc-jitsi/jitsi_idle_left.png");
+    npc_jitsi_intro->npc_animation->new_state(NOTHING, RIGHT, "resources/sprites/npcs/npc-jitsi/jitsi_idle_right.png");
+
+    npc_jitsi_complete->npc_animation->new_state(NOTHING, UP, "resources/sprites/npcs/npc-jitsi/jitsi_idle_up.png");
+    npc_jitsi_complete->npc_animation->new_state(NOTHING, DOWN, "resources/sprites/npcs/npc-jitsi/jitsi_idle_down.png");
+    npc_jitsi_complete->npc_animation->new_state(NOTHING, LEFT, "resources/sprites/npcs/npc-jitsi/jitsi_idle_left.png");
+    npc_jitsi_complete->npc_animation->new_state(NOTHING, RIGHT, "resources/sprites/npcs/npc-jitsi/jitsi_idle_right.png");
+
+    npc_jitsi_intro->set_looking(DOWN);
 }
 
 void GameState::update(const float &delta_time)
@@ -69,16 +138,28 @@ void GameState::update(const float &delta_time)
 
     this->npc_blue->instance_update(delta_time);
     this->npc_blue_clone->instance_update(delta_time);
-    this->npc_edinho->instance_update(delta_time);
-    this->npc_edinho2->instance_update(delta_time);
+    this->npc_pink->instance_update(delta_time);
+    this->npc_pink_clone->instance_update(delta_time);
+    this->npc_cyan->instance_update(delta_time);
+    this->npc_cyan_clone->instance_update(delta_time);
+    this->npc_yellow->instance_update(delta_time);
+    this->npc_yellow_clone->instance_update(delta_time);
+    this->npc_jitsi_intro->instance_update(delta_time);
+    this->npc_jitsi_complete->instance_update(delta_time);
 
-    carrot->instance_update(delta_time);
-    carrot2->instance_update(delta_time);
+    coffee->instance_update(delta_time);
+     chocolate->instance_update(delta_time);
+    penguin->instance_update(delta_time);
+     camera->instance_update(delta_time);
+    
+    
 
-    if (timer->timer_update() == 115)
+    if (timer->timer_update() == 0)
     {
         this->states->push(new EndingState(this->window, this->states));
     }
+
+
 }
 
 void GameState::draw(sf::RenderTarget *target)
@@ -94,7 +175,6 @@ void GameState::draw(sf::RenderTarget *target)
     map_tables->draw(window);
 
     this->player->instance_draw(target);
-    this->wall->instance_draw(target);
 
     // cronometro
     timer->hud_draw(target);
@@ -105,8 +185,25 @@ void GameState::draw(sf::RenderTarget *target)
         wall->instance_draw(target);
     }
 
-    // Verificar problema
-    if (player->bag["Carrot 2"] == true)
+    // Desenha os NPCs
+
+    // PINK
+    if (player->bag["Chocolate"] == true)
+    {
+        if (npc_pink->cloned == false)
+        {
+            npc_pink_clone->set_looking(npc_pink->get_looking());
+        }
+        npc_pink->cloned = true;
+        this->npc_pink_clone->instance_draw(target); //
+    }
+    else
+    {
+        this->npc_pink->instance_draw(target);
+    }
+
+    // BLUE
+    if (player->bag["Coffee"] == true)
     {
         if (npc_blue->cloned == false)
         {
@@ -120,22 +217,74 @@ void GameState::draw(sf::RenderTarget *target)
         this->npc_blue->instance_draw(target);
     }
 
-    this->npc_edinho->instance_draw(target);
-    this->npc_edinho2->instance_draw(target);
+    // YELLOW
+    if (player->bag["Camera"] == true)
+    {
+        if (npc_yellow->cloned == false)
+        {
+            npc_yellow_clone->set_looking(npc_yellow->get_looking());
+        }
+        npc_yellow->cloned = true;
+        this->npc_yellow_clone->instance_draw(target); //
+    }
+    else
+    {
+        this->npc_yellow->instance_draw(target);
+    }
 
+    // cyan
+    if (player->bag["Penguin"] == true)
+    {
+        if (npc_cyan->cloned == false)
+        {
+            npc_cyan_clone->set_looking(npc_cyan->get_looking());
+        }
+        npc_cyan->cloned = true;
+        this->npc_cyan_clone->instance_draw(target); //
+    }
+    else
+    {
+        this->npc_cyan->instance_draw(target);
+    }
+
+    // JITSI
+    if(player->bag["Chocolate"] == true && player->bag["Penguin"]== true
+    && player->bag["Camera"] == true &&player->bag["Coffee"]== true)
+    {
+        if(npc_jitsi_intro->cloned == false)
+        {
+            this->npc_jitsi_complete->instance_draw(target);
+        }
+        npc_jitsi_intro->cloned = true;
+        npc_jitsi_complete->instance_draw(target);
+    }else
+    {
+        this->npc_jitsi_intro->instance_draw(target);
+    }
     // this->timer->hud_draw(target);
 
-    this->carrot->instance_draw(target);
-    this->carrot2->instance_draw(target); //
+    // objetos em cima do mapa
+    map_obj->draw(window);
 
     this->npc_blue->get_npc_dialogue()->dialogue_draw(target);
     this->npc_blue_clone->get_npc_dialogue()->dialogue_draw(target);
 
-    this->npc_edinho->get_npc_dialogue()->dialogue_draw(target);
-    this->npc_edinho2->get_npc_dialogue()->dialogue_draw(target);
+    this->npc_pink->get_npc_dialogue()->dialogue_draw(target);
+    this->npc_pink_clone->get_npc_dialogue()->dialogue_draw(target);
 
-    // objetos em cima do mapa
-    map_obj->draw(window);
+    this->npc_yellow->get_npc_dialogue()->dialogue_draw(target);
+    this->npc_yellow_clone->get_npc_dialogue()->dialogue_draw(target);
+
+    this->npc_cyan->get_npc_dialogue()->dialogue_draw(target);
+    this->npc_cyan_clone->get_npc_dialogue()->dialogue_draw(target);
+
+    this->npc_jitsi_intro->get_npc_dialogue()->dialogue_draw(target);
+    this->npc_jitsi_complete->get_npc_dialogue()->dialogue_draw(target);
+
+    this->coffee->instance_draw(target);
+    this->chocolate->instance_draw(target);
+    this->camera->instance_draw(target);
+    this->penguin->instance_draw(target);
 }
 
 void GameState::update_inputs(const float &delta_time)
@@ -151,44 +300,88 @@ void GameState::update_events(sf::Event event)
     {
         player->uptade_event_player(event);
 
-        std::cout << "entrei em coiso estranho" << std::endl;
-
-        if ((object_collidable == npc_edinho) || (object_collidable == npc_edinho2))
+        if ((object_collidable == npc_pink) || (object_collidable == npc_pink_clone))
         {
-            npc_edinho->get_npc_dialogue()->update_event_dialogue(player->z, player->x, false);
-            npc_edinho2->get_npc_dialogue()->update_event_dialogue(player->z, player->x, true);
-            if (carrot->get_holding() == true)
+            npc_pink->get_npc_dialogue()->update_event_dialogue(player->z, player->x, false);
+            npc_pink_clone->get_npc_dialogue()->update_event_dialogue(player->z, player->x, true);
+            if (chocolate->get_holding() == true)
             {
-                npc_edinho->npc_collision->disable_collision();
-                if (npc_edinho2->get_npc_dialogue()->given == false)
+                npc_pink->npc_collision->disable_collision();
+                if (npc_pink_clone->get_npc_dialogue()->given == false)
                 {
-                    carrot->set_given(false);
+                    chocolate->set_given(false);
                 }
-                if (npc_edinho2->get_npc_dialogue()->given == true)
+                if (npc_pink_clone->get_npc_dialogue()->given == true)
                 {
-                    carrot->set_given(true);
+                    chocolate->set_given(true);
                 }
             }
         }
-        std::cout << "primeiro if" << std::endl;
+
         if ((object_collidable == npc_blue) || (object_collidable == npc_blue_clone))
         {
             npc_blue->get_npc_dialogue()->update_event_dialogue(player->z, player->x, false);
             npc_blue_clone->get_npc_dialogue()->update_event_dialogue(player->z, player->x, true);
-            if (carrot2->get_holding() == true)
+            if (coffee->get_holding() == true)
             {
                 npc_blue->npc_collision->disable_collision();
                 if (npc_blue_clone->get_npc_dialogue()->given == false)
                 {
-                    carrot2->set_given(false);
+                    coffee->set_given(false);
                 }
                 if (npc_blue_clone->get_npc_dialogue()->given == true)
                 {
-                    carrot2->set_given(true);
+                    coffee->set_given(true);
                 }
             }
         }
-        std::cout << "segundo if" << std::endl;
+
+        if ((object_collidable == npc_yellow) || (object_collidable == npc_yellow_clone))
+        {
+            npc_yellow->get_npc_dialogue()->update_event_dialogue(player->z, player->x, false);
+            npc_yellow_clone->get_npc_dialogue()->update_event_dialogue(player->z, player->x, true);
+            if (camera->get_holding() == true)
+            {
+                npc_yellow->npc_collision->disable_collision();
+                if (npc_yellow_clone->get_npc_dialogue()->given == false)
+                {
+                    camera->set_given(false);
+                }
+                if (npc_yellow_clone->get_npc_dialogue()->given == true)
+                {
+                    camera->set_given(true);
+                }
+            }
+        }
+
+        if ((object_collidable == npc_cyan) || (object_collidable == npc_cyan_clone))
+        {
+            npc_cyan->get_npc_dialogue()->update_event_dialogue(player->z, player->x, false);
+            npc_cyan_clone->get_npc_dialogue()->update_event_dialogue(player->z, player->x, true);
+            if (penguin->get_holding() == true)
+            {
+                npc_cyan->npc_collision->disable_collision();
+                if (npc_cyan_clone->get_npc_dialogue()->given == false)
+                {
+                    penguin->set_given(false);
+                }
+                if (npc_cyan_clone->get_npc_dialogue()->given == true)
+                {
+                    penguin->set_given(true);
+                }
+            }
+        }
+
+        if ((object_collidable == npc_jitsi_intro) || (object_collidable == npc_jitsi_complete))
+        {
+            npc_jitsi_intro->get_npc_dialogue()->update_event_dialogue(player->z, player->x, false);
+            npc_jitsi_complete->get_npc_dialogue()->update_event_dialogue(player->z, player->x, true);
+            if (player->bag["Chocolate"] == true && player->bag["Camera"] == true && player->bag["Penguin"] == true && player->bag["Coffee"] == true)
+            {
+                // Levar para ending state
+                this->states->push(new EndingState(this->window, this->states));
+            }
+        }
     }
 }
 

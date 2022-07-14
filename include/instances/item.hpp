@@ -17,11 +17,18 @@ private:
     bool holding_item;
     int i;
 
+    sf::Texture *spr_texture;
+    sf::Sprite *spr_item;
+
+    sf::Texture *spr_texture_icon;
+    sf::Sprite *spr_item_icon;
+
+
 public:
     bool given;
     sf::RectangleShape carrot_sprite;
 
-    Item(std::string name, int x, int y, int i);
+    Item(std::string name, int x, int y, int i, std::string spr_dir, std::string spr_dir_icon);
     virtual ~Item();
 
     bool get_holding();
