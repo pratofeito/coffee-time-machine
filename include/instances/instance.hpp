@@ -1,7 +1,7 @@
 /**
  * @file instance.hpp
- * @author your name (you@domain.com)
- * @brief 
+ * @author heitoreu
+ * @brief Definições da classe instance
  * @version 0.1
  * @date 2022-07-13
  * 
@@ -38,7 +38,7 @@ protected:
 
 public:
     /**
-     * @brief Construct a new Instance object
+     * @brief Constrói o objeto do tipo Instance 
      * 
      * @param x 
      * @param y 
@@ -46,7 +46,7 @@ public:
     Instance(int x, int y);
     
     /**
-     * @brief Destroy the Instance object
+     * @brief Destrói o objeto Instance 
      * 
      */
     virtual ~Instance();
@@ -54,7 +54,7 @@ public:
     sf::Vector2f projected_position;
 
     /**
-     * @brief 
+     * @brief retorna se é true ou false de acordo com  a interação
      * 
      * @return true 
      * @return false 
@@ -69,21 +69,21 @@ public:
     virtual void instance_interact(std::map<const std::string, bool> &bag) {}
     
     /**
-     * @brief 
+     * @brief
      * 
      * @param _player_state 
      */
     virtual void instance_interact(int &_player_state) {}
     
     /**
-     * @brief 
+     * @brief Desenha o objeto Instance para o destino de renderização
      * 
      * @param target 
      */
     virtual void instance_draw(sf::RenderTarget *target) = 0;
     
     /**
-     * @brief 
+     * @brief Atualiza o objeto instance
      * 
      * @param delta_time 
      */
