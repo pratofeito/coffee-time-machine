@@ -32,8 +32,8 @@ private:
     // Elementos de Game
     Player *player;
     Wall *wall;
-    Npc *npc_leandro;
-    Npc *npc_leandro2;
+    Npc *npc_blue;
+    Npc *npc_blue_clone;
     std::vector<Wall*> walls;
     std::ifstream walls_file;
 

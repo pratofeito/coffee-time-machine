@@ -17,20 +17,22 @@ GameState::GameState(sf::RenderWindow *window, std::stack<State *> *states) : St
     generate_walls("resources/maps/main_room_walls.csv");
 
     // criação dos npcs
-    npc_leandro = new Npc("Leandro", 10, 10, "resources/dialogues/leandro.txt");
-    npc_leandro2 = new Npc("Leandro", 10, 10, "resources/dialogues/leandro_item.txt");
+    npc_blue = new Npc("Leandro", 9, 10, "resources/dialogues/leandro.txt");
+    npc_blue_clone = new Npc("Leandro", 9, 10, "resources/dialogues/leandro_item.txt");
     npc_edinho = new Npc("Edinho", 5, 10, "resources/dialogues/edinho.txt");
     npc_edinho2 = new Npc("Edinho", 5, 10, "resources/dialogues/edinho_item.txt");
 
-    npc_leandro->npc_animation->new_state(NOTHING, UP, "resources/sprites/npcs/npc-blue/npc_blue_idle_up.png");
-    npc_leandro->npc_animation->new_state(NOTHING, DOWN, "resources/sprites/npcs/npc-blue/npc_blue_idle_down.png");
-    npc_leandro->npc_animation->new_state(NOTHING, LEFT, "resources/sprites/npcs/npc-blue/npc_blue_idle_left.png");
-    npc_leandro->npc_animation->new_state(NOTHING, RIGHT, "resources/sprites/npcs/npc-blue/npc_blue_idle_right.png");
+    npc_blue->set_looking(LEFT);
 
-    npc_leandro2->npc_animation->new_state(NOTHING, UP, "resources/sprites/npcs/npc-blue/npc_blue_idle_up.png");
-    npc_leandro2->npc_animation->new_state(NOTHING, DOWN, "resources/sprites/npcs/npc-blue/npc_blue_idle_down.png");
-    npc_leandro2->npc_animation->new_state(NOTHING, LEFT, "resources/sprites/npcs/npc-blue/npc_blue_idle_left.png");
-    npc_leandro2->npc_animation->new_state(NOTHING, RIGHT, "resources/sprites/npcs/npc-blue/npc_blue_idle_right.png");
+    npc_blue->npc_animation->new_state(NOTHING, UP, "resources/sprites/npcs/npc-blue/npc_blue_idle_up.png");
+    npc_blue->npc_animation->new_state(NOTHING, DOWN, "resources/sprites/npcs/npc-blue/npc_blue_idle_down.png");
+    npc_blue->npc_animation->new_state(NOTHING, LEFT, "resources/sprites/npcs/npc-blue/npc_blue_idle_left.png");
+    npc_blue->npc_animation->new_state(NOTHING, RIGHT, "resources/sprites/npcs/npc-blue/npc_blue_idle_right.png");
+
+    npc_blue_clone->npc_animation->new_state(NOTHING, UP, "resources/sprites/npcs/npc-blue/npc_blue_idle_up.png");
+    npc_blue_clone->npc_animation->new_state(NOTHING, DOWN, "resources/sprites/npcs/npc-blue/npc_blue_idle_down.png");
+    npc_blue_clone->npc_animation->new_state(NOTHING, LEFT, "resources/sprites/npcs/npc-blue/npc_blue_idle_left.png");
+    npc_blue_clone->npc_animation->new_state(NOTHING, RIGHT, "resources/sprites/npcs/npc-blue/npc_blue_idle_right.png");
 
     timer = new Timer;
 
@@ -65,8 +67,8 @@ void GameState::update(const float &delta_time)
     this->update_inputs(delta_time);
     this->player->instance_update(delta_time);
 
-    this->npc_leandro->instance_update(delta_time);
-    this->npc_leandro2->instance_update(delta_time);
+    this->npc_blue->instance_update(delta_time);
+    this->npc_blue_clone->instance_update(delta_time);
     this->npc_edinho->instance_update(delta_time);
     this->npc_edinho2->instance_update(delta_time);
 
@@ -103,16 +105,16 @@ void GameState::draw(sf::RenderTarget *target)
 // Verificar problema
     if (player->bag["Carrot 2"] == true)
     {
-        if (npc_leandro->cloned == false)
+        if (npc_blue->cloned == false)
         {
-            npc_leandro2->set_looking(npc_leandro->get_looking());
+            npc_blue_clone->set_looking(npc_blue->get_looking());
         }
-        npc_leandro->cloned = true;
-        this->npc_leandro2->instance_draw(target); //
+        npc_blue->cloned = true;
+        this->npc_blue_clone->instance_draw(target); //
     }
     else
     {
-        this->npc_leandro->instance_draw(target);
+        this->npc_blue->instance_draw(target);
     }
 
     this->npc_edinho->instance_draw(target);
@@ -123,8 +125,8 @@ void GameState::draw(sf::RenderTarget *target)
     this->carrot->instance_draw(target);
     this->carrot2->instance_draw(target); //
 
-    this->npc_leandro->get_npc_dialogue()->dialogue_draw(target);
-    this->npc_leandro2->get_npc_dialogue()->dialogue_draw(target);
+    this->npc_blue->get_npc_dialogue()->dialogue_draw(target);
+    this->npc_blue_clone->get_npc_dialogue()->dialogue_draw(target);
 
     this->npc_edinho->get_npc_dialogue()->dialogue_draw(target);
     this->npc_edinho2->get_npc_dialogue()->dialogue_draw(target);
@@ -163,18 +165,18 @@ void GameState::update_events(sf::Event event)
                 }
             }
         }
-        if ((object_collidable == npc_leandro) || (object_collidable == npc_leandro2))
+        if ((object_collidable == npc_blue) || (object_collidable == npc_blue_clone))
         {
-            npc_leandro->get_npc_dialogue()->update_event_dialogue(player->z, player->x, false);
-            npc_leandro2->get_npc_dialogue()->update_event_dialogue(player->z, player->x, true);
+            npc_blue->get_npc_dialogue()->update_event_dialogue(player->z, player->x, false);
+            npc_blue_clone->get_npc_dialogue()->update_event_dialogue(player->z, player->x, true);
             if (carrot2->get_holding() == true)
             {
-                npc_leandro->npc_collision->disable_collision();
-                if (npc_leandro2->get_npc_dialogue()->given == false)
+                npc_blue->npc_collision->disable_collision();
+                if (npc_blue_clone->get_npc_dialogue()->given == false)
                 {
                     carrot2->set_given(false);
                 }
-                if (npc_leandro2->get_npc_dialogue()->given == true)
+                if (npc_blue_clone->get_npc_dialogue()->given == true)
                 {
                     carrot2->set_given(true);
                 }
