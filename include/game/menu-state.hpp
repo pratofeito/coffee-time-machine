@@ -8,6 +8,7 @@
 #include "game-state.hpp"
 #include "buttons.hpp"
 #include "game.hpp"
+#include "audio/audio.hpp"
 
 class Menu_state : public State
 {
@@ -15,6 +16,7 @@ private:
     sf::Texture bg_texture;
     sf::RectangleShape background;
     sf::Font font;
+    Audio *menu_soundtrack;
 
     std::map<std::string, Button *> buttons;
 
