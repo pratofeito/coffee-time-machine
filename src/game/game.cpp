@@ -115,7 +115,7 @@ void Game::draw()
         this->states.top()->draw(this->window);
     }
 
-    this->draw_guidelines();
+    // this->draw_guidelines();
 
     this->window->display();
 }

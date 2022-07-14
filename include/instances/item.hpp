@@ -15,7 +15,7 @@ private:
 
     Dialogue item_dialogue;
     bool holding_item;
-    int i;
+    int i, x, y;
 
     sf::Texture *spr_texture;
     sf::Sprite *spr_item;

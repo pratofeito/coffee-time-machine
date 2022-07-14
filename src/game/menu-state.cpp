@@ -79,7 +79,6 @@ void Menu_state::draw(sf::RenderTarget *target)
     }
     target->draw(this->background);
     this->drawButtons(target);
-    // std::cout << "ATIZAP" << std::endl;
 }
 
 void Menu_state::updateButtons()

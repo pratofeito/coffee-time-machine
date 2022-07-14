@@ -74,7 +74,6 @@ void GameState::init_npcs()
     npc_blue->npc_animation->new_state(NOTHING, DOWN, "resources/sprites/npcs/npc-blue/npc_blue_idle_down.png");
     npc_blue->npc_animation->new_state(NOTHING, LEFT, "resources/sprites/npcs/npc-blue/npc_blue_idle_left.png");
     npc_blue->npc_animation->new_state(NOTHING, RIGHT, "resources/sprites/npcs/npc-blue/npc_blue_idle_right.png");
-
     npc_blue_clone->npc_animation->new_state(NOTHING, UP, "resources/sprites/npcs/npc-blue/npc_blue_idle_up.png");
     npc_blue_clone->npc_animation->new_state(NOTHING, DOWN, "resources/sprites/npcs/npc-blue/npc_blue_idle_down.png");
     npc_blue_clone->npc_animation->new_state(NOTHING, LEFT, "resources/sprites/npcs/npc-blue/npc_blue_idle_left.png");
@@ -86,7 +85,6 @@ void GameState::init_npcs()
     npc_pink->npc_animation->new_state(NOTHING, DOWN, "resources/sprites/npcs/npc-pink/npc_pink_idle_down.png");
     npc_pink->npc_animation->new_state(NOTHING, LEFT, "resources/sprites/npcs/npc-pink/npc_pink_idle_left.png");
     npc_pink->npc_animation->new_state(NOTHING, RIGHT, "resources/sprites/npcs/npc-pink/npc_pink_idle_right.png");
-
     npc_pink_clone->npc_animation->new_state(NOTHING, UP, "resources/sprites/npcs/npc-pink/npc_pink_idle_up.png");
     npc_pink_clone->npc_animation->new_state(NOTHING, DOWN, "resources/sprites/npcs/npc-pink/npc_pink_idle_down.png");
     npc_pink_clone->npc_animation->new_state(NOTHING, LEFT, "resources/sprites/npcs/npc-pink/npc_pink_idle_left.png");
@@ -98,7 +96,6 @@ void GameState::init_npcs()
     npc_yellow->npc_animation->new_state(NOTHING, DOWN, "resources/sprites/npcs/npc-yellow/npc_yellow_idle_down.png");
     npc_yellow->npc_animation->new_state(NOTHING, LEFT, "resources/sprites/npcs/npc-yellow/npc_yellow_idle_left.png");
     npc_yellow->npc_animation->new_state(NOTHING, RIGHT, "resources/sprites/npcs/npc-yellow/npc_yellow_idle_right.png");
-
     npc_yellow_clone->npc_animation->new_state(NOTHING, UP, "resources/sprites/npcs/npc-yellow/npc_yellow_idle_up.png");
     npc_yellow_clone->npc_animation->new_state(NOTHING, DOWN, "resources/sprites/npcs/npc-yellow/npc_yellow_idle_down.png");
     npc_yellow_clone->npc_animation->new_state(NOTHING, LEFT, "resources/sprites/npcs/npc-yellow/npc_yellow_idle_left.png");
@@ -110,7 +107,6 @@ void GameState::init_npcs()
     npc_cyan->npc_animation->new_state(NOTHING, DOWN, "resources/sprites/npcs/npc-cyan/npc_cyan_idle_down.png");
     npc_cyan->npc_animation->new_state(NOTHING, LEFT, "resources/sprites/npcs/npc-cyan/npc_cyan_idle_left.png");
     npc_cyan->npc_animation->new_state(NOTHING, RIGHT, "resources/sprites/npcs/npc-cyan/npc_cyan_idle_right.png");
-
     npc_cyan_clone->npc_animation->new_state(NOTHING, UP, "resources/sprites/npcs/npc-cyan/npc_cyan_idle_up.png");
     npc_cyan_clone->npc_animation->new_state(NOTHING, DOWN, "resources/sprites/npcs/npc-cyan/npc_cyan_idle_down.png");
     npc_cyan_clone->npc_animation->new_state(NOTHING, LEFT, "resources/sprites/npcs/npc-cyan/npc_cyan_idle_left.png");
@@ -122,7 +118,6 @@ void GameState::init_npcs()
     npc_jitsi_intro->npc_animation->new_state(NOTHING, DOWN, "resources/sprites/npcs/npc-jitsi/jitsi_idle_down.png");
     npc_jitsi_intro->npc_animation->new_state(NOTHING, LEFT, "resources/sprites/npcs/npc-jitsi/jitsi_idle_left.png");
     npc_jitsi_intro->npc_animation->new_state(NOTHING, RIGHT, "resources/sprites/npcs/npc-jitsi/jitsi_idle_right.png");
-
     npc_jitsi_complete->npc_animation->new_state(NOTHING, UP, "resources/sprites/npcs/npc-jitsi/jitsi_idle_up.png");
     npc_jitsi_complete->npc_animation->new_state(NOTHING, DOWN, "resources/sprites/npcs/npc-jitsi/jitsi_idle_down.png");
     npc_jitsi_complete->npc_animation->new_state(NOTHING, LEFT, "resources/sprites/npcs/npc-jitsi/jitsi_idle_left.png");
@@ -148,17 +143,14 @@ void GameState::update(const float &delta_time)
     this->npc_jitsi_complete->instance_update(delta_time);
 
     coffee->instance_update(delta_time);
-     chocolate->instance_update(delta_time);
+    chocolate->instance_update(delta_time);
     penguin->instance_update(delta_time);
-     camera->instance_update(delta_time);
+    camera->instance_update(delta_time);
     
-    
-
     if (timer->timer_update() == 0)
     {
         this->states->push(new EndingState(this->window, this->states));
     }
-
 
 }
 
@@ -174,6 +166,7 @@ void GameState::draw(sf::RenderTarget *target)
     map_chairs->draw(window);
     map_tables->draw(window);
 
+    // desenha o player
     this->player->instance_draw(target);
 
     // cronometro
@@ -266,6 +259,14 @@ void GameState::draw(sf::RenderTarget *target)
     // objetos em cima do mapa
     map_obj->draw(window);
 
+    // desenha objetos pegáveis
+    this->coffee->instance_draw(target);
+    this->chocolate->instance_draw(target);
+    this->camera->instance_draw(target);
+    this->penguin->instance_draw(target);
+
+    //desenha diálogos personagens
+
     this->npc_blue->get_npc_dialogue()->dialogue_draw(target);
     this->npc_blue_clone->get_npc_dialogue()->dialogue_draw(target);
 
@@ -281,10 +282,6 @@ void GameState::draw(sf::RenderTarget *target)
     this->npc_jitsi_intro->get_npc_dialogue()->dialogue_draw(target);
     this->npc_jitsi_complete->get_npc_dialogue()->dialogue_draw(target);
 
-    this->coffee->instance_draw(target);
-    this->chocolate->instance_draw(target);
-    this->camera->instance_draw(target);
-    this->penguin->instance_draw(target);
 }
 
 void GameState::update_inputs(const float &delta_time)

@@ -10,13 +10,17 @@ Item::Item(std::string name, int x, int y, int i, std::string spr_dir, std::stri
     hit_box.setPosition(virtual_position.x * GRID_SIZE, virtual_position.y * GRID_SIZE);
     item_collision = new Collision(this);
     this->i = i;
+    this->x = x;
+    this->y = x;
 
+    // textura item pequeno
     spr_texture = new sf::Texture();
     spr_texture->loadFromFile(spr_dir);
     spr_item = new sf::Sprite();
     spr_item->setTexture(*spr_texture);
     spr_item->setPosition(sf::Vector2f(x * GRID_SIZE, y * GRID_SIZE));
 
+    // textura item grande
     spr_texture_icon = new sf::Texture();
     spr_texture_icon->loadFromFile(spr_dir_icon);
     spr_item_icon = new sf::Sprite();
@@ -26,6 +30,10 @@ Item::Item(std::string name, int x, int y, int i, std::string spr_dir, std::stri
 
 Item::~Item()
 {
+    delete spr_item;
+    delete spr_texture;
+    delete spr_item_icon;
+    delete spr_texture_icon;
 }
 
 bool Item::get_holding()
@@ -61,6 +69,7 @@ void Item::instance_interact(std::map<const std::string, bool> &bag)
 
 void Item::instance_draw(sf::RenderTarget *target)
 {
+    // temporariamente desabilitado
     if (holding_item == false)
     {
         // target->draw(this->hit_box);
@@ -71,12 +80,12 @@ void Item::instance_draw(sf::RenderTarget *target)
         if (given == false)
         {
             // target->draw(this->carrot_sprite);
-            target->draw(*this->spr_item_icon);
+            // target->draw(*this->spr_item_icon);
         }
         if (given == true)
         {
-            target->draw(this->carrot_sprite);
-            carrot_sprite.setFillColor(sf::Color::Transparent);
+            // target->draw(this->carrot_sprite);
+            // carrot_sprite.setFillColor(sf::Color::Transparent);
         }
     }
 }
