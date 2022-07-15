@@ -9,15 +9,24 @@ Menu_state::Menu_state(sf::RenderWindow *window, std::stack<State *> *states) : 
     this->background.setSize(sf::Vector2f(WINDOW_WIDTH, WINDOW_HEIGHT));
 
     // Carregando arquivo de texturas
-    if (!this->bg_texture.loadFromFile("resources/sprites/menu/menu_background.png"))
+    try
+    {
+        this->bg_texture.loadFromFile("resources/sprites/menu/menu_background.png");
+    }
+    catch (...)
     {
         std::cout << "Erro loading texture" << std::endl;
     }
+    
     this->background.setTexture(&this->bg_texture);
 
     // Carregando fontes
 
-    if (!this->font.loadFromFile("resources/fonts/pixel.ttf"))
+    try
+    {
+        this->font.loadFromFile("resources/fonts/pixel.ttf");
+    }
+    catch (...)
     {
         std::cout << "Error loading font \n";
     }
