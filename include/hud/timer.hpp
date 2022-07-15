@@ -1,3 +1,14 @@
+/**
+ * @file timer.hpp
+ * @author brisabn
+ * @brief Definição da classe Timer
+ * @version 0.1
+ * @date 2022-07-13
+ * 
+ * @copyright Copyright (c) 2022
+ * 
+ */
+
 #ifndef TIMER_H
 #define TIMER_H
 
@@ -10,6 +21,10 @@
 
 #include <ctime>
 
+/**
+ * @brief Cria uma classe Timer 
+ * 
+ */
 class Timer
 {
 private:
@@ -20,10 +35,27 @@ private:
 
 protected:
 public:
+
+    /**
+     * @brief Contrói um objeto do tipo tempo
+     * 
+     * @param tempo tempo máximo
+     */
     Timer(int tempo);
     ~Timer();
 
+    /**
+     * @brief Desenha o objeto Timer para o destino de renderização 
+     * 
+     * @param target 
+     */
     void hud_draw(sf::RenderTarget *target);
+    
+    /**
+     * @brief Atualiza o objeto Timer
+     * 
+     * @return int 
+     */
     int timer_update();
 };
 
