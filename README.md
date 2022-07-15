@@ -77,7 +77,8 @@ Abaixo a árvore de pastas do repositório:
 
 ## Execução e Compilação
 
-Para executar o programa basta compilá-lo usando o comando _make_ e executá-lo com o comando _make run_
+Para executar o programa basta compilá-lo usando o comando `make` e executá-lo com o comando `make run`.
+Em algumas versões utilizando o WSL, não é possível gerar interface gráfica. Dessa forma também é possivel compilar utilizando o _mingw_
 
 ## Testando a Demo
 
