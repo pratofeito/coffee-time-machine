@@ -12,6 +12,8 @@ Utilizando conceitos de Programação Orientada à Objetos, foi criada uma base 
 - [Testando a Demo](#testando-a-demo)
 - [Pessoas Envolvidas](#pessoas-envolvidas)
 
+![image](https://user-images.githubusercontent.com/47651648/179138280-61121b12-af8b-450a-bac3-020804f497ae.png)
+
 ## Delimitação do Problema
 
 Para a execução da ideia, partir de elementos mais básicos seria de maior dificuldade e fugiria do escopo da disciplina. Dessa maneira, foi utilizada a biblioteca multimídia SFML para a aplicação de elementos essenciais como áudio, janelas e gráficos. Com isso conseguimos nos delimitar a apenas implementar TADs relativos às funcionalidades especiais do projeto, desde mais básicos como movimentação de personagem, cenários e contagem de status até mecânicas especiais.
