@@ -18,6 +18,7 @@
 #include "game-state.hpp"
 #include "buttons.hpp"
 #include "game.hpp"
+#include "audio/audio.hpp"
 
 /**
  * @brief Define um estado de menu inicial, que extende as funcionalidades de States
@@ -30,6 +31,7 @@ private:
     sf::Texture bg_texture;
     sf::RectangleShape background;
     sf::Font font;
+    Audio *menu_soundtrack;
 
     std::map<std::string, Button *> buttons;
 

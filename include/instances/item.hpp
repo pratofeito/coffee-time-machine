@@ -13,7 +13,7 @@
 #define ITEM_H
 
 #include "collision/collision.hpp"
-#include "instances/dialogue/dialogue.hpp"
+#include "dialogue/dialogue.hpp"
 
 /**
  * @brief Cria uma classe Item que é filha de Instance
@@ -31,26 +31,30 @@ private:
 
     Dialogue item_dialogue;
     bool holding_item;
-    int i;
+    int i, x, y;
+
+    sf::Texture *spr_texture;
+    sf::Sprite *spr_item;
+
+    sf::Texture *spr_texture_icon;
+    sf::Sprite *spr_item_icon;
+
 
 public:
     bool given;
     sf::RectangleShape carrot_sprite;
 
     /**
-     * @brief Constroi um objeto do tipo Item
+     * @brief Constrói novo objeto do tipo item
      * 
-     * @param name 
-     * @param x 
-     * @param y 
+     * @param name nome do item
+     * @param x posição x virtual na tela
+     * @param y posição y virtual na tela
      * @param i 
+     * @param spr_dir diretório da sprite do item
+     * @param spr_dir_icon diretório da sprite do ícone do item
      */
-    Item(std::string name, int x, int y, int i);
-    
-    /**
-     * @brief Destrói o objeto do Item 
-     * 
-     */
+    Item(std::string name, int x, int y, int i, std::string spr_dir, std::string spr_dir_icon);
     virtual ~Item();
     
     /**
@@ -62,11 +66,11 @@ public:
     bool get_holding();
 
     /**
-     * @brief Define o Lugar onde Item está
+     * @brief Define objeto dado
      * 
-     * @param aqui 
+     * @param given_item valor a ser atribuido a given
      */
-    void set_given(bool aqui);
+    void set_given(bool given_item);
 
     /**
      * @brief Obtem o nome do objeto

@@ -17,6 +17,7 @@
 #include <iostream>
 #include <sstream>
 #include <string>
+#define TEMPO 119
 
 #include <ctime>
 
@@ -30,20 +31,17 @@ private:
     sf::Clock m_clock;
     sf::Text m_text;
     sf::Font font;
+    int tempo_total;
 
 protected:
 public:
-    
+
     /**
-     * @brief Constrói um objeto do tipo Timer
+     * @brief Contrói um objeto do tipo tempo
      * 
+     * @param tempo tempo máximo
      */
-    Timer();
-    
-    /**
-     * @brief Destroi o objeto Timer
-     * 
-     */
+    Timer(int tempo);
     ~Timer();
 
     /**

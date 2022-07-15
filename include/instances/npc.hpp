@@ -13,8 +13,9 @@
 
 #include "collision/collision.hpp"
 #include "instances/instance.hpp"
-#include "instances/dialogue/dialogue.hpp"
+#include "dialogue/dialogue.hpp"
 #include "instances/player.hpp"
+#include "animation/animation.hpp"
 
 
 /**
@@ -31,8 +32,15 @@ private:
     // Collision
     sf::RectangleShape hit_box;
 
+    // Sprite
+    sf::Sprite *npc_sprite;
+
 public:
     Collision *npc_collision;
+    Animation *npc_animation;
+
+    // Clone
+    bool cloned = false;
 
 
     /**
@@ -72,6 +80,8 @@ public:
      * @param delta_time parametro passado pelo metodo instance_update
      */
     void instance_update(const float &delta_time) override;
+    void set_looking(int direction);
+    int get_looking();
 
     /**
      * @brief Retorna a variavel npc_dialogue

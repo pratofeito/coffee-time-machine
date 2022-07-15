@@ -13,6 +13,9 @@
 #define GAME_STATE_H
 
 #include "game/state.hpp"
+#include "sprite-set/background.hpp"
+#include "audio/audio.hpp"
+#include "game/game-state.hpp"
 
 
 /**
@@ -22,16 +25,62 @@
 class GameState : public State
 {
 private:
+    enum directions
+    {
+        UP,
+        DOWN,
+        LEFT,
+        RIGHT
+    };
+
+    enum states_player
+    {
+        MOVING,
+        INTERACTING,
+        NOTHING
+    };
+
+    // Background
+    Background *map_floor;
+    Background *map_chairs;
+    Background *map_tables;
+    Background *map_obj;
+
     // Elementos de Game
     Player *player;
-    Wall *wall;
-    Npc *npc_leandro;
-    Npc *npc_edinho;
-    Npc *npc_edinho2;
+
+    // Blue
+    Npc *npc_blue;
+    Npc *npc_blue_clone;
+
+    // Pink
+    Npc *npc_pink;
+    Npc *npc_pink_clone;
+    // Cian
+    Npc *npc_cyan;
+    Npc *npc_cyan_clone;
+    // Yellow
+    Npc *npc_yellow;
+    Npc *npc_yellow_clone;
+
+    // Jitsi
+    Npc *npc_jitsi_intro;
+    Npc *npc_jitsi_complete;
+
+    std::vector<Wall *> walls;
+    std::ifstream walls_file;
+
     Timer *timer;
 
-    Item *carrot;
-    // Item *carrot2;
+    Item *coffee;
+    Item *chocolate;
+    Item *penguin;
+    Item *camera;
+
+    void generate_walls(std::string walls_dir);
+
+    // audio
+    Audio *game_soundtrack;
 
 public:
     
@@ -47,6 +96,12 @@ public:
      * 
      */
     virtual ~GameState();
+
+    /**
+     * @brief Inicia os npcs com suas configurações
+     * 
+     */
+    void init_npcs();
 
     /**
      * @brief Atualiza o objeto Game_state

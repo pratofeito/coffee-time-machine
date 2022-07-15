@@ -5,18 +5,11 @@ Game::Game()
 {
     this->initialize_window();
     this->initialize_states();
-
-    // criação do mapa
-    map_bg = new Background("resources/sprites/main_room_tileset.png", "resources/maps/main_room.csv", sf::Vector2i(0, 0));
     this->initialize_sfml_events();
 }
 
 Game::~Game()
 {
-
-    // deleto o background do mapa criado no início
-    delete map_bg;
-
     delete this->window;
     while (!this->states.empty())
     {
@@ -30,12 +23,14 @@ Game::~Game()
 void Game::initialize_window()
 {
     sf::ContextSettings settings;
+    settings.antialiasingLevel = 0;
+
     // tileset 25 x 17
-    this->window = new sf::RenderWindow(sf::VideoMode(800, 544), "RPG", sf::Style::Close, settings);
+    this->window = new sf::RenderWindow(sf::VideoMode(WINDOW_WIDTH, WINDOW_HEIGHT), "Coffee Time Machine", sf::Style::Close, settings);
     this->window->setFramerateLimit(30);
-    this->window->setVerticalSyncEnabled(false);
+    this->window->setVerticalSyncEnabled(true);
     // extende a janela para um tamanho maior
-    this->window->setSize(sf::Vector2u(1000, 680));
+    this->window->setSize(sf::Vector2u(WINDOW_WIDTH * WINDOW_SCALING, WINDOW_HEIGHT * WINDOW_SCALING));
 }
 
 void Game::initialize_states()
@@ -52,7 +47,7 @@ void Game::initialize_sfml_events()
 void Game::update_delta_time()
 {
     this->delta_time = this->delta_time_clock.restart().asSeconds();
-    std::cout << this->delta_time << std::endl;
+    // std::cout << this->delta_time << std::endl;
 }
 
 void Game::update_sfml_events()
@@ -115,14 +110,12 @@ void Game::draw()
 
     this->window->clear(sf::Color::Black);
 
-    map_bg->draw(window);
-
-    this->draw_guidelines();
-
     if (!this->states.empty())
     {
         this->states.top()->draw(this->window);
     }
+
+    // this->draw_guidelines();
 
     this->window->display();
 }

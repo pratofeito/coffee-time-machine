@@ -1,0 +1,52 @@
+TARGET   := program
+
+ifeq ($(OS),Windows_NT)
+	SYSTEM 	= win
+	SUFFIX	= .exe
+	RUN	= libs/sfml-win/bin/${TARGET}${SUFFIX}
+	RUN_TEST= libs/sfml-win/bin/${TARGET}-test${SUFFIX}
+	OUT_DIR	= libs/sfml-win/bin/
+	MKDIR	= (@mkdir $(subst /,\,$(dir $@)))&
+else
+	SYSTEM 	= linux
+	SUFFIX	=
+	RUN	= export LD_LIBRARY_PATH=libs/sfml-linux/lib && ./${TARGET}${SUFFIX}
+	RUN_TEST= export LD_LIBRARY_PATH=libs/sfml-linux/lib && ./${TARGET}-test${SUFFIX}
+	OUT_DIR	= 
+	MKDIR	= @mkdir -p $(@D)
+	RUN_TEST= export LD_LIBRARY_PATH=libs/sfml-linux/lib && ./${TARGET}-test${SUFFIX}
+endif
+
+CC       := g++
+CXXFLAGS := -std=c++11 -g -Wall
+LDFLAGS  := -Llibs/sfml-${SYSTEM}/lib -lsfml-audio -lsfml-graphics -lsfml-window -lsfml-system
+BUILD    := ./build
+INCLUDE  := -I include -I libs/sfml-${SYSTEM}/include -I libs/doctest
+TEST_DIR := tests
+
+SRC      := $(wildcard src/**/**/**/*.cpp) $(wildcard src/**/**/*.cpp) $(wildcard src/**/*.cpp) $(wildcard src/*.cpp)
+OBJECTS  := $(SRC:%.cpp=$(BUILD)/%.o)
+SRC_TEST := $(wildcard $(TEST_DIR)/**/**/**/*.cpp) $(wildcard $(TEST_DIR)/**/**/*.cpp) $(wildcard $(TEST_DIR)/**/*.cpp) $(wildcard $(TEST_DIR)/*.cpp)
+OBJ_TEST := $(SRC_TEST:%.cpp=$(BUILD)/%.o)
+
+
+all: $(TARGET)
+
+$(BUILD)/%.o: %.cpp
+	${MKDIR}
+	$(CXX) $(CXXFLAGS) $(INCLUDE) -c $< -o $@
+
+$(TARGET): $(OBJECTS) $(OBJ_TEST)
+	${MKDIR}
+	$(CXX) $(CXXFLAGS) -o ${OUT_DIR}$(TARGET)${SUFFIX} $(subst build/tests/main-test.o,,$^) $(LDFLAGS)
+	$(CXX) $(CXXFLAGS) -o ${OUT_DIR}$(TARGET)-test${SUFFIX} $(subst build/src/main.o,,$^) $(LDFLAGS)
+
+test: CXXFLAGS += --coverage
+test: $(TARGET)
+	${RUN_TEST}
+
+.PHONY: run run-test
+
+
+run:
+	${RUN}	

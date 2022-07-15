@@ -36,6 +36,7 @@ private:
     float animation_time;
     int past_state;
     int index;
+    bool has_config;
 
     /**
      * @brief Map qua armazena ponteiros para SpriteSet com uma chave sendo os estados

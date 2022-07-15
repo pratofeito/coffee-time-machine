@@ -2,7 +2,7 @@
 
 Player::Player(int x, int y) : Instance(x, y)
 {
-    player_state = NOTHING;
+    instance_state = NOTHING;
 
     // Inicializa a player_collision colocando ela no vetor de colisões
     player_colision = new Collision(this);
@@ -41,7 +41,7 @@ void Player::player_move(const float delta_time)
 
         if (partial_move >= GRID_SIZE)
         {
-            player_state = MOVING;
+            instance_state = MOVING;
             elapsed_time = 0;
             virtual_position.x = next_tile.x;
             virtual_position.y = next_tile.y;
@@ -55,7 +55,7 @@ void Player::player_move(const float delta_time)
     }
     else
     {
-        player_state = NOTHING;
+        instance_state = NOTHING;
     }
 }
 
@@ -63,27 +63,37 @@ void Player::player_interact()
 {
     Instance *object_collidable = player_colision->get_collision(next_tile);
 
+    // // evitando problema de falha de segmentação
+    // z = sf::Keyboard::isKeyPressed(sf::Keyboard::Z);
+    // x = sf::Keyboard::isKeyPressed(sf::Keyboard::X);
+    // if (object_collidable != nullptr && (z || x))
     if (object_collidable != nullptr)
     {
-
         if (object_collidable->instance_interact() == false)
         {
-            player_state = NOTHING;
-
-            x = false;
-            z = false;
+            instance_state = NOTHING;
         }
 
         if (object_collidable->instanceof <Item>(object_collidable))
         {
             object_collidable->instance_interact(this->bag);
-            player_state = MOVING;
+            instance_state = NOTHING;
+        }
+
+        if (object_collidable->instanceof <Npc>(object_collidable))
+        {
+            object_collidable->instance_interact();
+            Npc *bc = dynamic_cast<Npc *>(object_collidable);
+            bc->set_looking(invert_looking(looking));
+            // instance_state = MOVING;
         }
     }
     else
     {
-        player_state = NOTHING;
+        instance_state = NOTHING;
     }
+    z = false;
+    x = false;
 }
 
 void Player::check_inputs()
@@ -97,6 +107,9 @@ void Player::check_inputs()
 
 bool Player::uptade_event_player(sf::Event event)
 {
+    z = false;
+    x = false;
+
     if (event.key.code == sf::Keyboard::Z)
     {
         interact_key = true;
@@ -116,6 +129,27 @@ bool Player::uptade_event_player(sf::Event event)
     }
 }
 
+int Player::invert_looking(int looking)
+{
+    switch (looking)
+    {
+    case UP:
+        return DOWN;
+        break;
+    case DOWN:
+        return UP;
+        break;
+    case LEFT:
+        return RIGHT;
+        break;
+    case RIGHT:
+        return LEFT;
+        break;
+    default:
+        return 0;
+    }
+}
+
 void Player::keyboard_step()
 {
     y_direction = arrow_down - arrow_up;
@@ -125,7 +159,7 @@ void Player::keyboard_step()
     // Aviso: Remover a estranheza daqui (Férias)
     if (arrow_up)
     {
-        player_state = MOVING;
+        instance_state = MOVING;
         looking = UP;
         next_tile.x = virtual_position.x;
         next_tile.y = virtual_position.y + y_direction;
@@ -133,7 +167,7 @@ void Player::keyboard_step()
     }
     else if (arrow_down)
     {
-        player_state = MOVING;
+        instance_state = MOVING;
         looking = DOWN;
         next_tile.x = virtual_position.x;
         next_tile.y = virtual_position.y + y_direction;
@@ -141,7 +175,7 @@ void Player::keyboard_step()
     }
     else if (arrow_left)
     {
-        player_state = MOVING;
+        instance_state = MOVING;
         looking = LEFT;
         next_tile.x = virtual_position.x + x_direction;
         next_tile.y = virtual_position.y;
@@ -149,7 +183,7 @@ void Player::keyboard_step()
     }
     else if (arrow_right)
     {
-        player_state = MOVING;
+        instance_state = MOVING;
         looking = RIGHT;
         next_tile.x = virtual_position.x + x_direction;
         next_tile.y = virtual_position.y;
@@ -177,11 +211,11 @@ void Player::keyboard_step()
             break;
         }
         // std::cout << "x: " << next_tile.x << " y: " << next_tile.y << std::endl;
-        player_state = INTERACTING;
+        instance_state = INTERACTING;
     }
     else
     {
-        player_state = NOTHING;
+        instance_state = NOTHING;
     }
 }
 
@@ -198,7 +232,8 @@ void Player::instance_draw(sf::RenderTarget *target)
 
 void Player::instance_update(const float &delta_time)
 {
-    switch (player_state)
+
+    switch (instance_state)
     {
     case INTERACTING:
         // std::cout << "Case Interacting" << std::endl;
@@ -213,13 +248,13 @@ void Player::instance_update(const float &delta_time)
     // tem que estar como verificação no fim porque ele pode estar movimentando, acabar
     // um pedaço do movimento e ainda continuar pressionado. neste caso ele não deve mudar
     // para o estado parado, mas sim continuar em movimento.
-    if (player_state == NOTHING)
+    if (instance_state == NOTHING)
     {
         // std::cout << "Case Nothing" << std::endl;
         check_inputs();
         keyboard_step();
     }
 
-    player_animation->update(player_state, looking, delta_time);
+    player_animation->update(instance_state, looking, delta_time);
     player_sprite->setPosition(projected_position);
 }

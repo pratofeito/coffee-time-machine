@@ -1,0 +1,7 @@
+how is the weather today?    \n\n (z) it is sunny  (x) it is cold
+let's go to the pool \n \n (z)i don't like water (x)sounds great!
+neither do i!
+bring some sunscreen!
+did you bring a coat \n\n (z) yes (x) no
+good for you, dear
+i'll bring one for you
